@@ -121,6 +121,8 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 
 ## 📂 Repository Directory Index
 
+* **`business/`**
+  * [`monetization-and-business-plan.md`](file:///home/rifaterdemsahin/projects/content-calendar/business/monetization-and-business-plan.md) — YouTube Partner Program (YPP) milestone timeline (725/1,000 subs), watch hours math, and the 5-tier $10,000+/mo creator business blueprint.
 * **`scripts/`**
   * [`fetch_latest_videos.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/fetch_latest_videos.py) — Python script to automatically fetch, classify (Short vs Long), and export latest videos from [@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin) via YouTube RSS.
 * **`data/`**
