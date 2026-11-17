@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Engine & Calendar | @RifatErdemSahin</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
+          R
+        </span>
+        <div>
+          <span class="font-bold text-lg tracking-tight">@RifatErdemSahin</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 ml-2">Content Engine</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#rationale" class="hover:text-indigo-400 transition-colors">Rationale</a>
+        <a href="#projections" class="hover:text-indigo-400 transition-colors">Estimated Numbers</a>
+        <a href="#okrs" class="hover:text-indigo-400 transition-colors">OKRs</a>
+        <a href="#calendar" class="hover:text-indigo-400 transition-colors">4-Week Calendar</a>
+        <a href="#production" class="hover:text-indigo-400 transition-colors">Shoot Logistics</a>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 flex items-center gap-1.5 transition">
+          <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="https://github.com/rifaterdemsahin/content-calendar" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+          <i class="fab fa-github"></i> Repo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-16 sm:py-24 border-b border-slate-800/80">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.18),rgba(255,255,255,0))]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/40 border border-indigo-700/50 text-indigo-300 text-xs font-semibold mb-6">
+          <i class="fas fa-satellite-dish animate-pulse"></i> Operational Content & Community Dashboard
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+          From YouTube Viewers to <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Skool Community Builders</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-300 leading-relaxed">
+          A high-velocity, multi-tier content system pairing <strong>Shorts</strong>, <strong>Long Tutorials</strong>, and <strong>Course Masterclasses</strong> with a high-retention Skool community for AI Engineers and Delivery Pilots.
+        </p>
+      </div>
+
+      <!-- Live KPI Quick Glance -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+          <div class="text-slate-400 text-xs font-semibold uppercase tracking-wider">90-Day Views Target</div>
+          <div class="text-3xl font-bold text-white mt-2">150,000</div>
+          <div class="text-xs text-indigo-400 mt-1"><i class="fas fa-arrow-trend-up"></i> 80k Shorts + 70k Long/Course</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+          <div class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Subscriber Growth</div>
+          <div class="text-3xl font-bold text-white mt-2">+5,000</div>
+          <div class="text-xs text-emerald-400 mt-1"><i class="fas fa-users"></i> Targeted Tech Dev Audience</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+          <div class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Skool Community</div>
+          <div class="text-3xl font-bold text-white mt-2">+500</div>
+          <div class="text-xs text-purple-400 mt-1"><i class="fas fa-layer-group"></i> Active AI Practitioners</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur">
+          <div class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Weekly Production Time</div>
+          <div class="text-3xl font-bold text-white mt-2">10.5 hrs</div>
+          <div class="text-xs text-amber-400 mt-1"><i class="fas fa-bolt"></i> 1 Long + 3 Shorts + 1 Asset</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: The Rationale -->
+  <section id="rationale" class="py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Strategy & Mechanics</h2>
+        <p class="text-3xl font-bold text-white mt-2">The Rationale Behind the Engine</p>
+        <p class="text-slate-400 text-sm mt-3">Why this specific multi-tier architecture guarantees sustainable growth and conversion without creator burnout.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Rationale 1 -->
+        <div class="p-6 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition">
+          <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-compress-arrows-alt"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">1. Algorithm-Driven Flywheel</h3>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            YouTube algorithms treat Shorts and Long-form differently: Shorts provide <strong>unmatched algorithmic discoverability</strong> to non-subscribers with zero friction. Long-form videos build <strong>deep technical trust and authority</strong>. Combining both prevents the channel from becoming a pure entertainment channel or a dry lecture repository.
+          </p>
+        </div>
+
+        <!-- Rationale 2 -->
+        <div class="p-6 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-recycle"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">2. 400% Repurposing Leverage</h3>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            Creators burn out when they create isolated pieces of content. In this system, <strong>1 core Wednesday tutorial</strong> naturally yields <strong>2-3 high-performing Shorts</strong> (the hook, the aha moment, and the common gotcha), <strong>1 downloadable Skool asset</strong> (n8n JSON/dotfiles), and <strong>1 community challenge</strong>.
+          </p>
+        </div>
+
+        <!-- Rationale 3 -->
+        <div class="p-6 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition">
+          <div class="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-magnet"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">3. Skool as the Value Sink</h3>
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            Rather than asking viewers to subscribe passively, every technical video offers an immediate high-value asset inside Skool (workflow JSON, Dockerfile, prompt pack). This converts passive viewers into logged-in community members where retention, peer interaction, and monetization live.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Estimated Numbers & Projections -->
+  <section id="projections" class="py-16 bg-slate-900/30 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Quantitative Projections</h2>
+        <p class="text-3xl font-bold text-white mt-2">Estimated Numbers & Funnel Economics</p>
+        <p class="text-slate-400 text-sm mt-3">Conservative, target, and stretch performance metrics across a 90-day cycle.</p>
+      </div>
+
+      <!-- Funnel Conversion Model -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fas fa-filter text-indigo-400"></i> The Viewer-to-Member Conversion Funnel
+          </h3>
+          <div class="space-y-4">
+            <div class="p-4 rounded-lg bg-slate-950/60 border border-slate-800/80 flex justify-between items-center">
+              <div>
+                <div class="text-sm font-semibold text-white">Top-of-Funnel Impressions & Views</div>
+                <div class="text-xs text-slate-400">Total quarterly views across Shorts & Long-Form</div>
+              </div>
+              <div class="text-right">
+                <div class="text-lg font-bold text-indigo-400">150,000 views</div>
+                <div class="text-xs text-slate-500">100% Top of Funnel</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-slate-950/60 border border-slate-800/80 flex justify-between items-center">
+              <div>
+                <div class="text-sm font-semibold text-white">Lead Magnet Click-Throughs (CTR)</div>
+                <div class="text-xs text-slate-400">Description & pinned comment clicks to Skool</div>
+              </div>
+              <div class="text-right">
+                <div class="text-lg font-bold text-purple-400">1,800 clicks</div>
+                <div class="text-xs text-slate-500">~8.2% of Long-form views</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-slate-950/60 border border-slate-800/80 flex justify-between items-center">
+              <div>
+                <div class="text-sm font-semibold text-white">Skool Community Join Conversions</div>
+                <div class="text-xs text-slate-400">Landing page visit to member signup</div>
+              </div>
+              <div class="text-right">
+                <div class="text-lg font-bold text-emerald-400">500 members</div>
+                <div class="text-xs text-slate-500">~27.7% join conversion</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-lg bg-slate-950/60 border border-slate-800/80 flex justify-between items-center">
+              <div>
+                <div class="text-sm font-semibold text-white">Active Core Builders (Retention)</div>
+                <div class="text-xs text-slate-400">30-day active members submitting workflows</div>
+              </div>
+              <div class="text-right">
+                <div class="text-lg font-bold text-amber-400">175 - 200 active</div>
+                <div class="text-xs text-slate-500">35-40% 30-day retention</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Production Resource Budget -->
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fas fa-clock text-indigo-400"></i> Production Hours & Resource Allocation
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase">
+                <tr>
+                  <th class="py-2.5">Asset Type</th>
+                  <th class="py-2.5">Freq</th>
+                  <th class="py-2.5">Prep</th>
+                  <th class="py-2.5">Shoot</th>
+                  <th class="py-2.5">Edit</th>
+                  <th class="py-2.5">Total / Wk</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                <tr>
+                  <td class="py-3 font-semibold text-white">Long Tutorial</td>
+                  <td>1x / wk</td>
+                  <td>1.5h</td>
+                  <td>1.5h</td>
+                  <td>3.0h</td>
+                  <td class="font-bold text-indigo-400">6.0 hrs</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-semibold text-white">YouTube Shorts</td>
+                  <td>3x / wk</td>
+                  <td>0.5h</td>
+                  <td>0.5h</td>
+                  <td>1.5h</td>
+                  <td class="font-bold text-indigo-400">2.5 hrs</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-semibold text-white">Skool Asset & Live</td>
+                  <td>1x / wk</td>
+                  <td>0.5h</td>
+                  <td>1.0h</td>
+                  <td>0.5h</td>
+                  <td class="font-bold text-indigo-400">2.0 hrs</td>
+                </tr>
+                <tr class="bg-indigo-950/20 font-bold text-white">
+                  <td class="py-3 text-sm">TOTAL WEEKLY</td>
+                  <td>—</td>
+                  <td>2.5h</td>
+                  <td>3.0h</td>
+                  <td>5.0h</td>
+                  <td class="text-sm text-emerald-400">10.5 hrs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-4 p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400">
+            <i class="fas fa-info-circle text-indigo-400 mr-1"></i>
+            <strong>Zero External Studio Cost:</strong> By leveraging your permanent desk setup, in-home whiteboard, and outdoor Cambridge walk-and-talks, variable production costs are limited strictly to LLM/cloud API tokens (~$15/mo).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: OKRs Scoreboard -->
+  <section id="okrs" class="py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Quarterly Goals</h2>
+        <p class="text-3xl font-bold text-white mt-2">Objectives & Key Results (OKRs)</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Objective 1 -->
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-400 text-xs font-bold">Objective 1</span>
+            <span class="text-xs text-slate-400">Authority & Reach</span>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Establish Authority in AI Engineering</h4>
+          <p class="text-xs text-slate-400 mb-6">Position @RifatErdemSahin as the definitive voice for Delivery Pilots and AI agent systems.</p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 1.1: +5,000 Subscribers</span>
+                <span class="text-indigo-400 font-bold">0 / 5,000</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 rounded-full" style="width: 15%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 1.2: 150,000 Total Views</span>
+                <span class="text-indigo-400 font-bold">Target 150k</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 rounded-full" style="width: 20%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 1.3: >42% APV on Long</span>
+                <span class="text-indigo-400 font-bold">>42%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 rounded-full" style="width: 42%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Objective 2 -->
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-400 text-xs font-bold">Objective 2</span>
+            <span class="text-xs text-slate-400">Community</span>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Build a Vibrant Skool Community</h4>
+          <p class="text-xs text-slate-400 mb-6">Convert viewers into peer builders with high retention and capstone shares.</p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 2.1: +500 Verified Members</span>
+                <span class="text-purple-400 font-bold">0 / 500</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 rounded-full" style="width: 10%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 2.2: >8% Click-to-Join Rate</span>
+                <span class="text-purple-400 font-bold">>8.0%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 rounded-full" style="width: 25%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 2.3: 120 Member Project Shares</span>
+                <span class="text-purple-400 font-bold">0 / 120</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 rounded-full" style="width: 10%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Objective 3 -->
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-bold">Objective 3</span>
+            <span class="text-xs text-slate-400">Operations</span>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Scale Repurposing & Speed</h4>
+          <p class="text-xs text-slate-400 mb-6">Eliminate production drag and build a sustainable 10-day content buffer.</p>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 3.1: <6h Production Cycle</span>
+                <span class="text-emerald-400 font-bold">6.0 hrs</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 3.2: 100% Asset Coupling</span>
+                <span class="text-emerald-400 font-bold">100%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: 100%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300">KR 3.3: 48h Short Extraction</span>
+                <span class="text-emerald-400 font-bold">100%</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: 4-Week Calendar Grid -->
+  <section id="calendar" class="py-16 bg-slate-900/30 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Execution Matrix</h2>
+          <p class="text-3xl font-bold text-white mt-2">4-Week Content Sprint</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 border border-red-500/30">Shorts (3x/wk)</span>
+          <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">Long Tutorials (Wed)</span>
+          <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">Course Masterclass (Sat)</span>
+          <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">Skool Community Hub</span>
+        </div>
+      </div>
+
+      <!-- Weekly Accordions / Grids -->
+      <div class="space-y-6">
+        <!-- Week 1 -->
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Week 1</span>
+              <h3 class="text-lg font-bold text-white">AI Agent Architecture & n8n Automation</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Nov 18 – Nov 24</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Mon • Short</span>
+              <div class="font-bold text-white mt-1">Stop Writing Repetitive Python Scripts</div>
+              <div class="text-slate-400 mt-1">45s speedrun: n8n webhook + LLM agent.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-indigo-400">Wed • Long Video</span>
+              <div class="font-bold text-white mt-1">Building an n8n AI Agent from Scratch</div>
+              <div class="text-slate-400 mt-1">18m tutorial + workflow JSON in Skool.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Thu • Short</span>
+              <div class="font-bold text-white mt-1">The 1 Mistake in n8n Loops</div>
+              <div class="text-slate-400 mt-1">Repurposed highlight on error handling.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-purple-400">Sat • Skool Live</span>
+              <div class="font-bold text-white mt-1">Live Workflow Debugging Clinic</div>
+              <div class="text-slate-400 mt-1">Auditing member n8n workflows live.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Week 2</span>
+              <h3 class="text-lg font-bold text-white">The "Delivery Pilot" Shift (Career & Orchestration)</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Nov 25 – Dec 01</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Mon • Short</span>
+              <div class="font-bold text-white mt-1">Are Software Engineers Obsolete?</div>
+              <div class="text-slate-400 mt-1">The harsh truth: from drivers to pilots.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-indigo-400">Wed • Long Video</span>
+              <div class="font-bold text-white mt-1">Managing 5 AI Coding Agents Concurrently</div>
+              <div class="text-slate-400 mt-1">Claude Code + Cursor orchestrator demo.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Fri • Short</span>
+              <div class="font-bold text-white mt-1">3 Terminal Tools Every Pilot Needs</div>
+              <div class="text-slate-400 mt-1">CLI productivity hacks for AI speed.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800 border-l-2 border-l-amber-500">
+              <span class="text-[10px] uppercase font-bold text-amber-400">Sat • Course Module</span>
+              <div class="font-bold text-white mt-1">Delivery Pilot Masterclass: Part 1</div>
+              <div class="text-slate-400 mt-1">50m cornerstone lecture & workbook.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Week 3</span>
+              <h3 class="text-lg font-bold text-white">Agentic RAG & Private Enterprise Data</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Dec 02 – Dec 08</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Mon • Short</span>
+              <div class="font-bold text-white mt-1">Why Simple Vector Search Fails</div>
+              <div class="text-slate-400 mt-1">Pitfalls of naive chunking explained.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-indigo-400">Wed • Long Video</span>
+              <div class="font-bold text-white mt-1">RAG is NOT Dead: Build an Agentic System</div>
+              <div class="text-slate-400 mt-1">25m tutorial + hybrid search repo.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Thu • Short</span>
+              <div class="font-bold text-white mt-1">Double RAG Accuracy in 60s</div>
+              <div class="text-slate-400 mt-1">Semantic chunking and reranking tip.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-purple-400">Sat • Skool Live</span>
+              <div class="font-bold text-white mt-1">RAG Architecture Troubleshooting</div>
+              <div class="text-slate-400 mt-1">Reviewing member vector DB setups.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Week 4</span>
+              <h3 class="text-lg font-bold text-white">Multi-Agent Swarms & Cloud Deployments</h3>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">Dec 09 – Dec 15</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Mon • Short</span>
+              <div class="font-bold text-white mt-1">One Agent vs Multi-Agent Swarms</div>
+              <div class="text-slate-400 mt-1">Clear rule of thumb on when to scale.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-indigo-400">Wed • Long Video</span>
+              <div class="font-bold text-white mt-1">Deploying Agents on Cloud VPS & Docker</div>
+              <div class="text-slate-400 mt-1">20m production deployment + compose.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Fri • Short</span>
+              <div class="font-bold text-white mt-1">My $10/Month Production AI Stack</div>
+              <div class="text-slate-400 mt-1">Affordable infrastructure breakdown.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800 border-l-2 border-l-amber-500">
+              <span class="text-[10px] uppercase font-bold text-amber-400">Sat • Course Module</span>
+              <div class="font-bold text-white mt-1">Multi-Agent Blueprint: Part 2</div>
+              <div class="text-slate-400 mt-1">65m masterclass on swarm coordination.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Shoot Logistics -->
+  <section id="production" class="py-16 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Studio & Setups</h2>
+        <p class="text-3xl font-bold text-white mt-2">Shooting Locations & Logistics</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <span class="text-xs font-mono text-blue-400 uppercase">70% of Output</span>
+          <h3 class="text-lg font-bold text-white mt-1">Main Tech Desk Studio</h3>
+          <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+            Permanent setup for zero-friction daily recording. Dynamic mic, dual monitor screen-capture, 4K camera at eye-level, and 45° key light.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800/80 text-xs text-slate-300">
+            <strong>Used for:</strong> n8n builds, coding tutorials, screencasts.
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="w-10 h-10 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-chalkboard"></i>
+          </div>
+          <span class="text-xs font-mono text-amber-400 uppercase">15% of Output</span>
+          <h3 class="text-lg font-bold text-white mt-1">Standup Whiteboard</h3>
+          <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+            Torso-up framing with wireless lapel mic. Drawing architectural mental models dynamically keeps viewers watching longer than slides.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800/80 text-xs text-slate-300">
+            <strong>Used for:</strong> Delivery Pilot mental models, RAG schematics.
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fas fa-walking"></i>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 uppercase">15% of Output</span>
+          <h3 class="text-lg font-bold text-white mt-1">Cambridge Walk-and-Talk</h3>
+          <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+            Smartphone on wide lens + deadcat wind mic. Batch filming 4–6 provocative 45-second hooks in a single 45-minute afternoon walk.
+          </p>
+          <div class="mt-4 pt-4 border-t border-slate-800/80 text-xs text-slate-300">
+            <strong>Used for:</strong> Viral Shorts hooks, contrarian industry opinions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-slate-950 text-slate-500 text-xs border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-300">@RifatErdemSahin</span>
+        <span>• Content Engine & Skool Community System</span>
+      </div>
+      <div>
+        Deployed live on GitHub Pages from <a href="https://github.com/rifaterdemsahin/content-calendar" class="text-indigo-400 hover:underline">rifaterdemsahin/content-calendar</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
