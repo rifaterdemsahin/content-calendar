@@ -59,10 +59,13 @@ Based on channel performance themes on [@RifatErdemSahin](https://www.youtube.co
 ---
 
 ### Sample Video 4: "Agentic RAG Masterclass: Building Private Knowledge Engines"
-* **Format:** Course Masterclass (45–60 mins)
+* **Format:** Coursera-Style Modular Course (3 x 5-minute videos = 15 min module) for Skool Classroom
 * **Channel Theme:** Deep technical authority, architecture, enterprise systems.
 * **Core Concept:** Moving past naive vector embeddings into hybrid search, semantic chunking, and self-correcting query decomposition.
-* **Why it Performs:** Evergreen search volume; establishes undisputed authority for high-ticket consulting and Skool membership.
+  * *Video 1 (5m):* The Mental Model (Main Chair Living Room Conversation)
+  * *Video 2 (5m):* POC Delivery & Live Code Screen Share (Standup Room)
+  * *Video 3 (5m):* Hardening, Error Handling & Capstone Challenge (Standup Room)
+* **Why it Performs:** Evergreen search volume; bite-sized 5-minute videos achieve >85% completion rates inside Skool.
 * **Skool Lead Magnet:** Complete source code repo, sample dataset, and homework challenge in the Skool Classroom.
 
 ---
@@ -85,53 +88,58 @@ Standardized time budgets prevent burnout and ensure consistent weekly publishin
 
 ---
 
-## 4. Shooting Locations & Equipment Staging
+## 4. Studio & Setups: Shooting Locations & Logistics
 
 To produce high-retention content without complex studio overhead, categorize filming into **3 distinct physical setups**:
 
 ```mermaid
 flowchart TD
-    Setup1["Location 1: The Main Desk Studio<br>• 70% of total content<br>• Screen share, live coding, technical walk-throughs"]
-    Setup2["Location 2: Whiteboard / Stand-up Wall<br>• 15% of total content<br>• Architectural diagrams, Delivery Pilot mental models"]
-    Setup3["Location 3: Outdoor Cambridge Walk-and-Talk<br>• 15% of total content (High-Retention Shorts & Intros)<br>• Mindset hooks, contrarian takes, industry commentary"]
+    Setup1["Location 1: Main Chair Living Room<br>• Conversation format<br>• Thought leadership, high-level context, Video 1 conceptual course intro"]
+    Setup2["Location 2: Standup Room<br>• POC delivery, screen share, and in-person builds<br>• Hands-on n8n flows, terminal agents, live verification"]
+    Setup3["Location 3: Cambridge Walk-and-Talk<br>• Shorts: Dictionary AI Terms<br>• 45s fast-paced video dictionary definitions (RAG, MCP, Vectors, LSP)"]
 ```
 
-### Location 1: The Main Tech Desk (Primary Production Hub)
+### Location 1: Main Chair Living Room (Conversation Format)
+* **Format & Style:** Relaxed, conversational, sitting in an armchair or couch. Direct-to-camera or interview/fireside dialogue.
 * **What to shoot here:**
-  * Screen recordings of n8n workflows, code terminals, IDE setups, API dashboards.
-  * Picture-in-picture talking head or direct-to-camera technical explanations.
+  * Mindset shifts, Delivery Pilot philosophy, career advice, and industry trends.
+  * **Video 1 of each Coursera-style Skool Module (5 mins):** The conceptual framework and why it matters before touching any code.
 * **Requirements & Setup:**
-  * **Visual:** Clean desk with secondary monitor, minimal clutter, soft background accent light (warm or subtle cyber/blue LED).
-  * **Camera:** 4K webcam or mirrorless camera (Sony A6400/ZVE10 or iPhone on tripod) at eye level with 35mm-equivalent lens.
-  * **Audio:** Cardioid dynamic microphone (e.g., Shure SM7B, PodMic, or Elgato Wave:3) on a boom arm within 15cm of mouth.
-  * **Lighting:** Key light (softbox or Elgato Key Light) at 45° angle + gentle ambient fill.
-* **Shooting Time Efficiency:** Can be kept permanently set up to enable instant recording with zero setup friction.
+  * **Visual:** Warm living room ambient lighting, shallow depth-of-field (bokeh), clean aesthetic.
+  * **Camera:** 4K mirrorless / iPhone on eye-level tripod with 35mm-equivalent portrait lens.
+  * **Audio:** Wireless lapel / lavalier microphone (DJI Mic / Rode Wireless GO) or directional shotgun mic just out of frame.
+* **Why it Works:** Strips away cold tech sterility and builds human connection, trust, and relatable mentorship.
 
 ---
 
-### Location 2: Whiteboard / Architectural Stand-Up Area
+### Location 2: Standup Room (POC Delivery Screen Share & In-Person)
+* **Format & Style:** Dynamic, standing presentation combined with high-resolution screen sharing and in-person demonstration.
 * **What to shoot here:**
-  * System architecture overviews (Triggers → LLM Brain → Vector Store → External APIs).
-  * Mindset breakdowns ("Riders vs Drivers vs Pilots").
-  * Course module introduction chapters.
+  * Live Proof-of-Concept (POC) delivery, architecture diagrams, and software delivery pipelines.
+  * **Video 2 & Video 3 of each Coursera-style Skool Module (5 mins each):** Hands-on POC build + production hardening & homework assignment.
 * **Requirements & Setup:**
-  * Physical magnetic whiteboard, glass marker board, or large digital display/tablet mirror.
-  * Lapel / Wireless Lav microphone (DJI Mic or Rode Wireless Go) for unrestricted movement.
-  * Medium-wide camera framing (torso-up).
-* **Why it Works:** Physically drawing diagrams on camera drives significantly higher engagement than static PowerPoint slides.
+  * Standup desk or presentation podium with secondary display / screen capture mirror.
+  * Lapel / Wireless Lav microphone for unrestricted energetic movement.
+  * Screen capture software (OBS Studio / ScreenFlow / Loom) recording 4K/60fps crisp code and terminal text.
+* **Why it Works:** Standing up injects physical energy and urgency into technical screen-shares, keeping viewers awake through code walk-throughs.
 
 ---
 
-### Location 3: Outdoor Walk-and-Talk (Cambridge Streets / Parks)
+### Location 3: Cambridge Walk-and-Talk (Shorts: Dictionary AI Terms)
+* **Format & Style:** Mobile, energetic outdoor walk through Cambridge streets and parks.
 * **What to shoot here:**
-  * YouTube Shorts hooks (first 10 seconds of opinion videos).
-  * Contrarian thought pieces (e.g., *"Why 80% of junior dev jobs are shifting to Delivery Pilots"*).
-  * B-roll overlays to break up repetitive screen-recording footage in long-form videos.
+  * **YouTube Shorts "AI Dictionary" Series:** Bite-sized 45-second explanations of 1 specific AI term per short:
+    * *What is a Vector Embedding?* (e.g. "Horse + Wings = Pegasus")
+    * *What is LSP (Language Server Protocol)?*
+    * *What is RAG (Retrieval-Augmented Generation)?*
+    * *What is MCP (Model Context Protocol)?*
+    * *What is Quantization?*
+    * *What is an Agentic Loop?*
 * **Requirements & Setup:**
-  * Smartphone with wide-angle camera + gimbal or strong optical stabilization.
-  * Wireless clip-on microphone with wind muff (deadcat) essential for clean audio.
-  * Natural daylight (Golden hour: late afternoon or overcast sky for even lighting).
-* **Shooting Time Efficiency:** Batch shoot 4–6 Short hooks in a single 45-minute outdoor walk around Cambridge.
+  * Smartphone with wide-angle lens held at arm's length or on a small handheld gimbal.
+  * Wireless clip-on microphone with wind muff (**deadcat**) essential for crisp audio while moving.
+  * Natural daylight (overcast or late afternoon golden hour).
+* **Shooting Time Efficiency:** Batch-record 5–8 "Dictionary AI Terms" Shorts in a single 45-minute walk around Cambridge.
 
 ---
 

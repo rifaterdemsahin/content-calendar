@@ -1,45 +1,69 @@
-# Course-Type Video & Masterclass Blueprint
+# Coursera-Style Course Video Module Blueprint (For Skool Classroom)
 
-Target Length: **45–90 minutes** (Single comprehensive video) or **Multi-Part Module Series**  
-Goal: Massive organic authority, high watch time, and primary driver into the Skool Community.
+Target Format: **Coursera-Style Modular Production**  
+Video Length: **~5 minutes per video**  
+Module Structure: **3 videos per module (15 minutes total per module)**  
+Target Platform: **Skool Classroom (with YouTube Compilation / Teaser)**
 
 ---
 
-## Strategic Structure
-
-Course-type videos differ from standard tutorials: they are structured like university or boot camp lectures, complete with chapters, theoretical foundations, live coding/building, common pitfalls, and homework challenges.
+## 🎓 The 3-Part Micro-Lecture Structure (15 Minutes Total)
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  Phase 1: Foundation, Industry Context & Mental Model   │
+│  MODULE [X]: [Module Topic Name]                       │
 ├────────────────────────────────────────────────────────┤
-│  Phase 2: Architecture & Setup (Prerequisites)         │
+│  🎬 Video 1 (5 mins): Concept & Core Mental Model      │
+│  • Filmed in Main Chair Living Room (Conversation)     │
+│  • High-level context: Why this matters, architecture  │
 ├────────────────────────────────────────────────────────┤
-│  Phase 3: Core Implementation (Hands-on Deep Dive)     │
+│  🎬 Video 2 (5 mins): POC Delivery & Screen Share      │
+│  • Filmed in Standup Room (POC & Screen Share)         │
+│  • Live hands-on implementation & proof of concept     │
 ├────────────────────────────────────────────────────────┤
-│  Phase 4: Advanced Edge Cases & Production Hardening    │
-├────────────────────────────────────────────────────────┤
-│  Phase 5: Capstone Project & Skool Assignment          │
+│  🎬 Video 3 (5 mins): Enterprise Gotchas & Assignment  │
+│  • Filmed in Standup Room / Desk                       │
+│  • Practical hardening + Skool Capstone Challenge      │
 └────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Chapter Breakdown Blueprint
+## Detailed 5-Minute Script Breakdowns
 
-| Timestamp | Module Name | Learning Objective | Deliverable |
-| :--- | :--- | :--- | :--- |
-| **00:00 - 05:00** | **Orientation & Course Roadmap** | Overview of skills acquired and the capstone project. | Course Syllabus PDF (in Skool) |
-| **05:00 - 15:00** | **Module 1: The Core Mental Model** | Why this architecture matters (Delivery Pilot framework). | Concept Diagram |
-| **15:00 - 30:00** | **Module 2: Environment & Tooling Setup** | Reproducible dev setup (Docker, Keys, API config). | Setup Script / `.env.example` |
-| **30:00 - 55:00** | **Module 3: Hands-On Build (Core Logic)** | Building the primary agent/automation loop. | Code / Workflow Phase 1 |
-| **55:00 - 75:00** | **Module 4: Enterprise Considerations** | Error handling, tokens, rate limits, data privacy. | Security Checklist |
-| **75:00 - 85:00** | **Module 5: Capstone Project Walkthrough** | Putting all pieces together into a deployable app. | Production Repo |
-| **85:00 - End** | **Next Steps & Skool Community Assignment** | Challenge prompt: submit your project in Skool for feedback. | Skool Assignment Post |
+### Video 1: Concept & Mental Model (5:00)
+* **Location:** 🛋️ *Main Chair Living Room (Conversation Format)*
+* **Objective:** Give the student the mental model and high-level architectural view without getting bogged down in syntax.
+* **Timeline:**
+  * **0:00 - 0:45:** Hook & Real-World Use Case ("In this lesson, you will master...")
+  * **0:45 - 3:00:** The Core Architectural Concept (Diagram or conversation breakdown)
+  * **3:00 - 4:30:** Key Trade-offs & When to Use It (Delivery Pilot perspective)
+  * **4:30 - 5:00:** Transition to Video 2 ("Let's jump into the code and build it now.")
+
+### Video 2: POC Delivery & Screen Share (5:00)
+* **Location:** 🖥️ *Standup Room (POC Delivery Screen Share & In Person)*
+* **Objective:** Step-by-step live build of the minimal viable proof of concept.
+* **Timeline:**
+  * **0:00 - 0:30:** Overview of the working demo we are about to construct
+  * **0:30 - 3:30:** Focused live build (n8n node setup / Python agent / configuration)
+  * **3:30 - 4:30:** Executing the test run and verifying outputs
+  * **4:30 - 5:00:** Summary of the POC state & transition to hardening in Video 3
+
+### Video 3: Production Hardening & Skool Action Challenge (5:00)
+* **Location:** 🖥️ *Standup Room / Desk*
+* **Objective:** Address real-world failure modes (rate limits, timeouts) and assign the Skool homework.
+* **Timeline:**
+  * **0:00 - 1:00:** The #1 failure mode in production for this setup
+  * **1:00 - 3:00:** Adding error recovery, guardrails, and environment variables
+  * **3:00 - 4:15:** The Skool Classroom Homework Challenge (Clear action item)
+  * **4:15 - 5:00:** Outro & Skool Community submission prompt:
+    > *"Download the workflow JSON attached below in the Skool classroom, complete the capstone challenge, and share your screenshot in the community feed to unlock your next module."*
 
 ---
 
-## Community Integration (The Retention Loop)
-- **Classroom Organization:** The entire course is mirrored inside the Skool Classroom tab with searchable timestamps, clean markdown guides, and download links.
-- **Milestone Unlocks:** Skool level gamification (e.g., reaching Level 2 by introducing yourself unlocks the advanced bonus module).
-- **Homework Review:** Encourage viewers to post their capstone project link inside the Skool "Showcase" category for feedback from Rifat and peers.
+## 📦 Companion Module Deliverables (Attached in Skool)
+
+1. **Downloadable Starter Asset:** `.json` workflow, `.env.example`, or GitHub repo template.
+2. **Cheat Sheet / Architecture Diagram:** 1-page visual summary PDF.
+3. **Action Checklist:** 3 specific checkboxes for the student to mark complete.
+4. **Gamification Level Trigger:** Points awarded upon submitting homework in the Skool showcase feed.

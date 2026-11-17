@@ -66,9 +66,17 @@ Standardized estimates across a **90-Day Execution Cycle**:
   * Shorts extraction & standalone cuts: 2.5 hrs
   * Skool resource pack & live session: 2.0 hrs
 * **Financial Overhead:** **~$15 / month** (strictly LLM API tokens and cloud testing instances). Zero external studio rental costs by leveraging:
-  * *Location 1:* Home Tech Desk Studio (70% of content)
-  * *Location 2:* Standup Whiteboard (15% of content)
-  * *Location 3:* Cambridge Walk-and-Talk (15% of content)
+  * *Location 1:* **Main Chair Living Room** (Conversation format — thought leadership & module conceptual intro)
+  * *Location 2:* **Standup Room** (POC delivery, screen share, and in-person builds & hardening)
+  * *Location 3:* **Cambridge Walk-and-Talk** (Shorts: "Dictionary AI Terms" 45s fast definitions)
+
+### 4. Course Video Production Format (For Skool Classroom)
+Structured using a **Coursera-Style Micro-Lecture Model**:
+* **5 minutes per video**
+* **3 videos per module** (15 minutes total per module)
+  * *Video 1 (5m):* The Mental Model (Main Chair Living Room Conversation)
+  * *Video 2 (5m):* Hands-On POC Delivery & Screen Share (Standup Room)
+  * *Video 3 (5m):* Production Hardening & Capstone Challenge (Standup Room)
 
 ---
 
