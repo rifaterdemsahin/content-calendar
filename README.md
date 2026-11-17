@@ -14,25 +14,18 @@ An integrated multi-format content calendar, production pipeline, and OKR execut
 
 ---
 
-## 📅 The Content Calendar
+## 📅 The Content Calendar & Benchmarks
 
-| Day | Format | Channel | Content Role | OKR Focus |
-| :--- | :--- | :--- | :--- | :--- |
-| **Monday** | **Short #1** | YouTube Shorts | Tactical hack / Tool speedrun | Top-of-funnel discovery (KR 1.2) |
-| **Tuesday** | **Skool Post** | Skool Community | Discussion prompt / Weekly challenge | Member activation & retention (KR 2.3) |
-| **Wednesday** | **Long Video** | YouTube Main | Technical deep dive / End-to-end build | Subscriber trust & lead generation (KR 1.1, 2.2) |
-| **Thursday** | **Short #2** | YouTube Shorts | Repurposed aha! moment from Wednesday | Repurposing turnaround (KR 3.3) |
-| **Friday** | **Short #3** | YouTube Shorts | Delivery Pilot mindset / Architecture | Thought leadership & traffic (KR 1.3) |
-| **Saturday** | **Course / Live** | YouTube / Skool | Bi-weekly masterclass / Live clinic | Cornerstone authority & loyalty (KR 1.4, 2.4) |
-| **Sunday** | **Weekly Digest** | Skool / Email | Community wrap-up, wins, next week preview | 30-day retention & culture (KR 2.5) |
-
-👉 Explore the day-by-day 4-week calendar matrix: [`calendar/detailed-calendar-matrix.md`](file:///home/rifaterdemsahin/projects/content-calendar/calendar/detailed-calendar-matrix.md)  
-👉 Track active production and weekly metrics: [`calendar/weekly-production-tracker.md`](file:///home/rifaterdemsahin/projects/content-calendar/calendar/weekly-production-tracker.md)
+* 🗓️ **[calendar/detailed-calendar-matrix.md](file:///home/rifaterdemsahin/projects/content-calendar/calendar/detailed-calendar-matrix.md)**: Day-by-day 4-week execution matrix with formats, titles, hooks, and OKR alignment.
+* 🎥 **[production/best-performing-videos-and-shoot-plan.md](file:///home/rifaterdemsahin/projects/content-calendar/production/best-performing-videos-and-shoot-plan.md)**: Breakdown of best-performing channel video archetypes, shooting locations (Desk Studio, Standup Whiteboard, Outdoor Cambridge Walk-and-Talk), and precise time estimates.
+* 📊 **[calendar/weekly-production-tracker.md](file:///home/rifaterdemsahin/projects/content-calendar/calendar/weekly-production-tracker.md)**: Active kanban pipeline & weekly metric scorecard.
 
 ---
 
 ## 📂 Repository Directory Index
 
+* **`production/`**
+  * [`best-performing-videos-and-shoot-plan.md`](file:///home/rifaterdemsahin/projects/content-calendar/production/best-performing-videos-and-shoot-plan.md) — Top video archetypes, time estimates, shooting locations, and 1-day batch filming workflow.
 * **`okrs/`**
   * [`content-and-community-okrs.md`](file:///home/rifaterdemsahin/projects/content-calendar/okrs/content-and-community-okrs.md) — Strategic Objectives, Key Results, targets, stretch goals, and scoring.
 * **`calendar/`**
