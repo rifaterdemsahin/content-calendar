@@ -129,6 +129,8 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 
 ## 📂 Repository Directory Index
 
+* **`audit/`**
+  * [`sanity-check-and-reality.md`](file:///home/rifaterdemsahin/projects/content-calendar/audit/sanity-check-and-reality.md) — Brutal engineering reality check, creator fantasy vs reality, gap analysis (725/1,000 subs), 4 realities of AI content in 2026, and integration with [`rifaterdemsahin/99percentTopicsAI`](https://github.com/rifaterdemsahin/99percentTopicsAI).
 * **`business/`**
   * [`monetization-and-business-plan.md`](file:///home/rifaterdemsahin/projects/content-calendar/business/monetization-and-business-plan.md) — YouTube Partner Program (YPP) milestone timeline (725/1,000 subs), watch hours math, and the 5-tier $10,000+/mo creator business blueprint.
 * **`scripts/`**
