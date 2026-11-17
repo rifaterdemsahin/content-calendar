@@ -72,6 +72,26 @@ Standardized estimates across a **90-Day Execution Cycle**:
 
 ---
 
+## 📹 Fetching Latest Released Videos (Automation Script)
+
+A standalone script [`scripts/fetch_latest_videos.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/fetch_latest_videos.py) queries the official YouTube Atom feed for channel `@RifatErdemSahin` (ID: `UCSJyG3bTM7lnjMIZcV8C4OQ`), requiring **zero API keys**.
+
+### Usage Commands:
+```bash
+# Print latest videos to terminal as Markdown
+python3 scripts/fetch_latest_videos.py --format markdown --limit 5
+
+# Export directly to data/latest-videos.json
+python3 scripts/fetch_latest_videos.py --format json --output data/latest-videos.json
+
+# Export to Markdown file
+python3 scripts/fetch_latest_videos.py --format markdown --output data/latest-videos.md
+```
+
+The script extracts video ID, title, URL, published date, views, thumbnail URL, and auto-classifies content into **🎬 Short** or **📹 Long Video**.
+
+---
+
 ## 🎯 Strategic OKRs (Q1 90-Day Cycle)
 
 * **Objective 1 (Authority & Reach):** Establish top-tier authority in AI Engineering & the Delivery Pilot movement (+5,000 YouTube Subscribers, 150k+ views).
@@ -101,6 +121,11 @@ Standardized estimates across a **90-Day Execution Cycle**:
 
 ## 📂 Repository Directory Index
 
+* **`scripts/`**
+  * [`fetch_latest_videos.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/fetch_latest_videos.py) — Python script to automatically fetch, classify (Short vs Long), and export latest videos from [@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin) via YouTube RSS.
+* **`data/`**
+  * [`latest-videos.json`](file:///home/rifaterdemsahin/projects/content-calendar/data/latest-videos.json) — Structured JSON of the latest released videos.
+  * [`latest-videos.md`](file:///home/rifaterdemsahin/projects/content-calendar/data/latest-videos.md) — Formatted Markdown table and thumbnails of the latest released videos.
 * **`production/`**
   * [`best-performing-videos-and-shoot-plan.md`](file:///home/rifaterdemsahin/projects/content-calendar/production/best-performing-videos-and-shoot-plan.md) — Top video archetypes, time estimates, shooting locations, and 1-day batch filming workflow.
 * **`okrs/`**

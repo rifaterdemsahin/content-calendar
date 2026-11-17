@@ -45,6 +45,7 @@
         </div>
       </div>
       <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#latest" class="hover:text-indigo-400 transition-colors">Latest Videos</a>
         <a href="#rationale" class="hover:text-indigo-400 transition-colors">Rationale</a>
         <a href="#projections" class="hover:text-indigo-400 transition-colors">Estimated Numbers</a>
         <a href="#okrs" class="hover:text-indigo-400 transition-colors">OKRs</a>
@@ -99,6 +100,117 @@
           <div class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Weekly Production Time</div>
           <div class="text-3xl font-bold text-white mt-2">10.5 hrs</div>
           <div class="text-xs text-amber-400 mt-1"><i class="fas fa-bolt"></i> 1 Long + 3 Shorts + 1 Asset</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Latest Released Videos (Live Feed) -->
+  <section id="latest" class="py-16 bg-slate-900/40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-red-900/30 border border-red-700/50 text-red-400 text-xs font-semibold mb-2">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Live Channel Sync
+          </div>
+          <h2 class="text-3xl font-bold text-white">Latest Released Videos</h2>
+          <p class="text-slate-400 text-sm mt-1">Directly synced from <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="text-indigo-400 hover:underline">@RifatErdemSahin</a> via <code class="text-indigo-300 font-mono text-xs">scripts/fetch_latest_videos.py</code></p>
+        </div>
+        <div class="mt-4 md:mt-0 flex items-center gap-3">
+          <div class="text-xs text-slate-400 font-mono bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2">
+            <i class="fas fa-terminal text-indigo-400"></i>
+            <span>python3 scripts/fetch_latest_videos.py</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Cards Grid (Auto-populated from data/latest-videos.json with static fallback) -->
+      <div id="latest-videos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="group rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 overflow-hidden flex flex-col transition shadow-md">
+          <div class="relative aspect-video bg-slate-950 overflow-hidden">
+            <img src="https://i1.ytimg.com/vi/8ud3AaGKtP0/hqdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-red-600/90 text-white font-bold text-[10px] uppercase tracking-wider backdrop-blur">
+              🎬 Short
+            </span>
+            <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 text-slate-300 font-mono text-[10px]">
+              2026-11-15
+            </span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-white group-hover:text-indigo-400 transition line-clamp-2">
+                AI Doesn't Read Words. It Does This Instead 🤯 #Shorts
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 line-clamp-2">
+                How does an AI actually understand words? It turns every concept into a direction arrow on a giant map (vectors).
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+              <span class="text-slate-500 font-mono">Channel: @RifatErdemSahin</span>
+              <a href="https://www.youtube.com/shorts/8ud3AaGKtP0" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1">
+                Watch <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 overflow-hidden flex flex-col transition shadow-md">
+          <div class="relative aspect-video bg-slate-950 overflow-hidden">
+            <img src="https://i3.ytimg.com/vi/fnKeTQYBHN8/hqdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-indigo-600/90 text-white font-bold text-[10px] uppercase tracking-wider backdrop-blur">
+              📹 Long Video
+            </span>
+            <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 text-slate-300 font-mono text-[10px]">
+              2026-11-11
+            </span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-white group-hover:text-indigo-400 transition line-clamp-2">
+                Claude Whiteboards Missing? Why You Can't See the New Artifact Types (and the Fix)
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 line-clamp-2">
+                Claude added new artifact types (Docs, Slides, Whiteboard infinite canvas). Finding and activating them on your account.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+              <span class="text-slate-500 font-mono">Channel: @RifatErdemSahin</span>
+              <a href="https://www.youtube.com/watch?v=fnKeTQYBHN8" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1">
+                Watch <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 overflow-hidden flex flex-col transition shadow-md">
+          <div class="relative aspect-video bg-slate-950 overflow-hidden">
+            <img src="https://i3.ytimg.com/vi/rbWBJqBU1EY/hqdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-red-600/90 text-white font-bold text-[10px] uppercase tracking-wider backdrop-blur">
+              🎬 Short
+            </span>
+            <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 text-slate-300 font-mono text-[10px]">
+              2026-11-11
+            </span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm text-white group-hover:text-indigo-400 transition line-clamp-2">
+                Don't Pay $200: Give Your Cheap AI Model Glasses (LSP in Kilo Code)
+              </h3>
+              <p class="text-xs text-slate-400 mt-2 line-clamp-2">
+                Turn on the Language Server Protocol in Kilo Code so the red squiggles feed directly into the agent to eliminate guessing.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+              <span class="text-slate-500 font-mono">Channel: @RifatErdemSahin</span>
+              <a href="https://www.youtube.com/shorts/rbWBJqBU1EY" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1">
+                Watch <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
