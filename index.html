@@ -44,14 +44,15 @@
           <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 ml-2">Content Engine</span>
         </div>
       </div>
-      <nav class="hidden md:flex items-center space-x-5 text-sm font-medium text-slate-300">
-        <a href="#latest" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">🎬 Latest Videos</a>
-        <a href="#monetization" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">💰 Monetization</a>
-        <a href="#rationale" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">💡 Rationale</a>
-        <a href="#projections" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">📊 Numbers</a>
-        <a href="#okrs" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">🎯 OKRs</a>
-        <a href="#calendar" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">🗓️ Calendar</a>
-        <a href="#production" class="hover:text-indigo-400 transition-colors flex items-center gap-1.5">🎥 Studio & Setups</a>
+      <nav class="hidden md:flex items-center space-x-4 text-xs font-medium text-slate-300">
+        <a href="#latest" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎬 Latest</a>
+        <a href="#performance" class="hover:text-indigo-400 transition-colors flex items-center gap-1">📈 Past Performance</a>
+        <a href="#monetization" class="hover:text-indigo-400 transition-colors flex items-center gap-1">💰 Monetization</a>
+        <a href="#rationale" class="hover:text-indigo-400 transition-colors flex items-center gap-1">💡 Rationale</a>
+        <a href="#projections" class="hover:text-indigo-400 transition-colors flex items-center gap-1">📊 Numbers</a>
+        <a href="#okrs" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎯 OKRs</a>
+        <a href="#calendar" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🗓️ Calendar</a>
+        <a href="#production" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎥 Setups</a>
       </nav>
       <div class="flex items-center space-x-3">
         <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 flex items-center gap-1.5 transition">
@@ -211,6 +212,219 @@
                 Watch <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Past Performance & Historical Analytics -->
+  <section id="performance" class="py-16 bg-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-900/30 border border-blue-700/50 text-blue-400 text-xs font-semibold mb-2">
+            <i class="fas fa-chart-line"></i> Historical Catalog Analytics
+          </div>
+          <h2 class="text-3xl font-bold text-white">Past Channel Performance</h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Data aggregated from 38 published videos on <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="text-indigo-400 hover:underline">@RifatErdemSahin</a> via <code class="text-indigo-300 font-mono text-xs">scripts/analyze_past_performance.py</code>
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 flex items-center gap-2">
+          <a href="https://github.com/rifaterdemsahin/content-calendar/blob/main/data/past-performance.md" target="_blank" class="text-xs px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 transition">
+            <i class="fas fa-file-lines text-indigo-400"></i> Full Report (Markdown)
+          </a>
+        </div>
+      </div>
+
+      <!-- Past Metrics Summary Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Total Views Recorded</div>
+          <div class="text-3xl font-black text-white mt-1">7,015</div>
+          <div class="text-xs text-slate-500 mt-1">Across 38 Catalog Videos</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Long-Form Avg Views</div>
+          <div class="text-3xl font-black text-indigo-400 mt-1">207.5</div>
+          <div class="text-xs text-slate-500 mt-1">6,225 views on 30 tutorials</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Shorts Avg Views</div>
+          <div class="text-3xl font-black text-purple-400 mt-1">98.8</div>
+          <div class="text-xs text-slate-500 mt-1">790 views on 8 Shorts</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/70 border border-slate-800">
+          <div class="text-slate-400 text-xs uppercase tracking-wider font-semibold">Top Performing Theme</div>
+          <div class="text-xl font-black text-emerald-400 mt-1">Delivery Pilot</div>
+          <div class="text-xs text-slate-500 mt-1">1,824 views on Career Mindset</div>
+        </div>
+      </div>
+
+      <!-- Top 10 All-Time Performing Videos Table -->
+      <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 mb-10">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+          <i class="fas fa-trophy text-amber-400"></i> Top 10 Performing Videos of All Time
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="border-b border-slate-800 text-slate-400 uppercase tracking-wider">
+              <tr>
+                <th class="py-3 px-2 w-12 text-center">Rank</th>
+                <th class="py-3 px-3">Video Title</th>
+                <th class="py-3 px-3 w-28 text-center">Format</th>
+                <th class="py-3 px-3 w-28 text-right">Views</th>
+                <th class="py-3 px-3 w-28 text-center">Published</th>
+                <th class="py-3 px-3 w-24 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center font-bold text-amber-400">#1</td>
+                <td class="py-3 px-3 font-semibold text-white">How to Build an AI to Automate LinkedIn Job Hunt</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-black text-emerald-400">549</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=qNJpDJ8yHu8" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center font-bold text-slate-300">#2</td>
+                <td class="py-3 px-3 font-semibold text-white">AI No-Code: Build Your Own AI Solutions (Step-by-Step)</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">449</td>
+                <td class="py-3 px-3 text-center text-slate-500">8 mo ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=yI5BIb74kVI" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center font-bold text-amber-600">#3</td>
+                <td class="py-3 px-3 font-semibold text-white">The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">421</td>
+                <td class="py-3 px-3 text-center text-slate-500">9 mo ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=c1UotPbvKoQ" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#4</td>
+                <td class="py-3 px-3 font-semibold text-white">How to Actually Learn AI: The Visual Construction Method Nobody Teaches</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">382</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=IYgcXAZkevY" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#5</td>
+                <td class="py-3 px-3 font-semibold text-white">RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">360</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=QwFB7tvzLoA" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#6</td>
+                <td class="py-3 px-3 font-semibold text-white">Elon Says Work Is Ending. The Data Says Otherwise.</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">348</td>
+                <td class="py-3 px-3 text-center text-slate-500">2 mo ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=fJjxujMASkQ" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#7</td>
+                <td class="py-3 px-3 font-semibold text-white">The AI Integration Skill Every Professional Needs (MCP Explained)</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">313</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=wtXDL0Vmr7A" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#8</td>
+                <td class="py-3 px-3 font-semibold text-white">AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">304</td>
+                <td class="py-3 px-3 text-center text-slate-500">2 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=dCU0GpriG1o" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#9</td>
+                <td class="py-3 px-3 font-semibold text-white">AI Agents vs. Human Freelancers: The Brutal Truth</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">293</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=YZqcACObMws" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30 transition">
+                <td class="py-3 px-2 text-center text-slate-400">#10</td>
+                <td class="py-3 px-3 font-semibold text-white">Authentic AI Content Creation — Build the Content Magician Using RAG + n8n</td>
+                <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold text-[10px]">📹 Long</span></td>
+                <td class="py-3 px-3 text-right font-bold text-white">276</td>
+                <td class="py-3 px-3 text-center text-slate-500">1 yr ago</td>
+                <td class="py-3 px-3 text-right"><a href="https://www.youtube.com/watch?v=VdnZI0PfscM" target="_blank" class="text-indigo-400 hover:underline">Watch</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Category Performance Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800">
+          <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fas fa-layer-group text-indigo-400"></i> Views by Content Pillar
+          </h4>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300 font-medium">Delivery Pilot & Career Mindset</span>
+                <span class="font-bold text-emerald-400">1,824 views (46%)</span>
+              </div>
+              <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 rounded-full" style="width: 46%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300 font-medium">AI Agents & Workflow Automation</span>
+                <span class="font-bold text-indigo-400">1,608 views (40%)</span>
+              </div>
+              <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 rounded-full" style="width: 40%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300 font-medium">Developer Tooling, CLI & IDE Optimization</span>
+                <span class="font-bold text-purple-400">383 views (10%)</span>
+              </div>
+              <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 rounded-full" style="width: 10%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span class="text-slate-300 font-medium">Enterprise RAG & Private Knowledge Bases</span>
+                <span class="font-bold text-amber-400">205 views (5%)</span>
+              </div>
+              <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                <div class="h-full bg-amber-500 rounded-full" style="width: 5%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+              <i class="fas fa-lightbulb text-amber-400"></i> Key Analytical Takeaway
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Your channel's proven historical sweet spot is <strong>AI Automation with Direct Tangible Utility</strong> (e.g. automating job hunting, building no-code agents, CV generators) and <strong>Career Identity Shifts</strong> (Delivery Pilot vs coder, human vs AI freelancers).
+            </p>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              Long-form tutorials average <strong>207.5 views</strong> organically with virtually zero promotion. By coupling these exact themes with high-velocity Shorts hooks and downloadable Skool JSON workflows, watch time and conversion will compound exponentially.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-500 font-mono">
+            Analyzed 38 public videos • Channel ID: UCSJyG3bTM7lnjMIZcV8C4OQ
           </div>
         </div>
       </div>

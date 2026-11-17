@@ -132,8 +132,11 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 * **`business/`**
   * [`monetization-and-business-plan.md`](file:///home/rifaterdemsahin/projects/content-calendar/business/monetization-and-business-plan.md) — YouTube Partner Program (YPP) milestone timeline (725/1,000 subs), watch hours math, and the 5-tier $10,000+/mo creator business blueprint.
 * **`scripts/`**
-  * [`fetch_latest_videos.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/fetch_latest_videos.py) — Python script to automatically fetch, classify (Short vs Long), and export latest videos from [@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin) via YouTube RSS.
+  * [`analyze_past_performance.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/analyze_past_performance.py) — Extracts, analyzes, and aggregates historical video views, catalog performance, and category distributions from [@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin).
+  * [`fetch_latest_videos.py`](file:///home/rifaterdemsahin/projects/content-calendar/scripts/fetch_latest_videos.py) — Python script to automatically fetch, classify (Short vs Long), and export latest videos from YouTube RSS.
 * **`data/`**
+  * [`past-performance.md`](file:///home/rifaterdemsahin/projects/content-calendar/data/past-performance.md) — Comprehensive historical performance report and Top 10 All-Time videos.
+  * [`past-performance.json`](file:///home/rifaterdemsahin/projects/content-calendar/data/past-performance.json) — Full structured JSON of all historical catalog video analytics.
   * [`latest-videos.json`](file:///home/rifaterdemsahin/projects/content-calendar/data/latest-videos.json) — Structured JSON of the latest released videos.
   * [`latest-videos.md`](file:///home/rifaterdemsahin/projects/content-calendar/data/latest-videos.md) — Formatted Markdown table and thumbnails of the latest released videos.
 * **`production/`**
