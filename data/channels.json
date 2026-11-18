@@ -1,0 +1,25 @@
+{
+  "updated": "2026-11-18",
+  "note": "One list of the channels we release on, with the stats we have. YouTube numbers come from data/studio/stats.json. LinkedIn numbers are from the 'Manage my network' page on 18 Nov 2026.",
+  "platforms": [
+    {"id": "youtube", "name": "YouTube", "url": "https://www.youtube.com/@RifatErdemSahin", "role": "Free Shorts and long videos. Reaches consumers.", "status": "live"},
+    {"id": "linkedin", "name": "LinkedIn", "url": null, "role": "Professional network: posts, clips and newsletters. Reaches professionals and businesses.", "status": "live"},
+    {"id": "x", "name": "X (Twitter)", "url": null, "role": "Short posts and clips from each video.", "status": "live", "note": "Add the profile URL; no stats yet."},
+    {"id": "skool", "name": "Skool", "url": "https://www.skool.com/delivery-pilot-8938", "role": "Paid community: live clinics, courses and downloads. Reaches professionals.", "status": "live"}
+  ],
+  "linkedin": {
+    "snapshotDate": "2026-11-18",
+    "connections": 30000,
+    "followingAndFollowers": null,
+    "groups": 16,
+    "events": 229,
+    "pages": 6484,
+    "newsletters": 1256,
+    "note": "The paste had no number for 'Following & followers'. Add it to fill that row."
+  },
+  "tools": [
+    {"name": "Superpowers", "role": "Skills library for Claude Code: planning, debugging and test-first work."},
+    {"name": "Claude", "role": "Writing, planning and agent work."},
+    {"name": "Remotion", "role": "Programmatic video, so the videos are built from code."}
+  ]
+}
