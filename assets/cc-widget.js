@@ -22,6 +22,8 @@
   #ccw .tabs{display:flex;border-bottom:1px solid #334155}
   #ccw .tabs button{flex:1;padding:10px;background:none;border:0;color:#94a3b8;cursor:pointer;font-size:14px}
   #ccw .tabs button.on{color:#fff;border-bottom:2px solid #6366f1}
+  #ccw .tabs button.max-btn{flex:0 0 42px;font-size:16px}
+  #ccw-panel.max{right:12px;bottom:12px;width:calc(100vw - 24px);height:calc(100vh - 24px)}
   #ccw .body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
   #ccw textarea,#ccw input[type=text]{width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px}
   #ccw .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -50,7 +52,15 @@
   const tabChat = el('button', { textContent: '🤖 Chat' });
   const notesBody = el('div', { className: 'body' });
   const chatBody = el('div', { className: 'body', style: 'display:none' });
-  panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat), notesBody, chatBody);
+  // Maximize toggles the panel to near full-screen for notes and chat; title flips with state.
+  const maxBtn = el('button', { className: 'max-btn', title: 'Maximize', textContent: '⤢', 'aria-label': 'Maximize' });
+  maxBtn.onclick = () => {
+    const on = panel.classList.toggle('max');
+    maxBtn.textContent = on ? '⤡' : '⤢';
+    maxBtn.title = on ? 'Restore' : 'Maximize';
+    maxBtn.setAttribute('aria-label', maxBtn.title);
+  };
+  panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat, maxBtn), notesBody, chatBody);
   root.append(btn, panel); document.body.appendChild(root);
 
   const show = (which) => {
