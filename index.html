@@ -1325,13 +1325,13 @@
   <!-- Section 1: The Rationale -->
   <section id="rationale" class="py-16 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-14">
+      <button id="rationale-toggle" type="button" aria-expanded="false" aria-controls="rationale-body" class="block w-full text-center max-w-2xl mx-auto focus:outline-none">
         <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Strategy & Mechanics</h2>
-        <p class="text-3xl font-bold text-white mt-2">The Rationale Behind the Engine</p>
+        <p class="text-3xl font-bold text-white mt-2">The Rationale Behind the Engine <i id="rationale-chevron" class="fas fa-chevron-right text-xl text-indigo-400 ml-2 transition-transform"></i></p>
         <p class="text-slate-400 text-sm mt-3">Why this specific multi-tier architecture guarantees sustainable growth and conversion without creator burnout.</p>
-      </div>
+      </button>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div id="rationale-body" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8 mt-14">
         <!-- Rationale 1 -->
         <div class="p-6 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition">
           <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg mb-4">
@@ -1587,6 +1587,16 @@
   </footer>
 
   <script>
+    // Rationale section: collapsed by default, click header (or nav link) to toggle.
+    (function () {
+      const btn = document.getElementById('rationale-toggle'), body = document.getElementById('rationale-body'), chev = document.getElementById('rationale-chevron');
+      if (!btn || !body) return;
+      const set = (open) => { body.classList.toggle('hidden', !open); btn.setAttribute('aria-expanded', open); chev.style.transform = open ? 'rotate(90deg)' : ''; };
+      btn.addEventListener('click', () => set(body.classList.contains('hidden')));
+      document.querySelectorAll('a[href="#rationale"]').forEach(a => a.addEventListener('click', () => set(true)));
+      if (location.hash === '#rationale') set(true);
+    })();
+
     // Dropdown nav: hover on desktop, click/tap to toggle, Esc or outside click to close.
     (() => {
       const dds = [...document.querySelectorAll('.dd')];
