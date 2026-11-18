@@ -11,3 +11,10 @@
 ## Open items
 - Week 1 start date (IN-8) is not yet confirmed.
 - Real hours per video are not logged yet; the 10.5-hour figure is an estimate.
+
+## Wednesday course videos (business audience)
+- Wednesday long videos are the **business** audience, not consumers.
+- Shot at a sixth-form college.
+- Format follows the Coursera course style.
+- Linked to cambridgeaiacademy.co.uk and deliverypilot.net.
+- The Coursera-style modules on Saturdays serve professionals in Skool.

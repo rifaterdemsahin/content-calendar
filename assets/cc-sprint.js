@@ -2,7 +2,8 @@
  * a live countdown to its publish slot, and a click-to-open modal.
  * The modal loads the card's Markdown from Azure (GET /api/content/<id>) and saves notes for the card
  * through the existing notes API (POST /api/notes, anchored to the card id).
- * Per-card notes come from data/sprint-meta.json. Cards without a time are due at end of that day. */
+ * Per-card details (audience, hook, what's in it for the audience, learn/share, reverse response)
+ * come from data/videos.json. Cards without a time are due at end of that day. */
 (() => {
   const YEAR = 2026;
   const MONTHS = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
@@ -11,7 +12,7 @@
   // Who the video is for, by format. Edit here if a format changes audience.
   const AUDIENCE = {
     'Short': { who: 'Consumers', color: '#f87171', note: 'free hook → YouTube' },
-    'Long Video': { who: 'Consumers', color: '#818cf8', note: 'watch time → Skool' },
+    'Long Video': { who: 'Businesses', color: '#34d399', note: 'Coursera-format course · cambridgeaiacademy.co.uk / deliverypilot.net' },
     'Skool Live': { who: 'Professionals', color: '#c084fc', note: 'Skool members' },
     'Coursera Module': { who: 'Professionals', color: '#fbbf24', note: 'Skool Classroom / Coursera' },
   };
@@ -262,9 +263,10 @@
       const dayMatch = label.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b/);
       const timeMatch = label.match(/(\d{2}:\d{2})/);
       const type = label.split('•')[1]?.trim() || '';
-      const aud = AUDIENCE[type];
+      const v = meta?.cards?.[card.id] || null;
+      const aud = v?.audienceInfo || AUDIENCE[type];
       const slot = dayMatch ? slotFor(card, dayMatch[1], timeMatch?.[1]) : null;
-      const notes = meta?.cards?.[card.id] || null;
+      const notes = v;
 
       const box = el('div', 'margin-top:10px;padding-top:8px;border-top:1px dashed #334155;display:flex;flex-direction:column;gap:6px');
       const top = el('div', 'display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between');
@@ -279,6 +281,8 @@
       top.append(left, clock);
       box.append(top);
 
+      if (notes?.hook) box.append(line('🪝 Hook:', `“${notes.hook}”`, '#e2e8f0'));
+      if (notes?.forAudience) box.append(line('🎁 For you:', notes.forAudience, '#a7f3d0'));
       if (notes?.learn) box.append(line('🎓 Erdem learns:', notes.learn));
       if (notes?.share) box.append(line('📣 Shares:', notes.share));
       const rr = notes?.reverseResponse;
@@ -331,9 +335,17 @@
     setInterval(tick, 1000);
   }
 
-  // Load the per-card notes first; if the file is missing, still show the countdowns and badges.
-  fetch('data/sprint-meta.json', { cache: 'no-cache' })
+  // Load the shared videos file first; if it is missing, still show the countdowns and badges.
+  fetch('data/videos.json', { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null)
-    .then(build);
+    .then((d) => {
+      if (!d) return build(null);
+      const cards = {};
+      for (const v of d.videos) {
+        const a = d.audiences?.[v.audience] || {};
+        cards[v.id] = { ...v, audienceInfo: { who: v.audience, color: a.color || '#94a3b8', note: v.audienceNote || '' } };
+      }
+      build({ cards });
+    });
 })();

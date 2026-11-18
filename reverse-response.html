@@ -68,7 +68,7 @@
     const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
     Promise.all([
-      fetch('data/sprint-meta.json', { cache: 'no-cache' }).then((r) => r.json()),
+      fetch('data/videos.json', { cache: 'no-cache' }).then((r) => r.json()).then((vj) => ({ cards: Object.fromEntries(vj.videos.map((v) => [v.id, v])), researchChecklist: vj.researchChecklist })),
       fetch('data/rmm-targets.json', { cache: 'no-cache' }).then((r) => r.json()),
     ]).then(([meta, targets]) => {
       const entries = Object.entries(meta.cards);
@@ -115,7 +115,7 @@
         }
       }
     }).catch(() => {
-      document.getElementById('plans').append(el('div', 'text-sm text-slate-400', 'Could not load data/sprint-meta.json'));
+      document.getElementById('plans').append(el('div', 'text-sm text-slate-400', 'Could not load data/videos.json'));
     });
   </script>
   <script src="assets/cc-widget.js" data-api="/api"></script>
