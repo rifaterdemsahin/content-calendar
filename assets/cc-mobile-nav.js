@@ -9,10 +9,12 @@
 
   const btn = document.createElement('button');
   btn.type = 'button';
-  btn.textContent = '☰ Menu';
+  btn.textContent = '☰';
+  btn.title = 'Menu';
+  btn.setAttribute('aria-label', 'Menu');
   btn.setAttribute('aria-expanded', 'false');
   btn.setAttribute('aria-controls', 'mobile-nav');
-  btn.style.cssText = 'font-size:12px;padding:6px 10px;border-radius:8px;background:#1e293b;color:#e2e8f0;border:1px solid #334155;white-space:nowrap';
+  btn.style.cssText = 'font-size:16px;line-height:1;padding:6px 9px;border-radius:8px;background:#1e293b;color:#e2e8f0;border:1px solid #334155';
 
   const panel = document.createElement('div');
   panel.id = 'mobile-nav';
