@@ -5,62 +5,136 @@
     "w1-item-2": {
       "learn": "Building and debugging a full n8n AI agent end to end",
       "share": "Workflow JSON plus a 3-step build recap on Skool and LinkedIn",
-      "reverseResponse": { "angle": "a fast-growing 'build an AI agent in n8n' video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'build an AI agent in n8n' video",
+        "target": null
+      },
+      "ownAudience": {
+        "title": "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n",
+        "url": "https://www.youtube.com/watch?v=VdnZI0PfscM",
+        "views": 276
+      }
     },
     "w1-item-3": {
       "learn": "Which n8n mistakes members make in live audits",
       "share": "Anonymised clinic recap: the 3 most common fixes",
-      "reverseResponse": { "angle": "a fast-growing 'my agent broke in production' video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'my agent broke in production' video",
+        "target": null
+      },
+      "ownAudience": null
     },
     "w1-item-4": {
       "learn": "Error handling in n8n loops, tested on a real workflow",
       "share": "Short with the fix, pinned link to the full tutorial",
-      "reverseResponse": { "angle": "a fast-growing short about n8n loops or agent errors", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing short about n8n loops or agent errors",
+        "target": null
+      },
+      "ownAudience": {
+        "title": "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n",
+        "url": "https://www.youtube.com/watch?v=VdnZI0PfscM",
+        "views": 276
+      }
     },
     "w2-item-2": {
       "learn": "Running several coding agents at once without them clashing",
       "share": "Live demo plus the prompt rules repo",
-      "reverseResponse": { "angle": "a fast-growing Claude Code or Cursor agent demo", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing Claude Code or Cursor agent demo",
+        "target": null
+      },
+      "ownAudience": null
     },
     "w2-item-3": {
       "learn": "Which terminal tools actually save time when working with agents",
       "share": "Dotfiles posted in the Skool community",
-      "reverseResponse": { "angle": "a fast-growing terminal or CLI productivity video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing terminal or CLI productivity video",
+        "target": null
+      },
+      "ownAudience": null
     },
     "w2-item-4": {
       "learn": "Turning the delivery-pilot workflow into teachable lessons",
       "share": "Module outline and lesson recordings for Skool Classroom",
-      "reverseResponse": { "angle": null, "target": null, "note": "Course module: grounded in the Week 2 long video, not a response video" }
+      "reverseResponse": {
+        "angle": null,
+        "target": null,
+        "note": "Course module: grounded in the Week 2 long video, not a response video"
+      },
+      "ownAudience": {
+        "title": "Become a Delivery Pilot: Why AI Is Building AI (and What to Do About It)",
+        "url": "https://www.youtube.com/watch?v=VOtlOfpXVU8",
+        "views": 129
+      }
     },
     "w3-item-2": {
       "learn": "Hybrid search and reranking that holds up on real data",
       "share": "Repo plus test dataset, with the results table",
-      "reverseResponse": { "angle": "a fast-growing 'RAG is dead' or vector-DB debate video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'RAG is dead' or vector-DB debate video",
+        "target": null
+      },
+      "ownAudience": {
+        "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
+        "url": "https://www.youtube.com/watch?v=QwFB7tvzLoA",
+        "views": 360
+      }
     },
     "w3-item-3": {
       "learn": "Where member vector-DB setups break in practice",
       "share": "Anonymised teardown in the live clinic recording",
-      "reverseResponse": { "angle": "a fast-growing 'why RAG fails' video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'why RAG fails' video",
+        "target": null
+      },
+      "ownAudience": {
+        "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
+        "url": "https://www.youtube.com/watch?v=QwFB7tvzLoA",
+        "views": 360
+      }
     },
     "w3-item-4": {
       "learn": "How much semantic chunking and reranking actually improve accuracy",
       "share": "Short with before-and-after numbers",
-      "reverseResponse": { "angle": "a fast-growing RAG chunking video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing RAG chunking video",
+        "target": null
+      },
+      "ownAudience": {
+        "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
+        "url": "https://www.youtube.com/watch?v=QwFB7tvzLoA",
+        "views": 360
+      }
     },
     "w4-item-2": {
       "learn": "Running agents 24/7 on a cheap VPS with Docker",
       "share": "docker-compose file and deploy script",
-      "reverseResponse": { "angle": "a fast-growing 'deploy AI agents' or self-hosting video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'deploy AI agents' or self-hosting video",
+        "target": null
+      },
+      "ownAudience": null
     },
     "w4-item-3": {
       "learn": "What an indie production AI stack really costs per month",
       "share": "Cost breakdown with the receipts",
-      "reverseResponse": { "angle": "a fast-growing 'cheap AI stack' video", "target": null }
+      "reverseResponse": {
+        "angle": "a fast-growing 'cheap AI stack' video",
+        "target": null
+      },
+      "ownAudience": null
     },
     "w4-item-4": {
       "learn": "Deployment patterns for multi-agent systems",
       "share": "Part 2 lessons for Skool Classroom",
-      "reverseResponse": { "angle": null, "target": null, "note": "Course module: grounded in the Week 4 long video, not a response video" }
+      "reverseResponse": {
+        "angle": null,
+        "target": null,
+        "note": "Course module: grounded in the Week 4 long video, not a response video"
+      },
+      "ownAudience": null
     }
   }
 }

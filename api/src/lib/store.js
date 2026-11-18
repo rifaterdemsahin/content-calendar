@@ -12,6 +12,16 @@ async function container() {
   return _container;
 }
 
+const CONTENT_CONTAINER = process.env.CONTENT_CONTAINER || 'content';
+let _contentContainer;
+async function contentContainer() {
+  if (!_contentContainer) {
+    _contentContainer = BlobServiceClient.fromConnectionString(conn()).getContainerClient(CONTENT_CONTAINER);
+    await _contentContainer.createIfNotExists();
+  }
+  return _contentContainer;
+}
+
 async function readJson(name) {
   const c = await container();
   try {
@@ -51,4 +61,25 @@ async function enqueue(msg) {
   await q.sendMessage(Buffer.from(JSON.stringify(msg)).toString('base64'));
 }
 
-module.exports = { readJson, writeJson, remove, listJson, enqueue };
+/** Write a plain-text blob (Markdown content) to the content container. */
+async function writeText(name, text) {
+  const c = await contentContainer();
+  const data = Buffer.from(String(text), 'utf8');
+  await c.getBlockBlobClient(name).upload(data, data.length, {
+    blobHTTPHeaders: { blobContentType: 'text/markdown; charset=utf-8' },
+  });
+}
+
+/** Read a plain-text blob (e.g. Markdown content) from the content container; null when missing. */
+async function readText(name) {
+  const c = await contentContainer();
+  try {
+    const buf = await c.getBlockBlobClient(name).downloadToBuffer();
+    return buf.toString('utf8');
+  } catch (e) {
+    if (e.statusCode === 404) return null;
+    throw e;
+  }
+}
+
+module.exports = { readJson, writeJson, remove, listJson, enqueue, readText, writeText };
