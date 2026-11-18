@@ -155,3 +155,16 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
   * [`course-module-template.md`](file:///home/rifaterdemsahin/projects/content-calendar/templates/course-module-template.md) — Structure for 45–90 minute cornerstone masterclasses.
 * **`strategy/`**
   * [`skool-funnel.md`](file:///home/rifaterdemsahin/projects/content-calendar/strategy/skool-funnel.md) — Lead magnet mapping, pinned comments, video descriptions, and gamification.
+
+---
+
+## 📝 Notes + 🤖 Chat Agent
+
+A floating widget (bottom-right of the dashboard) adds:
+- **Notes anywhere:** Alt/Option-click any element to attach a note to that concept. Notes are stored as blobs in an Azure Storage container. **Copy this page / Copy ALL notes** puts them on your clipboard as one Markdown block.
+- **Chat agent:** describe a change; an Azure Function starts a [Daytona](https://www.daytona.io) sandbox, clones this repo, runs a Claude agent, and opens a pull request. Merging it publishes via GitHub Pages.
+
+Architecture: `index.html` + `assets/cc-widget.js` → Azure Function (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
+Secrets (`ANTHROPIC-API-KEY`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`) live in Azure Key Vault `dp-kv-deliverypilot` and are injected via Key Vault references; the page only holds the access token you paste once (kept in `localStorage`).
+Get the token: `az keyvault secret show --vault-name dp-kv-deliverypilot -n CC-ADMIN-TOKEN --query value -o tsv`
+Redeploy the API: zip `api/` (without `node_modules`) and `az functionapp deployment source config-zip --build-remote true`. Tests: `cd api && npm test`.

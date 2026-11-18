@@ -1,0 +1,11 @@
+{
+  "id": "3928d07d-e863-4af8-be7f-1f185a92bff6",
+  "status": "error",
+  "message": "SMOKE TEST: append one line \"<!-- chat-agent smoke test -->\" at the very end of README.md and change nothing else.",
+  "page": "/",
+  "includeNotes": false,
+  "created": "2026-11-18T00:44:57.056Z",
+  "step": "agent working",
+  "updated": "2026-11-18T00:45:07.253Z",
+  "error": "`~/.cc/node_modules/.bin/claude -p \"$(cat ~/prompt.txt)\" --da` failed: Invalid API key · Fix external API key\n"
+}

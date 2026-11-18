@@ -1,0 +1,170 @@
+/* Notes + Claude chat widget. Include on any page:
+ *   <script src="assets/cc-widget.js" data-api="https://<function-app>.azurewebsites.net/api"></script>
+ * Alt/Option-click any element to attach a note to that concept. */
+(() => {
+  const API = (document.currentScript?.dataset.api || '').replace(/\/$/, '');
+  const PAGE = location.pathname;
+  const tokenKey = 'cc-token';
+  const getToken = () => { try { return localStorage.getItem(tokenKey) || ''; } catch { return ''; } };
+  const setToken = (t) => { try { localStorage.setItem(tokenKey, t); } catch { /* private mode */ } };
+
+  async function api(path, opts = {}) {
+    let token = getToken();
+    if (!token) { token = prompt('Access token (from Key Vault: CC-ADMIN-TOKEN)') || ''; setToken(token); }
+    const res = await fetch(API + path, { ...opts, headers: { 'x-cc-token': token, 'content-type': 'application/json', ...(opts.headers || {}) } });
+    if (res.status === 401) { setToken(''); throw new Error('Unauthorized — token cleared, try again'); }
+    if (!res.ok && res.status !== 204) throw new Error((await res.json().catch(() => ({}))).error || `HTTP ${res.status}`);
+    return res;
+  }
+
+  // ---- UI ---------------------------------------------------------------
+  const css = `
+  #ccw *{box-sizing:border-box;font-family:system-ui,sans-serif}
+  #ccw-btn{position:fixed;right:18px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#6366f1;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 16px #0008}
+  #ccw-panel{position:fixed;right:18px;bottom:80px;z-index:99999;width:min(400px,calc(100vw - 36px));height:min(560px,calc(100vh - 110px));display:none;flex-direction:column;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:14px;box-shadow:0 10px 40px #000a;overflow:hidden}
+  #ccw-panel.open{display:flex}
+  #ccw .tabs{display:flex;border-bottom:1px solid #334155}
+  #ccw .tabs button{flex:1;padding:10px;background:none;border:0;color:#94a3b8;cursor:pointer;font-size:14px}
+  #ccw .tabs button.on{color:#fff;border-bottom:2px solid #6366f1}
+  #ccw .body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+  #ccw textarea,#ccw input[type=text]{width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px}
+  #ccw .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  #ccw .btn{background:#6366f1;color:#fff;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px}
+  #ccw .btn.alt{background:#334155}
+  #ccw .btn.del{background:#7f1d1d}
+  #ccw .card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;font-size:13px;white-space:pre-wrap}
+  #ccw .meta{color:#94a3b8;font-size:11px;margin-bottom:4px}
+  #ccw .msg.user{align-self:flex-end;background:#4338ca}
+  #ccw .hint{color:#94a3b8;font-size:12px}
+  #ccw a{color:#a5b4fc}
+  .ccw-hl{outline:2px dashed #6366f1!important;outline-offset:2px}
+  `;
+  const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
+
+  const el = (tag, props = {}, ...kids) => {
+    const n = Object.assign(document.createElement(tag), props);
+    kids.flat().forEach((k) => n.append(k));
+    return n;
+  };
+
+  const root = el('div', { id: 'ccw' });
+  const btn = el('button', { id: 'ccw-btn', title: 'Notes & chat (Alt-click anything to add a note)', textContent: '📝' });
+  const panel = el('div', { id: 'ccw-panel' });
+  const tabNotes = el('button', { textContent: '📝 Notes', className: 'on' });
+  const tabChat = el('button', { textContent: '🤖 Chat' });
+  const notesBody = el('div', { className: 'body' });
+  const chatBody = el('div', { className: 'body', style: 'display:none' });
+  panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat), notesBody, chatBody);
+  root.append(btn, panel); document.body.appendChild(root);
+
+  const show = (which) => {
+    tabNotes.classList.toggle('on', which === 'notes'); tabChat.classList.toggle('on', which === 'chat');
+    notesBody.style.display = which === 'notes' ? 'flex' : 'none'; chatBody.style.display = which === 'chat' ? 'flex' : 'none';
+  };
+  tabNotes.onclick = () => show('notes'); tabChat.onclick = () => show('chat');
+  btn.onclick = () => panel.classList.toggle('open');
+
+  // ---- Notes ------------------------------------------------------------
+  let draftCtx = { anchor: '', concept: '' };
+  const concept = el('input', { type: 'text', placeholder: 'Concept (auto-filled from where you clicked)' });
+  const noteText = el('textarea', { rows: 4, placeholder: 'Write a note…' });
+  const status = el('div', { className: 'hint' });
+  const list = el('div', { style: 'display:flex;flex-direction:column;gap:8px' });
+  const flash = (t) => { status.textContent = t; setTimeout(() => { if (status.textContent === t) status.textContent = ''; }, 3500); };
+
+  const save = el('button', { className: 'btn', textContent: 'Save note' });
+  const copyPage = el('button', { className: 'btn alt', textContent: 'Copy this page' });
+  const copyAll = el('button', { className: 'btn alt', textContent: 'Copy ALL notes' });
+  notesBody.append(concept, noteText, el('div', { className: 'row' }, save, copyPage, copyAll), status, list);
+
+  async function copyExport(pageOnly) {
+    try {
+      const md = await (await api(`/export${pageOnly ? `?page=${encodeURIComponent(PAGE)}` : ''}`)).text();
+      await navigator.clipboard.writeText(md);
+      flash(`Copied ${md.split('\n- ').length - 1} note(s) as Markdown`);
+    } catch (e) { flash(e.message); }
+  }
+  copyPage.onclick = () => copyExport(true); copyAll.onclick = () => copyExport(false);
+
+  save.onclick = async () => {
+    try {
+      await api('/notes', { method: 'POST', body: JSON.stringify({ page: PAGE, anchor: draftCtx.anchor, concept: concept.value, text: noteText.value }) });
+      noteText.value = ''; concept.value = ''; draftCtx = { anchor: '', concept: '' }; flash('Saved'); loadNotes();
+    } catch (e) { flash(e.message); }
+  };
+
+  async function loadNotes() {
+    try {
+      const notes = await (await api(`/notes?page=${encodeURIComponent(PAGE)}`)).json();
+      list.replaceChildren(...(notes.length ? notes.map(noteCard) : [el('div', { className: 'hint', textContent: 'No notes on this page yet. Alt-click any element to add one.' })]));
+    } catch (e) { list.replaceChildren(el('div', { className: 'hint', textContent: e.message })); }
+  }
+
+  function noteCard(n) {
+    const ta = el('textarea', { rows: 3, value: n.text, style: 'display:none' });
+    const body = el('div', { textContent: n.text });
+    const edit = el('button', { className: 'btn alt', textContent: 'Edit' });
+    const del = el('button', { className: 'btn del', textContent: 'Delete' });
+    const go = n.anchor && document.getElementById(n.anchor) ? el('button', { className: 'btn alt', textContent: 'Go to', onclick: () => document.getElementById(n.anchor).scrollIntoView({ behavior: 'smooth' }) }) : '';
+    edit.onclick = async () => {
+      if (ta.style.display === 'none') { ta.style.display = 'block'; body.style.display = 'none'; edit.textContent = 'Save'; return; }
+      try { await api(`/notes/${n.id}`, { method: 'PUT', body: JSON.stringify({ text: ta.value }) }); loadNotes(); } catch (e) { flash(e.message); }
+    };
+    del.onclick = async () => { if (confirm('Delete this note?')) { try { await api(`/notes/${n.id}`, { method: 'DELETE' }); loadNotes(); } catch (e) { flash(e.message); } } };
+    return el('div', { className: 'card' },
+      el('div', { className: 'meta', textContent: [n.anchor && `#${n.anchor}`, n.concept].filter(Boolean).join(' · ') || 'page note' }),
+      body, ta, el('div', { className: 'row', style: 'margin-top:6px' }, edit, del, go));
+  }
+
+  // Alt/Option-click anywhere → note about that concept.
+  let hl;
+  document.addEventListener('click', (e) => {
+    if (!e.altKey || root.contains(e.target)) return;
+    e.preventDefault(); e.stopPropagation();
+    const target = e.target;
+    const sel = String(window.getSelection() || '').trim();
+    const section = target.closest('[id]');
+    const heading = (section?.querySelector('h1,h2,h3') || target.closest('h1,h2,h3'))?.textContent.trim() || '';
+    const snippet = (sel || target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+    draftCtx = { anchor: section?.id || '', concept: snippet || heading };
+    concept.value = [heading && heading !== snippet ? heading : '', snippet].filter(Boolean).join(' › ');
+    hl?.classList.remove('ccw-hl'); hl = target; target.classList.add('ccw-hl'); setTimeout(() => target.classList.remove('ccw-hl'), 2500);
+    panel.classList.add('open'); show('notes'); noteText.focus(); loadNotes();
+  }, true);
+
+  // ---- Chat -------------------------------------------------------------
+  const log = el('div', { style: 'display:flex;flex-direction:column;gap:8px;flex:1' });
+  const input = el('textarea', { rows: 3, placeholder: 'e.g. "Move the Wednesday video to Friday and add a Shorts slot"' });
+  const useNotes = el('input', { type: 'checkbox' });
+  const send = el('button', { className: 'btn', textContent: 'Send' });
+  chatBody.append(
+    el('div', { className: 'hint', textContent: 'Claude edits the calendar in a Daytona sandbox and opens a pull request — merge it to publish.' }),
+    log, input, el('div', { className: 'row' }, send, el('label', { className: 'hint' }, useNotes, ' include my notes as context')));
+
+  const say = (text, cls = '') => { const n = el('div', { className: `card msg ${cls}`, textContent: text }); log.append(n); n.scrollIntoView(); return n; };
+
+  send.onclick = async () => {
+    const message = input.value.trim(); if (!message) return;
+    input.value = ''; say(message, 'user'); send.disabled = true;
+    const bubble = say('Queued…');
+    try {
+      const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message, page: PAGE, includeNotes: useNotes.checked }) })).json();
+      for (let i = 0; i < 120; i++) {
+        await new Promise((r) => setTimeout(r, 4000));
+        const job = await (await api(`/jobs/${id}`)).json();
+        bubble.textContent = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
+        if (job.status === 'error') { bubble.textContent = `Error: ${job.error}`; break; }
+        if (job.status === 'done') {
+          bubble.textContent = job.summary || 'Done.';
+          if (job.pr) bubble.append('\n\n', el('a', { href: job.pr, target: '_blank', rel: 'noopener', textContent: 'Review & merge pull request →' }));
+          else bubble.append('\n\n(no file changes made)');
+          break;
+        }
+      }
+    } catch (e) { bubble.textContent = `Error: ${e.message}`; }
+    send.disabled = false;
+  };
+
+  if (!API) console.warn('cc-widget: missing data-api attribute');
+  btn.addEventListener('click', () => panel.classList.contains('open') && loadNotes());
+})();
