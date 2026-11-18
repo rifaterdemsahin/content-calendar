@@ -1,0 +1,10 @@
+# Fly app for the scheduled stats job. It has no HTTP service: it runs, saves the stats, and exits.
+app = "rifat-stats-cron"
+primary_region = "lhr"
+
+[build]
+  dockerfile = "jobs/stats/Dockerfile"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

@@ -51,6 +51,9 @@ def summarise(videos, snap_date):
     recent_cut = (dt.date.fromisoformat(snap_date) - dt.timedelta(days=90)).isoformat()
     recent = [v for v in videos if v["date"] >= recent_cut]
 
+    by_month = {}
+    for m in sorted({v["date"][:7] for v in videos}):
+        by_month[m] = block([v for v in videos if v["date"][:7] == m])
     top = sorted(videos, key=lambda v: -v["views"])[:5]
     return {
         "snapshotDate": snap_date,
@@ -64,6 +67,7 @@ def summarise(videos, snap_date):
         "shorts": block(shorts),
         "last90Days": {**block(recent), "since": recent_cut},
         "byYear": by_year,
+        "byMonth": by_month,
         "abTests": {
             "running": sum(1 for v in videos if v.get("abTest") == "running"),
             "completed": sum(1 for v in videos if v.get("abTest") == "completed"),

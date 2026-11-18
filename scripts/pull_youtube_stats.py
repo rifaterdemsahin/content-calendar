@@ -46,7 +46,7 @@ def uploads_playlist(channel_id):
     return "UU" + channel_id[2:]
 
 
-def main():
+def pull_videos():
     ids, page = [], None
     while True:
         params = dict(part="contentDetails", playlistId=uploads_playlist(CHANNEL_ID), maxResults=50)
@@ -77,6 +77,11 @@ def main():
                 "videoId": it["id"],
             })
 
+    return videos
+
+
+def main():
+    videos = pull_videos()
     today = dt.date.today().isoformat()
     out = {
         "source": "YouTube Data API v3 (public stats). No watch hours or CTR here; those need the Studio export or YouTube Analytics API.",

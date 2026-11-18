@@ -45,3 +45,20 @@ app.http('contentPut', {
     }
   },
 });
+
+// Channel stats written by the scheduled Fly job (scripts/cron_stats.py) to content/stats/stats.json.
+app.http('statsGet', {
+  route: 'stats', methods: ['GET'], authLevel: 'anonymous',
+  handler: async (req, ctx) => {
+    const denied = checkAuth(req);
+    if (denied) return denied;
+    try {
+      const text = await store.readText('stats/stats.json');
+      if (text == null) return { status: 404, jsonBody: { error: 'no stats yet: the scheduled job has not run' } };
+      return { headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-cache' }, body: text };
+    } catch (e) {
+      ctx.error(e);
+      return { status: 500, jsonBody: { error: e.message } };
+    }
+  },
+});

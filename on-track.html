@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On Track | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">🧭 On Track?</span>
+      <a href="setup-api-key.html" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 whitespace-nowrap">Add API key</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The short answer</div>
+      <p id="verdict" class="text-2xl sm:text-3xl font-bold text-white mt-2 leading-snug">Loading…</p>
+      <p id="source" class="text-xs text-slate-500 mt-3"></p>
+    </section>
+
+    <!-- Verdict cards -->
+    <section id="cards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></section>
+
+    <!-- Chart 1: subscribers -->
+    <section class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+      <h2 class="font-bold text-white">1 · Subscribers to 1,000 by the deadline</h2>
+      <p class="text-xs text-slate-400 mt-1">Dot = today. Dashed amber = the pace needed. Solid indigo = the realistic pace in the plan (15 a week).</p>
+      <div id="chartSubs" class="mt-4"></div>
+    </section>
+
+    <!-- Chart 2: views -->
+    <section class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+      <h2 class="font-bold text-white">2 · Views per month against the 90-day target</h2>
+      <p class="text-xs text-slate-400 mt-1">Bars = lifetime views by the month each video was published. Dashed red = the dashboard target (150,000 in 90 days) spread across three months, 50,000 a month.</p>
+      <div id="chartViews" class="mt-4"></div>
+    </section>
+
+    <!-- Chart 3: conversion -->
+    <section class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+      <h2 class="font-bold text-white">3 · Conversion: target against result</h2>
+      <p class="text-xs text-slate-400 mt-1">Only videos with a recorded result are drawn. Everything else waits for data.</p>
+      <div id="chartConv" class="mt-4"></div>
+    </section>
+
+    <!-- Chart 4: WIP -->
+    <section class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+      <h2 class="font-bold text-white">4 · Videos in progress per week against the limit of 3</h2>
+      <div id="chartWip" class="mt-4"></div>
+    </section>
+
+    <p class="text-xs text-slate-500">Sources: <code class="text-indigo-300">/api/stats</code> (scheduled job) or <code class="text-indigo-300">data/studio/stats.json</code>, <code class="text-indigo-300">data/goals.json</code>, <code class="text-indigo-300">data/videos.json</code>. Set the API key on the <a class="underline" href="setup-api-key.html">setup page</a> to keep the numbers current.</p>
+  </main>
+
+  <script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const f = (x) => Number(x || 0).toLocaleString();
+    const h = (tag, attrs, text) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v); if (text != null) e.textContent = text; return e; };
+    const card = (title, value, sub, color) => {
+      const c = h('div', { class: 'p-5 rounded-xl border bg-slate-900/80 border-slate-800' });
+      c.innerHTML = '';
+      c.append(h('div', { class: 'text-xs font-bold uppercase tracking-wider text-slate-400' }, title));
+      c.append(h('div', { class: 'text-2xl font-black mt-1', style: `color:${color}` }, value));
+      c.append(h('div', { class: 'text-sm text-slate-300 mt-2' }, sub));
+      return c;
+    };
+    function svg(w, hgt) {
+      const s = document.createElementNS(NS, 'svg');
+      s.setAttribute('viewBox', `0 0 ${w} ${hgt}`); s.setAttribute('width', '100%'); s.setAttribute('role', 'img');
+      s.style.maxWidth = '100%'; s.style.height = 'auto';
+      return s;
+    }
+    function node(s, tag, attrs, text) {
+      const e = document.createElementNS(NS, tag);
+      for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+      if (text != null) e.textContent = text;
+      s.append(e); return e;
+    }
+
+    // Chart 1: subscriber path to the deadline
+    function chartSubs(g, cur) {
+      const start = new Date(g.asOf + 'T00:00:00');
+      const end = new Date(g.dates.subscriberDeadline + 'T00:00:00');
+      const weeks = Math.max(1, Math.ceil((end - start) / (7 * 86400000)));
+      const goal = g.dates.subscriberGoal;
+      const rate = g.weeklyRate[g.activeRate];
+      const need = (goal - cur) / weeks;
+      const W = 640, H = 260, L = 56, R = 20, T = 16, B = 30;
+      const lo = Math.min(cur, goal) - 40, hi = goal + 60;
+      const X = (w) => L + (w / weeks) * (W - L - R);
+      const Y = (v) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+      const s = svg(W, H);
+      for (let v = Math.ceil(lo / 50) * 50; v <= hi; v += 50) {
+        node(s, 'line', { x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: '#1e293b' });
+        node(s, 'text', { x: L - 6, y: Y(v) + 4, 'text-anchor': 'end', fill: '#64748b', 'font-size': 11 }, f(v));
+      }
+      node(s, 'line', { x1: L, x2: W - R, y1: Y(goal), y2: Y(goal), stroke: '#34d399', 'stroke-dasharray': '4 4' });
+      node(s, 'text', { x: W - R, y: Y(goal) - 6, 'text-anchor': 'end', fill: '#34d399', 'font-size': 11 }, `${f(goal)} goal · ${g.dates.subscriberDeadline}`);
+      const realEnd = Math.min(cur + rate * weeks, hi);
+      node(s, 'polyline', { points: `${X(0)},${Y(cur)} ${X(weeks)},${Y(Math.min(cur + rate * weeks, goal + 200))}`, fill: 'none', stroke: '#818cf8', 'stroke-width': 2.5 });
+      node(s, 'polyline', { points: `${X(0)},${Y(cur)} ${X(weeks)},${Y(goal)}`, fill: 'none', stroke: '#fbbf24', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+      node(s, 'circle', { cx: X(0), cy: Y(cur), r: 6, fill: '#fff' });
+      node(s, 'text', { x: X(0) + 10, y: Y(cur) - 10, fill: '#e2e8f0', 'font-size': 12 }, `${f(cur)} today`);
+      node(s, 'text', { x: L, y: H - 8, fill: '#64748b', 'font-size': 11 }, g.asOf);
+      node(s, 'text', { x: W - R, y: H - 8, 'text-anchor': 'end', fill: '#64748b', 'font-size': 11 }, g.dates.subscriberDeadline);
+      return { svg: s, weeks, need: need.toFixed(1), rate };
+    }
+
+    // Chart 2: monthly views against a flat target line
+    function chartViews(byMonth, monthlyTarget) {
+      const months = Object.keys(byMonth || {});
+      const vals = months.map((m) => byMonth[m].views);
+      const max = Math.max(monthlyTarget, ...vals, 1) * 1.1;
+      const W = 640, H = 260, L = 56, R = 20, T = 16, B = 40;
+      const s = svg(W, H);
+      const bw = (W - L - R) / Math.max(months.length, 1);
+      const Y = (v) => T + (1 - v / max) * (H - T - B);
+      node(s, 'line', { x1: L, x2: W - R, y1: Y(0), y2: Y(0), stroke: '#334155' });
+      node(s, 'text', { x: L - 6, y: Y(0) + 4, 'text-anchor': 'end', fill: '#64748b', 'font-size': 11 }, '0');
+      node(s, 'text', { x: L - 6, y: Y(max) + 4, 'text-anchor': 'end', fill: '#64748b', 'font-size': 11 }, f(Math.round(max)));
+      months.forEach((m, i) => {
+        const v = vals[i];
+        node(s, 'rect', { x: L + i * bw + 3, y: Y(v), width: Math.max(bw - 6, 2), height: Math.max(Y(0) - Y(v), 0), fill: '#6366f1', rx: 2 });
+        if (months.length <= 14 || i % 3 === 0) node(s, 'text', { x: L + i * bw + bw / 2, y: H - 14, 'text-anchor': 'middle', fill: '#64748b', 'font-size': 10 }, m.slice(2));
+      });
+      node(s, 'line', { x1: L, x2: W - R, y1: Y(monthlyTarget), y2: Y(monthlyTarget), stroke: '#f87171', 'stroke-dasharray': '6 5', 'stroke-width': 2 });
+      node(s, 'text', { x: W - R, y: Y(monthlyTarget) - 6, 'text-anchor': 'end', fill: '#f87171', 'font-size': 11 }, `target ${f(monthlyTarget)} a month`);
+      return s;
+    }
+
+    // Chart 3: conversion bars (only videos with a result)
+    function chartConv(videos) {
+      const rows = videos.filter((v) => v.conversion && v.conversion.actual != null);
+      const wrap = document.createElement('div');
+      if (!rows.length) { wrap.append(h('div', { class: 'text-sm text-slate-400' }, `No results recorded yet. ${videos.length} videos are waiting for data.`)); return wrap; }
+      const W = 640, rowH = 44, L = 220, R = 60;
+      const H = rows.length * rowH + 20;
+      const s = svg(W, H);
+      const max = Math.max(...rows.map((v) => Math.max(v.conversion.target, v.conversion.actual))) * 1.15;
+      rows.forEach((v, i) => {
+        const y = 10 + i * rowH, c = v.conversion;
+        const hit = c.actual >= c.target, col = hit ? '#34d399' : '#f87171';
+        node(s, 'text', { x: 0, y: y + 14, fill: '#e2e8f0', 'font-size': 12 }, (v.title || v.id).slice(0, 34));
+        node(s, 'rect', { x: L, y: y + 2, width: ((W - L - R) * c.target) / max, height: 10, fill: '#334155', rx: 2 });
+        node(s, 'rect', { x: L, y: y + 16, width: ((W - L - R) * c.actual) / max, height: 14, fill: col, rx: 2 });
+        node(s, 'text', { x: W - R + 4, y: y + 27, fill: col, 'font-size': 12, 'font-weight': 700 }, hit ? 'HIT' : 'MISS');
+        node(s, 'text', { x: L, y: y + 40, fill: '#64748b', 'font-size': 10 }, `grey = target ${c.target} ${c.unit} · colour = result ${c.actual}`);
+      });
+      wrap.append(s);
+      return wrap;
+    }
+
+    // Chart 4: WIP per week against the limit
+    function chartWip(videos, limit) {
+      const weeks = [...new Set(videos.filter((v) => v.week >= 1).map((v) => v.week))].sort();
+      const counts = weeks.map((w) => videos.filter((v) => v.week === w && v.status !== 'done').length);
+      const max = Math.max(limit, ...counts) + 1;
+      const W = 640, H = 240, L = 56, R = 20, T = 16, B = 34;
+      const s = svg(W, H);
+      const bw = (W - L - R) / Math.max(weeks.length, 1);
+      const Y = (v) => T + (1 - v / max) * (H - T - B);
+      counts.forEach((c, i) => {
+        const over = c > limit;
+        node(s, 'rect', { x: L + i * bw + 14, y: Y(c), width: bw - 28, height: Y(0) - Y(c), fill: over ? '#f87171' : '#6366f1', rx: 3 });
+        node(s, 'text', { x: L + i * bw + bw / 2, y: Y(c) - 6, 'text-anchor': 'middle', fill: '#e2e8f0', 'font-size': 12 }, String(c));
+        node(s, 'text', { x: L + i * bw + bw / 2, y: H - 12, 'text-anchor': 'middle', fill: '#64748b', 'font-size': 11 }, `Week ${weeks[i]}`);
+      });
+      node(s, 'line', { x1: L, x2: W - R, y1: Y(limit), y2: Y(limit), stroke: '#fbbf24', 'stroke-dasharray': '6 5', 'stroke-width': 2 });
+      node(s, 'text', { x: W - R, y: Y(limit) - 6, 'text-anchor': 'end', fill: '#fbbf24', 'font-size': 11 }, `limit ${limit}`);
+      return s;
+    }
+
+    async function loadStats() {
+      try {
+        const r = await fetch('/api/stats', { credentials: 'same-origin' });
+        if (r.ok) return { stats: await r.json(), src: 'scheduled job (live)' };
+      } catch (e) { /* fall through to the local snapshot */ }
+      const r2 = await fetch('data/studio/stats.json', { cache: 'no-cache' });
+      return { stats: await r2.json(), src: 'manual snapshot (no API key yet)' };
+    }
+
+    Promise.all([
+      loadStats(),
+      fetch('data/goals.json', { cache: 'no-cache' }).then((r) => r.json()),
+      fetch('data/videos.json', { cache: 'no-cache' }).then((r) => r.json()),
+    ]).then(([{ stats, src }, g, vj]) => {
+      const videos = vj.videos;
+      const cur = g.subscribers;
+      const subs = chartSubs(g, cur);
+      const last90 = stats.last90Days?.views ?? 0;
+      const target90 = g.views90dTarget || 150000;
+      const pct = (last90 / target90) * 100;
+      const convDone = videos.filter((v) => v.conversion && v.conversion.actual != null);
+      const hits = convDone.filter((v) => v.conversion.actual >= v.conversion.target).length;
+      const wipOver = [...new Set(videos.map((v) => v.week))].filter((w) => w >= 1 && videos.filter((v) => v.week === w && v.status !== 'done').length > vj.wipLimitPerWeek).length;
+
+      document.getElementById('verdict').textContent =
+        `Subscribers: ${subs.need > subs.rate ? 'behind' : 'on the pace'} (need ${subs.need}/week, plan ${subs.rate}/week). Views: ${pct < 10 ? 'far off' : 'closer'} (${f(last90)} of ${f(target90)} in 90 days). Supply: ${wipOver ? 'over the limit' : 'within the limit'}.`;
+      document.getElementById('source').textContent = `Views and comments: ${src}${stats.generatedAt ? ' · generated ' + stats.generatedAt : ''}${stats.snapshotDate ? ' · snapshot ' + stats.snapshotDate : ''}`;
+
+      const cards = document.getElementById('cards');
+      cards.append(card('Subscribers', `${f(cur)} → ${f(g.dates.subscriberGoal)}`,
+        `Needed ${subs.need} a week to reach ${f(g.dates.subscriberGoal)} by ${g.dates.subscriberDeadline} (${subs.weeks} weeks). The plan assumes ${subs.rate} a week, so the plan is ${subs.rate >= subs.need ? 'just enough' : 'short'}. Measured growth needs the scheduled job.`,
+        subs.rate >= subs.need ? '#fbbf24' : '#f87171'));
+      cards.append(card('Views, last 90 days', `${pct.toFixed(1)}% of target`,
+        `${f(last90)} views against ${f(target90)}. The gap is ${f(target90 - last90)} views. This is the biggest gap on the page.`, '#f87171'));
+      cards.append(card('Conversion', `${hits} hit · ${convDone.length - hits} miss · ${videos.length - convDone.length} no data`,
+        'Targets are set per video. A result becomes HIT or MISS once it is recorded in data/videos.json.', convDone.length ? (hits ? '#34d399' : '#f87171') : '#94a3b8'));
+      cards.append(card('Supply, videos in progress', wipOver ? 'Over the limit' : 'Within the limit',
+        `Limit ${vj.wipLimitPerWeek} a week. ${wipOver ? wipOver + ' week(s) are over.' : 'Every week is at or under the limit.'}`, wipOver ? '#f87171' : '#34d399'));
+
+      document.getElementById('chartSubs').append(subs.svg);
+      document.getElementById('chartViews').append(chartViews(stats.byMonth || {}, target90 / 3));
+      document.getElementById('chartConv').replaceChildren(chartConv(videos));
+      document.getElementById('chartWip').append(chartWip(videos, vj.wipLimitPerWeek));
+    }).catch((e) => {
+      document.getElementById('verdict').textContent = 'Could not load the data: ' + e.message;
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add the YouTube API key | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">🔑 Add the YouTube API key</span>
+      <a href="on-track.html" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 whitespace-nowrap">On track →</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Why</div>
+      <p class="text-2xl sm:text-3xl font-bold text-white mt-2">A key lets the numbers update by themselves</p>
+      <p class="text-slate-400 mt-3">With a YouTube Data API key, a scheduled job on Fly.io pulls your views, comments and subscriber count every day and saves them. The analytics and on-track pages then show current numbers without you pasting a Studio export. The key only reads public data. It cannot change your channel.</p>
+    </section>
+
+    <section class="p-5 rounded-xl border border-red-500/40 bg-red-500/10">
+      <div class="font-bold text-red-200"><i class="fas fa-triangle-exclamation mr-1"></i> Do not paste the key into chat, a file or a commit</div>
+      <p class="text-sm text-red-100/90 mt-2">Anything typed into this chat is stored in the conversation. A key in the repo is public. Put it only in your own terminal (step 3) and in Fly secrets (step 4). If a key ever leaks, delete it in Google Cloud and create a new one.</p>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-lg font-bold text-white">Steps</h2>
+
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div class="font-bold text-white">1 · Create the key in Google Cloud</div>
+        <ol class="list-decimal list-inside text-sm text-slate-300 mt-2 space-y-1">
+          <li>Open <a class="text-indigo-300 underline" href="https://console.cloud.google.com/" target="_blank" rel="noopener">console.cloud.google.com</a> and sign in with the Google account that owns the channel.</li>
+          <li>Create a project, e.g. <code class="text-indigo-300">content-calendar</code>.</li>
+          <li>Go to <strong>APIs &amp; Services → Library</strong>, search <strong>YouTube Data API v3</strong>, and click <strong>Enable</strong>.</li>
+          <li>Go to <strong>APIs &amp; Services → Credentials → Create credentials → API key</strong>.</li>
+          <li>Click the new key, then under <strong>API restrictions</strong> choose <strong>Restrict key → YouTube Data API v3</strong>. Save.</li>
+        </ol>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div class="font-bold text-white">2 · Check it works (optional, takes a minute)</div>
+        <p class="text-sm text-slate-400 mt-1">Run this in your terminal from the repo. The key is typed in silently and lasts only for this window.</p>
+<pre class="mt-3 p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-emerald-300">cd ~/Projects/content-calendar
+read -s YOUTUBE_API_KEY && export YOUTUBE_API_KEY
+python3 scripts/pull_youtube_stats.py
+python3 scripts/studio_stats.py data/studio/youtube-api-$(date +%F).json</pre>
+        <p class="text-xs text-slate-500 mt-2">You should see "wrote … 30 videos" (or your current count). If you see an error, copy the message back and I'll fix it.</p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div class="font-bold text-white">3 · Save it for the scheduled job on Fly.io</div>
+        <p class="text-sm text-slate-400 mt-1">Secrets are encrypted by Fly and never appear in the repo.</p>
+<pre class="mt-3 p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-emerald-300">fly apps create rifat-stats-cron
+read -s KEY && fly secrets set --app rifat-stats-cron YOUTUBE_API_KEY="$KEY" && unset KEY
+read -s CONN && fly secrets set --app rifat-stats-cron AZURE_STORAGE_CONNECTION_STRING="$CONN" && unset CONN</pre>
+        <p class="text-xs text-slate-500 mt-2">The Azure string is the storage account connection string (Azure portal → Storage account → Access keys → Connection string). It is the same account the function app uses.</p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div class="font-bold text-white">4 · Deploy the job and schedule it daily</div>
+<pre class="mt-3 p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-emerald-300">fly deploy --config jobs/stats/fly.toml --dockerfile jobs/stats/Dockerfile --app rifat-stats-cron
+fly machine run --app rifat-stats-cron --schedule daily --restart no --region lhr &lt;image from the deploy output&gt;</pre>
+        <p class="text-xs text-slate-500 mt-2">Check the schedule command against <code>fly machine run --help</code> on your Fly CLI version. Run the job once by hand with <code>fly machine start</code> to confirm the first run.</p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <div class="font-bold text-white">5 · Confirm it worked</div>
+        <p class="text-sm text-slate-300 mt-1">Open <a class="text-indigo-300 underline" href="on-track.html">On track</a>. The "Source" line shows the latest run time once the job has saved its first file. Until then the page uses the last manual snapshot.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">What the key can and cannot do</h2>
+      <ul class="mt-3 text-sm text-slate-300 space-y-2 list-disc list-inside">
+        <li>It can read public video stats and the public subscriber count.</li>
+        <li>It cannot see watch hours, retention, click-through rate or traffic sources. Those need YouTube Analytics (OAuth) or the Studio export.</li>
+        <li>It cannot upload, edit or delete anything on the channel.</li>
+      </ul>
+    </section>
+
+    <p class="text-xs text-slate-500">Matches requirement IN-4 and KV-12 on the <a class="underline" href="requirements.html">requirements page</a>. The key can also live in Azure Key Vault instead of Fly secrets if you prefer one vault for everything.</p>
+  </main>
+
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>

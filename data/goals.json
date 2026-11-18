@@ -13,5 +13,16 @@
     "realistic": "Base plan: consistent 3 Shorts and 1 long video a week",
     "stretch": "Best recent weeks sustained"
   },
-  "milestones": [1000, 1500, 2000, 2500, 3000]
+  "milestones": [
+    1000,
+    1500,
+    2000,
+    2500,
+    3000
+  ],
+  "views90dTarget": 150000,
+  "dates": {
+    "subscriberDeadline": "2027-03-31",
+    "subscriberGoal": 1000
+  }
 }

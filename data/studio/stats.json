@@ -45,6 +45,86 @@
       "medianViews": 149.0
     }
   },
+  "byMonth": {
+    "2024-09": {
+      "videos": 4,
+      "views": 693,
+      "avgViews": 173.2,
+      "medianViews": 152.0
+    },
+    "2024-10": {
+      "videos": 5,
+      "views": 427,
+      "avgViews": 85.4,
+      "medianViews": 83
+    },
+    "2025-06": {
+      "videos": 1,
+      "views": 313,
+      "avgViews": 313.0,
+      "medianViews": 313
+    },
+    "2025-09": {
+      "videos": 1,
+      "views": 149,
+      "avgViews": 149.0,
+      "medianViews": 149
+    },
+    "2025-10": {
+      "videos": 4,
+      "views": 1360,
+      "avgViews": 340.0,
+      "medianViews": 329.0
+    },
+    "2025-11": {
+      "videos": 3,
+      "views": 869,
+      "avgViews": 289.7,
+      "medianViews": 293
+    },
+    "2026-01": {
+      "videos": 1,
+      "views": 237,
+      "avgViews": 237.0,
+      "medianViews": 237
+    },
+    "2026-02": {
+      "videos": 1,
+      "views": 421,
+      "avgViews": 421.0,
+      "medianViews": 421
+    },
+    "2026-03": {
+      "videos": 1,
+      "views": 449,
+      "avgViews": 449.0,
+      "medianViews": 449
+    },
+    "2026-06": {
+      "videos": 1,
+      "views": 90,
+      "avgViews": 90.0,
+      "medianViews": 90
+    },
+    "2026-08": {
+      "videos": 3,
+      "views": 310,
+      "avgViews": 103.3,
+      "medianViews": 86
+    },
+    "2026-09": {
+      "videos": 2,
+      "views": 572,
+      "avgViews": 286.0,
+      "medianViews": 286.0
+    },
+    "2026-11": {
+      "videos": 3,
+      "views": 212,
+      "avgViews": 70.7,
+      "medianViews": 68
+    }
+  },
   "abTests": {
     "running": 3,
     "completed": 13
