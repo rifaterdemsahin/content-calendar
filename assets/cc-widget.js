@@ -16,7 +16,15 @@
   // ---- UI ---------------------------------------------------------------
   const css = `
   #ccw *{box-sizing:border-box;font-family:system-ui,sans-serif}
-  #ccw-btn{position:fixed;right:18px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#6366f1;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 16px #0008}
+  #ccw-btn{position:fixed;right:18px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#6366f1;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:transform .15s}
+  #ccw-btn:hover{transform:scale(1.05)}
+  #ccw-picker-btn{position:fixed;right:78px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#334155;color:#e2e8f0;font-size:20px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:all .15s}
+  #ccw-picker-btn:hover{background:#475569;transform:scale(1.05)}
+  #ccw-picker-btn.picking{background:#dc2626;color:#fff;animation:ccw-pulse 1.2s infinite}
+  @keyframes ccw-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+  .ccw-picker-active *{cursor:crosshair!important}
+  .ccw-picker-hover{outline:3px dashed #6366f1!important;outline-offset:2px;background:rgba(99,102,241,0.12)!important}
+  #ccw-picker-tooltip{position:fixed;z-index:100000;pointer-events:none;background:#0f172a;color:#e2e8f0;border:1px solid #6366f1;border-radius:6px;padding:4px 8px;font-size:11px;font-family:monospace;box-shadow:0 4px 12px #000a}
   #ccw-panel{position:fixed;right:18px;bottom:80px;z-index:99999;width:min(400px,calc(100vw - 36px));height:min(560px,calc(100vh - 110px));display:none;flex-direction:column;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:14px;box-shadow:0 10px 40px #000a;overflow:hidden}
   #ccw-panel.open{display:flex}
   #ccw .tabs{display:flex;border-bottom:1px solid #334155}
@@ -46,6 +54,7 @@
   };
 
   const root = el('div', { id: 'ccw' });
+  const pickerBtn = el('button', { id: 'ccw-picker-btn', title: 'Document Object Picker: Click any element to attach a note', textContent: '🎯' });
   const btn = el('button', { id: 'ccw-btn', title: 'Notes & chat (Alt-click anything to add a note)', textContent: '📝' });
   const panel = el('div', { id: 'ccw-panel' });
   const tabNotes = el('button', { textContent: '📝 Notes', className: 'on' });
@@ -61,7 +70,7 @@
     maxBtn.setAttribute('aria-label', maxBtn.title);
   };
   panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat, maxBtn), notesBody, chatBody);
-  root.append(btn, panel); document.body.appendChild(root);
+  root.append(pickerBtn, btn, panel); document.body.appendChild(root);
 
   const show = (which) => {
     tabNotes.classList.toggle('on', which === 'notes'); tabChat.classList.toggle('on', which === 'chat');
@@ -85,20 +94,28 @@
   }
 
   // ---- Notes ------------------------------------------------------------
-  let draftCtx = { anchor: '', concept: '' };
+  let draftCtx = { anchor: '', concept: '', rationale: '' };
+  const itemMeta = new Map();
   // Dropdown of content on this page (sprint items + sections). Picking one sets the note's anchor.
   const pick = el('select', { style: 'width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px' });
   const fillPicker = () => {
     const groups = [];
+    itemMeta.clear();
     const sprint = [...document.querySelectorAll('[id*="-item-"]')].map((item) => {
       const week = item.closest('.p-6')?.querySelector('h3')?.textContent.trim() || '';
       const day = item.querySelector('span')?.textContent.trim() || '';
       const title = item.querySelector('.font-bold')?.textContent.trim() || item.id;
-      return { id: item.id, label: [week, day, title].filter(Boolean).join(' · ') };
+      const rationale = item.dataset.rationale || item.querySelector('.rationale-text')?.textContent.trim() || '';
+      const obj = { id: item.id, label: [week, day, title].filter(Boolean).join(' · '), rationale, title };
+      itemMeta.set(item.id, obj);
+      return obj;
     });
-    const sections = [...document.querySelectorAll('section[id]')].map((s) => ({
-      id: s.id, label: s.querySelector('h2')?.textContent.trim() || s.id,
-    }));
+    const sections = [...document.querySelectorAll('section[id]')].map((s) => {
+      const label = s.querySelector('h2')?.textContent.trim() || s.id;
+      const obj = { id: s.id, label, rationale: '' };
+      itemMeta.set(s.id, obj);
+      return obj;
+    });
     if (sprint.length) groups.push(['Sprint items', sprint]);
     if (sections.length) groups.push(['Sections', sections]);
     pick.replaceChildren(el('option', { value: '', textContent: '— pick content to attach this note to —' }));
@@ -112,20 +129,25 @@
   fillPicker();
   pick.onchange = () => {
     const o = pick.selectedOptions[0];
-    if (!o || !o.value) { draftCtx = { anchor: '', concept: '' }; return; }
-    draftCtx = { anchor: o.value, concept: o.textContent };
+    if (!o || !o.value) { draftCtx = { anchor: '', concept: '', rationale: '' }; rationaleInput.value = ''; return; }
+    const it = itemMeta.get(o.value);
+    const rat = it?.rationale || '';
+    draftCtx = { anchor: o.value, concept: o.textContent, rationale: rat };
     concept.value = o.textContent;
+    rationaleInput.value = rat;
   };
   const concept = el('input', { type: 'text', placeholder: 'Concept (auto-filled from where you clicked)' });
-  const noteText = el('textarea', { rows: 4, placeholder: 'Write a note…' });
+  const rationaleInput = el('input', { type: 'text', placeholder: '💡 Rationale (strategic purpose / why this content exists)' });
+  const noteText = el('textarea', { rows: 4, placeholder: 'Write a note (stored in Azure Storage)...' });
   const status = el('div', { className: 'hint' });
   const list = el('div', { style: 'display:flex;flex-direction:column;gap:8px' });
   const flash = (t) => { status.textContent = t; setTimeout(() => { if (status.textContent === t) status.textContent = ''; }, 3500); };
 
   const save = el('button', { className: 'btn', textContent: 'Save note' });
+  const pickDocBtn = el('button', { className: 'btn alt', textContent: '🎯 Pick Object', title: 'Interactive Document Object Picker: Click any element on the page' });
   const copyPage = el('button', { className: 'btn alt', textContent: 'Copy this page' });
   const copyAll = el('button', { className: 'btn alt', textContent: 'Copy ALL notes' });
-  notesBody.append(pick, concept, noteText, el('div', { className: 'row' }, save, copyPage, copyAll), status, list);
+  notesBody.append(pick, concept, rationaleInput, noteText, el('div', { className: 'row' }, save, pickDocBtn, copyPage, copyAll), status, list);
 
   async function copyExport(pageOnly) {
     try {
@@ -138,33 +160,194 @@
 
   save.onclick = async () => {
     try {
-      await api('/notes', { method: 'POST', body: JSON.stringify({ page: PAGE, anchor: draftCtx.anchor, concept: concept.value, text: noteText.value }) });
-      noteText.value = ''; concept.value = ''; pick.value = ''; draftCtx = { anchor: '', concept: '' }; flash('Saved'); loadNotes();
+      await api('/notes', {
+        method: 'POST',
+        body: JSON.stringify({
+          page: PAGE,
+          anchor: draftCtx.anchor,
+          concept: concept.value,
+          rationale: rationaleInput.value,
+          text: noteText.value
+        })
+      });
+      noteText.value = ''; concept.value = ''; rationaleInput.value = ''; pick.value = ''; draftCtx = { anchor: '', concept: '', rationale: '' };
+      flash('Saved to Azure Storage'); loadNotes();
     } catch (e) { flash(e.message); }
   };
 
   async function loadNotes() {
     try {
       const notes = await (await api(`/notes?page=${encodeURIComponent(PAGE)}`)).json();
-      list.replaceChildren(...(notes.length ? notes.map(noteCard) : [el('div', { className: 'hint', textContent: 'No notes on this page yet. Alt-click any element to add one.' })]));
+      list.replaceChildren(...(notes.length ? notes.map(noteCard) : [el('div', { className: 'hint', textContent: 'No notes on this page yet. Alt-click any element or click Note on content to add one.' })]));
     } catch (e) { list.replaceChildren(el('div', { className: 'hint', textContent: e.message })); }
   }
 
   function noteCard(n) {
     const ta = el('textarea', { rows: 3, value: n.text, style: 'display:none' });
+    const ratTa = el('input', { type: 'text', value: n.rationale || '', placeholder: 'Rationale', style: 'display:none;margin-bottom:6px' });
     const body = el('div', { textContent: n.text });
+    const ratEl = n.rationale ? el('div', { className: 'hint', style: 'color:#a5b4fc;margin-bottom:4px;font-size:11px' },
+      el('strong', { style: 'color:#818cf8', textContent: '💡 Rationale: ' }), n.rationale) : '';
     const edit = el('button', { className: 'btn alt', textContent: 'Edit' });
     const del = el('button', { className: 'btn del', textContent: 'Delete' });
     const go = n.anchor && document.getElementById(n.anchor) ? el('button', { className: 'btn alt', textContent: 'Go to', onclick: () => document.getElementById(n.anchor).scrollIntoView({ behavior: 'smooth' }) }) : '';
     edit.onclick = async () => {
-      if (ta.style.display === 'none') { ta.style.display = 'block'; body.style.display = 'none'; edit.textContent = 'Save'; return; }
-      try { await api(`/notes/${n.id}`, { method: 'PUT', body: JSON.stringify({ text: ta.value }) }); loadNotes(); } catch (e) { flash(e.message); }
+      if (ta.style.display === 'none') {
+        ta.style.display = 'block'; ratTa.style.display = 'block'; body.style.display = 'none';
+        if (ratEl) ratEl.style.display = 'none'; edit.textContent = 'Save'; return;
+      }
+      try {
+        await api(`/notes/${n.id}`, { method: 'PUT', body: JSON.stringify({ text: ta.value, rationale: ratTa.value }) });
+        loadNotes();
+      } catch (e) { flash(e.message); }
     };
     del.onclick = async () => { if (confirm('Delete this note?')) { try { await api(`/notes/${n.id}`, { method: 'DELETE' }); loadNotes(); } catch (e) { flash(e.message); } } };
     return el('div', { className: 'card' },
       el('div', { className: 'meta', textContent: [n.anchor && `#${n.anchor}`, n.concept].filter(Boolean).join(' · ') || 'page note' }),
-      body, ta, el('div', { className: 'row', style: 'margin-top:6px' }, edit, del, go));
+      ratEl, body, ratTa, ta, el('div', { className: 'row', style: 'margin-top:6px' }, edit, del, go));
   }
+
+  // ---- Document Object Picker --------------------------------------------
+  let isPicking = false;
+  let hoveredEl = null;
+  const tooltip = el('div', { id: 'ccw-picker-tooltip', style: 'display:none' });
+  document.body.appendChild(tooltip);
+
+  function getSelector(elem) {
+    if (!elem || !elem.tagName) return '';
+    if (elem.id) return `#${elem.id}`;
+    let name = elem.tagName.toLowerCase();
+    if (elem.className && typeof elem.className === 'string') {
+      const cls = elem.className.trim().split(/\s+/).slice(0, 2).filter((c) => !c.startsWith('ccw-')).join('.');
+      if (cls) name += `.${cls}`;
+    }
+    return name;
+  }
+
+  function selectDocumentObject(target) {
+    if (!target) return;
+    const sel = String(window.getSelection() || '').trim();
+    const section = target.closest('[id]');
+    const heading = (section?.querySelector('h1,h2,h3') || target.closest('h1,h2,h3'))?.textContent.trim() || '';
+    const snippet = (sel || target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+    const rat = section?.dataset?.rationale || target.closest('[data-rationale]')?.dataset?.rationale || '';
+    const anchorId = section?.id || '';
+
+    draftCtx = { anchor: anchorId, concept: snippet || heading, rationale: rat };
+    concept.value = [heading && heading !== snippet ? heading : '', snippet].filter(Boolean).join(' › ') || getSelector(target);
+    rationaleInput.value = rat;
+    pick.value = [...pick.options].some((o) => o.value === anchorId) ? anchorId : '';
+
+    stopPicker();
+    panel.classList.add('open');
+    show('notes');
+    noteText.focus();
+    loadNotes();
+
+    hl?.classList.remove('ccw-hl');
+    hl = target;
+    target.classList.add('ccw-hl');
+    setTimeout(() => target.classList.remove('ccw-hl'), 2500);
+    flash(`Attached to ${getSelector(target)}`);
+  }
+
+  function startPicker() {
+    isPicking = true;
+    pickerBtn.classList.add('picking');
+    document.body.classList.add('ccw-picker-active');
+    panel.classList.remove('open');
+    tooltip.style.display = 'block';
+    tooltip.textContent = '🎯 Document Object Picker: Click any element to attach a note (ESC to cancel)';
+    tooltip.style.left = '20px';
+    tooltip.style.bottom = '80px';
+    tooltip.style.top = 'auto';
+  }
+
+  function stopPicker() {
+    isPicking = false;
+    pickerBtn.classList.remove('picking');
+    document.body.classList.remove('ccw-picker-active');
+    if (hoveredEl) {
+      hoveredEl.classList.remove('ccw-picker-hover');
+      hoveredEl = null;
+    }
+    tooltip.style.display = 'none';
+  }
+
+  pickerBtn.onclick = () => {
+    if (isPicking) stopPicker();
+    else startPicker();
+  };
+  pickDocBtn.onclick = () => startPicker();
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isPicking) return;
+    const target = document.elementFromPoint(e.clientX, e.clientY);
+    if (!target || root.contains(target) || target === tooltip) return;
+
+    if (hoveredEl !== target) {
+      if (hoveredEl) hoveredEl.classList.remove('ccw-picker-hover');
+      hoveredEl = target;
+      hoveredEl.classList.add('ccw-picker-hover');
+    }
+
+    const sel = getSelector(target);
+    const section = target.closest('[id]');
+    const sectionInfo = section && section !== target ? ` in #${section.id}` : '';
+    tooltip.textContent = `🎯 ${sel}${sectionInfo} — click to attach note`;
+    tooltip.style.display = 'block';
+    tooltip.style.bottom = 'auto';
+    const x = Math.min(e.clientX + 14, window.innerWidth - 280);
+    const y = Math.min(e.clientY + 14, window.innerHeight - 40);
+    tooltip.style.left = `${x}px`;
+    tooltip.style.top = `${y}px`;
+  }, true);
+
+  document.addEventListener('click', (e) => {
+    if (!isPicking) return;
+    if (root.contains(e.target) || e.target === tooltip) return;
+    e.preventDefault();
+    e.stopPropagation();
+    selectDocumentObject(e.target);
+  }, true);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isPicking) {
+      e.preventDefault();
+      stopPicker();
+    }
+  });
+
+  const pickDocumentObject = (anchorId) => {
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+    selectDocumentObject(target);
+  };
+
+  const openNoteFor = (anchorId) => {
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+    const it = itemMeta.get(anchorId);
+    const rat = target.dataset.rationale || it?.rationale || '';
+    const heading = target.closest('.p-6')?.querySelector('h3')?.textContent.trim() || '';
+    const day = target.querySelector('span')?.textContent.trim() || '';
+    const title = target.querySelector('.font-bold')?.textContent.trim() || target.id;
+    const label = [heading, day, title].filter(Boolean).join(' · ');
+
+    draftCtx = { anchor: anchorId, concept: label, rationale: rat };
+    concept.value = label;
+    rationaleInput.value = rat;
+    pick.value = [...pick.options].some((o) => o.value === anchorId) ? anchorId : '';
+
+    panel.classList.add('open');
+    show('notes');
+    noteText.focus();
+    loadNotes();
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.classList.add('ccw-hl');
+    setTimeout(() => target.classList.remove('ccw-hl'), 2500);
+  };
+  window.CCWidget = { openNoteFor, pickDocumentObject, startPicker, gate };
 
   // Alt/Option-click anywhere → note about that concept.
   let hl;
@@ -176,8 +359,10 @@
     const section = target.closest('[id]');
     const heading = (section?.querySelector('h1,h2,h3') || target.closest('h1,h2,h3'))?.textContent.trim() || '';
     const snippet = (sel || target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
-    draftCtx = { anchor: section?.id || '', concept: snippet || heading };
+    const rat = section?.dataset?.rationale || target.closest('[data-rationale]')?.dataset?.rationale || '';
+    draftCtx = { anchor: section?.id || '', concept: snippet || heading, rationale: rat };
     concept.value = [heading && heading !== snippet ? heading : '', snippet].filter(Boolean).join(' › ');
+    rationaleInput.value = rat;
     pick.value = [...pick.options].some((o) => o.value === draftCtx.anchor) ? draftCtx.anchor : '';
     hl?.classList.remove('ccw-hl'); hl = target; target.classList.add('ccw-hl'); setTimeout(() => target.classList.remove('ccw-hl'), 2500);
     panel.classList.add('open'); show('notes'); noteText.focus(); loadNotes();
