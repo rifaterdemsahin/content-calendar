@@ -31,7 +31,11 @@ Vault: `dp-kv-deliverypilot` (`https://dp-kv-deliverypilot.vault.azure.net`, UK 
 | `ANTHROPIC-API-KEY` | `ANTHROPIC_API_KEY` | `api/src/lib/runAgent.js`: passed into the Daytona sandbox so the Claude agent can run |
 | `DAYTONA-API-KEY` | `DAYTONA_API_KEY` | `api/src/lib/runAgent.js`: creates the sandbox |
 | `github-pat` | `GITHUB_PAT` | `api/src/lib/runAgent.js`: clones the repo, pushes the branch, opens the PR |
-| `CC-ADMIN-TOKEN` | `CC_ADMIN_TOKEN` | `api/src/lib/auth.js`: guards the notes and chat endpoints |
+| `CC-ADMIN-TOKEN` | `CC_ADMIN_TOKEN` | `api/src/lib/auth.js`: guards the notes and chat endpoints; passed from Fly proxy |
+| `CC-ENTRA-CLIENT-SECRET` | `CLIENT_SECRET` | `server/server.js`: Microsoft Entra OIDC OAuth exchange on Fly.io |
+| `CC-SESSION-SECRET` | `SESSION_SECRET` | `server/session.js`: HMAC signing for user session cookies on Fly.io |
+| `CLAUDE-CODE-OAUTH-TOKEN` | `CLAUDE_CODE_OAUTH_TOKEN` | `api/src/lib/runAgent.js`: Claude Code Pro/Team subscription token for sandbox |
+| `KILO-API-KEY` | `KILO_API_KEY` | Data & search enrichment |
 
 App-setting value format:
 
@@ -40,6 +44,16 @@ App-setting value format:
 ```
 
 ## 2. Runbook
+
+Automated deploy with Azure Key Vault secrets:
+
+```bash
+# Sync secrets from Key Vault to Fly.io & deploy both site + API
+./scripts/deploy.sh --all
+
+# Or check what will be executed
+./scripts/deploy.sh --dry-run
+```
 
 Get the admin token for the dashboard widget:
 

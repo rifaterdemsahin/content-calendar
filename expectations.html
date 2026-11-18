@@ -16,10 +16,17 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
 
   <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
-      <span class="font-bold tracking-tight">🧭 Expectations</span>
-      <a href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700">requirements.md</a>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight hidden sm:inline">🧭 Expectations</span>
+      <div class="flex items-center gap-2">
+        <button id="menu-search-btn" type="button" class="flex items-center gap-2 px-2.5 py-1 text-xs text-slate-300 bg-slate-900/90 hover:bg-slate-800 hover:text-white border border-slate-700/80 rounded-lg transition" aria-label="Search">
+          <i class="fas fa-search text-indigo-400 text-xs"></i>
+          <span class="hidden md:inline font-medium">Search...</span>
+          <kbd class="hidden md:inline-flex text-[10px] bg-slate-800 text-slate-400 px-1 py-0.5 rounded border border-slate-700 font-mono">⌘K</kbd>
+        </button>
+        <a href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 whitespace-nowrap">requirements.md</a>
+      </div>
     </div>
   </header>
 
@@ -85,5 +92,6 @@
     </section>
   </main>
   <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
 </body>
 </html>

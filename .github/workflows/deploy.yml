@@ -1,0 +1,62 @@
+name: Deploy with Azure Key Vault
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deploy target (all, site, api)'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - site
+          - api
+  push:
+    branches:
+      - main
+    paths:
+      - 'server/**'
+      - 'api/**'
+      - 'fly.toml'
+      - 'scripts/deploy.sh'
+
+concurrency:
+  group: 'deploy-production'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Fly.io & Azure Function
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        if: env.AZURE_CREDENTIALS != ''
+        env:
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Setup Flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+        if: env.FLY_API_TOKEN != ''
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Execute Automated Deploy with Key Vault Secrets
+        env:
+          VAULT_NAME: ${{ vars.AZURE_KEYVAULT_NAME || 'dp-kv-deliverypilot' }}
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          TARGET="${{ inputs.target || 'all' }}"
+          echo "Triggering deployment for target: $TARGET"
+          if [[ -n "${{ secrets.AZURE_CREDENTIALS }}" ]]; then
+            ./scripts/deploy.sh --"$TARGET"
+          else
+            echo "::warning ::AZURE_CREDENTIALS secret not set in repository; running dry-run check."
+            ./scripts/deploy.sh --dry-run --"$TARGET"
+          fi

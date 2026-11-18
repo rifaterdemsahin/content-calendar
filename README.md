@@ -166,10 +166,30 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 
 - **Notes anywhere:** Alt/Option-click any element to attach a note to that concept. Notes are blobs in an Azure Storage container. **Copy this page / Copy ALL notes** puts them on your clipboard as one Markdown block.
 - **Chat agent:** describe a change; an Azure Function starts a [Daytona](https://www.daytona.io) sandbox, clones this repo, runs Claude Code (Claude subscription token first, API key as fallback), and opens a pull request. Merging it updates the repo.
+- **Instant Menu Search:** press `⌘K`, `Ctrl+K`, or `/` (or click **Search...** in the top navigation) to jump across calendar topics, video blueprints, script templates, OKRs, blocked days, and Azure Key Vault secrets.
 
 Architecture: browser → **Fly.io** (`server/`: static site + Microsoft/Entra OIDC login + `/api` proxy) → **Azure Function** (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
-Secrets live in Azure Key Vault `dp-kv-deliverypilot` (`ANTHROPIC-API-KEY`, `CLAUDE-CODE-OAUTH-TOKEN`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`, `CC-ENTRA-CLIENT-SECRET`, `CC-SESSION-SECRET`, `KILO-API-KEY`); the Function reads them via Key Vault references and Fly gets them as Fly secrets. The browser never holds a secret.
+Secrets live in Azure Key Vault `dp-kv-deliverypilot` (`ANTHROPIC-API-KEY`, `CLAUDE-CODE-OAUTH-TOKEN`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`, `CC-ENTRA-CLIENT-SECRET`, `CC-SESSION-SECRET`, `KILO-API-KEY`); the Function reads them via Key Vault references and Fly gets them as Fly secrets directly synced from Key Vault. The browser never holds a secret.
 
 Requirements and runbook: [`docs/requirements.md`](docs/requirements.md) · pages: [`key-vault.html`](key-vault.html), [`requirements.html`](requirements.html), [`expectations.html`](expectations.html).
 
-Deploy the site: `fly deploy -a rifat-content-calendar --remote-only` · Redeploy the API: zip `api/` (no `node_modules`) → `az functionapp deployment source config-zip --build-remote true` · Tests: `cd api && npm test`, `node --test server/`.
+### 🚀 Deploying with Azure Key Vault
+
+All deployment secrets are fetched directly from Azure Key Vault `dp-kv-deliverypilot`:
+
+```bash
+# Automated end-to-end deploy (syncs Key Vault secrets to Fly & deploys site + API)
+./scripts/deploy.sh --all
+
+# Deploy only the Fly.io site (server + static pages) with Key Vault secrets
+./scripts/deploy.sh --site
+
+# Deploy only the Azure Function API with Key Vault references
+./scripts/deploy.sh --api
+
+# Dry run / check Key Vault secrets without changing anything
+./scripts/deploy.sh --dry-run
+./scripts/deploy.sh --verify
+```
+
+Tests: `node --test server/`, `cd api && npm test`. GitHub Pages deploys automatically from `main`.

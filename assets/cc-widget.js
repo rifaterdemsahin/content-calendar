@@ -76,6 +76,36 @@
 
   // ---- Notes ------------------------------------------------------------
   let draftCtx = { anchor: '', concept: '' };
+  // Dropdown of content on this page (sprint items + sections). Picking one sets the note's anchor.
+  const pick = el('select', { style: 'width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px' });
+  const fillPicker = () => {
+    const groups = [];
+    const sprint = [...document.querySelectorAll('[id*="-item-"]')].map((item) => {
+      const week = item.closest('.p-6')?.querySelector('h3')?.textContent.trim() || '';
+      const day = item.querySelector('span')?.textContent.trim() || '';
+      const title = item.querySelector('.font-bold')?.textContent.trim() || item.id;
+      return { id: item.id, label: [week, day, title].filter(Boolean).join(' · ') };
+    });
+    const sections = [...document.querySelectorAll('section[id]')].map((s) => ({
+      id: s.id, label: s.querySelector('h2')?.textContent.trim() || s.id,
+    }));
+    if (sprint.length) groups.push(['Sprint items', sprint]);
+    if (sections.length) groups.push(['Sections', sections]);
+    pick.replaceChildren(el('option', { value: '', textContent: '— pick content to attach this note to —' }));
+    for (const [name, items] of groups) {
+      const og = el('optgroup', { label: name });
+      for (const it of items) og.append(el('option', { value: it.id, textContent: it.label }));
+      pick.append(og);
+    }
+    if (!groups.length) pick.style.display = 'none';
+  };
+  fillPicker();
+  pick.onchange = () => {
+    const o = pick.selectedOptions[0];
+    if (!o || !o.value) { draftCtx = { anchor: '', concept: '' }; return; }
+    draftCtx = { anchor: o.value, concept: o.textContent };
+    concept.value = o.textContent;
+  };
   const concept = el('input', { type: 'text', placeholder: 'Concept (auto-filled from where you clicked)' });
   const noteText = el('textarea', { rows: 4, placeholder: 'Write a note…' });
   const status = el('div', { className: 'hint' });
@@ -85,7 +115,7 @@
   const save = el('button', { className: 'btn', textContent: 'Save note' });
   const copyPage = el('button', { className: 'btn alt', textContent: 'Copy this page' });
   const copyAll = el('button', { className: 'btn alt', textContent: 'Copy ALL notes' });
-  notesBody.append(concept, noteText, el('div', { className: 'row' }, save, copyPage, copyAll), status, list);
+  notesBody.append(pick, concept, noteText, el('div', { className: 'row' }, save, copyPage, copyAll), status, list);
 
   async function copyExport(pageOnly) {
     try {
@@ -99,7 +129,7 @@
   save.onclick = async () => {
     try {
       await api('/notes', { method: 'POST', body: JSON.stringify({ page: PAGE, anchor: draftCtx.anchor, concept: concept.value, text: noteText.value }) });
-      noteText.value = ''; concept.value = ''; draftCtx = { anchor: '', concept: '' }; flash('Saved'); loadNotes();
+      noteText.value = ''; concept.value = ''; pick.value = ''; draftCtx = { anchor: '', concept: '' }; flash('Saved'); loadNotes();
     } catch (e) { flash(e.message); }
   };
 
@@ -138,6 +168,7 @@
     const snippet = (sel || target.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
     draftCtx = { anchor: section?.id || '', concept: snippet || heading };
     concept.value = [heading && heading !== snippet ? heading : '', snippet].filter(Boolean).join(' › ');
+    pick.value = [...pick.options].some((o) => o.value === draftCtx.anchor) ? draftCtx.anchor : '';
     hl?.classList.remove('ccw-hl'); hl = target; target.classList.add('ccw-hl'); setTimeout(() => target.classList.remove('ccw-hl'), 2500);
     panel.classList.add('open'); show('notes'); noteText.focus(); loadNotes();
   }, true);

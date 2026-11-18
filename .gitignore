@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets - NEVER commit secrets
+.env
+.env.*
+*.env
+local.settings.json
+
+# Builds and archives
+dist/
+*.zip
+*.tar.gz
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
