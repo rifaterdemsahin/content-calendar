@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Vault Requirements | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight">🔐 Key Vault</span>
+      <a href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700">requirements.md</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Requirements</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Azure Key Vault: <span class="font-mono text-indigo-300 text-2xl sm:text-3xl">dp-kv-deliverypilot</span></h1>
+      <p class="text-slate-400 mt-4 leading-relaxed">
+        Every server-side secret behind the notes widget and the chat agent lives in one Azure Key Vault. The Function App reads them through Key Vault references, so the code only sees ordinary environment variables and nothing sensitive is committed to this repo or shipped to the page.
+      </p>
+      <div class="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200 text-sm">
+        <strong>Verification status:</strong> the requirements marked <em>Implemented</em> are visible in this repo's code. Those marked <em>Operational</em> are Azure settings that this repo cannot prove, and <em>Proposed</em> ones aren't built. The vault was not read when this page was written, because the available Azure token had expired.
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">How it fits together</h2>
+      <pre class="mt-4 p-5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 overflow-x-auto leading-relaxed">
+ Browser (index.html + assets/cc-widget.js)
+   │  holds only the CC_ADMIN_TOKEN you paste once  (localStorage)
+   │  header: x-cc-token
+   ▼
+ Azure Function App  ──(managed identity, "Key Vault Secrets User")──►  Key Vault dp-kv-deliverypilot
+   │  app settings = @Microsoft.KeyVault(SecretUri=…)                    ├─ ANTHROPIC-API-KEY
+   │  code reads process.env.*                                            ├─ DAYTONA-API-KEY
+   ▼                                                                      ├─ github-pat
+ Daytona sandbox ─► clone repo ─► Claude agent ─► git push ─► PR          └─ CC-ADMIN-TOKEN
+</pre>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">Secret inventory</h2>
+      <div class="mt-4 overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
+            <tr><th class="text-left p-3">Key Vault secret</th><th class="text-left p-3">App setting</th><th class="text-left p-3">Used for</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr><td class="p-3 font-mono text-indigo-300">ANTHROPIC-API-KEY</td><td class="p-3 font-mono">ANTHROPIC_API_KEY</td><td class="p-3 text-slate-300">Passed into the sandbox so the Claude agent can run</td></tr>
+            <tr><td class="p-3 font-mono text-indigo-300">DAYTONA-API-KEY</td><td class="p-3 font-mono">DAYTONA_API_KEY</td><td class="p-3 text-slate-300">Creates the Daytona sandbox</td></tr>
+            <tr><td class="p-3 font-mono text-indigo-300">github-pat</td><td class="p-3 font-mono">GITHUB_PAT</td><td class="p-3 text-slate-300">Clones the repo, pushes the branch, opens the pull request</td></tr>
+            <tr><td class="p-3 font-mono text-indigo-300">CC-ADMIN-TOKEN</td><td class="p-3 font-mono">CC_ADMIN_TOKEN</td><td class="p-3 text-slate-300">Guards the notes and chat endpoints (constant-time compare)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-400 text-sm mt-3">App setting value format:</p>
+      <pre class="mt-2 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs text-emerald-300 overflow-x-auto">@Microsoft.KeyVault(SecretUri=https://dp-kv-deliverypilot.vault.azure.net/secrets/&lt;SECRET-NAME&gt;/)</pre>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">Requirement checklist</h2>
+      <div class="mt-4 space-y-2 text-sm" id="reqs"></div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">Runbook</h2>
+      <div class="mt-4 space-y-5">
+        <div>
+          <p class="text-slate-300 text-sm font-semibold">Get the admin token for the dashboard widget</p>
+          <pre class="mt-2 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs text-emerald-300 overflow-x-auto">az keyvault secret show --vault-name dp-kv-deliverypilot -n CC-ADMIN-TOKEN --query value -o tsv</pre>
+        </div>
+        <div>
+          <p class="text-slate-300 text-sm font-semibold">Grant the Function App's managed identity access (KV-3)</p>
+          <pre class="mt-2 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs text-emerald-300 overflow-x-auto">az functionapp identity assign -g &lt;resource-group&gt; -n &lt;function-app&gt;
+az role assignment create --assignee &lt;principalId&gt; --role "Key Vault Secrets User" \
+  --scope $(az keyvault show -n dp-kv-deliverypilot --query id -o tsv)</pre>
+        </div>
+        <div>
+          <p class="text-slate-300 text-sm font-semibold">Confirm references resolve</p>
+          <p class="text-slate-400 text-xs mt-1">Portal: Function App → Environment variables → the status column of each Key Vault reference should say <em>Resolved</em>.</p>
+        </div>
+        <div>
+          <p class="text-slate-300 text-sm font-semibold">Rotate a secret</p>
+          <pre class="mt-2 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs text-emerald-300 overflow-x-auto">az keyvault secret set --vault-name dp-kv-deliverypilot -n &lt;name&gt; --value "&lt;new value&gt;"</pre>
+          <p class="text-slate-400 text-xs mt-1">References pick up the new version within about a day; restart the Function App to force it. After rotating <code>CC-ADMIN-TOKEN</code>, paste the new token into the widget.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">Known gaps</h2>
+      <ul class="mt-4 space-y-2 text-sm text-slate-300 list-disc pl-5">
+        <li>There is no infrastructure-as-code in this repo, so KV-3, KV-8 and KV-11 must be checked in Azure.</li>
+        <li><code>CC_ADMIN_TOKEN</code> sits in the browser's <code>localStorage</code>, so an XSS on this Pages origin would expose it. Keep note content escaped and rotate the token if the page is ever compromised.</li>
+        <li>The stats scripts have no subscriber or watch-hours source. KV-12 proposes a <code>YOUTUBE-API-KEY</code> secret for public subscriber counts; watch hours still need YouTube Studio or the OAuth-based Analytics API.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Source: <a class="text-indigo-400 hover:underline" href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md">docs/requirements.md</a>
+  </footer>
+
+  <script>
+    var REQS = [
+      ['KV-1','All server-side secrets live in Key Vault dp-kv-deliverypilot; none committed to the repo or shipped in the page.','Implemented'],
+      ['KV-2','Function App reads secrets via Key Vault references; code only sees environment variables.','Implemented'],
+      ['KV-3','Function App uses a managed identity with the Key Vault Secrets User role (RBAC); no client secrets.','Operational'],
+      ['KV-4','Secret names use hyphens; each maps to exactly one app setting.','Implemented'],
+      ['KV-5','The browser holds only the pasted CC_ADMIN_TOKEN, sent as x-cc-token and compared in constant time.','Implemented'],
+      ['KV-6','API fails closed: 503 if the token is not configured, 401 if wrong or missing.','Implemented'],
+      ['KV-7','Tokens are redacted from stored and returned error messages.','Implemented'],
+      ['KV-8','Soft-delete and purge protection enabled on the vault.','Operational'],
+      ['KV-9','Vault audit logs sent to Log Analytics via diagnostic settings.','Proposed'],
+      ['KV-10','Every secret has an expiry; rotate all four at least every 90 days.','Proposed'],
+      ['KV-11','GitHub PAT is fine-grained: this repo only, contents and pull-request write.','Operational'],
+      ['KV-12','YOUTUBE-API-KEY secret so the stats scripts can read subscriber counts.','Proposed']
+    ];
+    var COLORS = { Implemented: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+                   Operational: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+                   Proposed: 'bg-slate-500/15 text-slate-300 border-slate-500/30' };
+    var box = document.getElementById('reqs');
+    REQS.forEach(function (r) {
+      var row = document.createElement('div');
+      row.className = 'flex items-start gap-3 p-3 rounded-lg bg-slate-900/70 border border-slate-800';
+      var id = document.createElement('span'); id.className = 'font-mono text-xs text-indigo-300 w-12 shrink-0 pt-0.5'; id.textContent = r[0];
+      var txt = document.createElement('span'); txt.className = 'flex-1 text-slate-200'; txt.textContent = r[1];
+      var tag = document.createElement('span'); tag.className = 'text-xs px-2 py-0.5 rounded-full border shrink-0 ' + COLORS[r[2]]; tag.textContent = r[2];
+      row.append(id, txt, tag); box.appendChild(row);
+    });
+  </script>
+</body>
+</html>
