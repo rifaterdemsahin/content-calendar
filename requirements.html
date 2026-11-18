@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requirements: What Claude Needs | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight">📋 Requirements</span>
+      <a href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700">requirements.md</a>
+    </div>
+  </header>
+
+  
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Requirements</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">What Claude needs to guide your calendar</h1>
+      <p class="text-slate-400 mt-4 leading-relaxed">Today's advice rests on a Nov 17 scrape of public view counts. These inputs turn it into advice based on your real watch hours, subscribers, funnel and capacity. <strong class="text-slate-200">P0</strong> unlocks the biggest decisions, <strong class="text-slate-200">P1</strong> sharpens them, <strong class="text-slate-200">P2</strong> is nice to have.</p>
+      <div class="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-200 text-sm">Never paste keys into chat. Store them in <a class="underline" href="key-vault.html">Key Vault</a> or use the session's secure credential form.</div>
+    </section>
+    <section>
+      <div class="space-y-3" id="needs"></div>
+    </section>
+    <section>
+      <h2 class="text-2xl font-bold text-white">Code I would add once these exist</h2>
+      <ul class="mt-4 space-y-2 text-sm text-slate-300 list-disc pl-5">
+        <li>A stats script that reads <code>data/studio/</code> and <code>YOUTUBE-API-KEY</code>, replacing the hardcoded 725 subscribers.</li>
+        <li>A scheduled GitHub Action that refreshes <code>data/</code> so the dashboard stays current.</li>
+        <li>A tracker check that flags any week behind plan.</li>
+      </ul>
+      <p class="text-sm text-slate-400 mt-4">Secrets already in place are on the <a class="text-indigo-400 hover:underline" href="key-vault.html">Key Vault page</a>. Full text: <a class="text-indigo-400 hover:underline" href="https://github.com/rifaterdemsahin/content-calendar/blob/main/docs/requirements.md">docs/requirements.md</a>.</p>
+    </section>
+  </main>
+  <script>
+    var NEEDS = [
+      ["IN-1","P0","Network access to YouTube","Allow www.youtube.com, www.googleapis.com and youtubeanalytics.googleapis.com in the cloud session's network allowlist.","The live check and fetch script were blocked (403), so every number is a stale scrape."],
+      ["IN-2","P0","YouTube Studio exports (365 days)","Export channel, per-video and traffic-source CSVs into data/studio/ (file list in data/studio/README.md).","Watch hours, CTR and retention are not in the repo, and the 4,000-hour YPP plan depends on them."],
+      ["IN-3","P0","Working Azure Key Vault access","Refresh the session's connection to dp-kv-deliverypilot (the token expired).","Nothing in the vault can be verified until it works."],
+      ["IN-7","P0","Your real production log","Update calendar/weekly-production-tracker.md weekly: hours spent, recorded vs published, what slipped.","Output went 2 a week in Aug-Sep, then nothing for 8 weeks. The 10.5 hr cap is an assumption."],
+      ["IN-8","P0","Your constraints and goals","Tell me: real hours per week, revenue target and date, and whether Saturday lives and masterclasses stay. Also which Monday Week 1 starts on.","The plan should be sized to what you will do. The calendar's dates are two days off their weekday labels."],
+      ["IN-10","P0","Permission to land on main","Say 'merge to main', or ask for a pull request.","GitHub Pages deploys only from main. My work lives on a claude/* branch."],
+      ["IN-4","P1","YouTube Data API key","Create in Google Cloud and store as YOUTUBE-API-KEY in Key Vault (or via the session's secure credential form).","Automatic subscriber and view counts without scraping."],
+      ["IN-6","P1","Skool numbers","One row a week in data/studio/skool-weekly.csv: members, active, posts, new from YouTube.","The funnel (views to members) can't be scored without it. Skool has no public API."],
+      ["IN-5","P2","YouTube Analytics OAuth","Read-only scope; client id, secret and refresh token stored as YOUTUBE-OAUTH-* in Key Vault.","Automates what the CSV exports give you by hand."],
+      ["IN-9","P2","Google Calendar scheduling","Tell me to block shoot and edit sessions on your Google Calendar (connector already attached).","The plan then competes with real commitments."]
+    ];
+    var C = { P0: 'bg-red-500/15 text-red-300 border-red-500/30', P1: 'bg-amber-500/15 text-amber-300 border-amber-500/30', P2: 'bg-slate-500/15 text-slate-300 border-slate-500/30' };
+    var box = document.getElementById('needs');
+    NEEDS.forEach(function (n) {
+      var card = document.createElement('div'); card.className = 'p-4 rounded-xl bg-slate-900/70 border border-slate-800';
+      var top = document.createElement('div'); top.className = 'flex items-center gap-3 flex-wrap';
+      var id = document.createElement('span'); id.className = 'font-mono text-xs text-indigo-300'; id.textContent = n[0];
+      var t = document.createElement('span'); t.className = 'font-semibold text-white flex-1'; t.textContent = n[2];
+      var p = document.createElement('span'); p.className = 'text-xs px-2 py-0.5 rounded-full border ' + C[n[1]]; p.textContent = n[1];
+      top.append(id, t, p);
+      var how = document.createElement('p'); how.className = 'text-sm text-slate-300 mt-2'; how.textContent = 'How: ' + n[3];
+      var why = document.createElement('p'); why.className = 'text-xs text-slate-400 mt-1'; why.textContent = 'Why: ' + n[4];
+      card.append(top, how, why); box.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -70,3 +70,24 @@ Rotate a secret: set a new version (`az keyvault secret set --vault-name dp-kv-d
 - This repo does not contain infrastructure-as-code, so KV-3, KV-8 and KV-11 can't be proven from the repository. Verify them in Azure.
 - `localStorage` holds the admin token (KV-5), so any XSS on the Pages origin would expose it. The widget should keep escaping note content, and the token should be rotated if the page is ever compromised.
 - A coding-agent session I ran on Nov 18 2026 could reach the vault network endpoint, but its injected Azure token had expired (`TokenExpired`), so no vault contents were read or verified.
+
+## 4. What Claude needs to guide the calendar
+
+Without these inputs the advice rests on a Nov 17 scrape (public view counts only). Priority: **P0** unlocks the biggest decisions, **P1** sharpens them, **P2** is nice to have. Live page: `requirements.html`.
+
+| ID | Need | Why it matters | How to provide | Pri |
+| :--- | :--- | :--- | :--- | :--- |
+| IN-1 | **Network access to YouTube** (`www.youtube.com`, `www.googleapis.com`, `youtubeanalytics.googleapis.com`) from the cloud session | The scripts and the live check were blocked (403 on `www.youtube.com`), so numbers go stale | Add the exact hosts to the environment's network allowlist | P0 |
+| IN-2 | **YouTube Studio exports**: last 365 days of channel and per-video analytics (watch hours, subscribers gained, impressions, CTR, average view duration, traffic sources) | The YPP plan hinges on 4,000 watch hours and 1,000 subs, and neither is in the repo today | Drop CSVs in `data/studio/` (see `data/studio/README.md`) | P0 |
+| IN-3 | **Valid Azure Key Vault access** for the session | The vault token expired, so nothing in the vault can be verified | Refresh the connection for `dp-kv-deliverypilot` | P0 |
+| IN-4 | **YouTube Data API key**, stored as `YOUTUBE-API-KEY` in Key Vault | Automatic subscriber and view counts, no scraping | Create in Google Cloud, then `az keyvault secret set`; or give it to the session through the secure credential form, never in chat | P1 |
+| IN-5 | **YouTube Analytics OAuth** (read-only scope `yt-analytics.readonly`): client id, secret, refresh token as `YOUTUBE-OAUTH-*` secrets | Watch hours, CTR and retention are only available through the Analytics API, and not through the Data API key | One-time consent flow; store in Key Vault | P2 (CSV exports cover it) |
+| IN-6 | **Skool numbers**: members (free and paid), weekly active, post engagement, where new members came from | The funnel can't be scored. Skool has no public API, so this is manual or via export | Weekly row in `data/studio/skool-weekly.csv` | P1 |
+| IN-7 | **Real production log**: hours spent per week, what was recorded vs published, and what slipped | The 10.5 hr/week cap and the cadence are assumptions. Output was 2/week in Aug–Sep, then a 8-week gap | Update `calendar/weekly-production-tracker.md` each week | P0 |
+| IN-8 | **Your constraints and goals**: hours per week you can really give, revenue target and date, whether the Saturday live and masterclass stay | Sizing the plan to what you will actually do | Answer in chat or edit `okrs/` | P0 |
+| IN-9 | **Google Calendar connector** (already connected to this session) | Block the shoot and edit sessions on your real calendar so the plan competes with real commitments | Tell me to schedule it | P2 |
+| IN-10 | **Permission to land changes on `main`** | GitHub Pages deploys only from `main`; my work goes to the `claude/*` branch | Say "merge to main" or ask for a PR | P0 for deploys |
+
+Code that is proposed once the inputs exist: a stats script that reads `data/studio/` and `YOUTUBE-API-KEY` (replacing the hardcoded 725 subs), a scheduled GitHub Action that refreshes `data/`, and a tracker check that flags weeks behind plan. The calendar's dates are two days ahead of their weekday labels, and fixing them needs one decision from you (IN-8): which real Monday should Week 1 start on.
+
+Never paste keys into chat. Put them in Key Vault, or use the session's secure credential form.

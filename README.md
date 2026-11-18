@@ -166,6 +166,6 @@ A floating widget (bottom-right of the dashboard) adds:
 
 Architecture: `index.html` + `assets/cc-widget.js` → Azure Function (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
 Secrets (`ANTHROPIC-API-KEY`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`) live in Azure Key Vault `dp-kv-deliverypilot` and are injected via Key Vault references; the page only holds the access token you paste once (kept in `localStorage`).
-Requirements and runbook: [`docs/requirements.md`](docs/requirements.md) · live page: [`key-vault.html`](key-vault.html).
+Requirements and runbook: [`docs/requirements.md`](docs/requirements.md) · pages: [`key-vault.html`](key-vault.html), [`requirements.html`](requirements.html).
 Get the token: `az keyvault secret show --vault-name dp-kv-deliverypilot -n CC-ADMIN-TOKEN --query value -o tsv`
 Redeploy the API: zip `api/` (without `node_modules`) and `az functionapp deployment source config-zip --build-remote true`. Tests: `cd api && npm test`.
