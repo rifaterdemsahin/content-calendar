@@ -370,7 +370,11 @@
 
   // ---- Chat -------------------------------------------------------------
   const log = el('div', { style: 'display:flex;flex-direction:column;gap:8px;flex:1' });
-  const input = el('textarea', { rows: 3, placeholder: 'e.g. "Move the Wednesday video to Friday and add a Shorts slot"' });
+  const input = el('textarea', { rows: 3, placeholder: 'e.g. "Move the Wednesday video to Friday and add a Shorts slot"  (Enter sends, Shift+Enter for a new line)' });
+  // Enter sends; Shift+Enter inserts a newline; IME composition (e.g. Japanese/Chinese input) is left alone.
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send.click(); }
+  });
   const useNotes = el('input', { type: 'checkbox' });
   const send = el('button', { className: 'btn', textContent: 'Send' });
   chatBody.append(
