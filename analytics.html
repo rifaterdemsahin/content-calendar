@@ -131,7 +131,7 @@
         ['high', 'Traffic sources', 'We don’t know whether views come from Shorts feed, search or suggested. That decides what to make next.', 'Needs traffic-sources-90d.csv.'],
         ['high', 'Subscriber source', 'The 725 is a public scrape, not the Studio count. Subscribers gained per video is unknown.', 'Needs a YouTube Data API key (IN-4) or the Studio export.'],
         ['high', 'Skool funnel', 'No member counts, weekly activity or sign-ups from YouTube. We can’t tell if videos bring people into Skool.', 'Needs data/studio/skool-weekly.csv, filled by hand.'],
-        ['medium', 'Calendar dates', 'Every sprint date is two days ahead of its weekday label, so countdowns may be off.', 'Needs one decision: which real Monday Week 1 starts on (IN-8).'],
+        ['medium', 'Calendar dates', 'Resolved: every date and weekday now agrees (scripts/validate-dates.py). Week 1 runs Wed 18 Nov to Tue 24 Nov 2026.', 'Checked before each ship.'],
         ['medium', 'Freshness', 'Totals are from a Nov 17 snapshot; recent uploads run to Nov 15. Nothing updates automatically yet.', 'Needs a scheduled refresh once the API key exists.'],
       ];
       const colour = { critical: 'border-red-500/40 bg-red-500/10 text-red-300', high: 'border-amber-500/40 bg-amber-500/10 text-amber-300', medium: 'border-slate-600 bg-slate-800/60 text-slate-300' };

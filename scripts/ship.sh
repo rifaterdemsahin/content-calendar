@@ -3,6 +3,8 @@
 # Usage: scripts/ship.sh "commit message"
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# Guard: refuse to ship if any date and weekday pair disagrees with the calendar.
+python3 scripts/validate-dates.py || { echo "date check failed: fix the weekdays before shipping"; exit 1; }
 MSG="${1:-chore: ship}"
 STAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 printf '{\n  "deployedAt": "%s"\n}\n' "$STAMP" > data/deploy.json

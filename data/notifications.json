@@ -3,10 +3,10 @@
   "items": [
     {
       "id": "dates-off-2026-11-18",
-      "severity": "critical",
+      "severity": "info",
       "title": "Calendar dates don't match their weekdays",
-      "detail": "The matrix labels Nov 18, 2026 as a Monday, but it is a Wednesday. Every date is two days ahead of its weekday label.",
-      "recommendation": "Pick the real Monday Week 1 starts on, then re-date all four weeks.",
+      "detail": "Resolved. Nov 18, 2026 is a Wednesday, and the sprint and calendar now agree. scripts/validate-dates.py checks every date and weekday pair.",
+      "recommendation": "Keep running scripts/validate-dates.py before each ship (it is in scripts/ship.sh).",
       "links": [
         {
           "label": "Calendar",
@@ -16,7 +16,8 @@
           "label": "Matrix source",
           "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/calendar/detailed-calendar-matrix.md"
         }
-      ]
+      ],
+      "status": "resolved"
     },
     {
       "id": "upload-gap-2026-11-18",
