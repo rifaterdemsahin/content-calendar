@@ -8,23 +8,25 @@ const req = (tok) => ({ headers: { get: (k) => (k === 'x-cc-token' ? tok : null)
 
 test('buildNote requires text and clips fields', () => {
   assert.throws(() => buildNote({ text: '  ' }), /required/);
-  const n = buildNote({ text: 'hi', page: '/', concept: 'x'.repeat(999) });
+  const n = buildNote({ text: 'hi', page: '/', concept: 'x'.repeat(999), rationale: 'reason why' });
   assert.equal(n.concept.length, 300);
+  assert.equal(n.rationale, 'reason why');
   assert.ok(n.id && n.created);
 });
 
-test('buildNote update keeps id/created', () => {
-  const a = buildNote({ text: 'one' });
-  const b = buildNote({ text: 'two' }, a);
+test('buildNote update keeps id/created and updates rationale', () => {
+  const a = buildNote({ text: 'one', rationale: 'old reason' });
+  const b = buildNote({ text: 'two', rationale: 'new reason' }, a);
   assert.equal(b.id, a.id); assert.equal(b.created, a.created); assert.equal(b.text, 'two');
+  assert.equal(b.rationale, 'new reason');
 });
 
 test('toMarkdown groups by page and handles multiline', () => {
   const md = toMarkdown([
-    { id: '1', page: '/', anchor: 'okrs', concept: 'Q1', text: 'a\nb', created: '2026-01-01', updated: '' },
+    { id: '1', page: '/', anchor: 'okrs', concept: 'Q1', rationale: 'Q1 target alignment', text: 'a\nb', created: '2026-01-01', updated: '' },
     { id: '2', page: '/x', anchor: '', concept: '', text: 'c', created: '2026-01-02', updated: '' },
   ]);
-  assert.match(md, /## \/\n- \*\*#okrs · “Q1”\*\* — a\n  b/);
+  assert.match(md, /## \/\n- \*\*#okrs · “Q1”\*\* \[Rationale: Q1 target alignment\] — a\n  b/);
   assert.match(md, /## \/x\n- c/);
   assert.equal(toMarkdown([]), '_No notes._\n');
 });

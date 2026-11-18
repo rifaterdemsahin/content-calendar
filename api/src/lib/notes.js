@@ -12,6 +12,7 @@ function buildNote(input, existing) {
     page: clip(input.page ?? existing?.page ?? '/', 300),
     anchor: clip(input.anchor ?? existing?.anchor ?? '', 200),
     concept: clip(input.concept ?? existing?.concept ?? '', 300),
+    rationale: clip(input.rationale ?? existing?.rationale ?? '', 1000),
     text,
     created: existing?.created || now,
     updated: now,
@@ -31,8 +32,9 @@ function toMarkdown(notes) {
     out.push(`## ${page}`);
     for (const n of list) {
       const where = [n.anchor && `#${n.anchor}`, n.concept && `“${n.concept}”`].filter(Boolean).join(' · ');
+      const rat = n.rationale ? ` [Rationale: ${n.rationale}]` : '';
       const body = n.text.split('\n').map((l, i) => (i ? `  ${l}` : l)).join('\n');
-      out.push(`- ${where ? `**${where}** — ` : ''}${body}`);
+      out.push(`- ${where ? `**${where}**${rat} — ` : (rat ? `*${rat}* — ` : '')}${body}`);
     }
     out.push('');
   }

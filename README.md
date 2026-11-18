@@ -164,9 +164,9 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 
 **Live:** [rifat-content-calendar.fly.dev](https://rifat-content-calendar.fly.dev/) — the dashboard is public; the notes/chat widget (bottom-right) requires **Sign in with Microsoft** (only `info@deliverypilot.net`).
 
-- **Notes anywhere:** Alt/Option-click any element to attach a note to that concept. Notes are blobs in an Azure Storage container. **Copy this page / Copy ALL notes** puts them on your clipboard as one Markdown block.
+- **Content Rationale & Azure Storage Notes:** Every sprint item on the calendar records its strategic rationale (displayed directly on the card and in the search palette). Alt/Option-click any element or click **Note** on a content card to record notes with their pre-filled rationale. Notes are persisted directly as JSON blobs in Azure Blob Storage (`notes/` container). **Copy this page / Copy ALL notes** exports them as Markdown.
 - **Chat agent:** describe a change; an Azure Function starts a [Daytona](https://www.daytona.io) sandbox, clones this repo, runs Claude Code (Claude subscription token first, API key as fallback), and opens a pull request. Merging it updates the repo.
-- **Instant Menu Search:** press `⌘K`, `Ctrl+K`, or `/` (or click **Search...** in the top navigation) to jump across calendar topics, video blueprints, script templates, OKRs, blocked days, and Azure Key Vault secrets.
+- **Instant Menu Search:** press `⌘K`, `Ctrl+K`, or `/` (or click **Search...** in the top navigation) to jump across calendar topics, video blueprints, rationales, script templates, OKRs, blocked days, and Azure Key Vault secrets.
 
 Architecture: browser → **Fly.io** (`server/`: static site + Microsoft/Entra OIDC login + `/api` proxy) → **Azure Function** (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
 Secrets live in Azure Key Vault `dp-kv-deliverypilot` (`ANTHROPIC-API-KEY`, `CLAUDE-CODE-OAUTH-TOKEN`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`, `CC-ENTRA-CLIENT-SECRET`, `CC-SESSION-SECRET`, `KILO-API-KEY`); the Function reads them via Key Vault references and Fly gets them as Fly secrets directly synced from Key Vault. The browser never holds a secret.

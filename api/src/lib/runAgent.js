@@ -1,4 +1,3 @@
-const { Daytona } = require('@daytonaio/sdk');
 const store = require('./store');
 const { toMarkdown } = require('./notes');
 
@@ -41,6 +40,7 @@ async function runJob(id, ctx) {
   if (!job) return ctx.warn(`job ${id} missing`);
   const update = (patch) => store.writeJson(`jobs/${id}.json`, Object.assign(job, patch, { updated: new Date().toISOString() }));
   let sandbox;
+  const { Daytona } = require('@daytonaio/sdk');
   const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY });
   try {
     await update({ status: 'running', step: 'starting sandbox' });

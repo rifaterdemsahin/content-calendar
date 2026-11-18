@@ -39,12 +39,40 @@
   <script>
     const T={s:['Short','text-red-400'],l:['Long video','text-indigo-400'],k:['Skool Live 13:30','text-purple-400'],c:['Course','text-amber-400'],p:['Skool post','text-emerald-400'],d:['Digest','text-emerald-400']};
     const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-    // [label, start date (Mon), items by day index: [type,title]]
+    // [label, start date (Mon), items by day index: [type, title, rationale, anchor]]
     const weeks=[
-     ['Week 1 · Production AI Agents & n8n','Nov 18',{0:[['s','Stop Writing Repetitive Python Scripts']],1:[['p','Poll: #1 manual task for an AI agent']],2:[['l','Building a Production AI Agent in n8n']],4:[['s','n8n + Local LLMs Privacy Stack']],5:[['s','The 1 Mistake in n8n Agent Loops']],6:[['k','Live Workflow Clinic: Debugging Member n8n Flows'],['d','Week in Review']]}],
-     ['Week 2 · Delivery Pilot Paradigm Shift','Nov 25',{0:[['s','Are Software Engineers Obsolete?']],1:[['p','Showcase Tuesday']],2:[['l','Delivery Pilot: Managing 5 AI Coding Agents']],4:[['s','3 Terminal CLI Tools for AI Dev']],5:[['c','Delivery Pilot Masterclass Pt 1 (50m)'],['s','Review 1,000 Lines of AI Code in 2 Min']],6:[['d','Delivery Pilot Weekly Dispatch']]}],
-     ['Week 3 · Agentic RAG & Private Data','Dec 02',{0:[['s','Why Simple Vector Search Fails']],1:[['p','Vector DB Comparison Sheet']],2:[['l','RAG is NOT Dead: Agentic RAG Pipeline']],4:[['s','Self-Hosted vs Cloud Vector DBs']],5:[['s','Semantic Chunking Trick']],6:[['k','RAG Architecture & Knowledge Base Workshop'],['d','RAG Master Guide']]}],
-     ['Week 4 · Multi-Agent Swarms & Cloud','Dec 09',{0:[['s','Single Agent vs Multi-Agent Swarm']],1:[['p','Member Spotlight']],2:[['l','Deploying AI Agents on Cloud (Docker & VPS)']],4:[['s','My $10/Month Production AI Stack']],5:[['c','Multi-Agent Blueprint Pt 2 (65m)'],['s','Stop Runaway AI Agents']],6:[['d','Monthly Milestone & Q1 Review']]}]
+     ['Week 1 · Production AI Agents & n8n','Nov 18',{
+       0:[['s','Stop Writing Repetitive Python Scripts','Top-of-funnel friction remover demonstrating high-velocity agentic flow.','w1-item-1']],
+       1:[['p','Poll: #1 manual task for an AI agent','Source community problem statements for live debugging clinic.']],
+       2:[['l','Building a Production AI Agent in n8n','Technical authority anchor with downloadable workflow JSON in Skool.','w1-item-2']],
+       4:[['s','n8n + Local LLMs Privacy Stack','Privacy angle targeting enterprise and confidential data setups.']],
+       5:[['s','The 1 Mistake in n8n Agent Loops','48-hr repurposing of rate-limit lesson; captures error search traffic.','w1-item-4']],
+       6:[['k','Live Workflow Clinic: Debugging Member n8n Flows','Live member workflow audit driving 30-day retention and progression.','w1-item-3'],['d','Week in Review','Digest reinforcing weekly wins and community leaderboard.']]
+     }],
+     ['Week 2 · Delivery Pilot Paradigm Shift','Nov 25',{
+       0:[['s','Are Software Engineers Obsolete?','Provocative identity shift from syntax writer to delivery pilot; sparks debate.','w2-item-1']],
+       1:[['p','Showcase Tuesday','Gamified member builds challenge to encourage project sharing.']],
+       2:[['l','Delivery Pilot: Managing 5 AI Coding Agents','Proof of delivery pilot multi-agent orchestration across Claude Code & Cursor.','w2-item-2']],
+       4:[['s','3 Terminal CLI Tools for AI Dev','Fast terminal productivity hacks for technical credibility; drives Skool dotfiles.','w2-item-3']],
+       5:[['c','Delivery Pilot Masterclass Pt 1 (50m)','Cornerstone educational masterclass for Skool Classroom curriculum.','w2-item-4'],['s','Review 1,000 Lines of AI Code in 2 Min','Test-driven verification short showing fast git diff checks.']],
+       6:[['d','Delivery Pilot Weekly Dispatch','Weekly mindset shift recap and milestone badge celebration.']]
+     }],
+     ['Week 3 · Agentic RAG & Private Data','Dec 02',{
+       0:[['s','Why Simple Vector Search Fails','Diagnoses production pitfalls in naive chunking; sets up hybrid agentic search.','w3-item-1']],
+       1:[['p','Vector DB Comparison Sheet','Exclusive high-value cheat sheet released in Skool Classroom.']],
+       2:[['l','RAG is NOT Dead: Agentic RAG Pipeline','High-intent enterprise search breakout target; open-source hybrid repo.','w3-item-2']],
+       4:[['s','Self-Hosted vs Cloud Vector DBs','Quick trade-off matrix: cost, latency, data privacy, and maintenance.']],
+       5:[['s','Semantic Chunking Trick','60s tactical win on semantic chunking & reranking; links to full RAG build.','w3-item-4']],
+       6:[['k','RAG Architecture & Knowledge Base Workshop','Live member vector DB teardowns; high-touch feedback driving paid tier conversion.','w3-item-3'],['d','RAG Master Guide','Comprehensive digest with all code downloads and clinic Q&A.']]
+     }],
+     ['Week 4 · Multi-Agent Swarms & Cloud','Dec 09',{
+       0:[['s','Single Agent vs Multi-Agent Swarm','Heuristic rule of thumb preventing premature swarm over-engineering.','w4-item-1']],
+       1:[['p','Member Spotlight','Highlighting a member who automated a production workflow.']],
+       2:[['l','Deploying AI Agents on Cloud (Docker & VPS)','Bridges local scripts to 24/7 cloud VPS & Docker; core production deliverable.','w4-item-2']],
+       4:[['s','My $10/Month Production AI Stack','Lean $10/mo stack breakdown; proves indie devs can ship autonomous pipelines.','w4-item-3']],
+       5:[['c','Multi-Agent Blueprint Pt 2 (65m)','Advanced masterclass capstone on multi-agent deployment generating audit leads.','w4-item-4'],['s','Stop Runaway AI Agents','Safety and kill-switch patterns for autonomous agent loops.']],
+       6:[['d','Monthly Milestone & Q1 Review','Celebrate sprint completion and announce Q1 roadmap.']]
+     }]
     ];
     const MON={Nov:11,Dec:12};
     const cal=document.getElementById('cal');
@@ -59,10 +87,23 @@
         const lbl=dt.toLocaleString('en',{month:'short'})+' '+dt.getDate();
         const blocked=dn==='Thu';
         const c=document.createElement('div');
-        c.className='p-2.5 rounded-lg border min-h-[120px] '+(blocked?'bg-red-950/30 border-red-900/50':'bg-slate-900/80 border-slate-800');
-        let h=`<div class="text-[10px] font-bold text-slate-500 uppercase">${dn} · ${lbl}</div>`;
+        c.className='p-2.5 rounded-lg border min-h-[140px] flex flex-col justify-between '+(blocked?'bg-red-950/30 border-red-900/50':'bg-slate-900/80 border-slate-800');
+        let h=`<div><div class="text-[10px] font-bold text-slate-500 uppercase">${dn} · ${lbl}</div>`;
         if(blocked) h+='<div class="mt-2 text-xs text-red-400">⛔ Travel – blocked</div>';
-        (items[i]||[]).forEach(([t,title])=>{h+=`<div class="mt-2"><div class="text-[10px] uppercase font-bold ${T[t][1]}">${T[t][0]}</div><div class="text-xs text-white">${title}</div></div>`});
+        (items[i]||[]).forEach(([t,title,rat,anchor])=>{
+          h+=`<div id="${anchor||''}" data-rationale="${rat||''}" class="mt-2 p-2 rounded bg-slate-950/70 border border-slate-800/80">
+            <div class="flex items-center justify-between gap-1">
+              <span class="text-[10px] uppercase font-bold ${T[t][1]}">${T[t][0]}</span>
+              ${anchor?`<div class="flex items-center gap-1">
+                <button type="button" onclick="window.CCWidget?.openNoteFor('${anchor}')" class="text-[9px] px-1 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Record note in Azure Storage">📝 Note</button>
+                <button type="button" onclick="window.CCWidget?.pickDocumentObject('${anchor}')" class="text-[9px] px-1 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Pick Document Object">🎯 Pick</button>
+              </div>`:''}
+            </div>
+            <div class="text-xs text-white font-medium mt-0.5">${title}</div>
+            ${rat?`<div class="text-[10px] text-indigo-300/80 mt-1 leading-snug"><span class="text-slate-400 font-semibold">💡 Rationale:</span> ${rat}</div>`:''}
+          </div>`;
+        });
+        h+='</div>';
         c.innerHTML=h; g.append(c);
       });
       wrap.append(g); cal.append(wrap);

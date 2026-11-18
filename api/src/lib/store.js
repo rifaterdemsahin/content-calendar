@@ -1,6 +1,3 @@
-const { BlobServiceClient } = require('@azure/storage-blob');
-const { QueueClient } = require('@azure/storage-queue');
-
 const CONTAINER = process.env.NOTES_CONTAINER || 'notes';
 const QUEUE = 'cc-jobs';
 const conn = () => process.env.NOTES_STORAGE_CONNECTION || process.env.AzureWebJobsStorage;
@@ -8,6 +5,7 @@ const conn = () => process.env.NOTES_STORAGE_CONNECTION || process.env.AzureWebJ
 let _container;
 async function container() {
   if (!_container) {
+    const { BlobServiceClient } = require('@azure/storage-blob');
     _container = BlobServiceClient.fromConnectionString(conn()).getContainerClient(CONTAINER);
     await _container.createIfNotExists();
   }
@@ -47,6 +45,7 @@ async function listJson(prefix) {
 }
 
 async function enqueue(msg) {
+  const { QueueClient } = require('@azure/storage-queue');
   const q = new QueueClient(conn(), QUEUE);
   await q.createIfNotExists();
   await q.sendMessage(Buffer.from(JSON.stringify(msg)).toString('base64'));
