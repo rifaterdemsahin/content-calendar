@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Pull | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    @keyframes ccs-pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+    .live { animation: ccs-pulse 1.4s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">⏱️ Daily Pull</span>
+      <a href="setup-api-key.html" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 whitespace-nowrap">Setup</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+
+    <section class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Current run</div>
+          <div id="badge" class="mt-2 inline-block text-sm font-bold px-3 py-1 rounded-full border border-slate-600 text-slate-300">Loading…</div>
+        </div>
+        <div id="when" class="text-xs text-slate-400 text-right"></div>
+      </div>
+      <div class="mt-5">
+        <div class="flex justify-between text-xs text-slate-400 mb-1"><span id="step">—</span><span id="pct">0%</span></div>
+        <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div id="bar" class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-400 transition-all duration-500" style="width:0%"></div></div>
+      </div>
+      <p id="err" class="text-sm text-red-300 mt-4"></p>
+    </section>
+
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-[11px] font-bold uppercase text-slate-400">Videos in last save</div><div id="kVideos" class="text-2xl font-black text-white mt-1">—</div></div>
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-[11px] font-bold uppercase text-slate-400">Lifetime views</div><div id="kViews" class="text-2xl font-black text-white mt-1">—</div></div>
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-[11px] font-bold uppercase text-slate-400">Runs kept</div><div id="kRuns" class="text-2xl font-black text-white mt-1">—</div></div>
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-[11px] font-bold uppercase text-slate-400">Saved to</div><div class="text-sm font-semibold text-indigo-300 mt-2">Azure: content/stats/</div></div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">Recent runs</h2>
+      <div id="runsEmpty" class="text-sm text-slate-400 mt-3 p-4 rounded-xl border border-dashed border-slate-700">No runs yet. The job starts once the API key and the Fly schedule are set. See <a class="underline text-indigo-300" href="setup-api-key.html">setup</a>.</div>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 mt-3" id="runsWrap" style="display:none">
+        <table class="w-full text-sm min-w-[560px]">
+          <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
+            <tr><th class="text-left p-3">Started (UTC)</th><th class="text-left p-3">Finished (UTC)</th><th class="text-left p-3">Result</th><th class="text-right p-3">Videos</th><th class="text-right p-3">Views</th></tr>
+          </thead>
+          <tbody id="runs" class="divide-y divide-slate-800"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="text-xs text-slate-500">Live status from <code class="text-indigo-300">/api/job-status</code>, written by the Fly job at each step. The page checks every 5 seconds while a run is active, and every minute otherwise. Latest results from <code class="text-indigo-300">/api/stats</code>.</p>
+  </main>
+
+  <script>
+    const f = (x) => (x == null ? '—' : Number(x).toLocaleString());
+    const badgeStyle = {
+      running: ['RUNNING', 'text-indigo-200 border-indigo-400 bg-indigo-500/20 live'],
+      ok: ['OK', 'text-emerald-200 border-emerald-500 bg-emerald-500/20'],
+      error: ['FAILED', 'text-red-200 border-red-500 bg-red-500/20'],
+    };
+    let timer = null;
+
+    async function getJson(path) {
+      const r = await fetch(path, { credentials: 'same-origin', cache: 'no-cache' });
+      if (r.status === 401) throw new Error('Sign in with Microsoft to see the live status.');
+      if (r.status === 404) return null;
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    }
+
+    function render(job, stats) {
+      const cur = job?.current;
+      const state = cur?.state || 'none';
+      const [label, cls] = badgeStyle[state] || ['NO RUNS YET', 'text-slate-300 border-slate-600'];
+      const badge = document.getElementById('badge');
+      badge.textContent = label; badge.className = 'mt-2 inline-block text-sm font-bold px-3 py-1 rounded-full border ' + cls;
+      document.getElementById('step').textContent = cur?.step || 'waiting for the first run';
+      const pct = cur?.progress ?? 0;
+      document.getElementById('pct').textContent = pct + '%';
+      document.getElementById('bar').style.width = pct + '%';
+      document.getElementById('when').textContent = cur ? `Started ${cur.startedAt || '—'}${cur.finishedAt ? ' · finished ' + cur.finishedAt : ' · last update ' + (cur.updatedAt || '—')}` : '';
+      document.getElementById('err').textContent = cur?.error || '';
+
+      const runs = job?.runs || [];
+      document.getElementById('kRuns').textContent = runs.length;
+      document.getElementById('runsEmpty').style.display = runs.length ? 'none' : '';
+      document.getElementById('runsWrap').style.display = runs.length ? '' : 'none';
+      const tb = document.getElementById('runs');
+      tb.replaceChildren(...runs.slice().reverse().map((r) => {
+        const tr = document.createElement('tr');
+        const cells = [r.startedAt || '—', r.finishedAt || '—', (r.state || '').toUpperCase() + (r.error ? ': ' + r.error : ''), f(r.videos), f(r.totalViews)];
+        cells.forEach((c, i) => { const td = document.createElement('td'); td.className = 'p-3 ' + (i >= 3 ? 'text-right ' : '') + (i === 2 && r.state === 'error' ? 'text-red-300' : 'text-slate-300'); td.textContent = c; tr.append(td); });
+        return tr;
+      }));
+
+      if (stats) {
+        document.getElementById('kVideos').textContent = f(stats.videos);
+        document.getElementById('kViews').textContent = f(stats.totalViews);
+      }
+      return state === 'running';
+    }
+
+    async function tick() {
+      let running = false;
+      try {
+        const [job, stats] = await Promise.all([getJson('/api/job-status'), getJson('/api/stats').catch(() => null)]);
+        running = render(job, stats);
+      } catch (e) {
+        document.getElementById('err').textContent = e.message;
+        document.getElementById('badge').textContent = 'UNAVAILABLE';
+      }
+      clearTimeout(timer);
+      timer = setTimeout(tick, running ? 5000 : 60000);
+    }
+    tick();
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>

@@ -62,3 +62,20 @@ app.http('statsGet', {
     }
   },
 });
+
+// Live status of the scheduled stats job (stats/job-status.json): current run and recent runs.
+app.http('jobStatusGet', {
+  route: 'job-status', methods: ['GET'], authLevel: 'anonymous',
+  handler: async (req, ctx) => {
+    const denied = checkAuth(req);
+    if (denied) return denied;
+    try {
+      const text = await store.readText('stats/job-status.json');
+      if (text == null) return { jsonBody: { current: null, runs: [] } };
+      return { headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-cache' }, body: text };
+    } catch (e) {
+      ctx.error(e);
+      return { status: 500, jsonBody: { error: e.message } };
+    }
+  },
+});

@@ -46,7 +46,7 @@ def uploads_playlist(channel_id):
     return "UU" + channel_id[2:]
 
 
-def pull_videos():
+def pull_videos(progress=None):
     ids, page = [], None
     while True:
         params = dict(part="contentDetails", playlistId=uploads_playlist(CHANNEL_ID), maxResults=50)
@@ -61,6 +61,8 @@ def pull_videos():
     videos = []
     for i in range(0, len(ids), 50):
         chunk = ids[i:i + 50]
+        if progress:
+            progress('details', i, len(ids))
         data = get("videos", part="snippet,statistics,contentDetails", id=",".join(chunk))
         for it in data.get("items", []):
             st, sn, cd = it.get("statistics", {}), it["snippet"], it["contentDetails"]

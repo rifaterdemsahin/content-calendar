@@ -1,3 +1,4 @@
+const { BlobServiceClient } = require('@azure/storage-blob');
 const CONTAINER = process.env.NOTES_CONTAINER || 'notes';
 const QUEUE = 'cc-jobs';
 const conn = () => process.env.NOTES_STORAGE_CONNECTION || process.env.AzureWebJobsStorage;

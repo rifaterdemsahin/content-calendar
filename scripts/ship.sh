@@ -5,6 +5,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 # Guard: refuse to ship if any date and weekday pair disagrees with the calendar.
 python3 scripts/validate-dates.py || { echo "date check failed: fix the weekdays before shipping"; exit 1; }
+# Guard: data and page tests must pass.
+python3 -m unittest discover -s tests -q || { echo "data tests failed: not shipping"; exit 1; }
+# Guard: api tests must pass.
+(cd api && npm test --silent >/dev/null 2>&1) || { echo "api tests failed: not shipping"; exit 1; }
 MSG="${1:-chore: ship}"
 STAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 printf '{\n  "deployedAt": "%s"\n}\n' "$STAMP" > data/deploy.json

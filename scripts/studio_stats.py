@@ -65,6 +65,7 @@ def summarise(videos, snap_date):
         "commentsPer100Views": round(100 * comments / total, 2) if total else 0,
         "longVideos": block(longs),
         "shorts": block(shorts),
+        "unknownLength": block([v for v in videos if secs(v.get("duration")) is None]),
         "last90Days": {**block(recent), "since": recent_cut},
         "byYear": by_year,
         "byMonth": by_month,

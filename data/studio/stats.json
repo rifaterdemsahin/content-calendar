@@ -18,6 +18,12 @@
     "avgViews": 90.0,
     "medianViews": 90
   },
+  "unknownLength": {
+    "videos": 1,
+    "views": 85,
+    "avgViews": 85.0,
+    "medianViews": 85
+  },
   "last90Days": {
     "videos": 6,
     "views": 953,
