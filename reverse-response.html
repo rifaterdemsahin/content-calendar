@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse Response Marketing | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">🔁 Reverse Response</span>
+      <span class="text-xs text-slate-500 whitespace-nowrap">Nov 2026</span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The idea</div>
+      <p class="text-3xl font-bold text-white mt-2">Ride the videos that are already growing</p>
+      <p class="text-slate-400 mt-3 max-w-3xl">Instead of waiting for an audience to find us, we pick a fast-growing YouTube video on a topic we know, make our own video that responds to it, and say so in the rationale. The growing video brings the viewers; our video gives them the next step: the tutorial, the workflow JSON, or Skool.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">The loop</h2>
+      <ol class="grid md:grid-cols-4 gap-3 mt-4 text-sm">
+        <li class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-indigo-400">1 · Spot</div><p class="text-slate-300 mt-1">A video in our topics is growing fast on its own channel. Log it in <code class="text-indigo-300">data/rmm-targets.json</code>.</p></li>
+        <li class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-indigo-400">2 · Respond</div><p class="text-slate-300 mt-1">Make a sprint video that answers it: the step it skipped, the fix, or the build it promised.</p></li>
+        <li class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-indigo-400">3 · Cite</div><p class="text-slate-300 mt-1">Name the target in the rationale and the first line of the description. Never copy its footage or thumbnail.</p></li>
+        <li class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-indigo-400">4 · Hand off</div><p class="text-slate-300 mt-1">Pin the Skool link and the workflow file. Erdem learns the topic and shares what he learned.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">Planned responses</h2>
+      <p class="text-sm text-slate-400 mt-1">One per sprint card. The target stays blank until a real video is picked.</p>
+      <div id="plans" class="grid md:grid-cols-2 gap-3 mt-4"></div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">Targets picked</h2>
+      <div id="targets" class="mt-4 space-y-3 text-sm"></div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-bold text-white">What Erdem learns and shares</h2>
+      <div id="learn" class="grid md:grid-cols-2 gap-3 mt-4"></div>
+    </section>
+
+    <p class="text-xs text-slate-500">Rules: cite only videos we can link to. Don't copy footage, thumbnails or claims we haven't checked. A response has to add something the target didn't cover.</p>
+  </main>
+
+  <script>
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+    Promise.all([
+      fetch('data/sprint-meta.json', { cache: 'no-cache' }).then((r) => r.json()),
+      fetch('data/rmm-targets.json', { cache: 'no-cache' }).then((r) => r.json()),
+    ]).then(([meta, targets]) => {
+      const entries = Object.entries(meta.cards);
+
+      const plans = document.getElementById('plans');
+      const learn = document.getElementById('learn');
+      for (const [id, c] of entries) {
+        const rr = c.reverseResponse || {};
+        const box = el('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm');
+        box.append(el('div', 'text-[11px] font-mono text-slate-500', id));
+        if (rr.angle) {
+          box.append(el('div', 'text-slate-200 mt-1', 'Responds to ' + rr.angle));
+          box.append(el('div', 'text-xs mt-2 ' + (rr.target ? 'text-emerald-300' : 'text-amber-300'), rr.target ? 'Target: ' + (rr.target.title || rr.target.url) : 'Target: not picked yet'));
+          plans.append(box);
+        } else {
+          box.append(el('div', 'text-slate-400 mt-1', rr.note || 'No reverse response for this card'));
+          plans.append(box);
+        }
+        const lb = el('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm');
+        lb.append(el('div', 'text-[11px] font-mono text-slate-500', id));
+        lb.append(el('div', 'text-slate-200 mt-1', '🎓 ' + c.learn));
+        lb.append(el('div', 'text-slate-400 text-xs mt-1', '📣 ' + c.share));
+        learn.append(lb);
+      }
+
+      const tg = document.getElementById('targets');
+      if (!targets.targets.length) {
+        tg.append(el('div', 'p-4 rounded-xl border border-dashed border-slate-700 text-slate-400', 'No live targets yet. Add one to data/rmm-targets.json: the video URL, its growth, and the sprint card that responds to it.'));
+      } else {
+        for (const t of targets.targets) {
+          const row = el('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800');
+          const a = el('a', 'text-indigo-300 hover:underline font-semibold', t.title || t.url);
+          a.href = t.url; a.target = '_blank'; a.rel = 'noopener';
+          row.append(a, el('div', 'text-xs text-slate-400 mt-1', `${t.why || ''} ${t.card ? '· responded to by ' + t.card : ''}`));
+          tg.append(row);
+        }
+      }
+    }).catch(() => {
+      document.getElementById('plans').append(el('div', 'text-sm text-slate-400', 'Could not load data/sprint-meta.json'));
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
-/* Sprint cards: who each video is for + a live countdown to its publish slot.
- * Reads each card's day label ("Mon • Short", "Sun 13:30 • Skool Live") and its week's date range
- * ("Nov 18 – Nov 24"), then appends a badge and a ticking countdown to the end of the card.
+/* Sprint cards: who each video is for, what Erdem learns and shares, the reverse-response target,
+ * and a live countdown to its publish slot.
+ * Reads each card's day label ("Wed • Long Video", "Sun 13:30 • Skool Live") and its week's date range
+ * ("Nov 18 – Nov 24"), then appends the details to the end of the card.
+ * Per-card learning and reverse-response notes come from data/sprint-meta.json.
  * Cards without a time are due at end of that day (local time). */
 (() => {
   const YEAR = 2026;
@@ -20,6 +22,16 @@
     s.textContent = text;
     s.style.cssText = `display:inline-block;font-size:10px;font-weight:700;padding:2px 6px;border-radius:999px;border:1px solid ${color}55;color:${color};background:${color}1a`;
     return s;
+  };
+
+  const line = (label, text, color = '#94a3b8') => {
+    const d = document.createElement('div');
+    d.style.cssText = `font-size:11px;line-height:1.4;color:${color}`;
+    const b = document.createElement('strong');
+    b.textContent = label + ' ';
+    b.style.color = '#e2e8f0';
+    d.append(b, text);
+    return d;
   };
 
   // Publish slot for a card: the matching weekday inside the week's range, at the given time (or end of day).
@@ -45,45 +57,71 @@
     return d ? `${d}d ${p(h)}h ${p(m)}m ${p(sec)}s` : `${p(h)}h ${p(m)}m ${p(sec)}s`;
   };
 
-  const clocks = [];
-  for (const card of document.querySelectorAll('[id*="-item-"]')) {
-    const label = card.querySelector('span')?.textContent.trim() || '';   // e.g. "Sun 13:30 • Skool Live"
-    const dayMatch = label.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b/);
-    const timeMatch = label.match(/(\d{2}:\d{2})/);
-    const type = label.split('•')[1]?.trim() || '';
-    const aud = AUDIENCE[type];
-    const slot = dayMatch ? slotFor(card, dayMatch[1], timeMatch?.[1]) : null;
+  function build(meta) {
+    const clocks = [];
+    for (const card of document.querySelectorAll('[id*="-item-"]')) {
+      const label = card.querySelector('span')?.textContent.trim() || '';   // e.g. "Sun 13:30 • Skool Live"
+      const dayMatch = label.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\b/);
+      const timeMatch = label.match(/(\d{2}:\d{2})/);
+      const type = label.split('•')[1]?.trim() || '';
+      const aud = AUDIENCE[type];
+      const slot = dayMatch ? slotFor(card, dayMatch[1], timeMatch?.[1]) : null;
+      const notes = meta?.cards?.[card.id] || null;
 
-    const box = document.createElement('div');
-    box.style.cssText = 'margin-top:10px;padding-top:8px;border-top:1px dashed #334155;display:flex;flex-wrap:wrap;align-items:center;gap:6px;justify-content:space-between';
-    const left = document.createElement('div');
-    left.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;align-items:center';
-    if (aud) {
-      left.append(pill(`👥 For: ${aud.who}`, aud.color));
-      const n = document.createElement('span'); n.textContent = aud.note; n.style.cssText = 'font-size:10px;color:#94a3b8'; left.append(n);
-    } else {
-      left.append(pill('👥 For: not set', '#64748b'));
+      const box = document.createElement('div');
+      box.style.cssText = 'margin-top:10px;padding-top:8px;border-top:1px dashed #334155;display:flex;flex-direction:column;gap:6px';
+
+      const top = document.createElement('div');
+      top.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between';
+      const left = document.createElement('div');
+      left.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;align-items:center';
+      if (aud) {
+        left.append(pill(`👥 For: ${aud.who}`, aud.color));
+        const n = document.createElement('span'); n.textContent = aud.note; n.style.cssText = 'font-size:10px;color:#94a3b8'; left.append(n);
+      } else {
+        left.append(pill('👥 For: not set', '#64748b'));
+      }
+      const clock = document.createElement('span');
+      clock.style.cssText = 'font-size:11px;font-family:ui-monospace,monospace;color:#e2e8f0;white-space:nowrap';
+      top.append(left, clock);
+      box.append(top);
+
+      if (notes?.learn) box.append(line('🎓 Erdem learns:', notes.learn));
+      if (notes?.share) box.append(line('📣 Shares:', notes.share));
+      const rr = notes?.reverseResponse;
+      if (rr?.angle) {
+        const text = rr.target
+          ? (() => { const a = document.createElement('a'); a.href = rr.target.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = rr.target.title || 'target video'; a.style.color = '#a5b4fc'; return a; })()
+          : `responds to ${rr.angle} (pick a live target)`;
+        box.append(line('🔁 Reverse response:', text, '#a5b4fc'));
+      } else if (rr?.note) {
+        box.append(line('🔁 Reverse response:', rr.note));
+      }
+      card.append(box);
+
+      if (slot) clocks.push({ el: clock, at: slot });
+      else clock.textContent = '⏱ no publish slot';
     }
-    const clock = document.createElement('span');
-    clock.style.cssText = 'font-size:11px;font-family:ui-monospace,monospace;color:#e2e8f0;white-space:nowrap';
-    box.append(left, clock);
-    card.append(box);
 
-    if (slot) clocks.push({ el: clock, at: slot });
-    else clock.textContent = '⏱ no publish slot';
+    const tick = () => {
+      const now = Date.now();
+      for (const c of clocks) {
+        const left = c.at.getTime() - now;
+        const due = c.at.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+        if (left <= 0) { c.el.textContent = `⏱ due ${due} — passed`; c.el.style.color = '#f87171'; }
+        else {
+          c.el.textContent = `⏱ ${fmt(left)} left · due ${due}`;
+          c.el.style.color = left < 86400000 ? '#fbbf24' : '#e2e8f0';
+        }
+      }
+    };
+    tick();
+    setInterval(tick, 1000);
   }
 
-  const tick = () => {
-    const now = Date.now();
-    for (const c of clocks) {
-      const left = c.at.getTime() - now;
-      if (left <= 0) { c.el.textContent = `⏱ due ${c.at.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' })} — passed`; c.el.style.color = '#f87171'; }
-      else {
-        c.el.textContent = `⏱ ${fmt(left)} left · due ${c.at.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' })}`;
-        c.el.style.color = left < 86400000 ? '#fbbf24' : '#e2e8f0';
-      }
-    }
-  };
-  tick();
-  setInterval(tick, 1000);
+  // Load the per-card notes first; if the file is missing, still show the countdowns and badges.
+  fetch('data/sprint-meta.json', { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null)
+    .then(build);
 })();

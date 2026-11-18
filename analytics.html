@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">📊 Analytics</span>
+      <span id="asof" class="text-xs text-slate-500 whitespace-nowrap"></span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+
+    <!-- Headline numbers -->
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Headline numbers</div>
+      <div id="kpis" class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4"></div>
+      <p id="source" class="text-[11px] text-slate-500 mt-3"></p>
+    </section>
+
+    <!-- Format and topic -->
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <h2 class="font-bold text-white">Long video vs Shorts</h2>
+        <div id="format" class="mt-4 space-y-3 text-sm"></div>
+      </div>
+      <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+        <h2 class="font-bold text-white">Views by topic</h2>
+        <div id="topics" class="mt-4 space-y-3 text-sm"></div>
+      </div>
+    </section>
+
+    <!-- Top videos -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Top videos (all time)</h2>
+      <div id="top" class="mt-4 space-y-2"></div>
+    </section>
+
+    <!-- Gaps -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Gaps in the data</h2>
+      <p class="text-sm text-slate-400 mt-1">What we can't see yet, and what it blocks.</p>
+      <div class="mt-4 space-y-3" id="gaps"></div>
+    </section>
+
+    <!-- What to do -->
+    <section>
+      <h2 class="text-lg font-bold text-white">What to do next</h2>
+      <ol class="mt-4 space-y-3 text-sm" id="todo"></ol>
+    </section>
+
+    <p class="text-xs text-slate-500">Numbers come from <code class="text-indigo-300">data/past-performance.json</code>, <code class="text-indigo-300">data/latest-videos.json</code> and <code class="text-indigo-300">data/goals.json</code>. Update those files and this page follows.</p>
+  </main>
+
+  <script>
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+    const n = (x) => Number(x || 0).toLocaleString();
+    const bar = (pct, color) => { const b = el('div', 'h-2.5 rounded-full bg-slate-800 overflow-hidden'); const f = el('div', 'h-full rounded-full ' + color); f.style.width = Math.max(2, pct).toFixed(1) + '%'; b.append(f); return b; };
+
+    Promise.all([
+      fetch('data/past-performance.json', { cache: 'no-cache' }).then((r) => r.json()),
+      fetch('data/latest-videos.json', { cache: 'no-cache' }).then((r) => r.json()),
+      fetch('data/goals.json', { cache: 'no-cache' }).then((r) => r.json()),
+    ]).then(([p, latest, goals]) => {
+      document.getElementById('asof').textContent = 'Snapshot ' + (goals.asOf || '');
+      document.getElementById('source').textContent = 'Subscribers: ' + (goals.source || 'n/a') + ' · Video totals: data/past-performance.json · Recent uploads: data/latest-videos.json';
+
+      // KPIs
+      const kpis = document.getElementById('kpis');
+      const recentViews = latest.videos.reduce((a, v) => a + (v.views || 0), 0);
+      const dates = latest.videos.map((v) => v.date).sort();
+      const tiles = [
+        ['Subscribers', n(p.subscribers), 'public count, Nov 17'],
+        ['Videos analysed', n(p.total_videos_analyzed), `${n(p.long_form_count)} long · ${n(p.shorts_count)} Shorts`],
+        ['Total views', n(p.total_views_recorded), 'all videos, snapshot'],
+        ['Avg views / video', String(p.average_views_per_video), `long ${p.average_views_long_form} · Shorts ${p.average_views_shorts}`],
+      ];
+      for (const [label, value, sub] of tiles) {
+        const t = el('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800');
+        t.append(el('div', 'text-[11px] font-bold uppercase text-slate-400', label), el('div', 'text-2xl font-black text-white mt-1', value), el('div', 'text-[11px] text-slate-500 mt-1', sub));
+        kpis.append(t);
+      }
+      kpis.append(Object.assign(el('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800 col-span-2 md:col-span-4'), {}));
+      kpis.lastChild.append(el('div', 'text-[11px] font-bold uppercase text-slate-400', `Last ${latest.total} uploads (${dates[0]} → ${dates[dates.length - 1]})`), el('div', 'text-sm text-slate-200 mt-1', `${n(recentViews)} views combined · ${latest.videos.filter((v) => v.type === 'Short').length} Shorts, ${latest.videos.filter((v) => v.type !== 'Short').length} long`));
+
+      // Format split
+      const total = (p.long_form_views || 0) + (p.shorts_views || 0);
+      const fmt = document.getElementById('format');
+      const longPct = total ? (p.long_form_views / total) * 100 : 0;
+      const shortPct = 100 - longPct;
+      fmt.append(el('div', 'flex justify-between', `Long video · ${n(p.long_form_views)} views (${longPct.toFixed(0)}%)`), bar(longPct, 'bg-indigo-500'));
+      fmt.append(el('div', 'flex justify-between mt-2', `Shorts · ${n(p.shorts_views)} views (${shortPct.toFixed(0)}%)`), bar(shortPct, 'bg-red-500'));
+      fmt.append(el('p', 'text-xs text-slate-400 mt-2', `Shorts are ${((p.shorts_count / p.total_videos_analyzed) * 100).toFixed(0)}% of uploads but ${shortPct.toFixed(0)}% of views, and average half the views of a long video.`));
+
+      // Topics
+      const topics = document.getElementById('topics');
+      const entries = Object.entries(p.topic_views_distribution).sort((a, b) => b[1] - a[1]);
+      const topMax = entries[0]?.[1] || 1;
+      for (const [name, v] of entries) {
+        const row = el('div');
+        row.append(el('div', 'flex justify-between', `${name} · ${n(v)}`), bar((v / topMax) * 100, 'bg-purple-500'));
+        topics.append(row);
+      }
+
+      // Top videos
+      const top = document.getElementById('top');
+      for (const v of (p.top_performing_videos || []).slice(0, 5)) {
+        const a = el('a', 'flex justify-between gap-3 p-3 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50');
+        a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
+        a.append(el('span', 'text-slate-200 truncate', v.title), el('span', 'text-slate-400 whitespace-nowrap', `${n(v.views)} · ${v.time_ago || ''}`));
+        top.append(a);
+      }
+
+      // Gaps (what we cannot see yet)
+      const gaps = [
+        ['critical', 'Watch hours', 'Not in the repo. YPP needs 4,000 public watch hours; we cannot say how close we are.', 'Needs the channel Studio export (channel-365d.csv).'],
+        ['critical', 'Retention and CTR', 'Average view duration, retention and impressions CTR per video are missing. We can rank videos by views only.', 'Needs videos-365d.csv from Studio.'],
+        ['high', 'Traffic sources', 'We don’t know whether views come from Shorts feed, search or suggested. That decides what to make next.', 'Needs traffic-sources-90d.csv.'],
+        ['high', 'Subscriber source', 'The 725 is a public scrape, not the Studio count. Subscribers gained per video is unknown.', 'Needs a YouTube Data API key (IN-4) or the Studio export.'],
+        ['high', 'Skool funnel', 'No member counts, weekly activity or sign-ups from YouTube. We can’t tell if videos bring people into Skool.', 'Needs data/studio/skool-weekly.csv, filled by hand.'],
+        ['medium', 'Calendar dates', 'Every sprint date is two days ahead of its weekday label, so countdowns may be off.', 'Needs one decision: which real Monday Week 1 starts on (IN-8).'],
+        ['medium', 'Freshness', 'Totals are from a Nov 17 snapshot; recent uploads run to Nov 15. Nothing updates automatically yet.', 'Needs a scheduled refresh once the API key exists.'],
+      ];
+      const colour = { critical: 'border-red-500/40 bg-red-500/10 text-red-300', high: 'border-amber-500/40 bg-amber-500/10 text-amber-300', medium: 'border-slate-600 bg-slate-800/60 text-slate-300' };
+      const gapsEl = document.getElementById('gaps');
+      for (const [sev, title, why, fix] of gaps) {
+        const g = el('div', 'p-4 rounded-xl border ' + colour[sev]);
+        g.append(el('div', 'flex items-center justify-between gap-3', null));
+        g.lastChild.append(el('div', 'font-bold text-white', title), el('span', 'text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border border-current', sev));
+        g.append(el('div', 'text-sm text-slate-300 mt-1', why), el('div', 'text-xs mt-2', 'Fix: ' + fix));
+        gapsEl.append(g);
+      }
+
+      // What to do
+      const todo = [
+        ['Export the four Studio CSVs', 'Studio → Analytics → Advanced mode → Last 365 days → Export. Drop them in data/studio/ (see its README). This unlocks watch hours, CTR, retention and traffic.'],
+        ['Fill skool-weekly.csv for the last 4 weeks', 'Members, active members, new from YouTube, posts, comments. A rough count is better than nothing.'],
+        ['Add the YouTube API key', 'Create it in Google Cloud and store it as YOUTUBE-API-KEY (IN-4). Subscribers and views then update without scraping.'],
+        ['Decide the real Week 1 Monday', 'Pick the date (IN-8) so sprint dates and countdowns match their weekdays.'],
+        ['Act on the numbers now', `Shorts average ${p.average_views_shorts} views against ${p.average_views_long_form} for long videos. Keep Shorts as the front door, but point each one at a long video or Skool. Delivery Pilot topics earn the most views (${n(p.topic_views_distribution['Delivery Pilot & Career Mindset'])}), so lead with them.`],
+        ['Re-check after the exports', 'Once watch hours are in, compare the YPP timeline with the goals page (1,000 subscribers is 275 away).'],
+      ];
+      const todoEl = document.getElementById('todo');
+      todo.forEach(([title, body], i) => {
+        const li = el('li', 'flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800');
+        li.append(el('span', 'text-indigo-400 font-black', String(i + 1)));
+        const d = el('div'); d.append(el('div', 'font-bold text-white', title), el('div', 'text-slate-400 mt-1', body)); li.append(d);
+        todoEl.append(li);
+      });
+    }).catch((e) => {
+      document.getElementById('kpis').append(el('div', 'text-sm text-slate-400', 'Could not load the data files: ' + e.message));
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+</body>
+</html>
