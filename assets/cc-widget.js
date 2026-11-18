@@ -192,29 +192,58 @@
     el('div', { className: 'hint', textContent: 'Claude edits the calendar in a Daytona sandbox and opens a pull request — merge it to publish.' }),
     log, input, el('div', { className: 'row' }, send, el('label', { className: 'hint' }, useNotes, ' include my notes as context')));
 
-  const say = (text, cls = '') => { const n = el('div', { className: `card msg ${cls}`, textContent: text }); log.append(n); n.scrollIntoView(); return n; };
+  // The chat log survives refreshes: it is kept in localStorage (per browser), and any job that was
+  // still running when the page closed is polled again on load. Storage failures are ignored.
+  const CHAT_KEY = 'cc-chat-log-v1';
+  let chatLog = [];
+  try { chatLog = JSON.parse(localStorage.getItem(CHAT_KEY) || '[]'); } catch { chatLog = []; }
+  const saveChat = () => { try { localStorage.setItem(CHAT_KEY, JSON.stringify(chatLog.slice(-60))); } catch { /* private mode / quota */ } };
+
+  function paintChat() {
+    log.replaceChildren(...chatLog.map((m) => {
+      const n = el('div', { className: `card msg ${m.role === 'user' ? 'user' : ''}`, textContent: m.text });
+      if (m.pr) n.append('\n\n', el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: 'Review & merge pull request →' }));
+      return n;
+    }));
+    log.lastChild?.scrollIntoView();
+  }
+
+  async function trackJob(m) {
+    try {
+      for (let i = 0; i < 120; i++) {
+        await new Promise((r) => setTimeout(r, 4000));
+        const job = await (await api(`/jobs/${m.jobId}`)).json();
+        m.text = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
+        if (job.status === 'error') { m.text = `Error: ${job.error}`; m.pending = false; break; }
+        if (job.status === 'done') {
+          m.text = job.summary || 'Done.';
+          if (job.pr) m.pr = job.pr; else m.text += '\n\n(no file changes made)';
+          m.pending = false; break;
+        }
+        saveChat(); paintChat();
+      }
+      if (m.pending) { m.text = 'Still running — it will show here when you reopen the chat.'; m.pending = false; }
+    } catch (e) { m.text = `Error: ${e.message}`; m.pending = false; }
+    saveChat(); paintChat(); send.disabled = chatLog.some((x) => x.pending);
+  }
 
   send.onclick = async () => {
     const message = input.value.trim(); if (!message) return;
-    input.value = ''; say(message, 'user'); send.disabled = true;
-    const bubble = say('Queued…');
+    input.value = '';
+    const bot = { role: 'bot', text: 'Queued…', pending: true };
+    chatLog.push({ role: 'user', text: message }, bot);
+    saveChat(); paintChat(); send.disabled = true;
     try {
       const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message, page: PAGE, includeNotes: useNotes.checked }) })).json();
-      for (let i = 0; i < 120; i++) {
-        await new Promise((r) => setTimeout(r, 4000));
-        const job = await (await api(`/jobs/${id}`)).json();
-        bubble.textContent = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
-        if (job.status === 'error') { bubble.textContent = `Error: ${job.error}`; break; }
-        if (job.status === 'done') {
-          bubble.textContent = job.summary || 'Done.';
-          if (job.pr) bubble.append('\n\n', el('a', { href: job.pr, target: '_blank', rel: 'noopener', textContent: 'Review & merge pull request →' }));
-          else bubble.append('\n\n(no file changes made)');
-          break;
-        }
-      }
-    } catch (e) { bubble.textContent = `Error: ${e.message}`; }
-    send.disabled = false;
+      bot.jobId = id; saveChat();
+      await trackJob(bot);
+    } catch (e) { bot.text = `Error: ${e.message}`; bot.pending = false; saveChat(); paintChat(); send.disabled = false; }
   };
+
+  // Resume any job that was still running before the refresh.
+  for (const m of chatLog) if (m.pending && !m.jobId) { m.text = 'Interrupted by a page refresh before it was sent — please resend.'; m.pending = false; }
+  saveChat(); paintChat();
+  for (const m of chatLog) if (m.pending && m.jobId) { trackJob(m); send.disabled = true; }
 
   if (!API) console.warn('cc-widget: missing data-api attribute');
   btn.addEventListener('click', async () => { if (panel.classList.contains('open') && await gate()) loadNotes(); });
