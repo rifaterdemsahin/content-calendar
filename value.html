@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Value Check | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">💎 Value Check</span>
+      <span id="updated" class="text-xs text-slate-500 whitespace-nowrap"></span>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Before you make it</div>
+      <h1 class="text-2xl sm:text-3xl font-bold text-white mt-2">Is there genuine value in every video?</h1>
+      <p class="text-slate-400 mt-2 max-w-3xl">Each planned video is scored on five questions and has a written rationale for why it is useful to its audience. The data lives in <code class="text-indigo-300">data/videos.json</code> under each video's <code class="text-indigo-300">value</code> block, next to the title, hook and conversion target.</p>
+      <p class="text-slate-500 text-xs mt-2 max-w-3xl">The scores are a first draft by Claude from your plan and channel data. They are judgements, not measurements, so change any you disagree with.</p>
+    </section>
+
+    <section class="grid grid-cols-2 md:grid-cols-5 gap-3" id="tiles"></section>
+
+    <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+      <h2 class="text-sm font-bold text-white uppercase tracking-wider">The five questions</h2>
+      <p id="rubricNote" class="text-xs text-slate-400 mt-1"></p>
+      <ol id="rubric" class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-sm text-slate-300 list-decimal pl-5"></ol>
+      <p id="bands" class="text-xs text-slate-400 mt-3"></p>
+    </section>
+
+    <section class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+      <h2 class="text-sm font-bold text-white uppercase tracking-wider">How to update it</h2>
+      <ul class="mt-2 text-sm text-slate-300 space-y-1.5 list-disc pl-5">
+        <li><strong class="text-white">Here:</strong> press Edit on a card, change any field, then press Done. Your edits are kept as a draft in this browser. Press <em>Copy JSON</em> and paste it over <code class="text-indigo-300">data/videos.json</code>, or use the dashboard chat to apply it.</li>
+        <li><strong class="text-white">Dashboard chat:</strong> describe the change ("raise the proof score for w3-item-2 to 2 and add why"). The chat edits the file, merges and publishes.</li>
+        <li><strong class="text-white">On GitHub:</strong> edit <code class="text-indigo-300">data/videos.json</code> directly. A new video with no <code class="text-indigo-300">value</code> block shows up here as "Not reviewed", and the test suite fails until it has one.</li>
+      </ul>
+    </section>
+
+    <section id="draftBar" class="hidden sticky top-16 z-40 rounded-xl border border-amber-500/40 bg-amber-500/10 p-3 flex flex-wrap items-center gap-3 text-sm">
+      <span id="draftMsg" class="text-amber-200 flex-1"></span>
+      <button id="copyBtn" type="button" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Copy JSON</button>
+      <button id="dlBtn" type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 text-xs font-semibold">Download</button>
+      <button id="discardBtn" type="button" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs">Discard drafts</button>
+    </section>
+
+    <section class="flex flex-wrap gap-3 items-center text-sm">
+      <label class="text-slate-400">Verdict
+        <select id="fVerdict" class="ml-2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-slate-100">
+          <option value="">All</option><option value="strong">Strong</option><option value="good">Good</option><option value="needs work">Needs work</option><option value="not reviewed">Not reviewed</option>
+        </select>
+      </label>
+      <label class="text-slate-400">Audience
+        <select id="fAud" class="ml-2 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-slate-100"><option value="">All</option></select>
+      </label>
+      <span id="count" class="text-slate-500 text-xs"></span>
+    </section>
+
+    <section id="cards" class="grid grid-cols-1 lg:grid-cols-2 gap-5"></section>
+  </main>
+
+  <script>
+    const DRAFT_KEY = 'cc-value-drafts';
+    const COLORS = { strong: '#34d399', good: '#fbbf24', 'needs work': '#f87171', 'not reviewed': '#94a3b8' };
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+    const pill = (text, color) => { const s = el('span', 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border', text); s.style.color = color; s.style.borderColor = color + '66'; s.style.background = color + '1a'; return s; };
+
+    let data = null;
+    let drafts = {};
+    let editing = new Set();
+
+    const loadDrafts = () => { try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || '{}'); } catch (e) { return {}; } };
+    const saveDrafts = () => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(drafts)); } catch (e) {} };
+
+    const valueOf = (v) => drafts[v.id] || v.value || null;
+    const totalOf = (val) => {
+      if (!val || !val.scores) return null;
+      const s = Object.values(val.scores);
+      return s.length && s.every((x) => typeof x === 'number') ? s.reduce((a, b) => a + b, 0) : null;
+    };
+    const verdictOf = (t) => {
+      if (t == null) return 'not reviewed';
+      const b = data.valueRubric.bands;
+      return t >= b.strong ? 'strong' : t >= b.good ? 'good' : 'needs work';
+    };
+
+    const field = (label, text, cls) => {
+      const w = el('div');
+      w.append(el('div', 'text-[10px] font-bold text-slate-500 uppercase tracking-wider', label), el('p', 'text-sm mt-0.5 leading-relaxed ' + (cls || 'text-slate-200'), text || '—'));
+      return w;
+    };
+
+    function drawTiles() {
+      const t = document.getElementById('tiles');
+      const counts = { strong: 0, good: 0, 'needs work': 0, 'not reviewed': 0 };
+      let sum = 0, n = 0;
+      for (const v of data.videos) {
+        const tot = totalOf(valueOf(v)); counts[verdictOf(tot)]++;
+        if (tot != null) { sum += tot; n++; }
+      }
+      const tiles = [['Strong', counts.strong, COLORS.strong], ['Good', counts.good, COLORS.good], ['Needs work', counts['needs work'], COLORS['needs work']], ['Not reviewed', counts['not reviewed'], COLORS['not reviewed']], ['Average score', n ? (sum / n).toFixed(1) + ' / 10' : '—', '#818cf8']];
+      t.replaceChildren(...tiles.map(([l, v, c]) => {
+        const b = el('div', 'p-3 rounded-xl bg-slate-900/80 border border-slate-800');
+        const num = el('div', 'text-2xl font-black mt-1', String(v)); num.style.color = c;
+        b.append(el('div', 'text-xs font-bold text-slate-400 uppercase', l), num);
+        return b;
+      }));
+    }
+
+    function dots(score) {
+      const w = el('span', 'inline-flex gap-1 align-middle');
+      for (let i = 0; i < 2; i++) {
+        const d = el('span', 'w-2.5 h-2.5 rounded-full border');
+        const on = typeof score === 'number' && i < score;
+        d.style.background = on ? '#818cf8' : 'transparent'; d.style.borderColor = on ? '#818cf8' : '#475569';
+        w.append(d);
+      }
+      return w;
+    }
+
+    function viewCard(v, card) {
+      const val = valueOf(v);
+      const tot = totalOf(val);
+      const verdict = verdictOf(tot);
+      const color = COLORS[verdict];
+      const top = el('div', 'flex items-start gap-3');
+      const left = el('div', 'flex-1 min-w-0');
+      const title = el('a', 'text-white font-bold hover:text-indigo-300', v.title); title.href = 'index.html#' + v.id;
+      left.append(title, el('div', 'text-xs text-slate-500 mt-0.5', (v.slot || v.type) + (v.week ? ' · Week ' + v.week : '')));
+      const right = el('div', 'text-right shrink-0');
+      const score = el('div', 'text-2xl font-black', tot == null ? '–' : tot + '/10'); score.style.color = color;
+      right.append(score, pill(verdict, color));
+      top.append(left, right);
+
+      const tags = el('div', 'flex flex-wrap gap-2 mt-2 items-center');
+      const audColor = data.audiences[v.audience]?.color || '#94a3b8';
+      tags.append(pill(v.audience, audColor));
+      if (drafts[v.id]) tags.append(pill('edited draft', '#fbbf24'));
+      const edit = el('button', 'ml-auto text-xs px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700', 'Edit');
+      edit.type = 'button'; edit.onclick = () => { editing.add(v.id); draw(); };
+      tags.append(edit);
+
+      const crit = el('div', 'mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1');
+      for (const c of data.valueRubric.criteria) {
+        const row = el('div', 'flex items-center justify-between text-xs text-slate-300');
+        row.append(el('span', null, c.label), dots(val?.scores?.[c.id]));
+        crit.append(row);
+      }
+
+      const body = el('div', 'mt-4 space-y-3');
+      body.append(
+        field('Who it is for', val?.who),
+        field('The problem', val?.painPoint),
+        field('What they can do after', val?.outcome),
+        field('Proof', val?.proof),
+        field('Why this is useful to them', val?.whyUseful, 'text-emerald-200'));
+      if (val?.gaps?.length) {
+        const g = el('div');
+        g.append(el('div', 'text-[10px] font-bold text-amber-400 uppercase tracking-wider', 'Gaps'));
+        const ul = el('ul', 'text-sm text-amber-100 mt-0.5 list-disc pl-5 space-y-0.5');
+        for (const x of val.gaps) ul.append(el('li', null, x));
+        g.append(ul); body.append(g);
+      }
+      body.append(field('To improve it', val?.improve, 'text-indigo-200'));
+      if (val?.reviewedOn) body.append(el('p', 'text-[11px] text-slate-500', 'Reviewed ' + val.reviewedOn + ' · ' + (val.reviewedBy || '')));
+      card.append(top, tags, crit, body);
+    }
+
+    function editCard(v, card) {
+      const base = valueOf(v) || { scores: {} };
+      const cur = JSON.parse(JSON.stringify(base));
+      cur.scores = cur.scores || {};
+      card.append(el('div', 'text-white font-bold', v.title), el('div', 'text-xs text-slate-500 mt-0.5 mb-3', 'Editing · ' + (v.slot || v.type)));
+      const inputs = {};
+      const area = (key, label, rows, val) => {
+        const w = el('label', 'block mb-3');
+        w.append(el('span', 'text-[10px] font-bold text-slate-400 uppercase tracking-wider', label));
+        const t = el('textarea', 'mt-1 w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-sm text-slate-100');
+        t.rows = rows; t.value = val || ''; inputs[key] = t; w.append(t); card.append(w);
+      };
+      area('who', 'Who it is for', 2, cur.who);
+      area('painPoint', 'The problem', 2, cur.painPoint);
+      area('outcome', 'What they can do after', 2, cur.outcome);
+      area('proof', 'Proof', 2, cur.proof);
+      area('whyUseful', 'Why this is useful to them (the rationale)', 4, cur.whyUseful);
+      area('gaps', 'Gaps (one per line)', 3, (cur.gaps || []).join('\n'));
+      area('improve', 'To improve it', 2, cur.improve);
+
+      const sg = el('div', 'grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3');
+      const sel = {};
+      for (const c of data.valueRubric.criteria) {
+        const w = el('label', 'flex items-center justify-between gap-2 text-xs text-slate-300');
+        w.append(el('span', null, c.label));
+        const s = el('select', 'bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-slate-100');
+        for (const [val, txt] of [['', '— not scored'], ['0', '0 missing'], ['1', '1 partly'], ['2', '2 clear']]) { const o = el('option', null, txt); o.value = val; s.append(o); }
+        const sc = cur.scores[c.id]; s.value = typeof sc === 'number' ? String(sc) : '';
+        sel[c.id] = s; w.append(s); sg.append(w);
+      }
+      card.append(sg);
+
+      const bar = el('div', 'flex gap-2');
+      const done = el('button', 'px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold', 'Done');
+      done.type = 'button';
+      done.onclick = () => {
+        const nv = {
+          who: inputs.who.value.trim(), painPoint: inputs.painPoint.value.trim(), outcome: inputs.outcome.value.trim(),
+          proof: inputs.proof.value.trim(), whyUseful: inputs.whyUseful.value.trim(),
+          scores: Object.fromEntries(data.valueRubric.criteria.map((c) => [c.id, sel[c.id].value === '' ? null : Number(sel[c.id].value)])),
+          gaps: inputs.gaps.value.split('\n').map((x) => x.trim()).filter(Boolean),
+          improve: inputs.improve.value.trim(),
+          reviewedOn: new Date().toISOString().slice(0, 10), reviewedBy: 'Edited on value.html'
+        };
+        drafts[v.id] = nv; saveDrafts(); editing.delete(v.id); draw();
+      };
+      const cancel = el('button', 'px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs', 'Cancel');
+      cancel.type = 'button'; cancel.onclick = () => { editing.delete(v.id); draw(); };
+      bar.append(done, cancel); card.append(bar);
+    }
+
+    function draw() {
+      drawTiles();
+      const fv = document.getElementById('fVerdict').value, fa = document.getElementById('fAud').value;
+      const shown = data.videos.filter((v) => (!fv || verdictOf(totalOf(valueOf(v))) === fv) && (!fa || v.audience === fa));
+      document.getElementById('count').textContent = shown.length + ' of ' + data.videos.length + ' videos';
+      document.getElementById('cards').replaceChildren(...shown.map((v) => {
+        const card = el('article', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800'); card.id = 'v-' + v.id;
+        if (editing.has(v.id)) editCard(v, card); else viewCard(v, card);
+        return card;
+      }));
+      const n = Object.keys(drafts).length;
+      document.getElementById('draftBar').classList.toggle('hidden', n === 0);
+      document.getElementById('draftBar').classList.toggle('flex', n > 0);
+      document.getElementById('draftMsg').textContent = n + ' unsaved edit' + (n === 1 ? '' : 's') + ' in this browser. Copy the JSON and put it in data/videos.json to publish.';
+    }
+
+    function exportJson() {
+      const out = JSON.parse(JSON.stringify(data));
+      for (const v of out.videos) if (drafts[v.id]) v.value = drafts[v.id];
+      out.updated = new Date().toISOString().slice(0, 10);
+      return JSON.stringify(out, null, 2);
+    }
+
+    fetch('data/videos.json', { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
+      data = d; drafts = loadDrafts();
+      document.getElementById('updated').textContent = 'Updated ' + d.updated;
+      document.getElementById('rubricNote').textContent = d.valueRubric.note;
+      document.getElementById('rubric').replaceChildren(...d.valueRubric.criteria.map((c) => { const li = el('li'); li.append(el('strong', 'text-white', c.label + ': '), document.createTextNode(c.question)); return li; }));
+      document.getElementById('bands').textContent = 'Strong: ' + d.valueRubric.bands.strong + ' or more. Good: ' + d.valueRubric.bands.good + ' to ' + (d.valueRubric.bands.strong - 1) + '. Needs work: below ' + d.valueRubric.bands.good + '. Not reviewed: any question unscored.';
+      const fa = document.getElementById('fAud');
+      for (const a of Object.keys(d.audiences)) fa.append(el('option', null, a));
+      document.getElementById('fVerdict').onchange = draw; fa.onchange = draw;
+      document.getElementById('copyBtn').onclick = async () => {
+        const text = exportJson();
+        try { await navigator.clipboard.writeText(text); document.getElementById('copyBtn').textContent = 'Copied'; }
+        catch (e) { const t = el('textarea'); t.value = text; document.body.append(t); t.select(); document.execCommand('copy'); t.remove(); document.getElementById('copyBtn').textContent = 'Copied'; }
+        setTimeout(() => { document.getElementById('copyBtn').textContent = 'Copy JSON'; }, 1500);
+      };
+      document.getElementById('dlBtn').onclick = () => {
+        const a = el('a'); a.href = URL.createObjectURL(new Blob([exportJson()], { type: 'application/json' })); a.download = 'videos.json'; a.click(); URL.revokeObjectURL(a.href);
+      };
+      document.getElementById('discardBtn').onclick = () => { if (confirm('Discard all unsaved edits in this browser?')) { drafts = {}; saveDrafts(); draw(); } };
+      draw();
+    }).catch((e) => {
+      document.getElementById('cards').replaceChildren(el('p', 'text-slate-400', 'Could not load data/videos.json: ' + e.message));
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>

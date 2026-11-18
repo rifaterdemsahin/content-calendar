@@ -22,6 +22,7 @@
     { title: '🔐 Azure Key Vault', category: 'Page', desc: 'Secret inventory, dp-kv-deliverypilot, managed identity, security runbook', url: 'key-vault.html', tags: ['key vault', 'secrets', 'azure', 'security', 'pat', 'tokens', 'keys'] },
     { title: '📋 Requirements Checklist', category: 'Page', desc: 'KV-1 to KV-12 requirements, inputs needed from owner, Claude guidance', url: 'requirements.html', tags: ['requirements', 'audit', 'inputs', 'p0', 'p1', 'verification'] },
     { title: '🧭 Expectations & Scope', category: 'Page', desc: 'What the assistant can and cannot do, delivery pilot operating boundaries', url: 'expectations.html', tags: ['scope', 'expectations', 'guarantees', 'capabilities'] },
+    { title: '💎 Value Check', category: 'Page', desc: 'Is there genuine value in every video? Five-question score, audience, proof and rationale per video; editable', url: 'value.html', tags: ['value', 'rationale', 'audience', 'score', 'videos', 'quality', 'why'] },
 
     // Calendar Content & Video Blueprints (direct item targeting with rationale)
     { title: 'Stop Writing Repetitive Python Scripts', category: 'Calendar', desc: 'Week 1 Mon Short: 45s speedrun. Rationale: Top-of-funnel friction remover demonstrating high-velocity agentic flow.', url: 'index.html#w1-item-1', tags: ['python', 'n8n', 'short', 'llm', 'speedrun', 'rationale'] },

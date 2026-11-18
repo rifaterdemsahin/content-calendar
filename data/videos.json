@@ -65,6 +65,26 @@
         "unit": "enquiries",
         "note": "Business course video: one enquiry per video",
         "actual": null
+      },
+      "value": {
+        "who": "A developer or technical lead at a small business who has watched n8n agent demos and wants one that survives real use.",
+        "painPoint": "Agent demos work once, then break in week two: no memory, no error handling, failures nobody notices.",
+        "outcome": "Build a working n8n agent (trigger, LLM, tools, memory), break it on purpose, fix three failure modes, and leave with the exported workflow.",
+        "proof": "A real build shown end to end, with the workflow JSON as evidence. Your n8n + RAG \"Content Magician\" video has 276 views, in your top 10.",
+        "whyUseful": "Practical builds are your best-performing archetype (your top videos are builds, such as the LinkedIn job-hunt automation at 549 views). Most \"build an agent in n8n\" videos stop at the demo, so breaking and fixing the agent is the part a viewer cannot get elsewhere.",
+        "scores": {
+          "viewer": 1,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 2,
+          "asset": 2
+        },
+        "gaps": [
+          "Labelled Businesses, but the person who watches a build tutorial is a builder. The target of 1 managed-services enquiry needs a call to action aimed at the buyer."
+        ],
+        "improve": "Add one line near the end for the buyer: \"Want this built and run for you?\" with the Skool and services link. Keep the \"break it on purpose\" section in the first 5 minutes.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -108,6 +128,27 @@
         "unit": "views",
         "note": "Baseline: Shorts average 99 views",
         "actual": null
+      },
+      "value": {
+        "who": "Anyone running n8n workflows who has had a loop run away or fail silently.",
+        "painPoint": "A loop that never stops, or an error that is swallowed so nothing tells you it failed.",
+        "outcome": "Add the single node that stops the loop, and see the hidden error surface.",
+        "proof": "Shown on a real workflow: the loop running, the error, then the fix. The claim only holds if one node really is the whole fix.",
+        "whyUseful": "Tool-specific, one-problem Shorts are what work on your channel: the two Kilo Shorts got 193 and 179 views, the mindset Shorts 20 to 51. This is the same shape, in a topic you already cover.",
+        "scores": {
+          "viewer": 2,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 1
+        },
+        "gaps": [
+          "The hook says \"one missing node\". If the real fix is two steps, change the hook, not the video.",
+          "The only take-away is a pinned link to the full tutorial."
+        ],
+        "improve": "Put the fixed node as a downloadable snippet in the Skool post and name it in the pinned comment.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -147,6 +188,27 @@
         "unit": "members",
         "note": "Clinic brings members into the community",
         "actual": null
+      },
+      "value": {
+        "who": "A Skool member who has an n8n workflow that is broken or fragile.",
+        "painPoint": "They are stuck on a specific workflow and have nobody to look at it.",
+        "outcome": "Watch three real workflows get audited, then fix your own top issue using the same checks.",
+        "proof": "Live, on real member workflows. No evidence yet that enough members will send workflows in.",
+        "whyUseful": "Live review is the one thing a video cannot do, and it gives the community a reason to show up weekly.",
+        "scores": {
+          "viewer": 2,
+          "problem": 1,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 1
+        },
+        "gaps": [
+          "The community is early stage. Without at least three submitted workflows beforehand the session has nothing to fix.",
+          "The target is 5 new Skool members, but a live clinic is for existing members. New members only arrive through the recording."
+        ],
+        "improve": "Collect three workflows in the Tuesday Skool post first. If fewer than three arrive, run it as a build-along instead. Publish the recording as a Short with the three common fixes.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -186,6 +248,27 @@
         "unit": "enquiries",
         "note": "Business course video: one enquiry per video",
         "actual": null
+      },
+      "value": {
+        "who": "A developer or tech lead who uses Claude Code or Cursor and hits collisions when more than one agent works on the same repo.",
+        "painPoint": "Agents overwrite each other, repeat work, and break each other's changes.",
+        "outcome": "Split work across agents by scope, set up one shared rules file, and run several agents without collisions.",
+        "proof": "A live run on a real repo. It only counts if the output is shown unedited, including at least one handoff that goes wrong.",
+        "whyUseful": "Running several agents is the problem people have now, and it ties straight to the Delivery Pilot idea. A concrete method works better than the identity pitch: your identity videos sit around 129 views, your concrete builds in the hundreds.",
+        "scores": {
+          "viewer": 2,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 2
+        },
+        "gaps": [
+          "No evidence yet that the live demo works as described.",
+          "Labelled Businesses with an enquiry target. A tech lead is the viewer, so give the buyer a next step too."
+        ],
+        "improve": "Record the failure first and the fix second. Put \"Claude Code\" and \"Cursor\" in the title so search finds it. Publish the rules file in the repo.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -225,6 +308,27 @@
         "unit": "views",
         "note": "Baseline: Shorts average 99 views",
         "actual": null
+      },
+      "value": {
+        "who": "A developer who gives AI agents access to a terminal.",
+        "painPoint": "Their agent works in a bare shell and wastes time on things a good tool would handle.",
+        "outcome": "Install three tools and run one command for each that proves it works.",
+        "proof": "One proving command per tool is the evidence. Without it this is an opinion list.",
+        "whyUseful": "Dotfiles are an easy thing for a viewer to take away and a natural Skool download.",
+        "scores": {
+          "viewer": 1,
+          "problem": 1,
+          "outcome": 1,
+          "proof": 1,
+          "asset": 2
+        },
+        "gaps": [
+          "\"Every Pilot needs\" is generic. Tool roundups are crowded and the pain is mild.",
+          "Three tools in 45 seconds leaves no room to show a result for any of them."
+        ],
+        "improve": "Cut to one tool with a before and after, the way the Kilo Shorts did. Keep the dotfiles as the take-away and say in one line what each of the other two does.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -261,6 +365,28 @@
         "unit": "enrolments",
         "note": "Course module enrols members",
         "actual": null
+      },
+      "value": {
+        "who": "A working developer or analyst deciding how to move from writing code to directing AI-assisted delivery.",
+        "painPoint": "They do not know what their job becomes when an agent writes the code.",
+        "outcome": "Understand the shift and leave with a weekly delivery loop to try.",
+        "proof": "The plan lists three ideas, not a worked example or numbers. Your own related video has 129 views.",
+        "whyUseful": "The right topic for the Skool curriculum and the centre of your positioning. As written it is concepts only, and on your channel concepts without a demonstration draw the least.",
+        "scores": {
+          "viewer": 2,
+          "problem": 1,
+          "outcome": 1,
+          "proof": 0,
+          "asset": 1
+        },
+        "gaps": [
+          "No worked example, case, or measured result is planned.",
+          "Lesson 2 (the weekly loop) is the only part a viewer could act on, and nothing is handed over.",
+          "Needs members to land in; the Skool Classroom enrolment target depends on that."
+        ],
+        "improve": "Build Lesson 2 around one real week of your own delivery, with the checklist as a download. Open with a concrete before and after, not the definition.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -304,6 +430,27 @@
         "unit": "enquiries",
         "note": "Business course video: one enquiry per video",
         "actual": null
+      },
+      "value": {
+        "who": "A developer whose RAG chatbot gives poor answers on real documents.",
+        "painPoint": "Plain vector search misses the right passages, and nobody tells them what to change.",
+        "outcome": "Add hybrid search and a reranker, and measure the improvement on a test dataset.",
+        "proof": "A repo, a test dataset and a results table. Your RAG with Copilot and Codespaces video has 360 views, your fifth best ever.",
+        "whyUseful": "Fixing a RAG system that disappoints is a problem viewers search for, and your own history says RAG builds get watched. The measured results table is what separates this from the many RAG explainers.",
+        "scores": {
+          "viewer": 1,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 2,
+          "asset": 2
+        },
+        "gaps": [
+          "Labelled Businesses, but the viewer is a builder. The enquiry target needs a buyer-facing line.",
+          "\"RAG is NOT dead\" is a debate title. Make sure the video is the build, not the debate."
+        ],
+        "improve": "Show the results table in the first minute. Add \"Want this done for your documents?\" at the end for the buyer.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -347,6 +494,27 @@
         "unit": "views",
         "note": "Baseline: Shorts average 99 views",
         "actual": null
+      },
+      "value": {
+        "who": "A developer whose RAG system is only half right.",
+        "painPoint": "Answers are wrong even though the right document is in the database.",
+        "outcome": "See the before and after of semantic chunking and a reranker on the same documents.",
+        "proof": "Before and after numbers on a fixed dataset. \"Twice as many right answers\" must be measured, not estimated.",
+        "whyUseful": "A measured result in 60 seconds is the strongest Short shape you have, and it hands viewers to the long build.",
+        "scores": {
+          "viewer": 2,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 1
+        },
+        "gaps": [
+          "The hook says \"one change\" but the plan shows two (semantic chunking and a reranker). Pick one.",
+          "Only a link to the long video to take away."
+        ],
+        "improve": "Lead with the single biggest change and show its number. If it is not close to double, change the hook to what it really is.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -390,6 +558,27 @@
         "unit": "members",
         "note": "Clinic brings members into the community",
         "actual": null
+      },
+      "value": {
+        "who": "A Skool member who runs a RAG or vector-database setup.",
+        "painPoint": "Retrieval quality is poor and they cannot see where the pipeline fails.",
+        "outcome": "Watch one real architecture reviewed, and find the chunking and retrieval gaps in your own.",
+        "proof": "Live, on a member setup. No evidence yet that members have RAG setups to bring.",
+        "whyUseful": "High-touch review is a strong reason to join and stay, and it makes the recording useful to non-members.",
+        "scores": {
+          "viewer": 1,
+          "problem": 1,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 1
+        },
+        "gaps": [
+          "Depends on members who already run RAG. At this stage that group may be small or empty.",
+          "The paid-tier conversion target is premature with no members yet."
+        ],
+        "improve": "Ask for architectures in the Tuesday post first. If nobody brings one, review your own build live and invite members to compare.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -429,6 +618,27 @@
         "unit": "enquiries",
         "note": "Business course video: one enquiry per video",
         "actual": null
+      },
+      "value": {
+        "who": "A builder with an agent that works on their laptop and stops when the lid closes.",
+        "painPoint": "The agent only runs while their machine is on, and a crash means nobody notices.",
+        "outcome": "Run the agent 24/7 on a cheap VPS with Docker, a database, and automatic restarts.",
+        "proof": "A working compose file and deploy script, and a real cost for the VPS. No own-channel evidence yet for deployment topics.",
+        "whyUseful": "Moving from a local script to something that runs unattended is where most builds stop. Practical, finish-the-build videos are your best archetype.",
+        "scores": {
+          "viewer": 1,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 1,
+          "asset": 2
+        },
+        "gaps": [
+          "Labelled Businesses, but the viewer is a builder.",
+          "The \"cheap VPS\" cost is not stated, and it should match the $10 stack Short."
+        ],
+        "improve": "State the monthly VPS price in the first 30 seconds and show the agent restarting itself after a crash.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -468,6 +678,27 @@
         "unit": "views",
         "note": "Baseline: Shorts average 99 views",
         "actual": null
+      },
+      "value": {
+        "who": "An indie developer or small team paying for AI tooling.",
+        "painPoint": "Costs creep, and they do not know what a lean production stack really costs.",
+        "outcome": "See every line item and decide what to cut and what is worth paying for.",
+        "proof": "Real receipts for each line. Your \"How I Run AI Agents for $0\" video has 169 views and the \"Don't Pay $200\" Short has 179, so the cost angle already works for you.",
+        "whyUseful": "Concrete costs with receipts are credible and shareable. This is the same cost-saving angle as your best recent Shorts.",
+        "scores": {
+          "viewer": 2,
+          "problem": 2,
+          "outcome": 2,
+          "proof": 2,
+          "asset": 1
+        },
+        "gaps": [
+          "The $10 claim must be true for the real stack today. If it is $14, say $14.",
+          "No take-away beyond the list."
+        ],
+        "improve": "Put the cost table in the Skool post as a copyable sheet. Show the actual invoices on screen.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -500,6 +731,29 @@
         "unit": "enrolments",
         "note": "Course module enrols members",
         "actual": null
+      },
+      "value": {
+        "who": "An engineer building multi-agent systems.",
+        "painPoint": "Multi-agent systems fail in ways that are hard to see, and they do not know where to look.",
+        "outcome": "Learn a deployment pattern, how to observe a swarm, and how to handle failures without stopping.",
+        "proof": "Nothing planned: no demo, numbers, or own-channel evidence on multi-agent.",
+        "whyUseful": "A real topic, but this entry is driven by the high-ticket consulting goal, not by an audience need you have evidence for.",
+        "scores": {
+          "viewer": 1,
+          "problem": 1,
+          "outcome": 1,
+          "proof": 0,
+          "asset": 1
+        },
+        "gaps": [
+          "Advanced and the most work of any video here, with the least evidence of demand.",
+          "No take-away named for Part 2.",
+          "Depends on Part 1 existing and being watched.",
+          "The audience has not asked for this."
+        ],
+        "improve": "Hold it until the week 3 videos show whether agent topics pull views. If you keep it, base it on one real failure from your own swarm and publish the monitoring config.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     },
     {
@@ -529,8 +783,62 @@
         "unit": "views",
         "note": "Actual from YouTube Studio snapshot 18 Nov 2026",
         "actual": 15
+      },
+      "value": {
+        "who": "",
+        "painPoint": "",
+        "outcome": "",
+        "proof": "",
+        "whyUseful": "",
+        "scores": {
+          "viewer": null,
+          "problem": null,
+          "outcome": null,
+          "proof": null,
+          "asset": null
+        },
+        "gaps": [
+          "Not reviewed: no hook, outcome or take-away is recorded for this video."
+        ],
+        "improve": "Fill in who it is for and what they can do after watching. Your top video, the LinkedIn job-hunt automation at 549 views, shows job-seeker topics have drawn views before.",
+        "reviewedOn": "2026-11-18",
+        "reviewedBy": "Claude draft, 2026-11-18. Edit freely."
       }
     }
   ],
-  "conversionNote": "Target per content type. Status is hit or miss once an actual value is recorded; until then it shows no data."
+  "conversionNote": "Target per content type. Status is hit or miss once an actual value is recorded; until then it shows no data.",
+  "valueRubric": {
+    "note": "Every video is scored 0 (missing), 1 (partly) or 2 (clear) on five questions. Total out of 10. Edit the scores, or any text, in data/videos.json or on value.html.",
+    "bands": {
+      "strong": 8,
+      "good": 6
+    },
+    "criteria": [
+      {
+        "id": "viewer",
+        "label": "Specific viewer",
+        "question": "Can you name the person (their job or situation), not just \"everyone interested in AI\"?"
+      },
+      {
+        "id": "problem",
+        "label": "Real problem",
+        "question": "Is this a pain the viewer already has or already searches for?"
+      },
+      {
+        "id": "outcome",
+        "label": "Concrete outcome",
+        "question": "After watching, can they do or decide something specific they could not before?"
+      },
+      {
+        "id": "proof",
+        "label": "Proof",
+        "question": "Is it backed by a real build, real numbers, or evidence from your own channel, not opinion alone?"
+      },
+      {
+        "id": "asset",
+        "label": "Take-away and next step",
+        "question": "Is there something to keep (JSON, repo, template, checklist) and a natural next step for this audience?"
+      }
+    ]
+  }
 }
