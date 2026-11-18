@@ -1,0 +1,84 @@
+{
+  "snapshotDate": "2026-11-18",
+  "videos": 30,
+  "totalViews": 6102,
+  "avgViewsPerVideo": 203.4,
+  "medianViewsPerVideo": 160.5,
+  "totalComments": 62,
+  "commentsPer100Views": 1.02,
+  "longVideos": {
+    "videos": 28,
+    "views": 5927,
+    "avgViews": 211.7,
+    "medianViews": 176.0
+  },
+  "shorts": {
+    "videos": 1,
+    "views": 90,
+    "avgViews": 90.0,
+    "medianViews": 90
+  },
+  "last90Days": {
+    "videos": 6,
+    "views": 953,
+    "avgViews": 158.8,
+    "medianViews": 149.0,
+    "since": "2026-08-20"
+  },
+  "byYear": {
+    "2024": {
+      "videos": 9,
+      "views": 1120,
+      "avgViews": 124.4,
+      "medianViews": 100
+    },
+    "2025": {
+      "videos": 9,
+      "views": 2691,
+      "avgViews": 299.0,
+      "medianViews": 293
+    },
+    "2026": {
+      "videos": 12,
+      "views": 2291,
+      "avgViews": 190.9,
+      "medianViews": 149.0
+    }
+  },
+  "abTests": {
+    "running": 3,
+    "completed": 13
+  },
+  "top5": [
+    {
+      "title": "How to Build an AI to Automate LinkedIn Job Hunt",
+      "views": 550,
+      "date": "2025-10-13"
+    },
+    {
+      "title": "AI No-Code: Build Your Own AI Solutions (Step-by-Step)",
+      "views": 449,
+      "date": "2026-03-08"
+    },
+    {
+      "title": "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap",
+      "views": 421,
+      "date": "2026-02-08"
+    },
+    {
+      "title": "How to Actually Learn AI: The Visual Construction Method Nobody Teaches",
+      "views": 382,
+      "date": "2025-10-21"
+    },
+    {
+      "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
+      "views": 360,
+      "date": "2025-11-17"
+    }
+  ],
+  "notes": [
+    "Lifetime views as shown by YouTube Studio; no watch hours or CTR in this export.",
+    "Shorts are not labelled in the export: 60 seconds or less is counted as a Short."
+  ],
+  "source": "studio-snapshot-2026-11-18.json"
+}

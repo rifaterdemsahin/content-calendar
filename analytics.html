@@ -49,6 +49,29 @@
       <div id="top" class="mt-4 space-y-2"></div>
     </section>
 
+    <!-- Studio snapshot -->
+    <section>
+      <div class="flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <h2 class="text-lg font-bold text-white">YouTube Studio snapshot</h2>
+          <p id="studioSub" class="text-sm text-slate-400 mt-1"></p>
+        </div>
+        <span class="text-xs text-slate-500">data/studio/stats.json</span>
+      </div>
+      <div id="studioKpis" class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4"></div>
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+          <h3 class="font-bold text-white">By year</h3>
+          <div id="studioYears" class="mt-3 text-sm space-y-2"></div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/80 border border-slate-800">
+          <h3 class="font-bold text-white">Top 5 by lifetime views</h3>
+          <div id="studioTop" class="mt-3 text-sm space-y-2"></div>
+        </div>
+      </div>
+      <p id="studioNotes" class="text-[11px] text-slate-500 mt-3"></p>
+    </section>
+
     <!-- Gaps -->
     <section>
       <h2 class="text-lg font-bold text-white">Gaps in the data</h2>
@@ -132,6 +155,7 @@
         ['high', 'Subscriber source', 'The 725 is a public scrape, not the Studio count. Subscribers gained per video is unknown.', 'Needs a YouTube Data API key (IN-4) or the Studio export.'],
         ['high', 'Skool funnel', 'No member counts, weekly activity or sign-ups from YouTube. We can’t tell if videos bring people into Skool.', 'Needs data/studio/skool-weekly.csv, filled by hand.'],
         ['medium', 'Calendar dates', 'Resolved: every date and weekday now agrees (scripts/validate-dates.py). Week 1 runs Wed 18 Nov to Tue 24 Nov 2026.', 'Checked before each ship.'],
+        ['high', 'Two totals disagree', 'The older snapshot counts 7,015 views across 38 videos. The Studio list (18 Nov) shows 6,102 across 30. We need to know which videos differ before trusting either total.', 'Fix: run scripts/pull_youtube_stats.py once a YOUTUBE_API_KEY is set, and compare the video lists.'],
         ['medium', 'Freshness', 'Totals are from a Nov 17 snapshot; recent uploads run to Nov 15. Nothing updates automatically yet.', 'Needs a scheduled refresh once the API key exists.'],
       ];
       const colour = { critical: 'border-red-500/40 bg-red-500/10 text-red-300', high: 'border-amber-500/40 bg-amber-500/10 text-amber-300', medium: 'border-slate-600 bg-slate-800/60 text-slate-300' };
@@ -163,6 +187,43 @@
     }).catch((e) => {
       document.getElementById('kpis').append(el('div', 'text-sm text-slate-400', 'Could not load the data files: ' + e.message));
     });
+  </script>
+  <script>
+    (() => {
+      const e = (tag, cls, text) => { const x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; };
+      const f = (x) => Number(x || 0).toLocaleString();
+      fetch('data/studio/stats.json', { cache: 'no-cache' }).then((r) => r.json()).then((st) => {
+        document.getElementById('studioSub').textContent = `${st.videos} public videos as of ${st.snapshotDate}. Lifetime totals from YouTube Studio.`;
+        const k = document.getElementById('studioKpis');
+        const tiles = [
+          ['Videos', f(st.videos), `${st.longVideos.videos} long · ${st.shorts.videos} short`],
+          ['Lifetime views', f(st.totalViews), `median ${f(st.medianViewsPerVideo)} per video`],
+          ['Avg views / video', f(st.avgViewsPerVideo), `long ${f(st.longVideos.avgViews)} · short ${f(st.shorts.avgViews)}`],
+          ['Comments / 100 views', String(st.commentsPer100Views), `${f(st.totalComments)} comments in total`],
+          ['Last 90 days', `${st.last90Days.videos} videos`, `avg ${f(st.last90Days.avgViews)} views since ${st.last90Days.since}`],
+        ];
+        for (const [label, value, sub] of tiles) {
+          const t = e('div', 'p-4 rounded-xl bg-slate-900/80 border border-slate-800');
+          t.append(e('div', 'text-[11px] font-bold uppercase text-slate-400', label), e('div', 'text-xl font-black text-white mt-1', value), e('div', 'text-[11px] text-slate-500 mt-1', sub));
+          k.append(t);
+        }
+        const y = document.getElementById('studioYears');
+        for (const [yr, b] of Object.entries(st.byYear).reverse()) {
+          const row = e('div', 'flex justify-between gap-3 text-slate-300');
+          row.append(e('span', 'font-semibold text-white', yr), e('span', null, `${b.videos} videos · ${f(b.views)} views · avg ${f(b.avgViews)}`));
+          y.append(row);
+        }
+        const tp = document.getElementById('studioTop');
+        for (const v of st.top5) {
+          const row = e('div', 'flex justify-between gap-3');
+          row.append(e('span', 'text-slate-300 truncate', v.title), e('span', 'text-white font-semibold whitespace-nowrap', f(v.views)));
+          tp.append(row);
+        }
+        document.getElementById('studioNotes').textContent = `A/B thumbnail/title tests: ${st.abTests.running} running, ${st.abTests.completed} completed. ` + st.notes.join(' ');
+      }).catch((err) => {
+        document.getElementById('studioSub').textContent = 'Could not load data/studio/stats.json: ' + err.message;
+      });
+    })();
   </script>
   <script src="assets/cc-widget.js" data-api="/api"></script>
   <script src="assets/cc-notifications.js"></script>

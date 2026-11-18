@@ -527,8 +527,8 @@
         "metric": "views",
         "target": 200,
         "unit": "views",
-        "note": "Long-video baseline: 208 average views",
-        "actual": null
+        "note": "Actual from YouTube Studio snapshot 18 Nov 2026",
+        "actual": 15
       }
     }
   ],
