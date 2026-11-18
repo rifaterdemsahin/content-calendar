@@ -13,7 +13,9 @@ Rules:
 - Make the change the user asks for by editing content files (index.html, calendar/, okrs/, strategy/, data/, etc.).
 - You may run scripts in scripts/ if the request needs fresh data.
 - NEVER modify api/, .github/, or anything containing credentials.
-- Keep edits minimal and consistent with existing style. Do not commit; the harness commits.
+- Keep edits minimal and consistent with existing style.
+- Do NOT run git commit, git push, gh, or fly. The harness commits, opens a pull request, merges it into main
+  automatically, and publishes to the live site. Your edits are the whole job.
 - Finish with a 2-4 sentence plain summary of exactly what you changed (or why you changed nothing).
 
 The user was viewing page: ${job.page}
@@ -22,6 +24,11 @@ User request:
 ${job.message}
 `;
 }
+
+const headers = () => ({ authorization: `Bearer ${process.env.GITHUB_PAT}`, accept: 'application/vnd.github+json',
+  'content-type': 'application/json', 'user-agent': 'cc-agent' });
+
+const prTitle = (job) => `chat: ${job.message.slice(0, 70)}`;
 
 async function githubPR(branch, job, summary) {
   const res = await fetch(`https://api.github.com/repos/${REPO}/pulls`, {
@@ -32,7 +39,18 @@ async function githubPR(branch, job, summary) {
       body: `Requested from the dashboard chat.\n\n**Request:** ${job.message}\n\n**Agent summary:** ${summary}` }),
   });
   if (!res.ok) throw new Error(`PR creation failed: ${res.status} ${(await res.text()).slice(0, 200)}`);
-  return (await res.json()).html_url;
+  const pr = await res.json();
+  return { url: pr.html_url, number: pr.number };
+}
+
+// Squash-merge the pull request into main. Returns the merge commit sha.
+async function githubMerge(number, job) {
+  const res = await fetch(`https://api.github.com/repos/${REPO}/pulls/${number}/merge`, {
+    method: 'PUT', headers: headers(),
+    body: JSON.stringify({ merge_method: 'squash', commit_title: prTitle(job) }),
+  });
+  if (!res.ok) throw new Error(`merge failed: ${res.status} ${(await res.text()).slice(0, 200)}`);
+  return (await res.json()).sha;
 }
 
 async function runJob(id, ctx) {
@@ -85,7 +103,10 @@ async function runJob(id, ctx) {
     await sh(`git add -A -- . ":!api" ":!.github" && git commit -m ${JSON.stringify('chat: ' + job.message.slice(0, 72))}`, 'repo');
     await sh(`git push https://x-access-token:${process.env.GITHUB_PAT}@github.com/${REPO}.git ${branch}`, 'repo', 120);
     const pr = await githubPR(branch, job, summary);
-    await update({ status: 'done', step: 'finished', summary, changed: true, branch, pr });
+    await update({ step: 'merging into main', pr: pr.url });
+    const mergeSha = await githubMerge(pr.number, job);
+    await update({ status: 'done', step: 'merged; publishing', summary, changed: true, branch, pr: pr.url,
+      merged: true, mergeSha, mergedAt: new Date().toISOString(), published: 'pending' });
   } catch (e) {
     ctx.error(e);
     await update({ status: 'error', error: String(e.message).replace(process.env.GITHUB_PAT || '\0', '***').slice(0, 600) });
@@ -94,4 +115,25 @@ async function runJob(id, ctx) {
   }
 }
 
-module.exports = { runJob, buildPrompt };
+// Checks the "Deploy to Fly.io" workflow run for the merge commit. Called by the job endpoint while a
+// merged job is still publishing. Persists the result on the job.
+async function publishStatus(job) {
+  if (!job.merged || !job.mergeSha || job.published === 'success' || job.published === 'failed') return job;
+  const res = await fetch(`https://api.github.com/repos/${REPO}/actions/runs?head_sha=${job.mergeSha}&per_page=20`, { headers: headers() });
+  if (!res.ok) return job;
+  const run = ((await res.json()).workflow_runs || []).find((r) => r.name.startsWith('Deploy to Fly.io'));
+  let next = null;
+  if (!run) {
+    if (Date.now() - Date.parse(job.mergedAt) > 5 * 60 * 1000) next = { published: 'failed', publishError: 'the deploy workflow did not start' };
+  } else if (run.status === 'completed') {
+    next = run.conclusion === 'success'
+      ? { published: 'success', publishError: null, publishedAt: new Date().toISOString() }
+      : { published: 'failed', publishError: `deploy ${run.conclusion}` };
+  }
+  if (!next) return job;
+  const updated = Object.assign(job, next, { updated: new Date().toISOString(), step: next.published === 'success' ? 'live' : 'publish failed' });
+  await store.writeJson(`jobs/${job.id}.json`, updated);
+  return updated;
+}
+
+module.exports = { runJob, buildPrompt, publishStatus };

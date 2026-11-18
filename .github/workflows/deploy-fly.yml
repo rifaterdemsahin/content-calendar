@@ -1,0 +1,30 @@
+# Publishes the live site (Fly.io) whenever main changes, including changes merged from the dashboard chat.
+# Needs one repository secret: FLY_API_TOKEN (create with `fly tokens create deploy`).
+name: Deploy to Fly.io
+
+on:
+  push:
+    branches: [main]
+    # Content changes publish here. Server and API changes already publish through deploy.yml.
+    paths-ignore:
+      - 'server/**'
+      - 'api/**'
+      - 'fly.toml'
+      - 'scripts/deploy.sh'
+  workflow_dispatch:
+
+concurrency:
+  group: fly-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

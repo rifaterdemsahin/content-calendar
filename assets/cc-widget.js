@@ -398,28 +398,55 @@
   function paintChat() {
     log.replaceChildren(...chatLog.map((m) => {
       const n = el('div', { className: `card msg ${m.role === 'user' ? 'user' : ''}`, textContent: m.text });
-      if (m.pr) n.append('\n\n', el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: 'Review & merge pull request →' }));
+      if (m.pr) n.append('\n\n', el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: m.merged ? 'View the merged pull request →' : 'View the pull request →' }));
       return n;
     }));
     // Scroll only the chat pane, not the whole page, so the newest message stays readable.
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
+  // Centre-of-page refresh button, shown once a change is merged and live.
+  function showRefresh() {
+    if (document.getElementById('ccw-refresh')) return;
+    const b = el('button', { id: 'ccw-refresh', textContent: '↻ Refresh to see the change' });
+    b.setAttribute('style', 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:100020;background:#16a34a;color:#fff;border:0;border-radius:999px;padding:14px 26px;font:700 16px system-ui,sans-serif;box-shadow:0 18px 50px #000b;cursor:pointer;animation:ccw-pop .45s ease-out');
+    const st = document.createElement('style');
+    st.textContent = '@keyframes ccw-pop{0%{transform:translate(-50%,-50%) scale(.6);opacity:0}60%{transform:translate(-50%,-50%) scale(1.06);opacity:1}100%{transform:translate(-50%,-50%) scale(1)}}';
+    document.head.append(st);
+    b.onclick = () => location.reload();
+    document.body.append(b);
+  }
+
+  // Polls the job until it is done and, once merged, until it is live on the site.
+  // Returns when the job reaches a final state (live, publish failed, or agent error).
   async function trackJob(m) {
     try {
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 240; i++) {
         await new Promise((r) => setTimeout(r, 4000));
         const job = await (await api(`/jobs/${m.jobId}`)).json();
-        m.text = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
         if (job.status === 'error') { m.text = `Error: ${job.error}`; m.pending = false; break; }
-        if (job.status === 'done') {
-          m.text = job.summary || 'Done.';
-          if (job.pr) m.pr = job.pr; else m.text += '\n\n(no file changes made)';
+        if (job.status !== 'done') {
+          m.text = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
+          saveChat(); paintChat(); continue;
+        }
+        // The agent is finished. Show its summary, then follow publishing if the change was merged.
+        m.summary = job.summary || 'Done.';
+        if (job.pr) m.pr = job.pr;
+        m.merged = !!job.merged;
+        m.published = job.published || null;
+        if (!job.merged) { m.text = m.summary + '\n\n(no file changes made)'; m.pending = false; break; }
+        if (job.published === 'success') {
+          m.text = m.summary + '\n\n✓ Merged into main and live on the site.';
+          m.pending = false; saveChat(); paintChat(); showRefresh(); break;
+        }
+        if (job.published === 'failed') {
+          m.text = m.summary + `\n\n✗ Merged, but publishing failed: ${job.publishError || 'unknown error'}`;
           m.pending = false; break;
         }
+        m.text = m.summary + '\n\n⏳ Merged. Publishing to the live site…';
         saveChat(); paintChat();
       }
-      if (m.pending) { m.text = 'Still running — it will show here when you reopen the chat.'; m.pending = false; }
+      if (m.pending) { m.text = 'Still running. It will show here when you reopen the chat.'; m.pending = false; }
     } catch (e) { m.text = `Error: ${e.message}`; m.pending = false; }
     saveChat(); paintChat(); send.disabled = chatLog.some((x) => x.pending);
   }

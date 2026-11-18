@@ -2,7 +2,7 @@ const { app } = require('@azure/functions');
 const crypto = require('node:crypto');
 const { checkAuth } = require('../lib/auth');
 const store = require('../lib/store');
-const { runJob } = require('../lib/runAgent');
+const { runJob, publishStatus } = require('../lib/runAgent');
 
 app.http('chatStart', {
   route: 'chat', methods: ['POST'], authLevel: 'anonymous',
@@ -28,8 +28,10 @@ app.http('jobGet', {
   handler: async (req) => {
     const denied = checkAuth(req);
     if (denied) return denied;
-    const job = await store.readJson(`jobs/${req.params.id}.json`);
-    return job ? { jsonBody: job } : { status: 404, jsonBody: { error: 'not found' } };
+    let job = await store.readJson(`jobs/${req.params.id}.json`);
+    if (!job) return { status: 404, jsonBody: { error: 'not found' } };
+    if (job.merged && job.published === 'pending') job = await publishStatus(job);
+    return { jsonBody: job };
   },
 });
 
