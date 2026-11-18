@@ -26,7 +26,7 @@ Use this file as your active production kanban and weekly OKR scoreboard. Update
   - Pipeline: `[ ] IDEA` → `[ ] SCRIPT` → `[ ] RECORD` → `[ ] EDIT` → `[ ] ASSET (JSON)` → `[ ] SCHED`
 - [ ] **Fri Short:** *Why n8n + Local LLMs is the Ultimate Privacy Stack*
   - Pipeline: `[ ] IDEA` → `[ ] SCRIPT` → `[ ] RECORD` → `[ ] EDIT` → `[ ] SCHED`
-- [ ] **Sat Skool Live:** *Live Workflow Clinic*
+- [ ] **Sun 13:30 Skool Live:** *Live Workflow Clinic*
   - Prep: `[ ] EVENT CREATED` → `[ ] ZOOM LINK SET` → `[ ] ANNOUNCED`
 - [ ] **Sat Short (Repurposed):** *The 1 Mistake in n8n Agent Loops*
   - Pipeline: `[ ] CUT FROM WED` → `[ ] CAPTIONS` → `[ ] SCHED`

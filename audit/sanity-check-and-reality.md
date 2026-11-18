@@ -100,7 +100,7 @@ Your Shorts series is now mapped directly to the **16-Day Tokenization & Under-t
 3. **Produce 1 High-Retention Long-Form Tutorial:** Build *"Managing 5 AI Coding Agents as a Delivery Pilot"* using the Coursera 3 x 5-minute module structure.
 
 ### 🟡 Medium-Term Actions (Days 31 – 90): Watch Hours & Skool Seeding
-1. **Host Bi-Weekly Live Clinics in Skool:** Host live screen-share troubleshooting sessions every other Saturday. Record and archive them inside the Skool Classroom.
+1. **Host Bi-Weekly Live Clinics in Skool:** Host live screen-share troubleshooting sessions every other Sunday at 13:30. Record and archive them inside the Skool Classroom.
 2. **Package 1 Irresistible Lead Magnet:** Export your personal production n8n workflow `.json` and dotfiles. Make it available *only* to verified Skool members.
 3. **Cross-Link Every Short to a Long-Form Parent:** Use YouTube's "Related Video" feature on Shorts to point every `99percentTopicsAI` short directly to Wednesday's long-form deep dive.
 
