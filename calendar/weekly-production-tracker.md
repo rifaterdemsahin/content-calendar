@@ -24,12 +24,12 @@ Use this file as your active production kanban and weekly OKR scoreboard. Update
   - Status: `[ ] DRAFTED` → `[ ] POSTED`
 - [ ] **Wed Long Video:** *Building a Production AI Agent in n8n from Scratch*
   - Pipeline: `[ ] IDEA` → `[ ] SCRIPT` → `[ ] RECORD` → `[ ] EDIT` → `[ ] ASSET (JSON)` → `[ ] SCHED`
-- [ ] **Thu Short (Repurposed):** *The 1 Mistake in n8n Agent Loops*
-  - Pipeline: `[ ] CUT FROM WED` → `[ ] CAPTIONS` → `[ ] SCHED`
 - [ ] **Fri Short:** *Why n8n + Local LLMs is the Ultimate Privacy Stack*
   - Pipeline: `[ ] IDEA` → `[ ] SCRIPT` → `[ ] RECORD` → `[ ] EDIT` → `[ ] SCHED`
 - [ ] **Sat Skool Live:** *Live Workflow Clinic*
   - Prep: `[ ] EVENT CREATED` → `[ ] ZOOM LINK SET` → `[ ] ANNOUNCED`
+- [ ] **Sat Short (Repurposed):** *The 1 Mistake in n8n Agent Loops*
+  - Pipeline: `[ ] CUT FROM WED` → `[ ] CAPTIONS` → `[ ] SCHED`
 - [ ] **Sun Digest:** *Week in Review & Member Shoutouts*
   - Status: `[ ] DRAFTED` → `[ ] SENT`
 

@@ -119,11 +119,11 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 | **Monday** | **Short #1** | YouTube Shorts | Tactical hack / Tool speedrun | Top-of-funnel discovery (KR 1.2) |
 | **Tuesday** | **Skool Post** | Skool Community | Discussion prompt / Weekly challenge | Member activation & retention (KR 2.3) |
 | **Wednesday** | **Long Video** | YouTube Main | Technical deep dive / End-to-end build | Subscriber trust & lead generation (KR 1.1, 2.2) |
-| **Thursday** | **Short #2** | YouTube Shorts | Repurposed aha! moment from Wednesday | Repurposing turnaround (KR 3.3) |
 | **Friday** | **Short #3** | YouTube Shorts | Delivery Pilot mindset / Architecture | Thought leadership & traffic (KR 1.3) |
-| **Saturday** | **Course / Live** | YouTube / Skool | Bi-weekly masterclass / Live clinic | Cornerstone authority & loyalty (KR 1.4, 2.4) |
-| **Sunday** | **Weekly Digest** | Skool / Email | Community wrap-up, wins, next week preview | 30-day retention & culture (KR 2.5) |
+| **Saturday** | **Course / Live + Short #2** | YouTube / Skool | Bi-weekly masterclass / Live clinic; plus a scheduled Short repurposed from Wednesday | Cornerstone authority & loyalty (KR 1.4, 2.4), repurposing turnaround (KR 3.3) |
+| **Sunday** | **Skool Cohort + Weekly Digest** | Skool / Email | Live cohort session (20 run so far, each saved to Skool) + community wrap-up & next-week preview | 30-day retention & culture (KR 2.5) |
 
+👉 Blocked & fixed days (Thursday travel, Wednesday college recording, Sunday cohorts): [`blocked.html`](https://rifat-content-calendar.fly.dev/blocked.html)  
 👉 Explore the day-by-day 4-week calendar matrix: [`calendar/detailed-calendar-matrix.md`](file:///home/rifaterdemsahin/projects/content-calendar/calendar/detailed-calendar-matrix.md)  
 👉 Track active production and weekly metrics: [`calendar/weekly-production-tracker.md`](file:///home/rifaterdemsahin/projects/content-calendar/calendar/weekly-production-tracker.md)
 

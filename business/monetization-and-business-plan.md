@@ -65,7 +65,7 @@ Baseline: 725 subs | Need: +275 subs & 4,000 watch hours
 * **Driver:** One technical tutorial on n8n or Claude Code hits YouTube search/suggested algorithm and gets 15k+ views.
 
 ### Scenario B: Recommended Steady Pace (75 – 90 Days) — *Target Plan*
-* **Cadence:** 1 Long Tutorial/week (Wed) + 3 Shorts/week (Mon/Thu/Fri) + 1 Bi-weekly Masterclass (Sat).
+* **Cadence:** 1 Long Tutorial/week (Wed) + 3 Shorts/week (Mon/Fri/Sat) + 1 Bi-weekly Masterclass (Sat).
 * **Velocity:** ~35–45 subs/week, 350–450 watch hours/week.
 * **YPP Monetization Date:** **Mid-February 2027**.
 * **Driver:** Consistent weekly releases compounding with back-catalog search traffic.

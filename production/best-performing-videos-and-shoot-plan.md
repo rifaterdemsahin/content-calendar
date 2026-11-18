@@ -153,6 +153,6 @@ Rather than filming every day, follow this high-output weekly workflow:
 | **Monday PM** | 13:00 - 15:30 | **Shooting Block (Desk):** Record Long-Form A-roll + Screen capture | 1 Master Raw Long Video |
 | **Tuesday AM** | 09:00 - 12:00 | **Post-Production:** Edit long video, create thumbnail, export JSON | 1 Ready Long Video + Skool Asset |
 | **Tuesday PM** | 13:00 - 14:30 | **Repurposing Block:** Cut 2 Shorts from the master edit + add captions | 2 Finished Shorts |
-| **Thursday PM** | 16:00 - 17:00 | **Outdoor Walk (Cambridge):** Film 3 quick mindset Short hooks | 3 Finished B-roll / Hook Shorts |
+| **Friday PM** | 16:00 - 17:00 | **Outdoor Walk (Cambridge):** Film 3 quick mindset Short hooks | 3 Finished B-roll / Hook Shorts |
 
 **Total Production Commitment:** ~10.5 hours per week to generate **1 Long Video, 3-5 Shorts, and 1 Skool asset**.

@@ -1,0 +1,32 @@
+{
+  "updated": "2026-11-18",
+  "blocked": [
+    {
+      "weekday": "Thursday",
+      "reason": "Traveling",
+      "effect": "No filming, no live sessions, nothing that needs me on the day."
+    }
+  ],
+  "extraDates": [],
+  "fixed": [
+    {
+      "weekday": "Wednesday",
+      "icon": "🏫",
+      "title": "Sixth Form College recording",
+      "detail": "Recording happens at the college: screen capture + A-roll. This is the master long-form recording the week's Shorts are cut from."
+    },
+    {
+      "weekday": "Sunday",
+      "icon": "👥",
+      "title": "Skool cohorts",
+      "detail": "20 cohorts run so far. Each one is saved to the Skool platform afterwards."
+    }
+  ],
+  "moved": [
+    {
+      "item": "Repurposed Short (was Thursday)",
+      "to": "Saturday",
+      "note": "Scheduled in advance, cut from Wednesday's video, so it needs no live time on the day."
+    }
+  ]
+}

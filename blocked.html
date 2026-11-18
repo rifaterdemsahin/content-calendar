@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blocked Days | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="index.html#calendar" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Calendar</a>
+      <span class="font-bold tracking-tight">⛔ Blocked Days</span>
+      <span class="w-16"></span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+    <section>
+      <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest">Not available</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Days I can't film, go live, or publish by hand</h1>
+      <p class="text-slate-400 mt-3 max-w-2xl">Nothing in the content calendar is planned on these days. Anything that used to sit on one has been moved (see below).</p>
+      <div id="blocked" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
+      <div id="extra" class="mt-4"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Fixed weekly commitments</h2>
+      <p class="text-3xl font-bold text-white mt-2">Days that are already spoken for</p>
+      <div id="fixed" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-amber-400 uppercase tracking-widest">What moved</h2>
+      <div id="moved" class="mt-4 grid gap-4"></div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Edit <code class="text-slate-400">data/blocked-days.json</code> (or ask the chat agent) to update this page.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
+    const card = (cls, ...kids) => { const c = el('div', `p-5 rounded-xl border ${cls}`); kids.forEach((k) => c.append(k)); return c; };
+    fetch('data/blocked-days.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('blocked').append(...d.blocked.map((b) => card('bg-red-950/30 border-red-500/30',
+        el('div', 'text-xs uppercase font-bold text-red-400', 'Every ' + b.weekday),
+        el('div', 'text-lg font-bold text-white mt-1', b.reason),
+        el('div', 'text-sm text-slate-300 mt-2', b.effect))));
+      const extra = document.getElementById('extra');
+      extra.append(el('div', 'text-sm text-slate-400', d.extraDates.length ? 'Also blocked: ' + d.extraDates.map((x) => x.date + (x.reason ? ` (${x.reason})` : '')).join(', ') : 'No one-off blocked dates yet.'));
+      document.getElementById('fixed').append(...d.fixed.map((f) => card('bg-slate-900 border-slate-800',
+        el('div', 'text-xs uppercase font-bold text-indigo-400', f.weekday),
+        el('div', 'text-lg font-bold text-white mt-1', `${f.icon} ${f.title}`),
+        el('div', 'text-sm text-slate-300 mt-2', f.detail))));
+      document.getElementById('moved').append(...d.moved.map((m) => card('bg-slate-900 border-slate-800',
+        el('div', 'font-bold text-white', `${m.item} → ${m.to}`), el('div', 'text-sm text-slate-400 mt-1', m.note))));
+      document.getElementById('status').textContent = 'Last updated ' + d.updated;
+    }).catch(() => { document.getElementById('status').textContent = 'Could not load data/blocked-days.json'; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+</body>
+</html>

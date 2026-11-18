@@ -28,6 +28,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
     code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .dd-panel{display:none}.dd:hover>.dd-panel,.dd:focus-within>.dd-panel,.dd.open>.dd-panel{display:block}
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
@@ -44,33 +45,44 @@
           <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 ml-2">Content Engine</span>
         </div>
       </div>
-      <nav class="hidden md:flex items-center space-x-3.5 text-xs font-medium text-slate-300" aria-label="Sections">
-        <div class="flex items-center gap-2.5 pl-3 border-l border-slate-700 first:border-0 first:pl-0">
-          <span class="hidden xl:inline text-[10px] uppercase tracking-widest text-slate-500">Plan</span>
-          <a href="#calendar" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🗓️ Calendar</a>
-          <a href="#production" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎥 Setups</a>
+      <nav class="hidden md:flex items-center gap-0.5 text-xs font-medium text-slate-300" aria-label="Sections">
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🗓️ Plan <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="#calendar" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🗓️ Calendar</a>
+          <a href="#production" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎥 Setups</a>
+          <a href="blocked.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">⛔ Blocked days</a>
+          </div></div>
         </div>
-        <div class="flex items-center gap-2.5 pl-3 border-l border-slate-700 first:border-0 first:pl-0">
-          <span class="hidden xl:inline text-[10px] uppercase tracking-widest text-slate-500">Results</span>
-          <a href="#latest" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎬 Latest</a>
-          <a href="#performance" class="hover:text-indigo-400 transition-colors flex items-center gap-1">📈 Past Stats</a>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">📈 Results <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="#latest" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎬 Latest videos</a>
+          <a href="#performance" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📈 Past stats</a>
+          </div></div>
         </div>
-        <div class="flex items-center gap-2.5 pl-3 border-l border-slate-700 first:border-0 first:pl-0">
-          <span class="hidden xl:inline text-[10px] uppercase tracking-widest text-slate-500">Goals</span>
-          <a href="#okrs" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🎯 OKRs</a>
-          <a href="#projections" class="hover:text-indigo-400 transition-colors flex items-center gap-1">📊 Numbers</a>
-          <a href="#monetization" class="hover:text-indigo-400 transition-colors flex items-center gap-1">💰 Money</a>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🎯 Goals <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="#okrs" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎯 OKRs</a>
+          <a href="#projections" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📊 Numbers</a>
+          <a href="#monetization" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💰 Money</a>
+          </div></div>
         </div>
-        <div class="flex items-center gap-2.5 pl-3 border-l border-slate-700 first:border-0 first:pl-0">
-          <span class="hidden xl:inline text-[10px] uppercase tracking-widest text-slate-500">Strategy</span>
-          <a href="#rationale" class="hover:text-indigo-400 transition-colors flex items-center gap-1">💡 Rationale</a>
-          <a href="#sanity" class="hover:text-indigo-400 transition-colors flex items-center gap-1 text-amber-400">🛡️ Reality Check</a>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🧭 Strategy <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="#rationale" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💡 Rationale</a>
+          <a href="#sanity" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap text-amber-400">🛡️ Reality check</a>
+          </div></div>
         </div>
-        <div class="flex items-center gap-2.5 pl-3 border-l border-slate-700 first:border-0 first:pl-0">
-          <span class="hidden xl:inline text-[10px] uppercase tracking-widest text-slate-500">Docs</span>
-          <a href="key-vault.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🔐 Key Vault</a>
-          <a href="requirements.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1">📋 Requirements</a>
-          <a href="expectations.html" class="hover:text-indigo-400 transition-colors flex items-center gap-1">🧭 Expectations</a>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">📚 Docs <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="key-vault.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔐 Key Vault</a>
+          <a href="requirements.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📋 Requirements</a>
+          <a href="expectations.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧭 Expectations</a>
+          </div></div>
         </div>
       </nav>
       <div class="flex items-center space-x-3">
@@ -165,14 +177,14 @@
               <div class="text-slate-400 mt-1">18m tutorial + workflow JSON in Skool.</div>
             </div>
             <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
-              <span class="text-[10px] uppercase font-bold text-red-400">Thu • Short</span>
-              <div class="font-bold text-white mt-1">The 1 Mistake in n8n Loops</div>
-              <div class="text-slate-400 mt-1">Repurposed highlight on error handling.</div>
-            </div>
-            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
               <span class="text-[10px] uppercase font-bold text-purple-400">Sat • Skool Live</span>
               <div class="font-bold text-white mt-1">Live Workflow Debugging Clinic</div>
               <div class="text-slate-400 mt-1">Auditing member n8n workflows live.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Sat • Short</span>
+              <div class="font-bold text-white mt-1">The 1 Mistake in n8n Loops</div>
+              <div class="text-slate-400 mt-1">Repurposed highlight on error handling.</div>
             </div>
           </div>
         </div>
@@ -231,14 +243,14 @@
               <div class="text-slate-400 mt-1">25m tutorial + hybrid search repo.</div>
             </div>
             <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
-              <span class="text-[10px] uppercase font-bold text-red-400">Thu • Short</span>
-              <div class="font-bold text-white mt-1">Double RAG Accuracy in 60s</div>
-              <div class="text-slate-400 mt-1">Semantic chunking and reranking tip.</div>
-            </div>
-            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
               <span class="text-[10px] uppercase font-bold text-purple-400">Sat • Skool Live</span>
               <div class="font-bold text-white mt-1">RAG Architecture Troubleshooting</div>
               <div class="text-slate-400 mt-1">Reviewing member vector DB setups.</div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-slate-950 border border-slate-800">
+              <span class="text-[10px] uppercase font-bold text-red-400">Sat • Short</span>
+              <div class="font-bold text-white mt-1">Double RAG Accuracy in 60s</div>
+              <div class="text-slate-400 mt-1">Semantic chunking and reranking tip.</div>
             </div>
           </div>
         </div>
@@ -286,6 +298,15 @@
         <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Studio & Setups</h2>
         <p class="text-3xl font-bold text-white mt-2">Shooting Locations & Production Formats</p>
         <p class="text-slate-400 text-sm mt-3">Optimized physical setups paired with Coursera-style modular video delivery for Skool.</p>
+      </div>
+
+      <div class="mb-8 p-6 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex flex-col md:flex-row md:items-center gap-4">
+        <div class="w-10 h-10 shrink-0 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-lg"><i class="fas fa-school"></i></div>
+        <div>
+          <span class="text-xs font-mono text-indigo-300 uppercase font-semibold">Every Wednesday • Long-form recording day</span>
+          <h3 class="text-lg font-bold text-white mt-1">Sixth Form College Setup</h3>
+          <p class="text-slate-300 text-sm mt-1">Screen capture + A-roll recorded on site. This is the master recording the week's Shorts are cut from. See <a href="blocked.html" class="text-indigo-300 underline">blocked &amp; fixed days</a>.</p>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -1367,6 +1388,19 @@
     </div>
   </footer>
 
+  <script>
+    // Dropdown nav: hover on desktop, click/tap to toggle, Esc or outside click to close.
+    (() => {
+      const dds = [...document.querySelectorAll('.dd')];
+      const closeAll = (except) => dds.forEach((d) => { if (d !== except) { d.classList.remove('open'); d.querySelector('.dd-btn').setAttribute('aria-expanded', 'false'); } });
+      dds.forEach((d) => d.querySelector('.dd-btn').addEventListener('click', (e) => {
+        e.stopPropagation(); closeAll(d); const open = d.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', open);
+      }));
+      document.addEventListener('click', () => closeAll());
+      document.addEventListener('keydown', (e) => e.key === 'Escape' && closeAll());
+      document.querySelectorAll('.dd-panel a').forEach((a) => a.addEventListener('click', () => closeAll()));
+    })();
+  </script>
   <script src="assets/cc-widget.js" data-api="/api"></script>
   <script src="assets/cc-notifications.js"></script>
 </body>
