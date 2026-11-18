@@ -16,7 +16,7 @@ How modern engineers build production autonomous workflows using n8n and LLMs.
 | **Tue** | Skool Post | *"What is the 1 task in your job you wish an AI agent handled?"* | Community poll & discussion to gather video ideas. | Skool Discussion thread |
 | **Wed** | Long Video | **"Building a Full AI Agent in n8n from Scratch (No Fluff)"** (18 min) | Step-by-step setup: trigger, memory, tool calling, and output formatting. | Exported n8n workflow `.json` in Skool |
 | **Fri** | Short | *"Why n8n + Local LLMs is the ultimate privacy stack"* | Overview of running Ollama/LM Studio with local n8n. | Local setup checklist |
-| **Sat** | Skool Live / Office Hours | *"Live Debugging: Member Agent Workflows"* | Live stream / session for Skool members fixing their n8n flows. | Recording saved to Skool Classroom |
+| **Sun 13:30** | Skool Live / Office Hours | *"Live Debugging: Member Agent Workflows"* | Live stream / session for Skool members fixing their n8n flows. | Recording saved to Skool Classroom |
 | **Sat** | Short | *"The Biggest Mistake in n8n Agent Loops (and How to Fix It)"* | Snippet extracted from Wednesday's video highlighting error handling. | Mention: "Full fix in Wed's video" |
 
 ---
@@ -48,7 +48,7 @@ Connecting LLMs to proprietary data, docs, and internal company resources.
 | **Tue** | Skool Post | *"Resource Drop: My Personal Vector DB Comparison Sheet"* | Exclusive value drop inside Skool to reward members. | Comparison Sheet (Skool Classroom) |
 | **Wed** | Long Video | **"RAG is NOT Dead: Build an Agentic RAG System that Actually Works"** (25 min) | Hybrid search, reranking, and query decomposition explained visually. | GitHub repo link + Skool discussion |
 | **Fri** | Short | *"Self-hosted vs Cloud Vector Databases in 60 Seconds"* | Qdrant / Chroma / Pinecone trade-offs. | Architecture diagram PNG |
-| **Sat** | Skool Workshop | *"RAG Troubleshooting Clinic"* | Reviewing member knowledge bases and ingestion pipelines. | Session notes added to Classroom |
+| **Sun 13:30** | Skool Workshop | *"RAG Troubleshooting Clinic"* | Reviewing member knowledge bases and ingestion pipelines. | Session notes added to Classroom |
 | **Sat** | Short | *"Chunking strategy that doubled my RAG retrieval accuracy"* | Practical trick with semantic chunking. | Pinned link to Wednesday deep dive |
 
 ---

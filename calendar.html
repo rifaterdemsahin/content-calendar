@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar View | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html#calendar" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Calendar</a>
+      <span class="font-bold tracking-tight hidden sm:inline">📅 Calendar View</span>
+      <div class="flex items-center gap-2">
+        <button id="menu-search-btn" type="button" class="flex items-center gap-2 px-2.5 py-1 text-xs text-slate-300 bg-slate-900/90 hover:bg-slate-800 hover:text-white border border-slate-700/80 rounded-lg transition" aria-label="Search">
+          <i class="fas fa-search text-indigo-400 text-xs"></i>
+          <span class="hidden md:inline font-medium">Search...</span>
+          <kbd class="hidden md:inline-flex text-[10px] bg-slate-800 text-slate-400 px-1 py-0.5 rounded border border-slate-700 font-mono">⌘K</kbd>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <h1 class="text-3xl font-bold text-white">4-week content calendar</h1>
+    <p class="text-slate-400 mt-2 text-sm">Same plan as the Calendar section, laid out Mon–Sun. Thursday is blocked (travel). Skool Live is Sunday 13:30.</p>
+    <div class="mt-4 flex flex-wrap gap-2 text-[11px] font-bold uppercase">
+      <span class="text-red-400">Short</span><span class="text-indigo-400">Long video</span><span class="text-purple-400">Skool Live</span><span class="text-amber-400">Course</span><span class="text-emerald-400">Skool post / digest</span>
+    </div>
+    <div id="cal" class="mt-6 space-y-6 overflow-x-auto"></div>
+  </main>
+  <script>
+    const T={s:['Short','text-red-400'],l:['Long video','text-indigo-400'],k:['Skool Live 13:30','text-purple-400'],c:['Course','text-amber-400'],p:['Skool post','text-emerald-400'],d:['Digest','text-emerald-400']};
+    const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    // [label, start date (Mon), items by day index: [type,title]]
+    const weeks=[
+     ['Week 1 · Production AI Agents & n8n','Nov 18',{0:[['s','Stop Writing Repetitive Python Scripts']],1:[['p','Poll: #1 manual task for an AI agent']],2:[['l','Building a Production AI Agent in n8n']],4:[['s','n8n + Local LLMs Privacy Stack']],5:[['s','The 1 Mistake in n8n Agent Loops']],6:[['k','Live Workflow Clinic: Debugging Member n8n Flows'],['d','Week in Review']]}],
+     ['Week 2 · Delivery Pilot Paradigm Shift','Nov 25',{0:[['s','Are Software Engineers Obsolete?']],1:[['p','Showcase Tuesday']],2:[['l','Delivery Pilot: Managing 5 AI Coding Agents']],4:[['s','3 Terminal CLI Tools for AI Dev']],5:[['c','Delivery Pilot Masterclass Pt 1 (50m)'],['s','Review 1,000 Lines of AI Code in 2 Min']],6:[['d','Delivery Pilot Weekly Dispatch']]}],
+     ['Week 3 · Agentic RAG & Private Data','Dec 02',{0:[['s','Why Simple Vector Search Fails']],1:[['p','Vector DB Comparison Sheet']],2:[['l','RAG is NOT Dead: Agentic RAG Pipeline']],4:[['s','Self-Hosted vs Cloud Vector DBs']],5:[['s','Semantic Chunking Trick']],6:[['k','RAG Architecture & Knowledge Base Workshop'],['d','RAG Master Guide']]}],
+     ['Week 4 · Multi-Agent Swarms & Cloud','Dec 09',{0:[['s','Single Agent vs Multi-Agent Swarm']],1:[['p','Member Spotlight']],2:[['l','Deploying AI Agents on Cloud (Docker & VPS)']],4:[['s','My $10/Month Production AI Stack']],5:[['c','Multi-Agent Blueprint Pt 2 (65m)'],['s','Stop Runaway AI Agents']],6:[['d','Monthly Milestone & Q1 Review']]}]
+    ];
+    const MON={Nov:11,Dec:12};
+    const cal=document.getElementById('cal');
+    weeks.forEach(([name,start,items])=>{
+      const [m,d0]=start.split(' ');
+      const wrap=document.createElement('div');
+      wrap.innerHTML=`<h2 class="text-sm font-bold text-white mb-2">${name}</h2>`;
+      const g=document.createElement('div');
+      g.className='grid grid-cols-7 gap-2 min-w-[900px]';
+      days.forEach((dn,i)=>{
+        const dt=new Date(2026,MON[m]-1,+d0+i);
+        const lbl=dt.toLocaleString('en',{month:'short'})+' '+dt.getDate();
+        const blocked=dn==='Thu';
+        const c=document.createElement('div');
+        c.className='p-2.5 rounded-lg border min-h-[120px] '+(blocked?'bg-red-950/30 border-red-900/50':'bg-slate-900/80 border-slate-800');
+        let h=`<div class="text-[10px] font-bold text-slate-500 uppercase">${dn} · ${lbl}</div>`;
+        if(blocked) h+='<div class="mt-2 text-xs text-red-400">⛔ Travel – blocked</div>';
+        (items[i]||[]).forEach(([t,title])=>{h+=`<div class="mt-2"><div class="text-[10px] uppercase font-bold ${T[t][1]}">${T[t][0]}</div><div class="text-xs text-white">${title}</div></div>`});
+        c.innerHTML=h; g.append(c);
+      });
+      wrap.append(g); cal.append(wrap);
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+</body>
+</html>
