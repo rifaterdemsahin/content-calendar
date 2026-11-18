@@ -281,6 +281,12 @@
       top.append(left, clock);
       box.append(top);
 
+      if (notes?.conversion) {
+        const cv = notes.conversion;
+        const hit = cv.actual == null ? null : cv.actual >= cv.target;
+        const status = hit == null ? 'no data yet' : (hit ? 'HIT' : 'MISS');
+        box.append(line('🎯 Target:', `${cv.target} ${cv.unit} (${cv.metric}) · ${status}`, hit == null ? '#94a3b8' : (hit ? '#34d399' : '#f87171')));
+      }
       if (notes?.hook) box.append(line('🪝 Hook:', `“${notes.hook}”`, '#e2e8f0'));
       if (notes?.forAudience) box.append(line('🎁 For you:', notes.forAudience, '#a7f3d0'));
       if (notes?.learn) box.append(line('🎓 Erdem learns:', notes.learn));

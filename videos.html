@@ -47,6 +47,9 @@
       <span id="count" class="text-slate-500 text-xs"></span>
     </section>
 
+    <!-- Conversion summary -->
+    <section id="conv" class="grid grid-cols-3 gap-3"></section>
+
     <!-- Table -->
     <section class="overflow-x-auto rounded-xl border border-slate-800">
       <table class="w-full text-sm min-w-[900px]">
@@ -60,6 +63,8 @@
             <th class="text-left p-3">Audience</th>
             <th class="text-left p-3">Format</th>
             <th class="text-left p-3">Status</th>
+            <th class="text-left p-3">Conversion target</th>
+            <th class="text-left p-3">Result</th>
             <th class="text-left p-3">Reverse response</th>
             <th class="text-left p-3">Your audience already watched</th>
           </tr>
@@ -74,6 +79,10 @@
   <script>
     const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
     const pill = (name, color) => { const s = el('span', 'inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border', name); s.style.color = color; s.style.borderColor = color + '66'; s.style.background = color + '1a'; return s; };
+    const convStatus = (c) => {
+      if (!c || c.actual == null) return { label: 'no data', color: '#94a3b8' };
+      return c.actual >= c.target ? { label: 'hit', color: '#34d399' } : { label: 'miss', color: '#f87171' };
+    };
     const link = (href, text) => { const a = el('a', 'text-indigo-300 hover:underline', text); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; };
 
     fetch('data/videos.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
@@ -100,6 +109,15 @@
         wip.append(box);
       }
 
+      const convAll = videos.map((v) => convStatus(v.conversion).label);
+      const sum = (k) => convAll.filter((x) => x === k).length;
+      const cv = document.getElementById('conv');
+      for (const [k, col] of [['hit', 'text-emerald-300'], ['miss', 'text-red-300'], ['no data', 'text-slate-300']]) {
+        const b = el('div', 'p-3 rounded-xl bg-slate-900/80 border border-slate-800');
+        b.append(el('div', 'text-xs font-bold text-slate-400 uppercase', 'Conversion: ' + k), el('div', 'text-2xl font-black mt-1 ' + col, String(sum(k))));
+        cv.append(b);
+      }
+
       const rows = document.getElementById('rows');
       const draw = () => {
         const aud = fAud.value, wk = fWeek.value;
@@ -110,7 +128,7 @@
           const tdW = el('td', 'p-3 text-slate-300 whitespace-nowrap', 'Week ' + v.week);
           const tdS = el('td', 'p-3 text-slate-300 whitespace-nowrap', v.slot);
           const tdT = el('td', 'p-3');
-          const t = el('a', 'text-white font-semibold hover:text-indigo-300', v.title); t.href = 'index.html#' + v.id;
+          const t = el('a', 'text-white font-semibold hover:text-indigo-300', v.title); t.href = v.url || ('index.html#' + v.id); if (v.url) { t.target = '_blank'; t.rel = 'noopener'; }
           tdT.append(t);
           const tdH = el('td', 'p-3 text-xs text-slate-300 max-w-[220px]', v.hook || '—');
           const tdFa = el('td', 'p-3 text-xs text-emerald-200 max-w-[260px]', v.forAudience || '—');
@@ -123,7 +141,14 @@
           const tdO = el('td', 'p-3 text-xs');
           if (v.ownAudience) tdO.append(link(v.ownAudience.url, v.ownAudience.title), el('div', 'text-slate-500', v.ownAudience.views + ' views'));
           else tdO.textContent = '—';
-          tr.append(tdW, tdS, tdT, tdH, tdFa, tdA, tdF, tdSt, tdR, tdO);
+          const c = v.conversion;
+          const tdC = el('td', 'p-3 text-xs text-slate-300', c ? `${c.target} ${c.unit} · ${c.metric}` : '—');
+          const st = convStatus(c);
+          const tdRes = el('td', 'p-3 text-xs');
+          const sp = el('span', 'inline-block font-bold px-2 py-0.5 rounded-full border text-[11px]', `${st.label}${c && c.actual != null ? ' · ' + c.actual : ''}`);
+          sp.style.color = st.color; sp.style.borderColor = st.color + '66'; sp.style.background = st.color + '1a';
+          tdRes.append(sp);
+          tr.append(tdW, tdS, tdT, tdH, tdFa, tdA, tdF, tdSt, tdC, tdRes, tdR, tdO);
           return tr;
         }));
       };
@@ -131,7 +156,7 @@
       draw();
     }).catch((e) => {
       document.getElementById('rows').replaceChildren(el('tr', null, null));
-      document.getElementById('rows').firstChild.append(Object.assign(el('td', 'p-3 text-slate-400', 'Could not load data/videos.json: ' + e.message), { colSpan: 10 }));
+      document.getElementById('rows').firstChild.append(Object.assign(el('td', 'p-3 text-slate-400', 'Could not load data/videos.json: ' + e.message), { colSpan: 12 }));
     });
   </script>
   <script src="assets/cc-widget.js" data-api="/api"></script>
