@@ -169,3 +169,4 @@ Secrets (`ANTHROPIC-API-KEY`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`)
 Requirements and runbook: [`docs/requirements.md`](docs/requirements.md) · pages: [`key-vault.html`](key-vault.html), [`requirements.html`](requirements.html), [`expectations.html`](expectations.html).
 Get the token: `az keyvault secret show --vault-name dp-kv-deliverypilot -n CC-ADMIN-TOKEN --query value -o tsv`
 Redeploy the API: zip `api/` (without `node_modules`) and `az functionapp deployment source config-zip --build-remote true`. Tests: `cd api && npm test`.
+<!-- chat-agent smoke test -->
