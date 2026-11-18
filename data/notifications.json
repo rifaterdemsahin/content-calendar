@@ -8,8 +8,14 @@
       "detail": "The matrix labels Nov 18, 2026 as a Monday, but it is a Wednesday. Every date is two days ahead of its weekday label.",
       "recommendation": "Pick the real Monday Week 1 starts on, then re-date all four weeks.",
       "links": [
-        {"label": "Calendar", "href": "index.html#calendar"},
-        {"label": "Matrix source", "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/calendar/detailed-calendar-matrix.md"}
+        {
+          "label": "Calendar",
+          "href": "index.html#calendar"
+        },
+        {
+          "label": "Matrix source",
+          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/calendar/detailed-calendar-matrix.md"
+        }
       ]
     },
     {
@@ -19,8 +25,14 @@
       "detail": "Nothing was published between Sep 13 and Nov 9. The calendar assumes 3 Shorts, 1 long video, a Skool post, a live and a digest every week.",
       "recommendation": "Commit to 1 long video + 2 Shorts a week for 6 straight weeks before adding lives and masterclasses.",
       "links": [
-        {"label": "Latest uploads", "href": "index.html#latest"},
-        {"label": "Reality check", "href": "index.html#sanity"}
+        {
+          "label": "Latest uploads",
+          "href": "index.html#latest"
+        },
+        {
+          "label": "Reality check",
+          "href": "index.html#sanity"
+        }
       ]
     },
     {
@@ -30,9 +42,18 @@
       "detail": "The plan targets 150,000 views in 90 days. All 38 videos together have 7,015. Long-form averages 207 views and Shorts 99.",
       "recommendation": "Rewrite the OKR targets from your real averages and drop the percentage probabilities.",
       "links": [
-        {"label": "Numbers", "href": "index.html#projections"},
-        {"label": "OKRs", "href": "index.html#okrs"},
-        {"label": "OKR source", "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/okrs/content-and-community-okrs.md"}
+        {
+          "label": "Numbers",
+          "href": "index.html#projections"
+        },
+        {
+          "label": "OKRs",
+          "href": "index.html#okrs"
+        },
+        {
+          "label": "OKR source",
+          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/okrs/content-and-community-okrs.md"
+        }
       ]
     },
     {
@@ -42,8 +63,14 @@
       "detail": "The two Kilo Shorts got 193 and 179 views. The mindset and concept Shorts got 20 to 51.",
       "recommendation": "Make Shorts concrete tool demos (Kilo, Claude Code, n8n) and use the Delivery Pilot framing as the thread, not the hook.",
       "links": [
-        {"label": "Latest uploads", "href": "index.html#latest"},
-        {"label": "Past stats", "href": "index.html#performance"}
+        {
+          "label": "Latest uploads",
+          "href": "index.html#latest"
+        },
+        {
+          "label": "Past stats",
+          "href": "index.html#performance"
+        }
       ]
     },
     {
@@ -53,8 +80,14 @@
       "detail": "The YPP plan needs 4,000 watch hours and 1,000 subscribers. Neither figure is in the repo, and 725 subscribers is hand-entered.",
       "recommendation": "Export the 365-day channel and per-video CSVs from YouTube Studio into data/studio/.",
       "links": [
-        {"label": "What Claude needs", "href": "requirements.html"},
-        {"label": "Export guide", "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/data/studio/README.md"}
+        {
+          "label": "What Claude needs",
+          "href": "requirements.html"
+        },
+        {
+          "label": "Export guide",
+          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/data/studio/README.md"
+        }
       ]
     },
     {
@@ -64,7 +97,10 @@
       "detail": "The vault answers, but the injected Azure token returned TokenExpired, so vault contents and the managed-identity setup are unverified.",
       "recommendation": "Refresh the Key Vault connection, then check each Key Vault reference shows Resolved in the Function App.",
       "links": [
-        {"label": "Key Vault page", "href": "key-vault.html"}
+        {
+          "label": "Key Vault page",
+          "href": "key-vault.html"
+        }
       ]
     },
     {
@@ -74,7 +110,10 @@
       "detail": "Requests to www.youtube.com return 403, so the dashboard numbers are the Nov 17 snapshot.",
       "recommendation": "Add www.youtube.com, www.googleapis.com and youtubeanalytics.googleapis.com to the environment's network allowlist.",
       "links": [
-        {"label": "What Claude needs", "href": "requirements.html"}
+        {
+          "label": "What Claude needs",
+          "href": "requirements.html"
+        }
       ]
     },
     {
@@ -84,8 +123,27 @@
       "detail": "The calendar schedules 45 to 60 minute masterclasses. The README and production plan call for 3 videos of 5 minutes and a 10.5 hr/week cap.",
       "recommendation": "Pick one. If the 3x5 format stays, split each masterclass into modules.",
       "links": [
-        {"label": "Setups", "href": "index.html#production"},
-        {"label": "Course template", "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/templates/course-module-template.md"}
+        {
+          "label": "Setups",
+          "href": "index.html#production"
+        },
+        {
+          "label": "Course template",
+          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/templates/course-module-template.md"
+        }
+      ]
+    },
+    {
+      "id": "expectations-2026-11-18",
+      "severity": "info",
+      "title": "Read the realistic expectations before you plan Week 1",
+      "detail": "The likely 90-day outcome is about 6,000 to 10,000 views, against the plan's 150,000. 1,000 subscribers is more likely spring or summer 2027 than Jan to Feb.",
+      "recommendation": "Judge yourself on publishing consistency for the first 6 weeks, not on views.",
+      "links": [
+        {
+          "label": "Expectations",
+          "href": "expectations.html"
+        }
       ]
     }
   ]
