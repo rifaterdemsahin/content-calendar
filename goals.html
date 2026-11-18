@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscriber Goals | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">📈 Subscriber Goals</span>
+      <span id="asof" class="text-xs text-slate-500 whitespace-nowrap"></span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <!-- Current state -->
+    <section class="p-6 rounded-xl bg-slate-900/80 border border-slate-800">
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Where we are</div>
+      <div class="flex flex-wrap items-end gap-x-6 gap-y-2 mt-2">
+        <div><span id="subs" class="text-5xl font-black text-white">—</span> <span class="text-slate-400">subscribers</span></div>
+        <div class="text-sm text-slate-400">Weekly pace used: <strong id="rate" class="text-white">—</strong> / week</div>
+      </div>
+      <div class="mt-5">
+        <div class="flex justify-between text-xs text-slate-400 mb-1"><span>Next milestone: <strong id="next" class="text-white">—</strong></span><span id="pct"></span></div>
+        <div class="h-3 rounded-full bg-slate-800 overflow-hidden"><div id="bar" class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-400" style="width:0%"></div></div>
+        <p id="need" class="text-xs text-slate-400 mt-2"></p>
+      </div>
+      <p id="source" class="text-[11px] text-slate-500 mt-4"></p>
+    </section>
+
+    <!-- Milestones -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Milestones, in steps</h2>
+      <p class="text-sm text-slate-400 mt-1">Each step is reached in order. Dates assume the weekly pace shown; the highlighted one is the plan.</p>
+      <div id="milestones" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5"></div>
+    </section>
+
+    <!-- Rates -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Three paces</h2>
+      <div id="rates" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"></div>
+    </section>
+
+    <p class="text-xs text-slate-500">Goals are estimates from our own averages, not forecasts. Update <code class="text-indigo-300">data/goals.json</code> when the count changes; this page reads it on load.</p>
+  </main>
+
+  <script>
+    const fmtDate = (d) => d.toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+    const weeksTo = (target, from, rate) => Math.ceil((target - from) / rate);
+    const addWeeks = (base, w) => new Date(base.getTime() + w * 7 * 86400000);
+
+    function card(cls, children) {
+      const d = document.createElement('div');
+      d.className = cls; d.append(...children); return d;
+    }
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+    fetch('data/goals.json', { cache: 'no-cache' }).then((r) => r.json()).then((g) => {
+      const asOf = new Date(g.asOf + 'T00:00:00');
+      const cur = g.subscribers;
+      const active = g.activeRate;
+      const rate = g.weeklyRate[active];
+      document.getElementById('asof').textContent = 'As of ' + asOf.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+      document.getElementById('subs').textContent = cur.toLocaleString();
+      document.getElementById('rate').textContent = `${rate} (${active})`;
+      document.getElementById('source').textContent = 'Source: ' + g.source;
+
+      // Next milestone progress
+      const milestones = g.milestones.slice().sort((a, b) => a - b);
+      const next = milestones.find((m) => m > cur) ?? milestones[milestones.length - 1];
+      const prev = [...milestones].reverse().find((m) => m <= cur) ?? 0;
+      const pct = Math.max(0, Math.min(100, ((cur - prev) / (next - prev)) * 100));
+      document.getElementById('next').textContent = next.toLocaleString();
+      document.getElementById('pct').textContent = Math.round(pct) + '%';
+      document.getElementById('bar').style.width = pct.toFixed(1) + '%';
+      document.getElementById('need').textContent = `${(next - cur).toLocaleString()} to go · about ${weeksTo(next, cur, rate)} weeks at ${rate}/week`;
+
+      // Milestone cards
+      const ms = document.getElementById('milestones');
+      for (const m of milestones) {
+        const reached = cur >= m;
+        const need = m - cur;
+        const rows = Object.entries(g.weeklyRate).map(([name, r]) => {
+          const w = reached ? 0 : weeksTo(m, cur, r);
+          const row = el('div', 'flex justify-between text-sm py-1 ' + (name === active ? 'text-white font-semibold' : 'text-slate-400'));
+          row.append(el('span', null, `${name} · ${r}/wk`), el('span', null, reached ? 'reached' : fmtDate(addWeeks(asOf, w))));
+          return row;
+        });
+        ms.append(card('p-5 rounded-xl border ' + (reached ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-slate-900/80 border-slate-800'), [
+          el('div', 'text-2xl font-black text-white', m.toLocaleString() + ' subscribers'),
+          el('div', 'text-xs text-slate-400 mt-1', reached ? '✅ Reached' : `${need.toLocaleString()} more`),
+          el('div', 'mt-3 border-t border-slate-800 pt-2', null),
+          ...rows,
+        ]));
+      }
+
+      // Rate cards
+      const rs = document.getElementById('rates');
+      for (const [name, r] of Object.entries(g.weeklyRate)) {
+        const isActive = name === active;
+        rs.append(card('p-5 rounded-xl border ' + (isActive ? 'bg-indigo-500/10 border-indigo-500/40' : 'bg-slate-900/80 border-slate-800'), [
+          el('div', 'text-xs font-bold uppercase tracking-wider ' + (isActive ? 'text-indigo-300' : 'text-slate-400'), name + (isActive ? ' · plan' : '')),
+          el('div', 'text-3xl font-black text-white mt-1', `${r}/wk`),
+          el('div', 'text-xs text-slate-400 mt-2', g.rateNotes?.[name] || ''),
+          el('div', 'text-xs text-slate-300 mt-3', `1,000 by ${fmtDate(addWeeks(asOf, weeksTo(1000, cur, r)))} · 2,000 by ${fmtDate(addWeeks(asOf, weeksTo(2000, cur, r)))}`),
+        ]));
+      }
+    }).catch(() => {
+      document.getElementById('subs').textContent = '—';
+      document.getElementById('source').textContent = 'Could not load data/goals.json';
+    });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+</body>
+</html>

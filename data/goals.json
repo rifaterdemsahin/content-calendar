@@ -1,0 +1,17 @@
+{
+  "asOf": "2026-11-17",
+  "subscribers": 725,
+  "source": "Public scrape, Nov 17 2026. Replace with YouTube Studio or the YouTube Data API count when available.",
+  "activeRate": "realistic",
+  "weeklyRate": {
+    "conservative": 7,
+    "realistic": 15,
+    "stretch": 25
+  },
+  "rateNotes": {
+    "conservative": "Lifetime average (estimate)",
+    "realistic": "Base plan: consistent 3 Shorts and 1 long video a week",
+    "stretch": "Best recent weeks sustained"
+  },
+  "milestones": [1000, 1500, 2000, 2500, 3000]
+}
