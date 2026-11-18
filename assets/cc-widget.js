@@ -32,15 +32,22 @@
   #ccw .tabs button.on{color:#fff;border-bottom:2px solid #6366f1}
   #ccw .tabs button.max-btn{flex:0 0 42px;font-size:16px}
   #ccw-panel.max{right:12px;bottom:12px;width:calc(100vw - 24px);height:calc(100vh - 24px)}
-  #ccw .body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+  #ccw .body{flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
+  @media (max-width:640px){
+    #ccw-panel{left:8px;right:8px;bottom:72px;width:auto;height:calc(100vh - 140px)}
+    #ccw-panel.max{left:0;right:0;top:0;bottom:0;width:100vw;height:100vh;border-radius:0}
+    #ccw-btn{right:12px;bottom:12px}
+    #ccw-picker-btn{right:72px;bottom:12px}
+  }
   #ccw textarea,#ccw input[type=text]{width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px}
   #ccw .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
   #ccw .btn{background:#6366f1;color:#fff;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px}
   #ccw .btn.alt{background:#334155}
   #ccw .btn.del{background:#7f1d1d}
-  #ccw .card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px;font-size:13px;white-space:pre-wrap}
+  #ccw .card{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 10px;font-size:13px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;max-width:100%}
   #ccw .meta{color:#94a3b8;font-size:11px;margin-bottom:4px}
-  #ccw .msg.user{align-self:flex-end;background:#4338ca}
+  #ccw .msg{flex-shrink:0}
+  #ccw .msg.user{align-self:flex-end;background:#4338ca;max-width:88%}
   #ccw .hint{color:#94a3b8;font-size:12px}
   #ccw a{color:#a5b4fc}
   .ccw-hl{outline:2px dashed #6366f1!important;outline-offset:2px}
@@ -394,7 +401,8 @@
       if (m.pr) n.append('\n\n', el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: 'Review & merge pull request →' }));
       return n;
     }));
-    log.lastChild?.scrollIntoView();
+    // Scroll only the chat pane, not the whole page, so the newest message stays readable.
+    chatBody.scrollTop = chatBody.scrollHeight;
   }
 
   async function trackJob(m) {
