@@ -2,17 +2,13 @@
  *   <script src="assets/cc-widget.js" data-api="https://<function-app>.azurewebsites.net/api"></script>
  * Alt/Option-click any element to attach a note to that concept. */
 (() => {
-  const API = (document.currentScript?.dataset.api || '').replace(/\/$/, '');
+  const API = (document.currentScript?.dataset.api || '/api').replace(/\/$/, '');
   const PAGE = location.pathname;
-  const tokenKey = 'cc-token';
-  const getToken = () => { try { return localStorage.getItem(tokenKey) || ''; } catch { return ''; } };
-  const setToken = (t) => { try { localStorage.setItem(tokenKey, t); } catch { /* private mode */ } };
 
+  // Auth is a Microsoft sign-in handled by the server (/auth/*); the session cookie is HttpOnly.
   async function api(path, opts = {}) {
-    let token = getToken();
-    if (!token) { token = prompt('Access token (from Key Vault: CC-ADMIN-TOKEN)') || ''; setToken(token); }
-    const res = await fetch(API + path, { ...opts, headers: { 'x-cc-token': token, 'content-type': 'application/json', ...(opts.headers || {}) } });
-    if (res.status === 401) { setToken(''); throw new Error('Unauthorized — token cleared, try again'); }
+    const res = await fetch(API + path, { ...opts, credentials: 'same-origin', headers: { 'content-type': 'application/json', ...(opts.headers || {}) } });
+    if (res.status === 401) { gate(); throw new Error('Please sign in with Microsoft'); }
     if (!res.ok && res.status !== 204) throw new Error((await res.json().catch(() => ({}))).error || `HTTP ${res.status}`);
     return res;
   }
@@ -63,6 +59,20 @@
   };
   tabNotes.onclick = () => show('notes'); tabChat.onclick = () => show('chat');
   btn.onclick = () => panel.classList.toggle('open');
+
+  // Sign-in gate: shows a Microsoft sign-in card instead of the tabs when there is no session.
+  const loginCard = el('div', { className: 'body', style: 'display:none;align-items:center;justify-content:center;text-align:center' },
+    el('div', { className: 'hint', textContent: 'Notes and chat are private. Sign in with your Microsoft account to continue.' }),
+    el('a', { className: 'btn', href: '/auth/login', textContent: 'Sign in with Microsoft', style: 'text-decoration:none;color:#fff' }));
+  panel.insertBefore(loginCard, notesBody);
+  async function gate() {
+    let me = { signedIn: false };
+    try { me = await (await fetch('/auth/me', { credentials: 'same-origin' })).json(); } catch { /* server without auth (e.g. static host) */ }
+    loginCard.style.display = me.signedIn ? 'none' : 'flex';
+    panel.querySelector('.tabs').style.display = me.signedIn ? 'flex' : 'none';
+    if (me.signedIn) show(tabChat.classList.contains('on') ? 'chat' : 'notes'); else { notesBody.style.display = 'none'; chatBody.style.display = 'none'; }
+    return me.signedIn;
+  }
 
   // ---- Notes ------------------------------------------------------------
   let draftCtx = { anchor: '', concept: '' };
@@ -166,5 +176,5 @@
   };
 
   if (!API) console.warn('cc-widget: missing data-api attribute');
-  btn.addEventListener('click', () => panel.classList.contains('open') && loadNotes());
+  btn.addEventListener('click', async () => { if (panel.classList.contains('open') && await gate()) loadNotes(); });
 })();

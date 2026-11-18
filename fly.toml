@@ -1,0 +1,29 @@
+app = "rifat-content-calendar"
+primary_region = "lhr"
+
+[build]
+  dockerfile = "server/Dockerfile"
+
+[env]
+  PUBLIC_URL = "https://rifat-content-calendar.fly.dev"
+  TENANT_ID = "88586887-c739-400c-86b3-78eff83f0eb8"
+  CLIENT_ID = "6999f9f2-d020-4c2b-a8cc-edaa35417266"
+  ALLOWED_EMAIL = "info@deliverypilot.net"
+  API_UPSTREAM = "https://cc-agent-api-3ea0.azurewebsites.net/api"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  path = "/healthz"
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "10s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

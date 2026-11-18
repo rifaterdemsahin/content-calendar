@@ -44,13 +44,13 @@ async function runJob(id, ctx) {
   const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY });
   try {
     await update({ status: 'running', step: 'starting sandbox' });
-    sandbox = await daytona.create({ envVars: { ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY }, autoStopInterval: 15, labels: { app: 'cc-agent' } });
+    sandbox = await daytona.create({ autoStopInterval: 15, labels: { app: 'cc-agent' } });
 
     await update({ step: 'cloning repo' });
     const branch = `chat/${id.slice(0, 8)}`;
     await sandbox.git.clone(`https://github.com/${REPO}.git`, 'repo', BASE, undefined, 'x-access-token', process.env.GITHUB_PAT);
-    const sh = async (cmd, cwd, timeout = 120) => {
-      const r = await sandbox.process.executeCommand(cmd, cwd, undefined, timeout);
+    const sh = async (cmd, cwd, timeout = 120, env) => {
+      const r = await sandbox.process.executeCommand(cmd, cwd, env, timeout);
       if (r.exitCode !== 0) throw new Error(`\`${cmd.slice(0, 60)}\` failed: ${(r.result || '').slice(-400)}`);
       return r.result || '';
     };
@@ -63,7 +63,18 @@ async function runJob(id, ctx) {
     await sandbox.fs.uploadFile(Buffer.from(buildPrompt(job, notesMd)), 'prompt.txt');
 
     await update({ step: 'agent working' });
-    const out = await sh(`~/.cc/node_modules/.bin/claude -p "$(cat ~/prompt.txt)" --dangerously-skip-permissions --max-turns 25`, 'repo', 480);
+    const claude = `~/.cc/node_modules/.bin/claude -p "$(cat ~/prompt.txt)" --dangerously-skip-permissions --max-turns 25`;
+    // Credential order: Claude subscription token, then API key. Each gets a clean env so a stale one can't shadow the other.
+    const creds = [
+      process.env.CLAUDE_CODE_OAUTH_TOKEN && { label: 'subscription', env: { CLAUDE_CODE_OAUTH_TOKEN: process.env.CLAUDE_CODE_OAUTH_TOKEN } },
+      process.env.ANTHROPIC_API_KEY && { label: 'api-key', env: { ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY } },
+    ].filter(Boolean);
+    let out, lastErr;
+    for (const c of creds) {
+      try { out = await sh(claude, 'repo', 480, c.env); await update({ auth: c.label }); break; }
+      catch (e) { lastErr = e; if (!/invalid api key|authenticat|oauth|unauthorized|expired|401/i.test(e.message)) throw e; }
+    }
+    if (out === undefined) throw lastErr || new Error('no Claude credentials configured');
     const summary = out.trim().slice(-1500);
 
     const changed = (await sh('git status --porcelain -- . ":!api" ":!.github"', 'repo')).trim();

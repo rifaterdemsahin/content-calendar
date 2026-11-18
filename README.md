@@ -1,7 +1,9 @@
 # Content Engine & OKR Framework: @RifatErdemSahin & Skool
 
-🌐 **Live Dashboard (GitHub Pages):**  
-👉 **[https://rifaterdemsahin.github.io/content-calendar/](https://rifaterdemsahin.github.io/content-calendar/)**
+🌐 **Live Dashboard (Fly.io — notes & chat enabled):**  
+👉 **[https://rifat-content-calendar.fly.dev/](https://rifat-content-calendar.fly.dev/)**
+
+📄 Read-only mirror (GitHub Pages, no notes/chat): [rifaterdemsahin.github.io/content-calendar](https://rifaterdemsahin.github.io/content-calendar/)
 
 An integrated multi-format content calendar, production pipeline, and OKR execution system connecting **YouTube** ([@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)) and your **Skool Community**.
 
@@ -160,12 +162,14 @@ The script extracts video ID, title, URL, published date, views, thumbnail URL, 
 
 ## 📝 Notes + 🤖 Chat Agent
 
-A floating widget (bottom-right of the dashboard) adds:
-- **Notes anywhere:** Alt/Option-click any element to attach a note to that concept. Notes are stored as blobs in an Azure Storage container. **Copy this page / Copy ALL notes** puts them on your clipboard as one Markdown block.
-- **Chat agent:** describe a change; an Azure Function starts a [Daytona](https://www.daytona.io) sandbox, clones this repo, runs a Claude agent, and opens a pull request. Merging it publishes via GitHub Pages.
+**Live:** [rifat-content-calendar.fly.dev](https://rifat-content-calendar.fly.dev/) — the dashboard is public; the notes/chat widget (bottom-right) requires **Sign in with Microsoft** (only `info@deliverypilot.net`).
 
-Architecture: `index.html` + `assets/cc-widget.js` → Azure Function (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
-Secrets (`ANTHROPIC-API-KEY`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`) live in Azure Key Vault `dp-kv-deliverypilot` and are injected via Key Vault references; the page only holds the access token you paste once (kept in `localStorage`).
+- **Notes anywhere:** Alt/Option-click any element to attach a note to that concept. Notes are blobs in an Azure Storage container. **Copy this page / Copy ALL notes** puts them on your clipboard as one Markdown block.
+- **Chat agent:** describe a change; an Azure Function starts a [Daytona](https://www.daytona.io) sandbox, clones this repo, runs Claude Code (Claude subscription token first, API key as fallback), and opens a pull request. Merging it updates the repo.
+
+Architecture: browser → **Fly.io** (`server/`: static site + Microsoft/Entra OIDC login + `/api` proxy) → **Azure Function** (`api/`) → Storage (notes, jobs, queue) / Daytona → GitHub PR.
+Secrets live in Azure Key Vault `dp-kv-deliverypilot` (`ANTHROPIC-API-KEY`, `CLAUDE-CODE-OAUTH-TOKEN`, `DAYTONA-API-KEY`, `github-pat`, `CC-ADMIN-TOKEN`, `CC-ENTRA-CLIENT-SECRET`, `CC-SESSION-SECRET`, `KILO-API-KEY`); the Function reads them via Key Vault references and Fly gets them as Fly secrets. The browser never holds a secret.
+
 Requirements and runbook: [`docs/requirements.md`](docs/requirements.md) · pages: [`key-vault.html`](key-vault.html), [`requirements.html`](requirements.html), [`expectations.html`](expectations.html).
-Get the token: `az keyvault secret show --vault-name dp-kv-deliverypilot -n CC-ADMIN-TOKEN --query value -o tsv`
-Redeploy the API: zip `api/` (without `node_modules`) and `az functionapp deployment source config-zip --build-remote true`. Tests: `cd api && npm test`.
+
+Deploy the site: `fly deploy -a rifat-content-calendar --remote-only` · Redeploy the API: zip `api/` (no `node_modules`) → `az functionapp deployment source config-zip --build-remote true` · Tests: `cd api && npm test`, `node --test server/`.
