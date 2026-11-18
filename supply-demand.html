@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supply & Demand | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight truncate">⚖️ Supply & Demand</span>
+      <span class="text-xs text-slate-500 whitespace-nowrap">18 Nov 2026</span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+
+    <section>
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The one-line version</div>
+      <p class="text-2xl sm:text-3xl font-bold text-white mt-2">Make more of what the audience already watches, and less of what it skips.</p>
+      <p class="text-slate-400 mt-3 max-w-3xl">Demand is what viewers watch on YouTube, and what professionals and businesses pay for. Supply is what we can make each week: about 10.5 production hours, 3 Shorts, 1 long video and a live clinic. This page sets the two side by side and says what to do about the gap.</p>
+    </section>
+
+    <!-- Demand -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Demand: what the audience watches</h2>
+      <p class="text-sm text-slate-400 mt-1">From <code class="text-indigo-300">data/past-performance.json</code> (38 videos, snapshot 17 Nov).</p>
+      <div class="overflow-x-auto rounded-xl border border-slate-800 mt-4">
+        <table class="w-full text-sm min-w-[520px]">
+          <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
+            <tr><th class="text-left p-3">Topic</th><th class="text-right p-3">Views</th><th class="text-right p-3">Share</th><th class="text-left p-3">Read</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr><td class="p-3 text-white">Delivery Pilot & Career Mindset</td><td class="p-3 text-right">1,824</td><td class="p-3 text-right">26%</td><td class="p-3 text-slate-300">Strongest demand. The positioning works.</td></tr>
+            <tr><td class="p-3 text-white">AI Agents & Automation</td><td class="p-3 text-right">1,608</td><td class="p-3 text-right">23%</td><td class="p-3 text-slate-300">Strong demand, and the core of the n8n content.</td></tr>
+            <tr><td class="p-3 text-white">Developer Tooling & IDE</td><td class="p-3 text-right">383</td><td class="p-3 text-right">5%</td><td class="p-3 text-slate-300">Small but growing demand, with almost no supply.</td></tr>
+            <tr><td class="p-3 text-white">RAG & Knowledge Bases</td><td class="p-3 text-right">205</td><td class="p-3 text-right">3%</td><td class="p-3 text-slate-300">Weakest demand, yet it has the most planned supply.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Shares are of the 7,015 total views; the remaining 43% sits in untagged or mixed videos.</p>
+      <ul class="mt-4 space-y-2 text-sm text-slate-300 list-disc list-inside">
+        <li><strong class="text-white">Format:</strong> long videos average 208 views; Shorts average 99. Shorts are 21% of uploads and 11% of views.</li>
+        <li><strong class="text-white">Google Flow videos</strong> (AI-generated) are reported to hold a high share of watch time. The data here does not split them out yet, so this is unproven until Studio shows it.</li>
+        <li><strong class="text-white">Subscribers:</strong> 725 on a public count, 275 short of the 1,000 needed for the Partner Program threshold.</li>
+      </ul>
+    </section>
+
+    <!-- Supply -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Supply: what we can make</h2>
+      <div class="grid md:grid-cols-3 gap-4 mt-4 text-sm">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-red-400 uppercase">Per week</div><p class="text-slate-300 mt-2">3 Shorts, 1 long video, 1 Skool live clinic (Sunday 13:30).</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-indigo-400 uppercase">Hours</div><p class="text-slate-300 mt-2">10.5 production hours a week. Flow videos should cut this, but no one has timed it yet.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800"><div class="text-xs font-bold text-purple-400 uppercase">Sprint plan</div><p class="text-slate-300 mt-2">12 cards in 4 weeks, three per week, Mondays removed.</p></div>
+      </div>
+
+      <h3 class="text-sm font-bold text-white mt-6 mb-2">Demand against supply, sprint topics</h3>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-sm min-w-[520px]">
+          <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
+            <tr><th class="text-left p-3">Topic</th><th class="text-right p-3">Demand (views)</th><th class="text-right p-3">Cards in sprint</th><th class="text-left p-3">Action</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr><td class="p-3 text-white">Delivery Pilot</td><td class="p-3 text-right">1,824</td><td class="p-3 text-right">3 (Week 2)</td><td class="p-3 text-emerald-300">Keep. Add a second Flow video this month.</td></tr>
+            <tr><td class="p-3 text-white">AI Agents / n8n</td><td class="p-3 text-right">1,608</td><td class="p-3 text-right">6 (Weeks 1 and 4)</td><td class="p-3 text-emerald-300">Keep. Strong demand and well supplied.</td></tr>
+            <tr><td class="p-3 text-white">Developer Tooling</td><td class="p-3 text-right">383</td><td class="p-3 text-right">1 (Week 2 Short)</td><td class="p-3 text-amber-300">Under-supplied. Add one terminal or IDE video a week.</td></tr>
+            <tr><td class="p-3 text-white">RAG</td><td class="p-3 text-right">205</td><td class="p-3 text-right">3 (Week 3)</td><td class="p-3 text-red-300">Over-supplied for its demand. Keep the Skool clinic, cut one Short.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- What to create -->
+    <section>
+      <h2 class="text-lg font-bold text-white">What you need to create on this page's plan</h2>
+      <p class="text-sm text-slate-400 mt-1">These are the inputs and assets the numbers depend on. Items marked <span class="text-red-300">missing</span> are blocking.</p>
+      <div class="mt-4 space-y-3">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">1. YouTube Studio exports <span class="text-red-300 font-normal">· missing</span></div><p class="text-slate-400 mt-1">Four CSVs into <code class="text-indigo-300">data/studio/</code>. Needed to compare Flow videos with filmed ones on watch time, retention and CTR. Without them the Flow claim is unproven.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">2. A Flow / filmed tag on every video <span class="text-red-300 font-normal">· missing</span></div><p class="text-slate-400 mt-1">One column in the sprint: "Flow" or "Filmed". This is the only way the page can split demand by production method.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">3. Real production hours per video <span class="text-red-300 font-normal">· missing</span></div><p class="text-slate-400 mt-1">Log time per video for 4 weeks. The 10.5-hour figure is an estimate, not a measurement.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">4. Week 1 start date (IN-8) <span class="text-red-300 font-normal">· missing</span></div><p class="text-slate-400 mt-1">One decision. Every sprint date depends on it.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">5. Three fast-growing videos a week for reverse response</div><p class="text-slate-400 mt-1">Send links; they go into <code class="text-indigo-300">data/rmm-targets.json</code>. Without them, every response card is still a plan.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">6. Skool numbers, weekly <span class="text-amber-300 font-normal">· partial</span></div><p class="text-slate-400 mt-1">Members, active members, new from YouTube. Fill <code class="text-indigo-300">skool-weekly.csv</code> by hand.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sm"><div class="font-bold text-white">7. Business demand: managed-services enquiries <span class="text-red-300 font-normal">· none yet</span></div><p class="text-slate-400 mt-1">The audience page names this as the third audience, but nothing in the sprint targets it. Track enquiries from day one, even if the count is zero.</p></div>
+      </div>
+    </section>
+
+    <!-- Misdirections -->
+    <section>
+      <h2 class="text-lg font-bold text-white">Where I went in the wrong direction</h2>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I built pages before the core message existed.</div><p class="text-slate-300 mt-1">The audience map, sprint, and reverse-response pages each had their own framing. The core message should have come first and every page should have hung off it.</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I set dates before the start date was decided.</div><p class="text-slate-300 mt-1">The calendar is still two days out (IN-8). I removed the Mondays and kept countdowns running against dates you haven't confirmed.</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I wrote reverse-response plans with no real target.</div><p class="text-slate-300 mt-1">The response cards say "fast-growing video" but nobody has picked one. I should have asked for the list before building the page.</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I treated the goal pace as a fact.</div><p class="text-slate-300 mt-1">The 15 subscribers a week is my assumption. The timeline is only as good as that number, and it hasn't been measured.</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I assumed Shorts were the weak format and didn't ask how they were made.</div><p class="text-slate-300 mt-1">The average of 99 views doesn't separate Flow Shorts from filmed ones. I should have flagged that the comparison was mixed.</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I wrote the Cambridge shoot into the plan as a real walk.</div><p class="text-slate-300 mt-1">The Days 2–7 footage is generated, not filmed of you. The sprint now says so, but I should have asked before writing "walk".</p></div>
+        <div class="p-4 rounded-xl border border-red-500/30 bg-red-500/5"><div class="font-bold text-white">I claimed things I had not verified.</div><p class="text-slate-300 mt-1">The Azure content endpoint returned 401 in my test and I didn't confirm the save path end to end. I should have said so at the time.</p></div>
+      </div>
+    </section>
+
+    <!-- Course correction -->
+    <section>
+      <h2 class="text-lg font-bold text-white">How to course correct</h2>
+      <ol class="mt-4 space-y-3 text-sm">
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">1</span><div><div class="font-bold text-white">Make the core message the source of truth.</div><p class="text-slate-400 mt-1">Every card, page and video answers to the core message page. If a piece doesn't serve it, cut it.</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">2</span><div><div class="font-bold text-white">Export the Studio data this week.</div><p class="text-slate-400 mt-1">Compare Flow and filmed videos on watch time. Only then decide how much Flow supply to add.</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">3</span><div><div class="font-bold text-white">Move supply toward demand.</div><p class="text-slate-400 mt-1">Add developer-tooling videos (demand 383, supply 1). Cut one RAG Short (demand 205, supply 3).</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">4</span><div><div class="font-bold text-white">Confirm the start date and the Cambridge footage label.</div><p class="text-slate-400 mt-1">Two answers from you. Then the countdowns and the production notes are correct.</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">5</span><div><div class="font-bold text-white">Replace my assumptions with logged numbers.</div><p class="text-slate-400 mt-1">Hours per video, Skool members, subscribers gained. Re-run the goal timeline from those, not from 15 a week.</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">6</span><div><div class="font-bold text-white">Start tracking business enquiries.</div><p class="text-slate-400 mt-1">Add one line to the weekly log: managed-services enquiries, even if zero. Without it the third audience is invisible.</p></div></li>
+        <li class="flex gap-3 p-4 rounded-xl bg-slate-900/80 border border-slate-800"><span class="text-indigo-400 font-black">7</span><div><div class="font-bold text-white">Check every four weeks.</div><p class="text-slate-400 mt-1">Repeat this table with new numbers. If a topic's share of views moves more than 5 points, move supply the same way.</p></div></li>
+      </ol>
+    </section>
+
+    <p class="text-xs text-slate-500">Sources: <code class="text-indigo-300">data/past-performance.json</code>, <code class="text-indigo-300">data/goals.json</code>, <code class="text-indigo-300">data/sprint-meta.json</code>, <code class="text-indigo-300">docs/production-notes.md</code>. Figures are the latest snapshot and will change.</p>
+  </main>
+
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>
