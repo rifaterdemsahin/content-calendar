@@ -40,6 +40,12 @@
     </section>
 
     <section>
+      <h2 class="text-lg font-bold text-white">Research before we make a response</h2>
+      <p class="text-sm text-slate-400 mt-1">Before a response card goes into production, check the target against these factors. Each planned response below lists its own "why" and its checks.</p>
+      <ol id="checklist" class="mt-4 space-y-2 text-sm text-slate-300 list-decimal list-inside"></ol>
+    </section>
+
+    <section>
       <h2 class="text-lg font-bold text-white">Planned responses</h2>
       <p class="text-sm text-slate-400 mt-1">One per sprint card. The target stays blank until a real video is picked.</p>
       <div id="plans" class="grid md:grid-cols-2 gap-3 mt-4"></div>
@@ -66,6 +72,8 @@
       fetch('data/rmm-targets.json', { cache: 'no-cache' }).then((r) => r.json()),
     ]).then(([meta, targets]) => {
       const entries = Object.entries(meta.cards);
+      const cl = document.getElementById('checklist');
+      for (const q of (meta.researchChecklist || [])) cl.append(el('li', null, q));
 
       const plans = document.getElementById('plans');
       const learn = document.getElementById('learn');
@@ -76,6 +84,12 @@
         if (rr.angle) {
           box.append(el('div', 'text-slate-200 mt-1', 'Responds to ' + rr.angle));
           box.append(el('div', 'text-xs mt-2 ' + (rr.target ? 'text-emerald-300' : 'text-amber-300'), rr.target ? 'Target: ' + (rr.target.title || rr.target.url) : 'Target: not picked yet'));
+          if (rr.research) {
+            box.append(el('div', 'text-xs text-slate-300 mt-3', 'Why we make this video: ' + rr.research.why));
+            const ul = el('ul', 'text-xs text-slate-400 mt-2 list-disc list-inside space-y-1');
+            for (const f of rr.research.factors) ul.append(el('li', null, f));
+            box.append(ul);
+          }
           plans.append(box);
         } else {
           box.append(el('div', 'text-slate-400 mt-1', rr.note || 'No reverse response for this card'));

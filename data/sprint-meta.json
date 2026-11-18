@@ -7,7 +7,16 @@
       "share": "Workflow JSON plus a 3-step build recap on Skool and LinkedIn",
       "reverseResponse": {
         "angle": "a fast-growing 'build an AI agent in n8n' video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Builds the n8n agent build that the fast-growing 'build an AI agent in n8n' videos promise, but finishes it: a working, exported workflow.",
+          "factors": [
+            "Does the target show the finished agent or stop at the demo?",
+            "Hook in the first 3 seconds: a problem or a result?",
+            "Length and pacing of the build (where do viewers drop off?)",
+            "Which comments ask for a missing step?"
+          ]
+        }
       },
       "ownAudience": {
         "title": "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n",
@@ -20,7 +29,15 @@
       "share": "Anonymised clinic recap: the 3 most common fixes",
       "reverseResponse": {
         "angle": "a fast-growing 'my agent broke in production' video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Shows real member mistakes in n8n, which the viral 'my agent broke' videos only describe.",
+          "factors": [
+            "Does the target name the failure, or only the symptom?",
+            "Are viewers asking for a fix or a diagnosis?",
+            "Is the topic recurring in its comments?"
+          ]
+        }
       },
       "ownAudience": null
     },
@@ -29,7 +46,15 @@
       "share": "Short with the fix, pinned link to the full tutorial",
       "reverseResponse": {
         "angle": "a fast-growing short about n8n loops or agent errors",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "A short that answers one specific n8n loop error that the growing shorts raise without solving.",
+          "factors": [
+            "Is the error in the target's title or first line?",
+            "Short length and single-fix structure: does it hold to the end?",
+            "Do comments say 'how do I fix this line?'"
+          ]
+        }
       },
       "ownAudience": {
         "title": "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n",
@@ -42,7 +67,15 @@
       "share": "Live demo plus the prompt rules repo",
       "reverseResponse": {
         "angle": "a fast-growing Claude Code or Cursor agent demo",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Shows how several coding agents work without clashing, which fast demo videos show running but not coordinating.",
+          "factors": [
+            "Does the target show one agent or several?",
+            "Is the demo real output or edited highlights?",
+            "What tool is named in the title (Claude Code, Cursor)? Is that the growth driver?"
+          ]
+        }
       },
       "ownAudience": null
     },
@@ -51,7 +84,15 @@
       "share": "Dotfiles posted in the Skool community",
       "reverseResponse": {
         "angle": "a fast-growing terminal or CLI productivity video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "A tools list for pilots; the growing terminal videos are about speed, not about working with agents.",
+          "factors": [
+            "Is the target's growth from a tool name or a use case?",
+            "Length: is it a Short or a long list?",
+            "Are the tools free and copyable?"
+          ]
+        }
       },
       "ownAudience": null
     },
@@ -74,7 +115,15 @@
       "share": "Repo plus test dataset, with the results table",
       "reverseResponse": {
         "angle": "a fast-growing 'RAG is dead' or vector-DB debate video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Argues RAG still works with an agentic layer, against the 'RAG is dead' debate that is currently growing.",
+          "factors": [
+            "Is the target's claim backed by a build or only an opinion?",
+            "Does its audience want the debate or the build?",
+            "Which vector DB or framework is named? Does it date the video?"
+          ]
+        }
       },
       "ownAudience": {
         "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
@@ -87,7 +136,15 @@
       "share": "Anonymised teardown in the live clinic recording",
       "reverseResponse": {
         "angle": "a fast-growing 'why RAG fails' video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Reviews real RAG setups; the growing 'why RAG fails' videos explain the failure without a fix.",
+          "factors": [
+            "Does the target show a fix, or only the failure?",
+            "Is the fix in the first half or only in the end?",
+            "Are viewers asking about their own architecture?"
+          ]
+        }
       },
       "ownAudience": {
         "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
@@ -100,7 +157,15 @@
       "share": "Short with before-and-after numbers",
       "reverseResponse": {
         "angle": "a fast-growing RAG chunking video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "A measured before-and-after on chunking and reranking, where the growing chunking videos claim gains without numbers.",
+          "factors": [
+            "Does the target give a number or only a claim?",
+            "Which chunk size and dataset did it use?",
+            "Is the thumbnail promise (e.g. '2x') backed in the video?"
+          ]
+        }
       },
       "ownAudience": {
         "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
@@ -113,7 +178,15 @@
       "share": "docker-compose file and deploy script",
       "reverseResponse": {
         "angle": "a fast-growing 'deploy AI agents' or self-hosting video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Shows the 24/7 cloud deployment that the growing 'deploy agents' videos describe in theory.",
+          "factors": [
+            "Does the target deploy to a real server on camera?",
+            "What cost is quoted, and is it stated?",
+            "Is the growing topic self-hosting, cost, or reliability?"
+          ]
+        }
       },
       "ownAudience": null
     },
@@ -122,7 +195,15 @@
       "share": "Cost breakdown with the receipts",
       "reverseResponse": {
         "angle": "a fast-growing 'cheap AI stack' video",
-        "target": null
+        "target": null,
+        "research": {
+          "why": "Puts a real monthly cost on a production stack, against the growing 'cheap AI stack' claims.",
+          "factors": [
+            "Is the cost itemised or only a total?",
+            "Does the target include hidden costs (API, hosting, time)?",
+            "Is the claim of 'cheap' compared with something?"
+          ]
+        }
       },
       "ownAudience": null
     },
@@ -136,5 +217,14 @@
       },
       "ownAudience": null
     }
-  }
+  },
+  "researchChecklist": [
+    "Velocity: how fast is it growing per day, not just total views?",
+    "Hook: what does the first 3 seconds promise, and does the video pay it off?",
+    "Format: length, Short or long, and how the content is structured.",
+    "Title and thumbnail pattern: what words and images carry the click?",
+    "Gap: what does the comment section ask for that the video doesn't answer?",
+    "Fit: does our core message add something the target missed?",
+    "Audience overlap: do the target's viewers already watch our channel?"
+  ]
 }
