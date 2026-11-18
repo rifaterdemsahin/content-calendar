@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audience Map | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition whitespace-nowrap"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight hidden sm:inline">🎯 Audience Map</span>
+      <a href="#funnel" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 whitespace-nowrap">Funnel</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-14">
+
+    <!-- Intro -->
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">B2C2B model</h2>
+      <p class="text-3xl font-bold text-white mt-2">Three audiences, one funnel</p>
+      <p class="text-slate-400 mt-3 max-w-3xl">Free Shorts reach consumers who want entertainment. Some of them are professionals who move into the Skool community. Some work inside enterprises and move to the website, where they buy managed services. Every piece of content is made for one primary audience and points to the next step.</p>
+    </section>
+
+    <!-- Funnel diagram -->
+    <section id="funnel">
+      <h3 class="text-lg font-bold text-white mb-4">The funnel</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-stretch text-center">
+        <div class="p-5 rounded-xl bg-red-500/10 border border-red-500/30">
+          <div class="text-[10px] uppercase font-bold text-red-400">Top · free</div>
+          <div class="font-bold text-white mt-1">Shorts</div>
+          <div class="text-xs text-slate-400 mt-1">45–60s hooks on YouTube</div>
+        </div>
+        <div class="p-5 rounded-xl bg-indigo-500/10 border border-indigo-500/30">
+          <div class="text-[10px] uppercase font-bold text-indigo-400">Middle · consumers</div>
+          <div class="font-bold text-white mt-1">Long tutorials on YouTube</div>
+          <div class="text-xs text-slate-400 mt-1">Watch more, trust more</div>
+        </div>
+        <div class="grid grid-rows-2 gap-3">
+          <div class="p-4 rounded-xl bg-purple-500/10 border border-purple-500/30">
+            <div class="text-[10px] uppercase font-bold text-purple-400">→ professionals</div>
+            <div class="font-bold text-white text-sm">Skool community</div>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+            <div class="text-[10px] uppercase font-bold text-emerald-400">→ businesses</div>
+            <div class="font-bold text-white text-sm">Website · managed services</div>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">Arrows are one-way handoffs: a viewer can move to Skool or the website at any point, and a Skool member can take the website route when their company needs it.</p>
+    </section>
+
+    <!-- Three audiences -->
+    <section class="space-y-6">
+      <h3 class="text-lg font-bold text-white">The three audiences</h3>
+
+      <article id="audience-consumers" class="p-6 rounded-xl bg-slate-900/80 border border-red-500/20">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-red-400">1 · Consumers</span>
+            <h4 class="text-xl font-bold text-white mt-1">YouTube — entertainment first</h4>
+          </div>
+          <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30"><i class="fab fa-youtube mr-1"></i> @RifatErdemSahin</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 mt-5 text-sm">
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Who</div><p class="text-slate-300">Curious people who enjoy AI stories, fast demos and a bit of drama. Many don't work in tech.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">What they want</div><p class="text-slate-300">A surprising result in under a minute, a laugh, and a reason to keep watching.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Content</div><p class="text-slate-300">Shorts 3× a week, one long tutorial on Wednesday. Hooks first, the how-to second.</p></div>
+        </div>
+        <div class="mt-5 p-3 rounded-lg bg-slate-950 border border-slate-800 text-sm"><span class="text-xs font-bold text-emerald-400 uppercase">Next step</span> — pinned comment and description link to the Skool community for anyone who wants to build along.</div>
+      </article>
+
+      <article id="audience-professionals" class="p-6 rounded-xl bg-slate-900/80 border border-purple-500/20">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-400">2 · Professionals</span>
+            <h4 class="text-xl font-bold text-white mt-1">Skool — the Delivery Pilot community</h4>
+          </div>
+          <a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-md bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30"><i class="fas fa-users mr-1"></i> Join on Skool</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 mt-5 text-sm">
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Who</div><p class="text-slate-300">Engineers, delivery leads and career-changers who need to ship AI work at their job.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">What they want</div><p class="text-slate-300">Hands-on workflows they can copy, feedback on their own setup, and a peer group.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Content</div><p class="text-slate-300">Saturday live clinics, workflow JSON downloads, course modules (Coursera and Skool Classroom).</p></div>
+        </div>
+        <div class="mt-5 p-3 rounded-lg bg-slate-950 border border-slate-800 text-sm"><span class="text-xs font-bold text-emerald-400 uppercase">Next step</span> — members whose company needs the work done for them are pointed to the website and managed services.</div>
+      </article>
+
+      <article id="audience-businesses" class="p-6 rounded-xl bg-slate-900/80 border border-emerald-500/20">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">3 · Businesses</span>
+            <h4 class="text-xl font-bold text-white mt-1">Website — managed services</h4>
+          </div>
+          <a href="[BUSINESS-WEBSITE-URL]" target="_blank" rel="noopener" class="text-xs px-3 py-1.5 rounded-md bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30"><i class="fas fa-briefcase mr-1"></i> Managed services</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 mt-5 text-sm">
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Who</div><p class="text-slate-300">Team leads and executives who want AI running in production with someone accountable for it.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">What they want</div><p class="text-slate-300">Reliable outcomes, data kept private, a clear handover and a support path.</p></div>
+          <div><div class="text-xs font-bold text-slate-400 uppercase mb-1">Content</div><p class="text-slate-300">Private-data RAG, architecture walkthroughs, case-style recaps. Low volume, high depth.</p></div>
+        </div>
+        <div class="mt-5 p-3 rounded-lg bg-slate-950 border border-slate-800 text-sm"><span class="text-xs font-bold text-emerald-400 uppercase">Call to action</span> — a managed-services conversation, not a course sign-up.</div>
+      </article>
+    </section>
+
+    <!-- Handoffs -->
+    <section>
+      <h3 class="text-lg font-bold text-white mb-4">Handoffs between audiences</h3>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
+            <tr><th class="text-left p-3">From → to</th><th class="text-left p-3">Who moves</th><th class="text-left p-3">What moves them</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800">
+            <tr><td class="p-3 font-mono text-red-300">Consumer → Professional</td><td class="p-3 text-slate-300">Viewers who try the workflow and want help</td><td class="p-3 text-slate-300">Workflow JSON and a Skool link in the description; live clinic invite</td></tr>
+            <tr><td class="p-3 font-mono text-red-300">Consumer → Business</td><td class="p-3 text-slate-300">Viewers who mention their employer's problem in comments</td><td class="p-3 text-slate-300">Reply with a case-style answer and a link to managed services</td></tr>
+            <tr><td class="p-3 font-mono text-purple-300">Professional → Business</td><td class="p-3 text-slate-300">Members who need the work delivered for their team</td><td class="p-3 text-slate-300">Clinic recaps that show the managed build; a direct call-to-action in the community</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Content rules -->
+    <section>
+      <h3 class="text-lg font-bold text-white mb-4">How we make content for each audience</h3>
+      <ol class="space-y-3 text-sm text-slate-300 list-decimal list-inside">
+        <li><strong class="text-white">One primary audience per piece.</strong> Shorts are for consumers. Tutorials are for consumers who want depth. Clinics and modules are for professionals. Private-data pieces are for businesses.</li>
+        <li><strong class="text-white">Every piece has a next step.</strong> Shorts point to a long video or the Skool community. Long videos point to Skool. Skool posts point to managed services when the work is company-scale.</li>
+        <li><strong class="text-white">Hook for consumers, proof for professionals, outcome for businesses.</strong> The same topic gets a different framing for each audience.</li>
+        <li><strong class="text-white">Track the handoffs.</strong> Each CTA has its own link so we can see which audience moves where.</li>
+      </ol>
+    </section>
+
+    <!-- Sprint mapping -->
+    <section>
+      <h3 class="text-lg font-bold text-white mb-4">Current 4-week sprint, mapped by audience</h3>
+      <div class="grid md:grid-cols-3 gap-3 text-sm">
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-red-500/20"><div class="text-xs font-bold text-red-400 uppercase">Consumers</div><p class="text-slate-300 mt-2">The Shorts (3 a week, per the sprint legend) and the Wednesday long tutorials.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-purple-500/20"><div class="text-xs font-bold text-purple-400 uppercase">Professionals</div><p class="text-slate-300 mt-2">Saturday Skool live clinics and the Coursera / Skool Classroom modules.</p></div>
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/20"><div class="text-xs font-bold text-emerald-400 uppercase">Businesses</div><p class="text-slate-300 mt-2"><strong class="text-amber-300">Gap:</strong> no sprint item is aimed at businesses yet. Week 3 (private-data RAG) is the closest fit; it needs a managed-services CTA.</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-5xl mx-auto px-4 sm:px-6 py-8 text-xs text-slate-500 border-t border-slate-800">
+    Audience map · <a href="index.html" class="text-indigo-400 hover:underline">Dashboard</a> · <a href="index.html#calendar" class="text-indigo-400 hover:underline">Content sprint</a>
+  </footer>
+
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-search.js"></script>
+</body>
+</html>
