@@ -1,0 +1,115 @@
+{
+  "note": "One diagram per page, drawn by assets/cc-diagram.js under the page's main heading. Every page must have an entry (tests check this). Use 'builtIn' when the page already draws its own diagram.",
+  "pages": {
+    "index.html": { "title": "🔄 How the content engine works", "loop": "Every week, each video feeds the next", "steps": [
+      { "e": "🎥", "t": "Record", "d": "One long video (Wed)" },
+      { "e": "✂️", "t": "Cut", "d": "2–3 Shorts from it" },
+      { "e": "📺", "t": "Publish", "d": "YouTube, one per day" },
+      { "e": "🧲", "t": "Lead magnet", "d": "Workflow, config, plan" },
+      { "e": "🏫", "t": "Skool", "d": "Community + Sunday live" } ] },
+    "analytics.html": { "title": "📊 From raw stats to next steps", "steps": [
+      { "e": "📥", "t": "Pull", "d": "Studio export + scrape" },
+      { "e": "🧮", "t": "Compute", "d": "Views, averages, topics" },
+      { "e": "🕳️", "t": "Find gaps", "d": "What the data can't see" },
+      { "e": "👉", "t": "Act", "d": "What to do next" } ] },
+    "audience.html": { "title": "👥 B2C2B: how the audience grows", "steps": [
+      { "e": "🙋", "t": "Consumers", "d": "Find you through Shorts" },
+      { "e": "👩‍💻", "t": "Professionals", "d": "Learn from long videos" },
+      { "e": "🏢", "t": "Businesses", "d": "Buy builds and services" } ] },
+    "blocked.html": { "title": "⛔ How blocked days shape the week", "steps": [
+      { "e": "📅", "t": "Full week", "d": "Mon–Sun" },
+      { "e": "✈️", "t": "Remove", "d": "Travel and fixed days" },
+      { "e": "✅", "t": "Open slots", "d": "What's left" },
+      { "e": "🗓️", "t": "Plan", "d": "Content only goes here" } ] },
+    "calendar.html": { "title": "🗓️ A week in the calendar", "steps": [
+      { "e": "📹", "t": "Wed", "d": "Long video" },
+      { "e": "🎬", "t": "Shorts", "d": "Cut from Wednesday" },
+      { "e": "🏫", "t": "Sun 13:30", "d": "Skool Live" },
+      { "e": "📨", "t": "Digest", "d": "Week wrap-up" } ] },
+    "channels.html": { "title": "📡 One recording, every channel", "steps": [
+      { "e": "🎥", "t": "Record once", "d": "Long video" },
+      { "e": "📺", "t": "YouTube", "d": "Long + Shorts" },
+      { "e": "💼", "t": "LinkedIn / 𝕏", "d": "Clips and posts" },
+      { "e": "🏫", "t": "Skool", "d": "Owned home" } ] },
+    "core-message.html": { "title": "🧭 From one message to every video", "steps": [
+      { "e": "🧭", "t": "Core message", "d": "Delivery Pilot" },
+      { "e": "💡", "t": "Four ideas", "d": "What it means" },
+      { "e": "👂", "t": "Per audience", "d": "How each hears it" },
+      { "e": "🧪", "t": "Test", "d": "Did it land?" } ] },
+    "cron.html": { "title": "⏱️ How the daily pull runs", "steps": [
+      { "e": "⏰", "t": "Schedule", "d": "Fly job" },
+      { "e": "📡", "t": "YouTube API", "d": "Fetch stats" },
+      { "e": "🧮", "t": "Compute", "d": "Stats JSON" },
+      { "e": "☁️", "t": "Azure", "d": "Store blobs" },
+      { "e": "📊", "t": "Dashboard", "d": "Reads /api" } ] },
+    "expectations.html": { "title": "🧭 How to read expectations", "loop": "Re-check at each review point", "steps": [
+      { "e": "📊", "t": "Real numbers", "d": "Not targets" },
+      { "e": "📏", "t": "Ranges", "d": "Low · likely · high" },
+      { "e": "⚖️", "t": "Judge inputs", "d": "Videos shipped" },
+      { "e": "🚩", "t": "Checkpoints", "d": "Review and adjust" } ] },
+    "goals.html": { "title": "🪜 The subscriber ladder", "steps": [
+      { "e": "🌱", "t": "725", "d": "Now (17 Nov)" },
+      { "e": "🎯", "t": "1,000", "d": "YPP milestone" },
+      { "e": "📈", "t": "1,500", "d": "" },
+      { "e": "🏆", "t": "2,000", "d": "" },
+      { "e": "🌟", "t": "3,000", "d": "" } ] },
+    "inspiration.html": { "title": "🧩 Blending two styles into yours", "steps": [
+      { "e": "📉", "t": "Gary", "d": "One message + your story" },
+      { "e": "☕", "t": "NetworkChuck", "d": "Hands-on + a ritual" },
+      { "e": "🧩", "t": "Borrow", "d": "Principles, not branding" },
+      { "e": "🧑‍✈️", "t": "Your format", "d": "Delivery Pilot" } ] },
+    "key-vault.html": { "title": "🔐 Where the secrets flow", "steps": [
+      { "e": "🔐", "t": "Key Vault", "d": "dp-kv-deliverypilot" },
+      { "e": "⚙️", "t": "Function App", "d": "Key Vault references" },
+      { "e": "🧪", "t": "Daytona / Fly", "d": "Sandbox + secrets" },
+      { "e": "🙈", "t": "Browser", "d": "Never sees a secret" } ] },
+    "on-track.html": { "title": "🎯 How 'on track' is measured", "builtIn": "charts", "steps": [
+      { "e": "🎯", "t": "Target" }, { "e": "📈", "t": "Actual" }, { "e": "📏", "t": "Gap" }, { "e": "🧭", "t": "Adjust" } ] },
+    "performance.html": { "title": "🚀 How this report is made", "loop": "Refreshed every Monday", "steps": [
+      { "e": "📥", "t": "Fetch", "d": "Feed + catalogue" },
+      { "e": "📊", "t": "Measure", "d": "Views/day, groups" },
+      { "e": "🏆", "t": "Winners", "d": "and ⚠️ weak spots" },
+      { "e": "✅", "t": "Actions", "d": "What to do next" } ] },
+    "requirements.html": { "title": "📋 Why these inputs matter", "steps": [
+      { "e": "🔑", "t": "Your inputs", "d": "Keys, exports" },
+      { "e": "🤖", "t": "Claude", "d": "Reads real data" },
+      { "e": "📊", "t": "Better data", "d": "CTR, retention" },
+      { "e": "🧭", "t": "Better advice", "d": "From your numbers" } ] },
+    "reverse-response.html": { "title": "🔁 Reverse response in three steps", "steps": [
+      { "e": "👀", "t": "Observe", "d": "What viewers respond to" },
+      { "e": "🔍", "t": "Research", "d": "Why it worked" },
+      { "e": "🎬", "t": "Respond", "d": "Make the video" },
+      { "e": "📈", "t": "Measure", "d": "Did it land?" } ] },
+    "setup-api-key.html": { "title": "🔑 From key to live stats", "steps": [
+      { "e": "☁️", "t": "Google Cloud", "d": "Create project" },
+      { "e": "🔑", "t": "API key", "d": "YouTube Data v3" },
+      { "e": "🔐", "t": "Key Vault", "d": "Store it safely" },
+      { "e": "📡", "t": "Pull", "d": "Full per-video stats" } ] },
+    "story.html": { "title": "📖 The journey", "builtIn": "timeline", "steps": [
+      { "e": "🇹🇷", "t": "Turkey" }, { "e": "🎓", "t": "No degree" }, { "e": "📚", "t": "Self-taught" }, { "e": "🇬🇧", "t": "Britain" }, { "e": "✈️", "t": "Delivery Pilot" } ] },
+    "supply-demand.html": { "title": "⚖️ Matching supply to demand", "steps": [
+      { "e": "📈", "t": "Demand", "d": "What viewers watch" },
+      { "e": "🛠️", "t": "Supply", "d": "What you can make" },
+      { "e": "⚖️", "t": "Match", "d": "Where they overlap" },
+      { "e": "🗓️", "t": "Plan", "d": "Max 3 a week" } ] },
+    "value.html": { "title": "💎 How a video earns its slot", "steps": [
+      { "e": "🎬", "t": "Planned video" },
+      { "e": "❓", "t": "5 questions", "d": "Viewer, problem, outcome, proof, asset" },
+      { "e": "🧮", "t": "Score", "d": "Out of 10" },
+      { "e": "✏️", "t": "Improve", "d": "Fix the gaps" } ] },
+    "videos.html": { "title": "🎬 A video's journey (max 3 in progress per week)", "steps": [
+      { "e": "💡", "t": "Planned" },
+      { "e": "✍️", "t": "Writing" },
+      { "e": "🎥", "t": "Filming" },
+      { "e": "✂️", "t": "Editing" },
+      { "e": "✅", "t": "Done", "d": "Log actual results" } ] },
+    "week.html": { "title": "📅 The weekly direction loop", "loop": "Every Monday", "steps": [
+      { "e": "📋", "t": "Plan", "d": "videos.json" },
+      { "e": "🎬", "t": "Publish", "d": "One per day" },
+      { "e": "⚖️", "t": "Compare", "d": "Planned vs shipped" },
+      { "e": "🧭", "t": "Verdict", "d": "On / partly / off" },
+      { "e": "🔧", "t": "Correct", "d": "Next week's swaps" } ] },
+    "what-works.html": { "title": "✅ What works", "builtIn": "tree", "steps": [
+      { "e": "✅", "t": "Two pillars" }, { "e": "⛔", "t": "Two to stop" } ] }
+  }
+}

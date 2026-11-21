@@ -20,3 +20,8 @@ Guidance for the content-calendar editor agent.
 - Reason: the user has other responsibilities, so the production load is capped.
 - Before adding a video to any week, check that the week already has fewer than 3. If it has 3, move one out or drop one; do not exceed the limit.
 - Changes that add supply (e.g. a new developer-tooling video) must swap out an existing item in the same week.
+
+## Page style: emojis and diagrams on every page
+- Every page heading (h1/h2) starts with a fitting emoji.
+- Every page has a diagram. Add an entry for the page in `data/diagrams.json` (title + emoji steps); `assets/cc-diagram.js` draws it under the main heading. Use `"builtIn"` only when the page already draws its own diagram.
+- New pages must also load `assets/cc-guide.js` and `assets/cc-diagram.js`, and be listed in `data/guide.json`. Tests enforce this.

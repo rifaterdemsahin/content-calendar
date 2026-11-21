@@ -169,5 +169,15 @@ class Guide(unittest.TestCase):
             self.assertIn("assets/cc-guide.js", pathlib.Path(page).read_text(encoding="utf-8"), page)
 
 
+class Diagrams(unittest.TestCase):
+    def test_every_page_has_a_diagram(self):
+        d = json.loads((ROOT / "data" / "diagrams.json").read_text(encoding="utf-8"))["pages"]
+        for page in glob.glob(str(ROOT / "*.html")):
+            name = pathlib.Path(page).name
+            self.assertIn(name, d, f"{name} has no diagram in data/diagrams.json")
+            self.assertTrue(d[name].get("title") and d[name].get("steps"), f"{name} diagram needs a title and steps")
+            self.assertIn("assets/cc-diagram.js", pathlib.Path(page).read_text(encoding="utf-8"), name)
+
+
 if __name__ == "__main__":
     unittest.main()

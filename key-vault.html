@@ -34,7 +34,7 @@
 
     <section>
       <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Requirements</h2>
-      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Azure Key Vault: <span class="font-mono text-indigo-300 text-2xl sm:text-3xl">dp-kv-deliverypilot</span></h1>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🔐 Azure Key Vault: <span class="font-mono text-indigo-300 text-2xl sm:text-3xl">dp-kv-deliverypilot</span></h1>
       <p class="text-slate-400 mt-4 leading-relaxed">
         Every server-side secret behind the notes widget and the chat agent lives in one Azure Key Vault. The Function App reads them through Key Vault references, so the code only sees ordinary environment variables and nothing sensitive is committed to this repo or shipped to the page.
       </p>
@@ -44,7 +44,7 @@
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-white">How it fits together</h2>
+      <h2 class="text-2xl font-bold text-white">🧩 How it fits together</h2>
       <pre class="mt-4 p-5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-300 overflow-x-auto leading-relaxed">
  Browser (index.html + assets/cc-widget.js)
    │  holds only the CC_ADMIN_TOKEN you paste once  (localStorage)
@@ -59,7 +59,7 @@
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-white">Secret inventory</h2>
+      <h2 class="text-2xl font-bold text-white">🗝️ Secret inventory</h2>
       <div class="mt-4 overflow-x-auto rounded-xl border border-slate-800">
         <table class="w-full text-sm">
           <thead class="bg-slate-900 text-slate-400 text-xs uppercase">
@@ -82,12 +82,12 @@
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-white">Requirement checklist</h2>
+      <h2 class="text-2xl font-bold text-white">✅ Requirement checklist</h2>
       <div class="mt-4 space-y-2 text-sm" id="reqs"></div>
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-white">Runbook</h2>
+      <h2 class="text-2xl font-bold text-white">📘 Runbook</h2>
       <div class="mt-4 space-y-5">
         <div>
           <p class="text-slate-300 text-sm font-semibold">Deploy with Key Vault secrets</p>
@@ -117,7 +117,7 @@ az role assignment create --assignee &lt;principalId&gt; --role "Key Vault Secre
     </section>
 
     <section>
-      <h2 class="text-2xl font-bold text-white">Known gaps</h2>
+      <h2 class="text-2xl font-bold text-white">🕳️ Known gaps</h2>
       <ul class="mt-4 space-y-2 text-sm text-slate-300 list-disc pl-5">
         <li>There is no infrastructure-as-code in this repo, so KV-3, KV-8 and KV-11 must be checked in Azure.</li>
         <li><code>CC_ADMIN_TOKEN</code> sits in the browser's <code>localStorage</code>, so an XSS on this Pages origin would expose it. Keep note content escaped and rotate the token if the page is ever compromised.</li>
@@ -160,6 +160,7 @@ az role assignment create --assignee &lt;principalId&gt; --role "Key Vault Secre
   </script>
   <script src="assets/cc-notifications.js"></script>
   <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
   <script src="assets/cc-search.js"></script>
   <script src="assets/cc-footer.js"></script>
 </body>
