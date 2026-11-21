@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Mentors | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%A7%91%E2%80%8D%F0%9F%8F%AB</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="ikigai.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Ikigai</a>
+      <span class="font-bold tracking-tight">🧑‍🏫 My Mentors</span>
+      <a href="inspiration.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Inspiration <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Who I learn from</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🧑‍🏫 My mentors</h1>
+      <p id="intro" class="text-lg text-slate-300 mt-4 max-w-3xl leading-relaxed"></p>
+      <nav id="jump" class="flex flex-wrap gap-2 mt-5 text-sm"></nav>
+    </section>
+
+    <section id="groups" class="space-y-12"></section>
+
+    <p id="takeaway" class="p-5 rounded-2xl border border-indigo-500/40 bg-indigo-950/30 text-slate-100 text-lg leading-relaxed"></p>
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Mentors live in <code class="text-slate-400">data/mentors.json</code>. Add one, or edit what each taught you.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    fetch('data/mentors.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      document.getElementById('jump').append(...d.mentors.map((m) => { const a = el('a', 'px-3 py-1 rounded-full border border-slate-700 bg-slate-900 hover:border-indigo-400 text-slate-200', `${m.icon} ${m.name}`); a.href = '#' + m.key; return a; }));
+      document.getElementById('groups').append(...d.groups.map((g) => {
+        const s = el('div');
+        s.append(el('h2', 'text-2xl font-bold text-white', `${g.icon} ${g.title}`));
+        const grid = el('div', 'mt-4 grid gap-4 md:grid-cols-2');
+        d.mentors.filter((m) => m.group === g.key).forEach((m) => {
+          const c = el('article', 'rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col'); c.id = m.key;
+          const h = el('div', 'flex items-center justify-between gap-3');
+          h.append(el('h3', 'text-lg font-bold text-white', `${m.icon} ${m.name}`));
+          if (m.url) { const a = el('a', 'text-xs px-2.5 py-1 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/30 shrink-0', '▶ Channel'); a.href = m.url; a.target = '_blank'; a.rel = 'noopener'; h.append(a); }
+          c.append(h);
+          if (m.todo) { c.append(el('p', 'mt-3 p-3 rounded-lg border border-dashed border-amber-500/40 bg-amber-950/10 text-sm text-amber-100', `✍️ ${m.todo}`)); grid.append(c); return; }
+          c.append(el('p', 'text-sm text-slate-400 mt-2', m.who));
+          c.append(el('div', 'text-xs uppercase font-bold text-indigo-300 mt-4', '📝 What I learn'));
+          const ul = el('ul', 'mt-1 text-sm text-slate-200 list-disc pl-5 space-y-1'); m.learn.forEach((x) => ul.append(el('li', null, x))); c.append(ul);
+          const ch = el('p', 'mt-4 text-sm text-emerald-200'); ch.append(el('span', 'font-semibold', '📺 On the channel: '), document.createTextNode(m.channel)); c.append(ch);
+          grid.append(c);
+        });
+        s.append(grid); return s;
+      }));
+      document.getElementById('takeaway').textContent = d.takeaway;
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/mentors.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>

@@ -25,6 +25,11 @@
           "why": "AI and human intelligence, consciousness, Lacan, UML, enterprise patterns, space, RTS games."
         },
         {
+          "url": "mentors.html",
+          "title": "🧑‍🏫 My mentors",
+          "why": "Who you learn from (Linus, Ali Abdaal, İlker Canıkligil, PBD, Tony Robbins, Hawkins) and what each gives the channel."
+        },
+        {
           "url": "expectations.html",
           "title": "🧭 Expectations",
           "why": "What the assistant can and cannot do for you."
@@ -489,6 +494,26 @@
       "interests.html",
       "core-message.html",
       "Every interest goes through the Delivery Pilot lens"
+    ],
+    [
+      "mentors.html",
+      "inspiration.html",
+      "Mentors you follow, and the creator playbooks to borrow"
+    ],
+    [
+      "mentors.html",
+      "ikigai.html",
+      "Who shaped what you love"
+    ],
+    [
+      "mentors.html",
+      "story.html",
+      "The people behind the story"
+    ],
+    [
+      "mentors.html",
+      "interests.html",
+      "Hawkins' map and the consciousness thread"
     ]
   ]
 }
