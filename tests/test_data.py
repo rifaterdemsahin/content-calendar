@@ -179,5 +179,11 @@ class Diagrams(unittest.TestCase):
             self.assertIn("assets/cc-diagram.js", pathlib.Path(page).read_text(encoding="utf-8"), name)
 
 
+class Favicons(unittest.TestCase):
+    def test_every_page_has_a_favicon(self):
+        for page in glob.glob(str(ROOT / "*.html")):
+            self.assertIn('rel="icon"', pathlib.Path(page).read_text(encoding="utf-8"), f"{pathlib.Path(page).name} has no favicon")
+
+
 if __name__ == "__main__":
     unittest.main()
