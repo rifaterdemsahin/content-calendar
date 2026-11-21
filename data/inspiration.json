@@ -1,0 +1,145 @@
+{
+  "updated": "2026-11-21",
+  "intro": "Two creators who've built big audiences in ways that fit your two pillars. Take their principles, not their branding. Your story and your Delivery Pilot idea are the parts nobody else has.",
+  "creators": [
+    {
+      "key": "gary",
+      "name": "Gary Stevenson",
+      "handle": "@garyseconomics",
+      "url": "https://www.youtube.com/@garyseconomics",
+      "icon": "📉",
+      "who": "A former trader from a working-class background in East London who went from a trading competition to a top trading desk, then left to talk about the economy in plain language.",
+      "pillar": "Pillar 2 · data-backed career & industry takes",
+      "traits": [
+        {
+          "title": "One message, repeated relentlessly",
+          "detail": "Almost every video comes back to one big idea. Viewers know exactly what he stands for after one video."
+        },
+        {
+          "title": "Credibility from experience, not titles",
+          "detail": "He leans on what he did and what he predicted, not on credentials. He doesn't claim to be an economist."
+        },
+        {
+          "title": "The backstory is the hook",
+          "detail": "Where he came from (not the 'right' background) is part of every message, and it makes the argument personal and believable."
+        },
+        {
+          "title": "Plain talk to camera",
+          "detail": "Little production, no jargon, long-form. It feels like a smart friend explaining something important."
+        },
+        {
+          "title": "Contrarian, with conviction",
+          "detail": "He takes a clear position against the mainstream view and backs it with data and a track record."
+        }
+      ],
+      "borrow": [
+        "Make 'Delivery Pilot' your one message. Every career video should end up there.",
+        "Lead with your backstory: no degree, American school in Turkey, immigrant in Britain. It's your 'not the right background' credibility.",
+        "Claim credibility from doing ('I get customers live at IBM'), not from titles.",
+        "Keep a public record of your predictions about AI and jobs, then revisit them in a video later."
+      ],
+      "avoid": "Don't copy his topic (economics and inequality) or his persona. Borrow the structure: one message, your story, plain talk."
+    },
+    {
+      "key": "chuck",
+      "name": "NetworkChuck",
+      "handle": "@NetworkChuck",
+      "url": "https://www.youtube.com/@NetworkChuck",
+      "icon": "☕",
+      "who": "An IT educator who turned networking, Linux, security and homelab topics into high-energy, hands-on videos that get beginners building straight away.",
+      "pillar": "Pillar 1 · practical, cost-saving dev tooling",
+      "traits": [
+        {
+          "title": "'You need to learn this right now' urgency",
+          "detail": "Titles and openings make the skill feel urgent and doable today."
+        },
+        {
+          "title": "Hands-on from minute one",
+          "detail": "The viewer follows along on their own machine. It's a lab, not a lecture."
+        },
+        {
+          "title": "A signature ritual",
+          "detail": "A recurring on-camera habit (his coffee) makes every video instantly recognisable."
+        },
+        {
+          "title": "Energy and humour",
+          "detail": "Fast pace, jump cuts, self-deprecating jokes. Hard technical material feels fun."
+        },
+        {
+          "title": "From free video to a learning path",
+          "detail": "Free videos lead into a structured academy, so viewers always have a next step."
+        }
+      ],
+      "borrow": [
+        "Use urgent, practical titles: 'You need to run cheap models like this RIGHT NOW', 'Stop paying $200 for AI coding'.",
+        "Get the terminal on screen within 10 seconds and let viewers follow along.",
+        "Create your own ritual tied to the brand, e.g. a ✈️ 'pre-flight check' opener before every build.",
+        "Free video → Skool lab → Delivery Pilot course. Every tool video ends with the next step on that path."
+      ],
+      "avoid": "Don't copy his coffee bit, look or catchphrases. Find a ritual that belongs to the pilot theme."
+    }
+  ],
+  "matrix": {
+    "rows": [
+      {
+        "trait": "Core message",
+        "gary": "One idea, every video",
+        "chuck": "Learn this skill now",
+        "you": "Several frameworks per video (J-curve, COBALTS, Rider/Driver/Pilot)",
+        "next": "Pick 'Delivery Pilot' as the one message and drop the extras"
+      },
+      {
+        "trait": "Backstory",
+        "gary": "Central to the message",
+        "chuck": "Light, career-switcher energy",
+        "you": "Not on the channel yet (now on the My Story page)",
+        "next": "Open career videos with 15 seconds of your story"
+      },
+      {
+        "trait": "Proof",
+        "gary": "Track record and experience",
+        "chuck": "Live demo on screen",
+        "you": "Data and sources (strong)",
+        "next": "Add 'I do this at work' moments and a public predictions log"
+      },
+      {
+        "trait": "Opening",
+        "gary": "Big claim, plain talk",
+        "chuck": "Urgent hook, then straight into the lab",
+        "you": "Good data hooks; the payoff comes late (8:35)",
+        "next": "Give the payoff in the first 30 seconds, then explain"
+      },
+      {
+        "trait": "Signature",
+        "gary": "Voice and conviction",
+        "chuck": "Coffee ritual",
+        "you": "None yet",
+        "next": "A ✈️ pre-flight check opener for builds"
+      },
+      {
+        "trait": "Next step for viewers",
+        "gary": "Campaign and book",
+        "chuck": "Academy and labs",
+        "you": "Skool + free Delivery Pilot course",
+        "next": "Same call to action at the end of every video, and a pinned comment"
+      }
+    ]
+  },
+  "experiments": [
+    {
+      "title": "The Gary-style career take",
+      "pillar": "Pillar 2",
+      "detail": "10–15 min to camera. Open with 15s of your story, make one claim ('junior jobs aren't dying, they're becoming Delivery Pilots'), back it with 3 data points, close with the 90-day plan. No other frameworks."
+    },
+    {
+      "title": "The Chuck-style tool Short series",
+      "pillar": "Pillar 1",
+      "detail": "'You need to stop paying for frontier models RIGHT NOW', with the terminal on screen at 0:03. Three Shorts on separate days, each ending 'full setup in the long video and Skool'."
+    },
+    {
+      "title": "Your signature: the ✈️ pre-flight check",
+      "pillar": "Both",
+      "detail": "A 5-second opener on every build: 'Pre-flight check: model, cost, goal.' It fits the Delivery Pilot theme, it's recognisable, and nobody else uses it."
+    }
+  ]
+}

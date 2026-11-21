@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspiration | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="story.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> My story</a>
+      <span class="font-bold tracking-tight">💡 Inspiration</span>
+      <a href="what-works.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">What works <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Learning from the best</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Inspiration: Gary Stevenson &amp; NetworkChuck</h1>
+      <p id="intro" class="text-slate-300 mt-4 max-w-3xl text-lg leading-relaxed"></p>
+    </section>
+
+    <section id="creators" class="grid gap-8 lg:grid-cols-2"></section>
+
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Side by side</h2>
+      <p class="text-2xl font-bold text-white mt-2">What they do, where you are, what to try</p>
+      <div class="mt-6 overflow-x-auto rounded-xl border border-slate-800">
+        <table class="min-w-[760px] w-full text-sm">
+          <thead class="bg-slate-900 text-left text-xs uppercase tracking-wider text-slate-400">
+            <tr><th class="p-3">Trait</th><th class="p-3">📉 Gary</th><th class="p-3">☕ Chuck</th><th class="p-3">🧑‍✈️ You now</th><th class="p-3 text-emerald-300">→ Next step</th></tr>
+          </thead>
+          <tbody id="matrix" class="divide-y divide-slate-800"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Try it</h2>
+      <p class="text-2xl font-bold text-white mt-2">Three experiments for the next videos</p>
+      <div id="experiments" class="mt-6 grid gap-4 md:grid-cols-3"></div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Content lives in <code class="text-slate-400">data/inspiration.json</code>. Add another creator by adding an entry.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    fetch('data/inspiration.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      document.getElementById('creators').append(...d.creators.map((c) => {
+        const card = el('article', 'rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden flex flex-col');
+        const head = el('div', 'p-6 border-b border-slate-800 bg-gradient-to-br from-indigo-950/40 to-transparent');
+        const top = el('div', 'flex items-center gap-3');
+        top.append(el('div', 'w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-2xl', c.icon));
+        const nm = el('div'); nm.append(el('div', 'text-xl font-bold text-white', c.name));
+        const links = el('div', 'flex gap-3 text-xs mt-0.5');
+        const yt = el('a', 'text-red-300 hover:underline', `▶ ${c.handle}`); yt.href = c.url; yt.target = '_blank'; yt.rel = 'noopener'; links.append(yt);
+        if (c.social) { const x = el('a', 'text-slate-400 hover:underline', '𝕏 profile'); x.href = c.social; x.target = '_blank'; x.rel = 'noopener'; links.append(x); }
+        nm.append(links); top.append(nm); head.append(top);
+        head.append(el('p', 'text-sm text-slate-300 mt-3', c.who), el('span', 'inline-block mt-3 text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border border-emerald-500/40 text-emerald-300', `Maps to ${c.pillar}`));
+        card.append(head);
+        const body = el('div', 'p-6 space-y-5 flex-1');
+        const t = el('div'); t.append(el('div', 'text-xs uppercase font-bold text-indigo-300', 'What they do well'));
+        const ul = el('ul', 'mt-2 space-y-2'); c.traits.forEach((x) => { const li = el('li', 'text-sm'); li.append(el('span', 'font-semibold text-white', x.title + '. '), el('span', 'text-slate-400', x.detail)); ul.append(li); }); t.append(ul);
+        const b = el('div', 'p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/15'); b.append(el('div', 'text-xs uppercase font-bold text-emerald-300', 'Borrow for your channel'));
+        const ol = el('ol', 'mt-2 list-decimal pl-5 text-sm text-slate-200 space-y-1'); c.borrow.forEach((x) => ol.append(el('li', null, x))); b.append(ol);
+        const a = el('div', 'text-sm text-amber-200/90'); a.append(el('span', 'font-semibold', '⚠️ Don\'t copy: '), document.createTextNode(c.avoid));
+        body.append(t, b, a); card.append(body); return card;
+      }));
+      document.getElementById('matrix').append(...d.matrix.rows.map((r) => {
+        const tr = el('tr', 'hover:bg-slate-900/60 align-top');
+        tr.append(el('td', 'p-3 font-semibold text-white', r.trait), el('td', 'p-3 text-slate-300', r.gary), el('td', 'p-3 text-slate-300', r.chuck), el('td', 'p-3 text-slate-400', r.you), el('td', 'p-3 text-emerald-200', r.next));
+        return tr;
+      }));
+      document.getElementById('experiments').append(...d.experiments.map((x, i) => {
+        const c = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900');
+        c.append(el('div', 'text-xs uppercase font-bold text-emerald-300', `Experiment ${i + 1} · ${x.pillar}`), el('div', 'font-bold text-white mt-1', x.title), el('p', 'text-sm text-slate-400 mt-2', x.detail));
+        return c;
+      }));
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/inspiration.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+</body>
+</html>
