@@ -1,0 +1,63 @@
+{
+  "updated": "2026-11-21",
+  "draft": "Draft written by Claude from Rifat's notes and public videos. Edit the words here; the page updates itself.",
+  "name": "Rifat Erdem Sahin",
+  "tagline": "No degree, two countries, one habit: learning in public. Now helping others do the same while AI raises the bar.",
+  "linkedin": "https://www.linkedin.com/in/rifaterdemsahin/",
+  "youtube": "https://www.youtube.com/@RifatErdemSahin",
+  "belief": "AI is raising the skills bar faster than any school can keep up. The people who will do well are the ones who can teach themselves, and I've been doing that my whole life.",
+  "chapters": [
+    {
+      "icon": "🇹🇷",
+      "place": "Turkey",
+      "title": "Growing up between two cultures",
+      "text": "I grew up in Turkey and went to an American high school there. I lived Turkish life at home and learned in English at school. Early on I learned to move between two worlds, and to pick up whatever the next room expected of me."
+    },
+    {
+      "icon": "🎓",
+      "place": "University",
+      "title": "The degree I didn't finish",
+      "text": "I wasn't able to finish university. For a long time that felt like a door closing. Looking back, it was where my real education started: without the certificate, I had to prove what I could do by doing it."
+    },
+    {
+      "icon": "📚",
+      "place": "Self-taught",
+      "title": "Learning became the job",
+      "text": "So I taught myself, and I still do, every day. I build things to learn them, write everything down (my notes vault is past 46,000 notes), and treat my CV as code: something I keep improving and shipping. Self-learning isn't a side habit for me. It's how I built a career."
+    },
+    {
+      "icon": "🇬🇧",
+      "place": "Britain",
+      "title": "Starting again as an immigrant",
+      "text": "Then I moved to Britain and started again as an immigrant, with a new country, new rules, and nobody who knew my name. It's the same lesson again: what you can learn and show matters more than where you started."
+    },
+    {
+      "icon": "🏗️",
+      "place": "Cambridge, today",
+      "title": "Working in tech, teaching what I learn",
+      "text": "Today I work in tech (I work at IBM) on onboarding and reliability, getting customers live safely, on time, with real money depending on it. Alongside that I make videos, run a Skool community and a cohort, and share everything I learn in the open."
+    },
+    {
+      "icon": "✈️",
+      "place": "Why now",
+      "title": "AI is raising the bar, so I'm opening the story",
+      "text": "AI is moving fast, and the skills employers expect are rising with it. Entry-level roles are shrinking, and the jobs that remain ask for judgment, specs and delivery, not just typing code. I'm telling my story openly because someone without a degree, without the 'right' start, can still get into the cockpit. That's what the Delivery Pilot course is for, and it's free for students."
+    }
+  ],
+  "values": [
+    { "icon": "🧠", "title": "Self-learning first", "text": "No one is coming to teach you the next tool. Learn it, build it, show it." },
+    { "icon": "🔓", "title": "Open by default", "text": "My notes, code and mistakes are public, so others can skip the expensive parts." },
+    { "icon": "📈", "title": "Honest about AI", "text": "Not hype, not doom. Here's what the data says and what to do about it." },
+    { "icon": "🤝", "title": "Lift people up a seat", "text": "Riders become drivers, and drivers become Delivery Pilots. Nobody gets left behind." }
+  ],
+  "onChannel": {
+    "title": "Where the story already shows up",
+    "detail": "Your own data says personal stories with stakes work: 'They Called AI a Con. I Walked In Anyway.' is the best mindset Short you've made. The story can carry more of the channel.",
+    "videos": ["OGB69NVn8ZU", "omC9xa6G7u4", "MnYEZWflHDs", "DDuGVH_uPTA", "_tYzckEn6O8"]
+  },
+  "storyIdeas": [
+    { "title": "I never finished university. Here's how I learn anything now (2026 system)", "pillar": "Pillar 1 · practical", "why": "A self-learning system shown as a tool workflow (notes, AI, CV as code). It's a practical video and a story video at once." },
+    { "title": "No degree, new country: what AI changes for career switchers (data)", "pillar": "Pillar 2 · data-backed career take", "why": "Your story as the hook, plus hiring data. This is the shape that earns your highest watch time." },
+    { "title": "American school in Turkey, immigrant in Britain: the skill that transferred", "pillar": "Long-form story", "why": "A personal story with stakes, which is the exception that works. End on the one skill a viewer can copy." }
+  ]
+}

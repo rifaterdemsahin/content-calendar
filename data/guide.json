@@ -10,6 +10,11 @@
           "why": "The whole system on one page: sprint, latest videos, OKRs."
         },
         {
+          "url": "story.html",
+          "title": "📖 My story",
+          "why": "Who's behind the channel and why self-learning matters now."
+        },
+        {
           "url": "expectations.html",
           "title": "🧭 Expectations",
           "why": "What the assistant can and cannot do for you."
