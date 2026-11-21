@@ -52,6 +52,16 @@
       <div id="findings" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
     </section>
 
+    <section id="ytai-section" class="hidden">
+      <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest"><i class="fab fa-youtube mr-1"></i> YouTube Studio AI</h2>
+      <p class="text-2xl font-bold text-white mt-2">What YouTube's own analysis says</p>
+      <p id="ytai-src" class="text-sm text-slate-400 mt-1"></p>
+      <div id="ytai-pillars" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
+      <p class="text-lg font-bold text-white mt-8">Suggested ideas, with our verdict</p>
+      <div id="ytai-ideas" class="mt-4 grid gap-3"></div>
+      <div id="ytai-q" class="mt-6 p-5 rounded-xl border border-indigo-500/30 bg-indigo-950/20"></div>
+    </section>
+
     <section class="grid gap-10 md:grid-cols-2">
       <div>
         <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">All time</h2>
@@ -153,6 +163,32 @@
         c.append(el('div', 'text-xs uppercase font-bold', `${tagIcon[f.tag] || ''} ${f.tag}`), el('div', 'text-base font-bold text-white mt-1', f.title), el('div', 'text-sm text-slate-300 mt-2', f.detail));
         return c;
       }));
+
+      const yt = ins.youtubeAi;
+      if (yt) {
+        document.getElementById('ytai-section').classList.remove('hidden');
+        document.getElementById('ytai-src').textContent = `${yt.source} · ${yt.date}`;
+        document.getElementById('ytai-pillars').append(...yt.pillars.map((p, i) => {
+          const c = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900');
+          c.append(el('div', 'text-xs uppercase font-bold text-red-300', `Pillar ${i + 1}`), el('div', 'text-base font-bold text-white mt-1', p.title), el('div', 'text-sm text-slate-300 mt-2', p.detail));
+          const ul = el('ul', 'mt-2 text-xs text-slate-400 list-disc pl-4'); p.examples.forEach((x) => ul.append(el('li', null, x))); c.append(ul);
+          c.append(el('div', 'text-sm text-emerald-300 mt-3', `Our data: ${p.ourData}`));
+          return c;
+        }));
+        document.getElementById('ytai-ideas').append(...yt.ideas.map((x, i) => {
+          const made = /^made/i.test(x.status);
+          const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900');
+          const h = el('div', 'flex flex-wrap items-center gap-2');
+          h.append(el('span', 'text-sm font-bold text-slate-400', `#${i + 1}`), el('span', 'font-semibold text-white', x.title),
+            el('span', 'text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border border-slate-700 text-slate-300', `YouTube: ${x.rating}`),
+            el('span', `text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border ${made ? 'border-emerald-500/40 text-emerald-300 bg-emerald-950/30' : 'border-amber-500/40 text-amber-300 bg-amber-950/30'}`, x.status));
+          c.append(h, el('p', 'text-sm text-slate-300 mt-2', x.verdict));
+          return c;
+        }));
+        const q = document.getElementById('ytai-q');
+        q.append(el('div', 'text-xs uppercase font-bold text-indigo-300', 'Open questions for you'));
+        const ul = el('ul', 'mt-2 text-sm text-slate-200 list-disc pl-5 space-y-1'); yt.questions.forEach((x) => ul.append(el('li', null, x))); q.append(ul);
+      }
 
       document.getElementById('top').append(bars(past.top_performing_videos.slice(0, 10), {
         value: (v) => v.views, label: (v) => v.title,
