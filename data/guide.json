@@ -40,6 +40,11 @@
       "title": "2. Why: strategy",
       "pages": [
         {
+          "url": "research.html",
+          "title": "📜 Research: AGI, work & meaning",
+          "why": "Erdem's paper: what AGI does to the workforce and how people find meaning."
+        },
+        {
           "url": "core-message.html",
           "title": "🎯 Core message",
           "why": "The one idea every video points back to."
@@ -514,6 +519,31 @@
       "mentors.html",
       "interests.html",
       "Hawkins' map and the consciousness thread"
+    ],
+    [
+      "research.html",
+      "ikigai.html",
+      "Meaning: the research question, lived"
+    ],
+    [
+      "research.html",
+      "core-message.html",
+      "The paper's answer becomes the Delivery Pilot message"
+    ],
+    [
+      "research.html",
+      "what-works.html",
+      "Pillar 2 career takes come from the workforce thread"
+    ],
+    [
+      "research.html",
+      "interests.html",
+      "AI × human intelligence: the paper's home topic"
+    ],
+    [
+      "research.html",
+      "story.html",
+      "Tried university twice, now writing research on AGI"
     ]
   ]
 }

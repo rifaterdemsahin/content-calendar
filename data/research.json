@@ -1,0 +1,43 @@
+{
+  "updated": "2026-11-21",
+  "paper": {
+    "title": "",
+    "abstract": "",
+    "link": "",
+    "status": "",
+    "todo": "Add the paper's title, abstract, status and link here (data/research.json → paper) and the page will show them."
+  },
+  "summary": "Erdem's research is about AGI: what happens to the workforce when it arrives, and how people find meaning when work changes. It's the deep end of everything on this channel.",
+  "threads": [
+    {
+      "key": "agi", "icon": "🤖", "title": "AGI",
+      "question": "What changes when machines can do most cognitive work, and how fast?",
+      "why": "It's the frontier behind every tool video. 'AI is building AI' is already the premise of your Delivery Pilot video.",
+      "videos": ["VOtlOfpXVU8", "c1UotPbvKoQ"]
+    },
+    {
+      "key": "work", "icon": "🏭", "title": "The workforce",
+      "question": "Which jobs shrink, which grow, and how do people move between them?",
+      "why": "This is your strongest content pillar: data-backed career takes. Sources you've already used on camera include SignalFire's new-grad hiring data, the Harvard study of 62M workers, and Brynjolfsson's productivity J-curve.",
+      "videos": ["fJjxujMASkQ", "_tYzckEn6O8", "YZqcACObMws", "Frty5ICAdOo"]
+    },
+    {
+      "key": "meaning", "icon": "🧭", "title": "Meaning",
+      "question": "When work is no longer the main source of identity, where do people find meaning?",
+      "why": "This is the human half of 'AI × human intelligence', and the thread that connects your ikigai, Hawkins' map, Lacan and Tony Robbins' belief work.",
+      "videos": ["MnYEZWflHDs", "DDuGVH_uPTA"]
+    }
+  ],
+  "bridge": {
+    "title": "🧑‍✈️ The bridge: the Delivery Pilot",
+    "text": "The research question meets the channel here. If AGI takes the tasks, people keep the judgment, the delivery and the meaning. The Delivery Pilot is one practical answer to 'what do I do now?', and the 90-day flight plan is how someone gets there."
+  },
+  "toChannel": [
+    { "icon": "📹", "title": "One video per thread", "detail": "Three Pillar 2 long videos: 'What AGI Actually Changes', 'Who Gets Hired After AGI (Data)', 'Finding Meaning When AI Does the Work'. Each one cites the paper." },
+    { "icon": "🚀", "title": "The Pilot's Log season arc", "detail": "Season 1 of the sci-fi series follows the paper: a ship where agents do the work, and a crew finding out what's left for humans." },
+    { "icon": "🗯️", "title": "Comic strips of the findings", "detail": "One finding per strip as a LinkedIn carousel. It's how a research paper reaches 30k connections." },
+    { "icon": "🏫", "title": "Skool reading group", "detail": "Walk members through the paper chapter by chapter in Sunday Lives, then discuss their own meaning and work questions." },
+    { "icon": "📖", "title": "Credibility for the story", "detail": "'Tried university twice, now writing research on AGI and work' is the Susan Boyle reveal, backed by real work." }
+  ],
+  "rule": "🎯 Keep the research honest on camera: separate what the evidence shows from what's a prediction, as you already do ('a model, not a promise')."
+}

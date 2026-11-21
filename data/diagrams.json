@@ -694,6 +694,36 @@
           "d": "One mission: Delivery Pilots"
         }
       ]
+    },
+    "research.html": {
+      "title": "📜 The research in one line",
+      "steps": [
+        {
+          "e": "🤖",
+          "t": "AGI arrives",
+          "d": "Machines do cognitive work"
+        },
+        {
+          "e": "🏭",
+          "t": "Work changes",
+          "d": "Jobs shrink and grow"
+        },
+        {
+          "e": "🔄",
+          "t": "Transition",
+          "d": "J-curve, reskilling"
+        },
+        {
+          "e": "🧭",
+          "t": "Meaning",
+          "d": "Beyond the job title"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "Delivery Pilot",
+          "d": "One practical answer"
+        }
+      ]
     }
   }
 }
