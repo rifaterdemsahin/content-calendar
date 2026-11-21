@@ -177,13 +177,41 @@
           else box.append(el('p', 'mt-1 text-sm text-slate-200', list));
           s.append(box);
         }
-        const grid = el('div', 'mt-5 grid gap-3 grid-cols-2 lg:grid-cols-4');
+        if (g.examples && g.examples.length) {
+          s.append(el('div', 'mt-6 text-xs uppercase font-bold text-emerald-300', '🎬 Examples to make next'));
+          const eg = el('div', 'mt-3 grid gap-3 md:grid-cols-' + Math.min(3, g.examples.length));
+          g.examples.forEach((x) => {
+            const c = el('div', 'p-4 rounded-xl border border-emerald-500/25 bg-slate-950/60 flex flex-col');
+            c.append(el('div', 'text-[11px] uppercase tracking-wider text-slate-400', x.format), el('div', 'font-bold text-white mt-1 leading-snug', x.title),
+              el('div', 'text-sm text-emerald-200 mt-2 italic', `🪝 “${x.hook}”`));
+            const ol = el('ol', 'mt-3 text-xs text-slate-300 space-y-1 list-decimal pl-4'); x.beats.forEach((b) => ol.append(el('li', null, b))); c.append(ol);
+            eg.append(c);
+          });
+          s.append(eg);
+        }
+        if (g.rewrites && g.rewrites.length) {
+          s.append(el('div', 'mt-6 text-xs uppercase font-bold text-amber-300', '🔄 Before → after: your videos, reshaped'));
+          const rl = el('div', 'mt-3 grid gap-3');
+          g.rewrites.forEach((x) => {
+            const v = get(x.id);
+            const row = el('div', 'grid md:grid-cols-[1fr_auto_1fr] gap-2 md:gap-4 items-center p-4 rounded-xl border border-slate-800 bg-slate-950/60');
+            const before = el('a', 'block'); before.href = v.url; before.target = '_blank'; before.rel = 'noopener';
+            before.append(el('div', 'text-[11px] uppercase font-bold text-red-300', `⛔ Before · ${fmt(v.views)} views`), el('div', 'text-sm text-slate-400 line-through decoration-red-400/50 mt-0.5', v.title));
+            const after = el('div');
+            after.append(el('div', 'text-[11px] uppercase font-bold text-emerald-300', '✅ After'), el('div', 'text-sm font-semibold text-white mt-0.5', x.after), el('div', 'text-xs text-slate-400 mt-1', x.why));
+            row.append(before, el('div', 'text-indigo-400 text-xl text-center md:rotate-0 rotate-90', '→'), after);
+            rl.append(row);
+          });
+          s.append(rl);
+        }
+        s.append(el('div', 'mt-6 text-xs uppercase font-bold text-slate-400', '📺 The evidence'));
+        const grid = el('div', 'mt-3 grid gap-3 grid-cols-2 lg:grid-cols-4');
         [...g.videos].sort((a, b) => get(b).views - get(a).views).forEach((id) => grid.append(vcard(id)));
         s.append(grid); return s;
       };
       const wl = document.getElementById('works-list');
       ww.works.forEach((g) => wl.append(groupBlock(g, true, 'Recipe', g.recipe)));
-      wl.append(groupBlock({ key: 'meet', title: ww.alsoWorks.title, detail: ww.alsoWorks.detail, videos: ww.alsoWorks.videos }, true));
+      wl.append(groupBlock({ key: 'meet', title: ww.alsoWorks.title, detail: ww.alsoWorks.detail, videos: ww.alsoWorks.videos, examples: ww.alsoWorks.examples }, true));
       const dl = document.getElementById('doesnt-list');
       ww.doesnt.forEach((g) => dl.append(groupBlock(g, false, 'Do this instead', g.instead)));
 

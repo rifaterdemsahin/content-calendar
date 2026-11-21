@@ -15,7 +15,48 @@
         "Show it working on screen within 10 seconds",
         "End by pointing to the long-form parent video or the Skool setup file"
       ],
-      "videos": ["s1nD2loqPso", "rbWBJqBU1EY", "yFxHseG1_F0", "fnKeTQYBHN8"]
+      "videos": [
+        "s1nD2loqPso",
+        "rbWBJqBU1EY",
+        "yFxHseG1_F0",
+        "fnKeTQYBHN8"
+      ],
+      "examples": [
+        {
+          "title": "Stop Paying for Claude: Make Qwen Code Like a Frontier Model in Kilo",
+          "format": "🎬 Short · 45s",
+          "hook": "This model costs a fraction of Claude, and it just passed my test suite.",
+          "beats": [
+            "0:00 the price comparison on screen",
+            "0:05 the one config change in Kilo Code",
+            "0:25 the test suite going green",
+            "0:40 'Full setup in the long video'"
+          ]
+        },
+        {
+          "title": "Your Cheap AI Model Is Blind. Give It an MCP Server in 60 Seconds",
+          "format": "🎬 Short · 50s",
+          "hook": "Your cheap model fails because it can't see your project, not because it's dumb.",
+          "beats": [
+            "0:00 the model guessing wrong",
+            "0:10 add one MCP server",
+            "0:35 the same prompt answered correctly",
+            "0:45 point to Skool for the config"
+          ]
+        },
+        {
+          "title": "Frontier-Level AI Coding for Under $10 a Month (Full Setup)",
+          "format": "📹 Long · 10–12 min · the parent for the Shorts",
+          "hook": "My AI coding bill last month was [your real number]. Here's the whole setup.",
+          "beats": [
+            "✈️ Pre-flight check: model, cost, goal",
+            "The stack: model, Kilo, LSP, MCP",
+            "Build one real feature live",
+            "Cost meter at the end",
+            "Call to action: Skool config + Delivery Pilot course"
+          ]
+        }
+      ]
     },
     {
       "key": "career",
@@ -29,13 +70,82 @@
         "Give one framework per video (not five)",
         "End with a concrete plan (e.g. 90 days) and a call to action"
       ],
-      "videos": ["c1UotPbvKoQ", "fJjxujMASkQ", "YZqcACObMws", "Frty5ICAdOo", "VOtlOfpXVU8"]
+      "videos": [
+        "c1UotPbvKoQ",
+        "fJjxujMASkQ",
+        "YZqcACObMws",
+        "Frty5ICAdOo",
+        "VOtlOfpXVU8"
+      ],
+      "examples": [
+        {
+          "title": "Junior Dev Jobs Are Down 50%. Here's How to Become a Delivery Pilot in 90 Days",
+          "format": "📹 Long · 10 min · the retitle of _tYzckEn6O8",
+          "hook": "Entry-level tech jobs are down by half, and I've never been more optimistic for juniors.",
+          "beats": [
+            "The data in 60s",
+            "Why it's a dip, not the end",
+            "What AI took vs what stays human",
+            "The 90-day plan (move it earlier)"
+          ]
+        },
+        {
+          "title": "Will AI End Coding Jobs? What 62 Million Workers' Data Actually Shows",
+          "format": "📹 Long · 12 min",
+          "hook": "Everyone says AI ends coding jobs. The biggest study so far says something more interesting.",
+          "beats": [
+            "The hype claim",
+            "The Harvard data: who got cut, who got hired",
+            "Your take from delivery work",
+            "3 things to do this month"
+          ]
+        },
+        {
+          "title": "I Never Finished University. What AI Changes for People Like Me",
+          "format": "📹 Long · 10 min · story + data",
+          "hook": "I never finished my degree. In 2027 that matters less, and here's the data.",
+          "beats": [
+            "15s of your story (Turkey → Britain)",
+            "Hiring data on degrees vs skills",
+            "Self-learning system on screen",
+            "Delivery Pilot: free for students"
+          ]
+        }
+      ]
     }
   ],
   "alsoWorks": {
     "title": "Also strong: practical AI builds for a job-seeker outcome",
     "detail": "Your all-time #1 is a build, and the newest one is your fastest grower. These sit where both pillars meet: a practical tool aimed at a career result.",
-    "videos": ["qNJpDJ8yHu8", "bsH-vBGNERE", "u27o3jaoQnI"]
+    "videos": [
+      "qNJpDJ8yHu8",
+      "bsH-vBGNERE",
+      "u27o3jaoQnI"
+    ],
+    "examples": [
+      {
+        "title": "Build an AI That Tailors Your CV to Every Job Ad (n8n, Free)",
+        "format": "📹 Long · 12 min",
+        "hook": "Sending the same CV to every job doesn't work. This agent rewrites yours for each one.",
+        "beats": [
+          "The problem in 15s",
+          "Build the n8n flow live",
+          "Before/after CV",
+          "Download the workflow in Skool"
+        ]
+      },
+      {
+        "title": "I Let AI Coach Me Through a Live System Design Interview",
+        "format": "📹 Long · 8 min · follow-up to the Interview Overlay",
+        "hook": "Your fastest-growing video, part 2: the overlay against a real interview question.",
+        "beats": [
+          "Set up the overlay",
+          "Run a mock interview",
+          "Where it helped, where it didn't",
+          "What to practise without it"
+        ]
+      }
+    ]
   },
   "doesnt": [
     {
@@ -44,7 +154,29 @@
       "short": "A slogan with no tool and no data",
       "why": "In 45 seconds there's nothing to copy and nothing to prove. Viewers swipe past a slogan. The Delivery Pilot idea does land, but only inside a practical video, as its closing line.",
       "instead": "Put the mindset line at the end of a tool Short, or make it a long-form take with data (Pillar 2).",
-      "videos": ["6alMTPb2Xtk", "wJxEb3wR9Ps", "omC9xa6G7u4", "k9CHPa7eLoc"]
+      "videos": [
+        "6alMTPb2Xtk",
+        "wJxEb3wR9Ps",
+        "omC9xa6G7u4",
+        "k9CHPa7eLoc"
+      ],
+      "rewrites": [
+        {
+          "id": "6alMTPb2Xtk",
+          "after": "Rider, Driver or Pilot? Watch Me Ship the Same Feature All 3 Ways",
+          "why": "Turns the slogan into a demo: three screen recordings, three timings."
+        },
+        {
+          "id": "wJxEb3wR9Ps",
+          "after": "I Asked 3 AIs to Cut a Security Corner. Here's Who Said No.",
+          "why": "Values shown through a test with stakes, not stated."
+        },
+        {
+          "id": "omC9xa6G7u4",
+          "after": "I Never Finished My Degree. This AI Skill Replaced It for Me",
+          "why": "Your real story with stakes, the shape of the one mindset Short that worked (148)."
+        }
+      ]
     },
     {
       "key": "narrow",
@@ -52,11 +184,39 @@
       "short": "A personal or niche angle with no clear payoff",
       "why": "The topic is either too niche to be searched ('red tape') or too general to stand out ('AI isn't a bubble', habits). Neither has a hook that makes a developer click.",
       "instead": "Choose a topic people search for and add data, or turn it into a build.",
-      "videos": ["LGbDImaufGI", "27jXA2V2Zio", "3VgRz5GeYDA", "WK66w51UMrs"]
+      "videos": [
+        "LGbDImaufGI",
+        "27jXA2V2Zio",
+        "3VgRz5GeYDA",
+        "WK66w51UMrs"
+      ],
+      "rewrites": [
+        {
+          "id": "LGbDImaufGI",
+          "after": "Use AI to Decode Any Confusing Form in 2 Minutes (Visa, Tax, HR)",
+          "why": "Searchable and practical, and the visa angle ties back to your immigrant story."
+        },
+        {
+          "id": "27jXA2V2Zio",
+          "after": "AI Isn't a Bubble: 5 Numbers That Prove It (2026 Data)",
+          "why": "Same opinion, now with a data angle (Pillar 2)."
+        },
+        {
+          "id": "3VgRz5GeYDA",
+          "after": "My 10-Minute Daily AI Routine to Learn Any Tech (Obsidian Setup)",
+          "why": "Turns a habit story into a tool workflow someone can copy (Pillar 1)."
+        }
+      ]
     }
   ],
   "exceptions": [
-    { "id": "OGB69NVn8ZU", "note": "A mindset Short that did work (148). It's a story with something at stake ('I walked in anyway'), not a slogan." },
-    { "id": "KVKJRdkH-B8", "note": "An explainer that worked (142) next to one on the same topic that didn't ('AI Doesn't Read Words', 23). Clear packaging beat a vague hook." }
+    {
+      "id": "OGB69NVn8ZU",
+      "note": "A mindset Short that did work (148). It's a story with something at stake ('I walked in anyway'), not a slogan."
+    },
+    {
+      "id": "KVKJRdkH-B8",
+      "note": "An explainer that worked (142) next to one on the same topic that didn't ('AI Doesn't Read Words', 23). Clear packaging beat a vague hook."
+    }
   ]
 }
