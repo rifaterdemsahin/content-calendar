@@ -28,7 +28,8 @@ jobs:
       - name: Date pages for the Guide
         run: python3 scripts/build_guide.py
       - name: Stamp deploy time and commit for the site footer
-        run: printf '{\n  "deployedAt": "%s",\n  "commit": "%s"\n}\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${GITHUB_SHA::7}" > data/deploy.json
+        run: |
+          printf '{\n  "deployedAt": "%s",\n  "commit": "%s"\n}\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "${GITHUB_SHA::7}" > data/deploy.json
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy
         run: flyctl deploy --remote-only
