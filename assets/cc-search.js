@@ -24,6 +24,7 @@
     { title: '🧭 Expectations & Scope', category: 'Page', desc: 'What the assistant can and cannot do, delivery pilot operating boundaries', url: 'expectations.html', tags: ['scope', 'expectations', 'guarantees', 'capabilities'] },
     { title: '📅 Weekly Direction Report', category: 'Report', desc: 'This week: planned vs published, direction check, course correction. Refreshed weekly', url: 'week.html', tags: ['report', 'weekly', 'this week', 'direction', 'on track', 'plan', 'review'] },
     { title: '🚀 Channel Performance Report', category: 'Report', desc: 'Video views, views per day, winners and weak formats, recommended actions. Refreshed weekly', url: 'performance.html', tags: ['report', 'performance', 'stats', 'views', 'analytics', 'actions', 'youtube'] },
+    { title: '✅ What Works / ⛔ What Doesn\'t', category: 'Report', desc: 'Two pillars: cost-saving dev tooling and data-backed career takes; stop mindset Shorts and narrow commentary', url: 'what-works.html', tags: ['what works', 'what does not work', 'pillars', 'strategy', 'diagram', 'formats', 'shorts', 'report'] },
     { title: '💎 Value Check', category: 'Page', desc: 'Is there genuine value in every video? Five-question score, audience, proof and rationale per video; editable', url: 'value.html', tags: ['value', 'rationale', 'audience', 'score', 'videos', 'quality', 'why'] },
 
     // Calendar Content & Video Blueprints (direct item targeting with rationale)

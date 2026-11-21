@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Works | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 72px; }
+    /* Tree connectors (desktop): root -> 2 groups -> 2 nodes each */
+    .tree-kids { position: relative; display: grid; gap: 1.25rem; }
+    @media (min-width: 768px) {
+      .tree-kids { grid-template-columns: 1fr 1fr; padding-top: 28px; }
+      .tree-kids::before { content: ''; position: absolute; top: 0; left: 25%; right: 25%; height: 14px; border: 2px solid #334155; border-bottom: 0; border-radius: 10px 10px 0 0; }
+      .tree-kids::after { content: ''; position: absolute; top: -14px; left: 50%; height: 14px; border-left: 2px solid #334155; }
+      .tree-kids > * { position: relative; }
+      .tree-kids > *::before { content: ''; position: absolute; top: -14px; left: 50%; height: 14px; border-left: 2px solid #334155; }
+      .tree-kids.green::before, .tree-kids.green::after, .tree-kids.green > *::before { border-color: rgba(16,185,129,.45); }
+      .tree-kids.red::before, .tree-kids.red::after, .tree-kids.red > *::before { border-color: rgba(239,68,68,.45); }
+    }
+    .bar { height: 12px; border-radius: 0 4px 4px 0; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="index.html" class="text-sm text-slate-300 hover:text-indigo-400 transition shrink-0"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <nav class="flex items-center gap-1 text-xs sm:text-sm">
+        <a href="#works" class="px-2.5 py-1 rounded-md text-emerald-300 hover:bg-emerald-950/40">✅ Works</a>
+        <a href="#doesnt" class="px-2.5 py-1 rounded-md text-red-300 hover:bg-red-950/40">⛔ Doesn't</a>
+      </nav>
+      <a href="performance.html" class="hidden sm:inline text-sm text-slate-300 hover:text-indigo-400 transition shrink-0">Performance Report <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Report · content strategy</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">What works, and what doesn't</h1>
+      <p id="headline" class="text-slate-300 mt-4 max-w-3xl text-lg leading-relaxed"></p>
+    </section>
+
+    <!-- Diagram -->
+    <section aria-label="Diagram: two pillars that work and two formats that don't">
+      <div class="flex justify-center">
+        <div class="px-6 py-4 rounded-2xl border border-indigo-500/40 bg-indigo-950/30 text-center">
+          <div class="text-xs uppercase font-bold text-indigo-300 tracking-widest">@RifatErdemSahin</div>
+          <div class="text-lg font-bold text-white mt-0.5">What drives views</div>
+        </div>
+      </div>
+      <div class="tree-kids mt-4 md:mt-0">
+        <div class="rounded-2xl border border-emerald-500/30 bg-emerald-950/10 p-4">
+          <div class="text-center"><span class="inline-block text-sm font-bold text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/40 bg-emerald-950/40">✅ Works: make more</span></div>
+          <div id="d-works" class="tree-kids green mt-4"></div>
+          <div id="d-meet" class="mt-4"></div>
+        </div>
+        <div class="rounded-2xl border border-red-500/30 bg-red-950/10 p-4">
+          <div class="text-center"><span class="inline-block text-sm font-bold text-red-300 px-3 py-1 rounded-full border border-red-500/40 bg-red-950/40">⛔ Doesn't work: stop or reshape</span></div>
+          <div id="d-doesnt" class="tree-kids red mt-4"></div>
+          <div id="d-exc" class="mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Average views comparison -->
+    <section>
+      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">The gap in numbers</h2>
+      <p class="text-2xl font-bold text-white mt-2">Average views per video, by group</p>
+      <p class="text-sm text-slate-400 mt-1">Live counts for the videos listed below. Hover a row for the list.</p>
+      <div id="compare" class="mt-6 rounded-xl border border-slate-800 bg-slate-900/50 p-3 divide-y divide-slate-800/60"></div>
+    </section>
+
+    <section id="works">
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">✅ What works</h2>
+      <p class="text-3xl font-bold text-white mt-2">Make more of these</p>
+      <div id="works-list" class="mt-8 space-y-10"></div>
+    </section>
+
+    <section id="doesnt">
+      <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest">⛔ What doesn't work</h2>
+      <p class="text-3xl font-bold text-white mt-2">Stop these, or reshape them</p>
+      <div id="doesnt-list" class="mt-8 space-y-10"></div>
+      <div id="exceptions" class="mt-10"></div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Groups and recipes live in <code class="text-slate-400">data/what-works.json</code> · view counts come from <code class="text-slate-400">data/latest-videos.json</code> and <code class="text-slate-400">data/past-performance.json</code>.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const json = (r) => r.json();
+    const fmt = (n) => Math.round(n).toLocaleString('en-GB');
+
+    Promise.all([
+      fetch('data/what-works.json', { cache: 'no-cache' }).then(json),
+      fetch('data/latest-videos.json', { cache: 'no-cache' }).then(json),
+      fetch('data/past-performance.json', { cache: 'no-cache' }).then(json),
+    ]).then(([ww, latest, past]) => {
+      const vids = {};
+      [...past.all_videos, ...latest.videos].forEach((v) => { vids[v.id] = { ...vids[v.id], ...v }; }); // latest wins
+      const get = (id) => vids[id] || { id, title: id, views: 0, type: '', url: `https://www.youtube.com/watch?v=${id}` };
+      const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+      const avg = (ids) => { const vs = ids.map(get); return vs.reduce((s, v) => s + v.views, 0) / Math.max(1, vs.length); };
+      const isShort = (v) => /short/i.test(v.type);
+
+      document.getElementById('headline').textContent = ww.headline;
+
+      // Diagram nodes
+      const node = (g, good) => {
+        const c = el('a', `block rounded-xl border p-4 transition ${good ? 'border-emerald-500/40 bg-slate-900 hover:border-emerald-400' : 'border-red-500/40 bg-slate-900 hover:border-red-400'}`);
+        c.href = good ? '#g-' + g.key : '#g-' + g.key;
+        c.append(el('div', 'font-bold text-white leading-snug', g.title.replace(/^Pillar \d · /, '')),
+          el('div', 'text-xs text-slate-400 mt-1', g.short),
+          el('div', `text-2xl font-extrabold mt-3 ${good ? 'text-emerald-300' : 'text-red-300'}`, fmt(avg(g.videos))),
+          el('div', 'text-[11px] text-slate-500', `avg views · ${g.videos.length} videos`));
+        if (g.title.startsWith('Pillar')) c.prepend(el('div', 'text-[10px] uppercase font-bold tracking-wider text-emerald-400 mb-1', g.title.split(' · ')[0]));
+        return c;
+      };
+      document.getElementById('d-works').append(...ww.works.map((g) => node(g, true)));
+      document.getElementById('d-doesnt').append(...ww.doesnt.map((g) => node(g, false)));
+      const meet = document.getElementById('d-meet');
+      const m = el('a', 'block rounded-xl border border-dashed border-emerald-500/40 p-3 text-center hover:bg-emerald-950/20'); m.href = '#g-meet';
+      m.append(el('div', 'text-xs text-emerald-300 font-semibold', '↑ where both pillars meet ↑'), el('div', 'text-sm text-white font-semibold mt-0.5', cap(ww.alsoWorks.title.replace(/^Also strong: /, ''))), el('div', 'text-xs text-slate-400 mt-0.5', `avg ${fmt(avg(ww.alsoWorks.videos))} views · ${ww.alsoWorks.videos.length} videos`));
+      meet.append(m);
+      const exc = document.getElementById('d-exc');
+      const e = el('a', 'block rounded-xl border border-dashed border-amber-500/40 p-3 text-center hover:bg-amber-950/20'); e.href = '#exceptions';
+      e.append(el('div', 'text-xs text-amber-300 font-semibold', `⚠️ ${ww.exceptions.length} exceptions`), el('div', 'text-xs text-slate-400 mt-0.5', 'Clear packaging and a story with stakes can rescue the format'));
+      exc.append(e);
+
+      // Comparison bars (status colours carry an icon + label, never colour alone)
+      const groups = [
+        ...ww.works.map((g) => ({ label: '✅ ' + g.title.replace(/^Pillar (\d) · /, 'P$1 · '), ids: g.videos, good: true })),
+        { label: '✅ ' + cap(ww.alsoWorks.title.replace(/^Also strong: /, '')), ids: ww.alsoWorks.videos, good: true },
+        ...ww.doesnt.map((g) => ({ label: '⛔ ' + g.title, ids: g.videos, good: false })),
+      ].map((g) => ({ ...g, avg: avg(g.ids) })).sort((a, b) => b.avg - a.avg);
+      const max = Math.max(...groups.map((g) => g.avg));
+      const cmp = document.getElementById('compare');
+      groups.forEach((g) => {
+        const row = el('div', 'py-2.5 px-2 rounded-lg hover:bg-slate-800/50');
+        row.title = g.ids.map((id) => `${get(id).title} (${get(id).views})`).join('\n');
+        const top = el('div', 'flex justify-between gap-3'); top.append(el('span', 'text-sm text-slate-100', g.label), el('span', 'text-sm font-semibold text-white tabular-nums', fmt(g.avg)));
+        const track = el('div', 'mt-1.5 bg-slate-800/50 rounded-r'); const b = el('div', 'bar'); b.style.width = Math.max(2, g.avg / max * 100) + '%'; b.style.background = g.good ? '#10b981' : '#ef4444'; track.append(b);
+        row.append(top, track); cmp.append(row);
+      });
+
+      // Evidence cards
+      const vcard = (id) => {
+        const v = get(id);
+        const a = el('a', 'group block rounded-xl border border-slate-800 bg-slate-900 overflow-hidden hover:border-slate-600 transition'); a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
+        const img = el('img', 'w-full aspect-video object-cover'); img.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; img.alt = ''; img.loading = 'lazy';
+        const b = el('div', 'p-3'); b.append(el('div', 'text-sm text-slate-100 leading-snug line-clamp-2', v.title),
+          el('div', 'text-xs text-slate-400 mt-1.5', `${isShort(v) ? '🎬 Short' : '📹 Long'} · ${fmt(v.views)} views`));
+        a.append(img, b); return a;
+      };
+      const groupBlock = (g, good, listTitle, list) => {
+        const s = el('div', `rounded-2xl border p-5 sm:p-6 ${good ? 'border-emerald-500/25 bg-emerald-950/10' : 'border-red-500/25 bg-red-950/10'}`); s.id = 'g-' + g.key;
+        const h = el('div', 'flex flex-wrap items-baseline justify-between gap-3');
+        h.append(el('h3', 'text-xl font-bold text-white', g.title), el('span', `text-sm font-semibold ${good ? 'text-emerald-300' : 'text-red-300'}`, `avg ${fmt(avg(g.videos))} views`));
+        s.append(h);
+        if (g.format) s.append(el('div', 'text-xs uppercase tracking-wider text-slate-400 mt-1', g.format));
+        s.append(el('p', 'text-slate-300 mt-3 max-w-3xl', g.why || g.detail));
+        if (list) {
+          const box = el('div', 'mt-4 p-4 rounded-xl bg-slate-950/60 border border-slate-800');
+          box.append(el('div', `text-xs uppercase font-bold ${good ? 'text-emerald-300' : 'text-amber-300'}`, listTitle));
+          if (Array.isArray(list)) { const ol = el('ol', 'mt-2 text-sm text-slate-200 list-decimal pl-5 space-y-1'); list.forEach((x) => ol.append(el('li', null, x))); box.append(ol); }
+          else box.append(el('p', 'mt-1 text-sm text-slate-200', list));
+          s.append(box);
+        }
+        const grid = el('div', 'mt-5 grid gap-3 grid-cols-2 lg:grid-cols-4');
+        [...g.videos].sort((a, b) => get(b).views - get(a).views).forEach((id) => grid.append(vcard(id)));
+        s.append(grid); return s;
+      };
+      const wl = document.getElementById('works-list');
+      ww.works.forEach((g) => wl.append(groupBlock(g, true, 'Recipe', g.recipe)));
+      wl.append(groupBlock({ key: 'meet', title: ww.alsoWorks.title, detail: ww.alsoWorks.detail, videos: ww.alsoWorks.videos }, true));
+      const dl = document.getElementById('doesnt-list');
+      ww.doesnt.forEach((g) => dl.append(groupBlock(g, false, 'Do this instead', g.instead)));
+
+      const ex = document.getElementById('exceptions');
+      ex.append(el('h3', 'text-lg font-bold text-amber-300', '⚠️ Exceptions worth learning from'));
+      const eg = el('div', 'mt-4 grid gap-4 sm:grid-cols-2');
+      ww.exceptions.forEach((x) => { const c = el('div', 'rounded-xl border border-amber-500/30 bg-amber-950/10 p-3 flex gap-3'); const v = vcard(x.id); v.classList.add('w-40', 'shrink-0'); c.append(v, el('p', 'text-sm text-slate-300', x.note)); eg.append(c); });
+      ex.append(eg);
+
+      document.getElementById('status').textContent = `Updated ${ww.updated} · ${ww.source}`;
+      if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+</body>
+</html>

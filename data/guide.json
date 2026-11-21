@@ -95,6 +95,11 @@
           "why": "What's working, what isn't, what to do next."
         },
         {
+          "url": "what-works.html",
+          "title": "✅ What works / ⛔ what doesn't",
+          "why": "The two pillars to grow, and the formats to stop, with the evidence."
+        },
+        {
           "url": "analytics.html",
           "title": "📊 Analytics",
           "why": "Raw stats, Studio snapshot and data gaps."
@@ -182,8 +187,8 @@
       "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
     },
     "performance.html": {
-      "at": "2026-11-21T19:29:59Z",
-      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+      "at": "2026-11-21T19:54:13Z",
+      "change": "feat: video review of _tYzckEn6O8 (junior dev Delivery Pilot) in the reports"
     },
     "requirements.html": {
       "at": "2026-11-18T11:05:35Z",

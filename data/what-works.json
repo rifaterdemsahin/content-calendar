@@ -1,0 +1,62 @@
+{
+  "updated": "2026-11-21",
+  "source": "Public view counts (data/latest-videos.json, data/past-performance.json) and YouTube Studio's AI analysis of 21 Nov 2026. View counts on the page are read live from those files.",
+  "headline": "Two pillars work, and YouTube's own AI agrees: (1) practical, cost-saving dev tooling, and (2) grounded long-form career and industry takes with a data angle. What doesn't work is mindset Shorts and narrow commentary.",
+  "works": [
+    {
+      "key": "tooling",
+      "title": "Pillar 1 · Practical, cost-saving dev tooling",
+      "short": "Cheap model + one trick = frontier results",
+      "format": "Shorts and short long-form (2–6 min)",
+      "why": "It solves a problem the viewer has today (cost, a weak model, a missing feature) and they can copy it in minutes. YouTube's AI calls this 'pragmatic, cost-conscious dev tooling'.",
+      "recipe": [
+        "Open on the money or the pain: 'Don't pay $200…', '…for $0', 'X missing?'",
+        "Name the exact tool and model (Kilo Code, DeepSeek, LSP, Claude)",
+        "Show it working on screen within 10 seconds",
+        "End by pointing to the long-form parent video or the Skool setup file"
+      ],
+      "videos": ["s1nD2loqPso", "rbWBJqBU1EY", "yFxHseG1_F0", "fnKeTQYBHN8"]
+    },
+    {
+      "key": "career",
+      "title": "Pillar 2 · Grounded career & industry takes, with data",
+      "short": "Hype claim → 'the data says otherwise' → what to do",
+      "format": "Long-form (9–25 min)",
+      "why": "It cuts through hype with evidence and a realistic engineering view, then tells the viewer what to do. YouTube's AI says these earn your highest overall views and watch time.",
+      "recipe": [
+        "Open with a big claim plus a contrarian, data-backed answer",
+        "Cite real sources and say where the evidence stops",
+        "Give one framework per video (not five)",
+        "End with a concrete plan (e.g. 90 days) and a call to action"
+      ],
+      "videos": ["c1UotPbvKoQ", "fJjxujMASkQ", "YZqcACObMws", "Frty5ICAdOo", "VOtlOfpXVU8"]
+    }
+  ],
+  "alsoWorks": {
+    "title": "Also strong: practical AI builds for a job-seeker outcome",
+    "detail": "Your all-time #1 is a build, and the newest one is your fastest grower. These sit where both pillars meet: a practical tool aimed at a career result.",
+    "videos": ["qNJpDJ8yHu8", "bsH-vBGNERE", "u27o3jaoQnI"]
+  },
+  "doesnt": [
+    {
+      "key": "mindset",
+      "title": "Mindset Shorts",
+      "short": "A slogan with no tool and no data",
+      "why": "In 45 seconds there's nothing to copy and nothing to prove. Viewers swipe past a slogan. The Delivery Pilot idea does land, but only inside a practical video, as its closing line.",
+      "instead": "Put the mindset line at the end of a tool Short, or make it a long-form take with data (Pillar 2).",
+      "videos": ["6alMTPb2Xtk", "wJxEb3wR9Ps", "omC9xa6G7u4", "k9CHPa7eLoc"]
+    },
+    {
+      "key": "narrow",
+      "title": "Narrow or general commentary",
+      "short": "A personal or niche angle with no clear payoff",
+      "why": "The topic is either too niche to be searched ('red tape') or too general to stand out ('AI isn't a bubble', habits). Neither has a hook that makes a developer click.",
+      "instead": "Choose a topic people search for and add data, or turn it into a build.",
+      "videos": ["LGbDImaufGI", "27jXA2V2Zio", "3VgRz5GeYDA", "WK66w51UMrs"]
+    }
+  ],
+  "exceptions": [
+    { "id": "OGB69NVn8ZU", "note": "A mindset Short that did work (148). It's a story with something at stake ('I walked in anyway'), not a slogan." },
+    { "id": "KVKJRdkH-B8", "note": "An explainer that worked (142) next to one on the same topic that didn't ('AI Doesn't Read Words', 23). Clear packaging beat a vague hook." }
+  ]
+}
