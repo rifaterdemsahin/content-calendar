@@ -445,6 +445,10 @@
           "t": "Turkey"
         },
         {
+          "e": "🇺🇸",
+          "t": "USA exchange"
+        },
+        {
           "e": "🎓",
           "t": "No degree"
         },
@@ -636,6 +640,28 @@
         {
           "e": "🧑‍✈️",
           "t": "Delivery Pilot"
+        }
+      ]
+    },
+    "interests.html": {
+      "title": "🧠 What I care about",
+      "builtIn": "mindmap",
+      "steps": [
+        {
+          "e": "🧠",
+          "t": "AI × human intelligence"
+        },
+        {
+          "e": "🌀",
+          "t": "Mind"
+        },
+        {
+          "e": "🏗️",
+          "t": "Structure"
+        },
+        {
+          "e": "🌌",
+          "t": "Frontier"
         }
       ]
     }

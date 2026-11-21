@@ -20,6 +20,11 @@
           "why": "What you love, are good at, get paid for and the world needs, and where they meet."
         },
         {
+          "url": "interests.html",
+          "title": "🧠 What I care about",
+          "why": "AI and human intelligence, consciousness, Lacan, UML, enterprise patterns, space, RTS games."
+        },
+        {
           "url": "expectations.html",
           "title": "🧭 Expectations",
           "why": "What the assistant can and cannot do for you."
@@ -464,6 +469,26 @@
       "ikigai.html",
       "what-works.html",
       "Videos near the centre are the ones that work"
+    ],
+    [
+      "ikigai.html",
+      "interests.html",
+      "Everything inside the 'What I love' circle"
+    ],
+    [
+      "interests.html",
+      "formats.html",
+      "Space and RTS become the sci-fi series and game formats"
+    ],
+    [
+      "interests.html",
+      "story.html",
+      "Where these interests came from"
+    ],
+    [
+      "interests.html",
+      "core-message.html",
+      "Every interest goes through the Delivery Pilot lens"
     ]
   ]
 }

@@ -2,7 +2,7 @@
   "updated": "2026-11-21",
   "draft": "Draft written by Claude from Rifat's notes and public videos. Edit the words here; the page updates itself.",
   "name": "Rifat Erdem Sahin",
-  "tagline": "No degree, two countries, one habit: learning in public. Now helping others do the same while AI raises the bar.",
+  "tagline": "Turkish roots, a US exchange year, no degree, a new start in Britain, and one habit: learning in public. Now helping others do the same while AI raises the bar.",
   "linkedin": "https://www.linkedin.com/in/rifaterdemsahin/",
   "youtube": "https://www.youtube.com/@RifatErdemSahin",
   "belief": "AI is raising the skills bar faster than any school can keep up. The people who will do well are the ones who can teach themselves, and I've been doing that my whole life.",
@@ -10,8 +10,14 @@
     {
       "icon": "🇹🇷",
       "place": "Turkey",
-      "title": "Growing up between two cultures",
-      "text": "I grew up in Turkey and went to an American high school there. I lived Turkish life at home and learned in English at school. Early on I learned to move between two worlds, and to pick up whatever the next room expected of me."
+      "title": "A Turkish background",
+      "text": "I grew up in Turkey. That's where my roots, my language and my way of seeing the world come from."
+    },
+    {
+      "icon": "🇺🇸",
+      "place": "USA",
+      "title": "Exchange student at an American high school",
+      "text": "Then I went to the USA as an exchange student and finished high school in America. I was living in a new language and a new culture, and nobody there knew me. I learned early how to adapt, and how to pick up whatever the next room expected of me."
     },
     {
       "icon": "🎓",
@@ -45,19 +51,53 @@
     }
   ],
   "values": [
-    { "icon": "🧠", "title": "Self-learning first", "text": "No one is coming to teach you the next tool. Learn it, build it, show it." },
-    { "icon": "🔓", "title": "Open by default", "text": "My notes, code and mistakes are public, so others can skip the expensive parts." },
-    { "icon": "📈", "title": "Honest about AI", "text": "Not hype, not doom. Here's what the data says and what to do about it." },
-    { "icon": "🤝", "title": "Lift people up a seat", "text": "Riders become drivers, and drivers become Delivery Pilots. Nobody gets left behind." }
+    {
+      "icon": "🧠",
+      "title": "Self-learning first",
+      "text": "No one is coming to teach you the next tool. Learn it, build it, show it."
+    },
+    {
+      "icon": "🔓",
+      "title": "Open by default",
+      "text": "My notes, code and mistakes are public, so others can skip the expensive parts."
+    },
+    {
+      "icon": "📈",
+      "title": "Honest about AI",
+      "text": "Not hype, not doom. Here's what the data says and what to do about it."
+    },
+    {
+      "icon": "🤝",
+      "title": "Lift people up a seat",
+      "text": "Riders become drivers, and drivers become Delivery Pilots. Nobody gets left behind."
+    }
   ],
   "onChannel": {
     "title": "Where the story already shows up",
     "detail": "Your own data says personal stories with stakes work: 'They Called AI a Con. I Walked In Anyway.' is the best mindset Short you've made. The story can carry more of the channel.",
-    "videos": ["OGB69NVn8ZU", "omC9xa6G7u4", "MnYEZWflHDs", "DDuGVH_uPTA", "_tYzckEn6O8"]
+    "videos": [
+      "OGB69NVn8ZU",
+      "omC9xa6G7u4",
+      "MnYEZWflHDs",
+      "DDuGVH_uPTA",
+      "_tYzckEn6O8"
+    ]
   },
   "storyIdeas": [
-    { "title": "I never finished university. Here's how I learn anything now (2026 system)", "pillar": "Pillar 1 · practical", "why": "A self-learning system shown as a tool workflow (notes, AI, CV as code). It's a practical video and a story video at once." },
-    { "title": "No degree, new country: what AI changes for career switchers (data)", "pillar": "Pillar 2 · data-backed career take", "why": "Your story as the hook, plus hiring data. This is the shape that earns your highest watch time." },
-    { "title": "American school in Turkey, immigrant in Britain: the skill that transferred", "pillar": "Long-form story", "why": "A personal story with stakes, which is the exception that works. End on the one skill a viewer can copy." }
+    {
+      "title": "I never finished university. Here's how I learn anything now (2026 system)",
+      "pillar": "Pillar 1 · practical",
+      "why": "A self-learning system shown as a tool workflow (notes, AI, CV as code). It's a practical video and a story video at once."
+    },
+    {
+      "title": "No degree, new country: what AI changes for career switchers (data)",
+      "pillar": "Pillar 2 · data-backed career take",
+      "why": "Your story as the hook, plus hiring data. This is the shape that earns your highest watch time."
+    },
+    {
+      "title": "Turkey, a US Exchange Year, Then Britain: The Skill That Transferred",
+      "pillar": "Long-form story",
+      "why": "A personal story with stakes, which is the exception that works. End on the one skill a viewer can copy."
+    }
   ]
 }

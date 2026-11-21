@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What I Care About | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%A7%A0</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .mm text { font-family: Inter, system-ui, sans-serif; }
+    .mm a:hover rect { stroke: #a5b4fc; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="ikigai.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Ikigai</a>
+      <span class="font-bold tracking-tight">🧠 What I Care About</span>
+      <a href="formats.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Formats <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Interests</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🧠 What I care about</h1>
+      <p id="center" class="text-lg text-slate-200 mt-4 max-w-3xl leading-relaxed"></p>
+    </section>
+
+    <section aria-label="Mind map of interests">
+      <svg id="mm" class="mm w-full" viewBox="0 0 1000 500" role="img" aria-labelledby="mm-title"><title id="mm-title">Mind map: AI and human intelligence at the centre, with three branches (the mind, structure, the frontier) and their topics</title></svg>
+    </section>
+
+    <section id="branches" class="space-y-10"></section>
+
+    <p id="rule" class="p-4 rounded-xl border border-amber-500/30 bg-amber-950/15 text-sm text-amber-100"></p>
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Interests live in <code class="text-slate-400">data/interests.json</code>. Add a topic under a branch.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const NS = 'http://www.w3.org/2000/svg';
+    const sv = (tag, attrs, text) => { const n = document.createElementNS(NS, tag); Object.entries(attrs || {}).forEach(([k, v]) => n.setAttribute(k, v)); if (text != null) n.textContent = text; return n; };
+    const col = { pink: ['#f472b6', 'rgba(236,72,153,.15)'], indigo: ['#818cf8', 'rgba(99,102,241,.15)'], emerald: ['#34d399', 'rgba(16,185,129,.13)'] };
+    fetch('data/interests.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('center').textContent = `${d.center.icon} ${d.center.text}`;
+      // Mind map: centre → 3 branches → 2 topics each (laid out left, top/bottom middle, right)
+      const svg = document.getElementById('mm'); const C = [500, 230];
+      const B = [[270, 140], [500, 410], [730, 140]]; // branch hubs: mind (left), structure (below), frontier (right)
+      const T = [[[115, 45], [115, 245]], [[260, 440], [740, 440]], [[885, 45], [885, 245]]];
+      const lines = sv('g', { stroke: '#334155', 'stroke-width': 2, fill: 'none' }); svg.append(lines);
+      const nodes = sv('g', { 'text-anchor': 'middle' }); svg.append(nodes);
+      const box = (x, y, w, h, stroke, fill) => sv('rect', { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 14, fill, stroke, 'stroke-width': 2 });
+      d.branches.forEach((b, i) => {
+        const [c1, c2] = col[b.color]; const [bx, by] = B[i];
+        lines.append(sv('path', { d: `M${C[0]} ${C[1]} Q ${(C[0] + bx) / 2} ${by} ${bx} ${by}`, stroke: c1, opacity: .6 }));
+        b.topics.forEach((t, j) => {
+          const [tx, ty] = T[i][j];
+          lines.append(sv('path', { d: `M${bx} ${by} Q ${(bx + tx) / 2} ${ty} ${tx} ${ty}`, stroke: c1, opacity: .45, 'stroke-dasharray': '5 5' }));
+          const a = sv('a', { href: '#' + t.key }); a.append(box(tx, ty, 220, 50, c1, '#0f172a'), sv('text', { x: tx, y: ty + 5, fill: '#f1f5f9', 'font-size': 14, 'font-weight': 600 }, `${t.icon} ${t.name}`));
+          nodes.append(a);
+        });
+        const a = sv('a', { href: '#b-' + b.key }); a.append(box(bx, by, 170, 50, c1, c2), sv('text', { x: bx, y: by + 6, fill: '#fff', 'font-size': 16, 'font-weight': 700 }, `${b.icon} ${b.title}`));
+        nodes.append(a);
+      });
+      nodes.append(box(C[0], C[1], 250, 66, '#f472b6', '#1e1b4b'), sv('text', { x: C[0], y: C[1] + 7, fill: '#fff', 'font-size': 19, 'font-weight': 800 }, `${d.center.icon} ${d.center.title}`));
+
+      document.getElementById('branches').append(...d.branches.map((b) => {
+        const s = el('div'); s.id = 'b-' + b.key;
+        s.append(el('h2', 'text-2xl font-bold text-white', `${b.icon} ${b.title}`));
+        const g = el('div', 'mt-4 grid gap-4 md:grid-cols-2');
+        b.topics.forEach((t) => {
+          const c = el('article', 'rounded-2xl border border-slate-800 bg-slate-900 p-5 flex flex-col'); c.id = t.key;
+          c.append(el('h3', 'text-lg font-bold text-white', `${t.icon} ${t.name}`), el('p', 'text-sm text-slate-400 mt-2', t.what));
+          const l = el('p', 'text-sm text-slate-200 mt-3'); l.append(el('span', 'font-semibold text-indigo-300', '🔗 The AI link: '), document.createTextNode(t.link)); c.append(l);
+          const v = el('div', 'mt-4 p-3 rounded-lg border border-emerald-500/30 bg-emerald-950/15');
+          v.append(el('div', 'text-[11px] uppercase tracking-wider text-emerald-300 font-bold', `🎬 Video idea · ${t.pillar}`), el('div', 'text-sm font-semibold text-white mt-1', t.video));
+          c.append(v); g.append(c);
+        });
+        s.append(g); return s;
+      }));
+      document.getElementById('rule').textContent = d.rule;
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/interests.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>
