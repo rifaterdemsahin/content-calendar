@@ -69,6 +69,40 @@ class PlannedVideos(unittest.TestCase):
                 self.assertIsInstance(c["actual"], (int, float), v["id"])
 
 
+class ValueRecognition(unittest.TestCase):
+    """Every video needs a value block: who it is for, the problem, the outcome, proof, why it is useful, and a score."""
+
+    def setUp(self):
+        self.d = load("data/videos.json")
+        self.ids = [c["id"] for c in self.d["valueRubric"]["criteria"]]
+
+    def test_rubric_is_well_formed(self):
+        r = self.d["valueRubric"]
+        self.assertEqual(len(self.ids), len(set(self.ids)))
+        self.assertGreater(r["bands"]["strong"], r["bands"]["good"])
+        self.assertLessEqual(r["bands"]["strong"], 2 * len(self.ids))
+
+    def test_every_video_has_a_value_block(self):
+        for v in self.d["videos"]:
+            val = v.get("value")
+            self.assertIsNotNone(val, f"{v['id']} has no value block: add one to data/videos.json")
+            for key in ("who", "painPoint", "outcome", "proof", "whyUseful", "scores", "gaps", "improve"):
+                self.assertIn(key, val, f"{v['id']} value is missing {key}")
+            self.assertEqual(set(val["scores"]), set(self.ids), v["id"])
+
+    def test_scores_are_0_1_2_or_unscored(self):
+        for v in self.d["videos"]:
+            for k, s in v["value"]["scores"].items():
+                self.assertIn(s, (0, 1, 2, None), f"{v['id']} {k}")
+
+    def test_scored_videos_explain_why_they_are_useful(self):
+        for v in self.d["videos"]:
+            val = v["value"]
+            if None not in val["scores"].values():
+                for key in ("who", "painPoint", "outcome", "whyUseful"):
+                    self.assertTrue(val[key].strip(), f"{v['id']} is scored but {key} is empty")
+
+
 class Goals(unittest.TestCase):
     def test_goal_file_is_complete(self):
         g = load("data/goals.json")

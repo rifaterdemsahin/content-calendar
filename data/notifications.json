@@ -2,22 +2,21 @@
   "updated": "2026-11-18",
   "items": [
     {
-      "id": "dates-off-2026-11-18",
-      "severity": "info",
-      "title": "Calendar dates don't match their weekdays",
-      "detail": "Resolved. Nov 18, 2026 is a Wednesday, and the sprint and calendar now agree. scripts/validate-dates.py checks every date and weekday pair.",
-      "recommendation": "Keep running scripts/validate-dates.py before each ship (it is in scripts/ship.sh).",
+      "id": "value-check-2026-11-18",
+      "severity": "warning",
+      "title": "2 planned videos have weak value and 3 more are only partly there",
+      "detail": "Needs work: Delivery Pilot Module: Part 1 (5/10); Multi-Agent Swarms: Part 2 (4/10). Not reviewed: This AI Overlay Coaches You Through Job Interviews in Real Time.",
+      "recommendation": "Rework or hold the weak ones before filming, and fill in who the starter video is for. Edit the scores and rationale on the Value Check page.",
       "links": [
         {
-          "label": "Calendar",
-          "href": "index.html#calendar"
+          "label": "Value check",
+          "href": "value.html"
         },
         {
-          "label": "Matrix source",
-          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/calendar/detailed-calendar-matrix.md"
+          "label": "videos.json",
+          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/data/videos.json"
         }
-      ],
-      "status": "resolved"
+      ]
     },
     {
       "id": "upload-gap-2026-11-18",
@@ -114,23 +113,6 @@
         {
           "label": "What Claude needs",
           "href": "requirements.html"
-        }
-      ]
-    },
-    {
-      "id": "masterclass-format-2026-11-18",
-      "severity": "info",
-      "title": "Masterclass length conflicts with the 3x5 min format",
-      "detail": "The calendar schedules 45 to 60 minute masterclasses. The README and production plan call for 3 videos of 5 minutes and a 10.5 hr/week cap.",
-      "recommendation": "Pick one. If the 3x5 format stays, split each masterclass into modules.",
-      "links": [
-        {
-          "label": "Setups",
-          "href": "index.html#production"
-        },
-        {
-          "label": "Course template",
-          "href": "https://github.com/rifaterdemsahin/content-calendar/blob/main/templates/course-module-template.md"
         }
       ]
     },
