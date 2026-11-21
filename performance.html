@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Performance | @RifatErdemSahin</title>
+  <title>Channel Performance Report | @RifatErdemSahin</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,15 +20,16 @@
   <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       <a href="index.html#performance" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
-      <span class="font-bold tracking-tight">📈 Performance</span>
-      <span class="w-16"></span>
+      <span class="font-bold tracking-tight">🚀 Channel Performance Report</span>
+      <a href="week.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Weekly Report <i class="fas fa-arrow-right ml-1"></i></a>
     </div>
   </header>
 
   <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
     <section>
       <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">How the videos are doing</h2>
-      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Performance &amp; what to do next</h1>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Channel Performance Report</h1>
+      <p class="text-slate-400 mt-2">How the videos are doing and what to do next. Refreshed every Monday.</p>
       <p id="headline" class="text-slate-300 mt-4 max-w-3xl text-lg leading-relaxed"></p>
       <div id="tiles" class="mt-8 grid gap-4 grid-cols-2 md:grid-cols-4"></div>
     </section>
@@ -69,7 +70,7 @@
   </main>
 
   <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
-    Refresh: <code class="text-slate-400">python3 scripts/fetch_latest_videos.py --format json --output data/latest-videos.json --limit 15 &amp;&amp; python3 scripts/analyze_past_performance.py</code><br>
+    Refresh weekly: <code class="text-slate-400">scripts/weekly_reports.sh</code><br>
     Recommendations live in <code class="text-slate-400">data/performance-insights.json</code>.
   </footer>
 

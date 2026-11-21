@@ -1,13 +1,13 @@
 # Historical Performance Report: @RifatErdemSahin
 
-Generated: 2026-11-21 19:10:40 UTC
+Generated: 2026-11-21 19:29:49 UTC
 
 ## 📊 Channel Overview Metrics
 
 - **Current Subscribers:** 725 (Only 275 to 1,000 Milestone)
 - **Total Catalog Videos Analyzed:** 39
-- **Total Views Tracked:** 6,651
-- **Long-Form Videos:** 30 (Total Views: 5,830 | Avg: 194.3 views/video)
+- **Total Views Tracked:** 6,654
+- **Long-Form Videos:** 30 (Total Views: 5,833 | Avg: 194.4 views/video)
 - **Shorts:** 9 (Total Views: 821 | Avg: 91.2 views/video)
 
 ## 🏆 Top 10 Performing Videos Historically
@@ -30,6 +30,6 @@ Generated: 2026-11-21 19:10:40 UTC
 | Topic Category | Views Driven | Dominant Angle |
 | :--- | :---: | :--- |
 | **AI Agents & Automation** | 1,614 views | High Evergreen Interest |
-| **Delivery Pilot & Career Mindset** | 1,711 views | High Evergreen Interest |
+| **Delivery Pilot & Career Mindset** | 1,714 views | High Evergreen Interest |
 | **RAG & Knowledge Bases** | 209 views | High Evergreen Interest |
 | **Developer Tooling & IDE** | 409 views | High Evergreen Interest |

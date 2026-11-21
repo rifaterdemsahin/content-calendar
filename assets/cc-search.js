@@ -22,6 +22,8 @@
     { title: '🔐 Azure Key Vault', category: 'Page', desc: 'Secret inventory, dp-kv-deliverypilot, managed identity, security runbook', url: 'key-vault.html', tags: ['key vault', 'secrets', 'azure', 'security', 'pat', 'tokens', 'keys'] },
     { title: '📋 Requirements Checklist', category: 'Page', desc: 'KV-1 to KV-12 requirements, inputs needed from owner, Claude guidance', url: 'requirements.html', tags: ['requirements', 'audit', 'inputs', 'p0', 'p1', 'verification'] },
     { title: '🧭 Expectations & Scope', category: 'Page', desc: 'What the assistant can and cannot do, delivery pilot operating boundaries', url: 'expectations.html', tags: ['scope', 'expectations', 'guarantees', 'capabilities'] },
+    { title: '📅 Weekly Direction Report', category: 'Report', desc: 'This week: planned vs published, direction check, course correction. Refreshed weekly', url: 'week.html', tags: ['report', 'weekly', 'this week', 'direction', 'on track', 'plan', 'review'] },
+    { title: '🚀 Channel Performance Report', category: 'Report', desc: 'Video views, views per day, winners and weak formats, recommended actions. Refreshed weekly', url: 'performance.html', tags: ['report', 'performance', 'stats', 'views', 'analytics', 'actions', 'youtube'] },
     { title: '💎 Value Check', category: 'Page', desc: 'Is there genuine value in every video? Five-question score, audience, proof and rationale per video; editable', url: 'value.html', tags: ['value', 'rationale', 'audience', 'score', 'videos', 'quality', 'why'] },
 
     // Calendar Content & Video Blueprints (direct item targeting with rationale)
