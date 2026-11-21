@@ -11,6 +11,7 @@
     // Navigation & Main Sections
     { title: '🗓️ Calendar & Schedule', category: 'Section', desc: 'Weekly video schedule, shorts, long-form tutorials, and Skool lives', url: 'index.html#calendar', tags: ['schedule', 'planner', 'videos', 'weekly', 'december', 'january'] },
     { title: '🎥 Studio & Setups', category: 'Section', desc: 'Hardware, A-Roll desk, B-Roll angles, Sixth Form College setup', url: 'index.html#production', tags: ['camera', 'microphone', 'desk', 'hardware', 'recording'] },
+    { title: '🥇 My Next Video', category: 'Page', desc: 'What to make next and why: a cheap-model full-stack build as the long-form parent for the Kilo Shorts; options weighed, outline, titles, Shorts to cut', url: 'next-video.html', tags: ['next video', 'what to make next', 'recommendation', 'cheap models', 'kilo', 'deepseek', 'long form', 'plan', 'outline'] },
     { title: '⛔ Blocked Days', category: 'Page', desc: 'Travel days, Thursday blocked travel, Wednesday recording, Sunday cohorts', url: 'blocked.html', tags: ['offline', 'travel', 'blocked', 'calendar', 'constraints'] },
     { title: '🎬 Latest Videos', category: 'Section', desc: 'Recent YouTube uploads, views, performance stats, and breakout videos', url: 'index.html#latest', tags: ['youtube', 'views', 'recent', 'videos', 'channel'] },
     { title: '📈 Past Stats & Analytics', category: 'Section', desc: 'Historical performance, watch time, subscriber velocity, and top videos', url: 'index.html#performance', tags: ['analytics', 'metrics', 'retention', 'watch time', 'history'] },

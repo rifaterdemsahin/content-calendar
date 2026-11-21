@@ -1,0 +1,164 @@
+{
+  "updated": "2026-11-21",
+  "source": "Built from data/what-works.json, data/performance-insights.json (incl. YouTube Studio's AI analysis of 21 Nov 2026), data/videos.json, data/week-review.json and data/blocked-days.json. A recommendation to react to, not a decision.",
+  "verdict": {
+    "label": "Your next video",
+    "title": "Frontier-Level AI Coding for Under $10 a Month: I Built a Full-Stack Feature with Only Cheap Models",
+    "format": "📹 Long video · 10–12 min · Pillar 1 (practical, cost-saving dev tooling)",
+    "publish": "Wednesday 25 Nov 2026, your one long-form slot (record at the college on Wednesday, per Blocked days)",
+    "oneLine": "It is the long-form parent your two best uploads of the comeback are asking for, and YouTube's own AI rated it 'Very likely' and 'Not started'.",
+    "hook": "My AI coding bill last month was ✍️ [your real number]. Here's the whole setup, and I'll build a real feature with it live."
+  },
+  "why": [
+    {
+      "icon": "🏆",
+      "title": "Your best format has no parent video yet",
+      "detail": "The two cheap-model Shorts are the most-watched uploads of the comeback: DeepSeek in Kilo CLI (195 views) and 'Give Your Cheap AI Model Glasses' (185). Your other recent Shorts average about 50. Nothing links viewers on to a long video, so that attention goes nowhere."
+    },
+    {
+      "icon": "🤖",
+      "title": "YouTube's AI asked for exactly this",
+      "detail": "Idea #1 in the Studio analysis: 'Building a full-stack production feature using only cheap local AI models', rated Very likely, status Not started. The other 'Very likely' idea (junior dev jobs) is already made, so this is the one left."
+    },
+    {
+      "icon": "🧱",
+      "title": "Builds are your best archetype",
+      "detail": "The all-time #1 is a build (LinkedIn job-hunt AI, 552 views). A video that ends with a working feature fits that pattern, and it is a build with a cost angle, the thing that is growing right now."
+    },
+    {
+      "icon": "🗓️",
+      "title": "It is already in your plan, just late",
+      "detail": "Week 4 has 'My $10/Month Production AI Stack' as a Short. Pulling the long version forward to week 2 turns that Short into a trailer for a video that exists, instead of the other way round."
+    },
+    {
+      "icon": "🧭",
+      "title": "It carries your one message",
+      "detail": "Close the video with the Delivery Pilot line: the model is cheap, the pilot who checks the work is what delivers. That keeps the mission without a standalone mindset Short, which the data says to stop."
+    }
+  ],
+  "candidates": [
+    {
+      "title": "Full-stack feature with only cheap models (long-form parent)",
+      "verdict": "pick",
+      "verdictLabel": "✅ Make this",
+      "evidence": "Pillar 1 · YouTube AI 'Very likely' · parent for the 195 and 185 view Shorts",
+      "risk": "Needs a real, working build on screen. If the cheap model fails, say so: the failure is part of the story."
+    },
+    {
+      "title": "Building an n8n AI Agent from Scratch (week 1 Wednesday)",
+      "verdict": "next",
+      "verdictLabel": "⏭️ Runner-up",
+      "evidence": "Builds do well (n8n Content Magician 276 views) but there is no cost angle, and the 18 min length is long for a channel at 10–20 views per new video.",
+      "risk": "The slot has already passed. Keep it at 'writing' and slot it after the cheap-model video rather than doing both in one week."
+    },
+    {
+      "title": "Shorts cut from the Interview Overlay video",
+      "verdict": "side",
+      "verdictLabel": "✂️ Side job",
+      "evidence": "Fastest grower on the channel (15 → 76 views in 3 days). Repurposing costs less than a new video.",
+      "risk": "Shorts, not a long video. Do them after the main recording, one per day."
+    },
+    {
+      "title": "Junior-dev Delivery Pilot video: retitle and wait",
+      "verdict": "wait",
+      "verdictLabel": "⏳ Wait",
+      "evidence": "Published 21 Nov, 19 views. Too new to judge; the Performance report says judge it on 28 Nov.",
+      "risk": "Don't make a follow-up before the 7-day numbers are in."
+    },
+    {
+      "title": "Another mindset Short or narrow commentary",
+      "verdict": "no",
+      "verdictLabel": "⛔ Skip",
+      "evidence": "12, 23 and 10 views. This is the shape the data says does not work.",
+      "risk": "Nothing to add."
+    }
+  ],
+  "outline": [
+    {
+      "time": "0:00",
+      "beat": "Hook",
+      "detail": "The money or the pain in the first 10 seconds: your real monthly AI bill ✍️ [add the number] against what most people pay. Show the finished feature running."
+    },
+    {
+      "time": "0:30",
+      "beat": "✈️ Pre-flight check",
+      "detail": "Goal, model, cost limit. State what you are building and what 'done' means before you touch the keyboard."
+    },
+    {
+      "time": "1:30",
+      "beat": "The stack",
+      "detail": "✍️ [name your exact models and tools]. Likely candidates from your Shorts: Kilo Code, a cheap model such as DeepSeek or Qwen, LSP, an MCP server. Say what each piece costs."
+    },
+    {
+      "time": "3:00",
+      "beat": "Build one real feature live",
+      "detail": "Full-stack: a small UI, an API route and a data store. Keep it small enough to finish in the recording. Show the tests going green."
+    },
+    {
+      "time": "8:00",
+      "beat": "Where the cheap model broke",
+      "detail": "Show one real failure and the fix (the LSP or MCP trick). This is the part viewers can't get from a demo."
+    },
+    {
+      "time": "10:00",
+      "beat": "Cost meter",
+      "detail": "The actual spend for this build, read from your dashboard on screen. Only claim a number you can show."
+    },
+    {
+      "time": "11:00",
+      "beat": "Delivery Pilot close + call to action",
+      "detail": "'The model is cheap. Checking the work is the job.' Point to the Skool config file and the Delivery Pilot course."
+    }
+  ],
+  "titles": [
+    "Frontier-Level AI Coding for Under $10 a Month (Full Setup)",
+    "I Built a Full-Stack Feature with Only Cheap AI Models. Here's the Bill",
+    "Stop Paying for Claude: Ship a Real Feature with Cheap Models"
+  ],
+  "titleNote": "Put the money word and the tool name in the title, with a problem-first shape. Only use 'Under $10' if your measured bill backs it up. Pick one and test a second thumbnail, as you are doing on the newest long videos.",
+  "shorts": [
+    {
+      "when": "Fri 27 Nov",
+      "title": "Cut 1: the cost meter",
+      "detail": "'This feature cost me ✍️ [real number].' 45s, ends with 'Full setup in the long video'. Swap this in for week 2's Friday Short."
+    },
+    {
+      "when": "Sat 28 Nov",
+      "title": "Cut 2: where the cheap model broke and the one-line fix",
+      "detail": "Same shape as the 185-view LSP Short."
+    },
+    {
+      "when": "Mon 30 Nov",
+      "title": "Cut 3: the stack in 45 seconds",
+      "detail": "Model + tool + trick. Pin the long video in the comments."
+    }
+  ],
+  "plan": [
+    {
+      "icon": "🔁",
+      "title": "Swap, don't add",
+      "detail": "Move this into week 2's Wednesday long slot and move 'Managing 5 AI Coding Agents Concurrently' later (merge in the context-window idea, as YouTube's AI suggested). That keeps you at 3 videos in progress per week."
+    },
+    {
+      "icon": "🗓️",
+      "title": "One upload per day",
+      "detail": "Long video Wed 25 Nov, then Shorts on Fri, Sat and Mon so each upload gets its own push. Thursday is a travel day: no filming or live sessions."
+    },
+    {
+      "icon": "🧹",
+      "title": "Close out week 1 first",
+      "detail": "The three week-1 items are still at 'writing' and the week ends Tue 24 Nov. Decide this weekend which survive, so they don't count against the limit next week."
+    },
+    {
+      "icon": "📏",
+      "title": "How to judge it",
+      "detail": "Compare at 7 days with 'Become a Delivery Pilot' (about 11 views/day) and the Kilo Shorts. Also check whether the Shorts' viewers click through to it."
+    }
+  ],
+  "questions": [
+    "✍️ What was your real AI coding bill last month? The hook and the cost meter need a number you can show.",
+    "✍️ Which models do you run: cheap hosted ones (DeepSeek, Qwen via Kilo) or truly local ones? YouTube's idea says 'local'; your Shorts show hosted. The title should match what you do.",
+    "✍️ Which feature will you build? Small enough to finish on Wednesday's recording."
+  ],
+  "caveats": "These numbers are public view counts on a small channel (subscribers 725, not re-measured), so the gaps between videos are small in absolute terms. The case rests on a consistent pattern plus YouTube's own analysis, not on proof. We have no retention or click-through data yet."
+}
