@@ -461,12 +461,14 @@
     [/installing agent/, '🧰', 'Installing Claude'], [/agent working/, '🤖', 'Claude is editing the pages'],
     [/pushing branch/, '📤', 'Saving the change'], [/merging/, '🔀', 'Merging into main'],
     [/publish/, '🌐', 'Publishing to the live site'], [/finished/, '✅', 'Finished'],
+    [/switching to Daytona/, '🔀', 'Sprite busy: switching to the backup sandbox'],
   ];
   const ago = (t) => { const s = Math.max(0, Math.round((Date.now() - t) / 1000)); return s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${s % 60}s`; };
   const stepText = (job, m) => {
     const key = job.status === 'queued' ? 'queued' : (job.step || job.status);
     const hit = STEP.find(([re]) => re.test(key)) || [null, '⚙️', key];
-    return `${hit[1]} ${hit[2]}  ·  ⏱️ ${ago(m.started || Date.now())}`;
+    const retry = (key.match(/retry (\d+\/\d+)/) || [])[1];
+    return `${hit[1]} ${hit[2]}${retry ? `  ·  🔁 retry ${retry}` : ''}  ·  ⏱️ ${ago(m.started || Date.now())}`;
   };
 
   // Safe mini-markdown: **bold**, `code`, "- " bullets and paragraphs, built as DOM nodes (never innerHTML).

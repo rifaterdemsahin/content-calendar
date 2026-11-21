@@ -51,3 +51,21 @@ test('sprite parseFrames splits stdout, stderr and the exit code', () => {
   assert.equal(parseFrames(Buffer.from([0x01, 0x68, 0x69, 0x03, 0x00])).code, 0);
   assert.equal(parseFrames(Buffer.from([0x01, 0x68, 0x69])).code, null);
 });
+
+test('sprite fetchRetry retries 503 then succeeds, and gives up with SpriteUnavailable', async () => {
+  const sprite = require('../src/lib/sprite');
+  const saved = [...sprite.DELAYS]; sprite.DELAYS.splice(0, sprite.DELAYS.length, 1, 1, 1);
+  const realFetch = global.fetch;
+  try {
+    const codes = [503, 503, 200]; const retries = [];
+    global.fetch = async () => { const s = codes.shift(); return { status: s, ok: s === 200, text: async () => 'service temporarily unavailable, please retry' }; };
+    const r = await sprite.fetchRetry('https://x', {}, (n) => retries.push(n));
+    assert.equal(r.status, 200); assert.deepStrictEqual(retries, [1, 2]);
+
+    global.fetch = async () => ({ status: 503, ok: false, text: async () => '{"error":"service temporarily unavailable, please retry"}' });
+    await assert.rejects(sprite.fetchRetry('https://x', {}), (e) => e instanceof sprite.SpriteUnavailable && /after 4 tries/.test(e.message));
+
+    let calls = 0; global.fetch = async () => { calls++; return { status: 400, ok: false, text: async () => 'bad' }; };
+    assert.equal((await sprite.fetchRetry('https://x', {})).status, 400); assert.equal(calls, 1); // non-retryable: one call
+  } finally { global.fetch = realFetch; sprite.DELAYS.splice(0, sprite.DELAYS.length, ...saved); }
+});

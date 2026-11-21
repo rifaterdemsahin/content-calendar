@@ -200,6 +200,7 @@ class Links(unittest.TestCase):
             self.assertGreaterEqual(n, 2, f"{u} needs at least 2 related links in data/guide.json")
         for page in glob.glob(str(ROOT / "*.html")):
             self.assertIn("assets/cc-pagenav.js", pathlib.Path(page).read_text(encoding="utf-8"), page)
+            self.assertIn("assets/cc-footer.js", pathlib.Path(page).read_text(encoding="utf-8"), f"{page} needs the deploy footer")
 
 
 if __name__ == "__main__":

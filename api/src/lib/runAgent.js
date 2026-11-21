@@ -67,25 +67,30 @@ const claudeCreds = () => [
 // in seconds. Each job works in its own git worktree, and the worktree is removed afterwards.
 async function runJobSprite(job, update, ctx) {
   const sprite = require('./sprite');
+  let stepName = 'waking sprite';
+  const retry = (n, max) => update({ step: `${stepName} (retry ${n}/${max - 1})` });
+  let started = false; // true once the agent has begun: from then on, never fall back to another runner
   const id = job.id; const branch = `chat/${id.slice(0, 8)}`;
   const base = { REPO, BASE, BRANCH: branch, JOB: id, GH: process.env.GITHUB_PAT,
     HOME_CC: '/home/sprite/cc', WT: `/home/sprite/cc/jobs/${id}`, PATH_PREFIX: '/home/sprite/.local/bin' };
   const pre = 'export PATH="$PATH_PREFIX:$PATH"; mkdir -p "$HOME_CC/jobs"; R="$HOME_CC/repo"';
   try {
     await update({ status: 'running', step: 'waking sprite', runner: `sprite:${sprite.spriteName()}` });
-    await sprite.ensureSprite();
+    await sprite.ensureSprite(retry);
 
-    await update({ step: 'syncing repo' });
+    stepName = 'syncing repo';
+    await update({ step: stepName });
     await sprite.run(`${pre}
 if [ ! -d "$R/.git" ]; then git clone -q "https://x-access-token:$GH@github.com/$REPO.git" "$R"; git -C "$R" remote set-url origin "https://github.com/$REPO.git"; fi
 git -C "$R" fetch -q "https://x-access-token:$GH@github.com/$REPO.git" "+refs/heads/$BASE:refs/remotes/origin/$BASE"
 git -C "$R" worktree prune
-git -C "$R" worktree add -q -b "$BRANCH" "$WT" "origin/$BASE"`, base);
+git -C "$R" worktree add -q -b "$BRANCH" "$WT" "origin/$BASE"`, base, retry);
 
     const notesMd = job.includeNotes ? toMarkdown(await store.listJson('notes/')) : '';
     const promptB64 = Buffer.from(buildPrompt(job, notesMd)).toString('base64');
 
-    await update({ step: 'agent working' });
+    stepName = 'agent working'; started = true;
+    await update({ step: stepName });
     let out, lastErr;
     for (const c of claudeCreds()) {
       try {
@@ -96,21 +101,22 @@ cd "$WT"
 ( timeout 480 claude -p "$(cat "$HOME_CC/prompt-$JOB.txt")" --dangerously-skip-permissions --max-turns 25 > "$HOME_CC/out-$JOB.txt" 2>&1; echo $? > "$HOME_CC/rc-$JOB" ) &
 pid=$!
 while kill -0 $pid 2>/dev/null; do printf . 1>&2; sleep 20; done
-cat "$HOME_CC/out-$JOB.txt"; exit "$(cat "$HOME_CC/rc-$JOB")"`, { ...base, ...c.env, PROMPT_B64: promptB64 });
+cat "$HOME_CC/out-$JOB.txt"; exit "$(cat "$HOME_CC/rc-$JOB")"`, { ...base, ...c.env, PROMPT_B64: promptB64 }, retry);
         await update({ auth: c.label }); break;
       } catch (e) { lastErr = e; if (!AUTH_ERR.test(e.message)) throw e; }
     }
     if (out === undefined) throw lastErr || new Error('no Claude credentials configured');
     const summary = out.trim().slice(-1500);
 
-    await update({ step: 'pushing branch' });
+    stepName = 'pushing branch';
+    await update({ step: stepName });
     const pushed = await sprite.run(`${pre}
 cd "$WT"
 if [ -z "$(git status --porcelain -- . ':!api' ':!.github')" ]; then echo NOCHANGE; exit 0; fi
 git add -A -- . ':!api' ':!.github'
 git -c user.name=cc-agent -c user.email=cc-agent@users.noreply.github.com commit -q -m "$MSG"
 git push -q "https://x-access-token:$GH@github.com/$REPO.git" "$BRANCH"
-echo PUSHED`, { ...base, MSG: 'chat: ' + job.message.slice(0, 72) });
+echo PUSHED`, { ...base, MSG: 'chat: ' + job.message.slice(0, 72) }, retry);
     if (/NOCHANGE/.test(pushed)) return await update({ status: 'done', step: 'finished', summary, changed: false });
 
     const pr = await githubPR(branch, job, summary);
@@ -119,10 +125,16 @@ echo PUSHED`, { ...base, MSG: 'chat: ' + job.message.slice(0, 72) });
     await update({ status: 'done', step: 'merged; publishing', summary, changed: true, branch, pr: pr.url,
       merged: true, mergeSha, mergedAt: new Date().toISOString(), published: 'pending' });
   } catch (e) {
+    // The sprite never came up and no work started: hand the job to the Daytona runner instead of failing.
+    if (!started && e instanceof sprite.SpriteUnavailable && process.env.DAYTONA_API_KEY) {
+      ctx.warn(`sprite unavailable, falling back to Daytona: ${e.message}`);
+      await update({ step: 'sprite unavailable, switching to Daytona', runner: 'daytona (fallback)' });
+      return { fallback: true };
+    }
     ctx.error(e);
     await update({ status: 'error', error: String(e.message).replace(process.env.GITHUB_PAT || '\0', '***').slice(0, 600) });
   } finally {
-    await sprite.run(`${pre}
+    if (started || !process.env.DAYTONA_API_KEY) await sprite.run(`${pre}
 git -C "$R" worktree remove --force "$WT" 2>/dev/null || true
 git -C "$R" branch -D "$BRANCH" 2>/dev/null || true
 rm -f "$HOME_CC/prompt-$JOB.txt" "$HOME_CC/out-$JOB.txt" "$HOME_CC/rc-$JOB"`, base).catch((e) => ctx.warn(`sprite cleanup: ${e.message}`));
@@ -133,7 +145,10 @@ async function runJob(id, ctx) {
   const job = await store.readJson(`jobs/${id}.json`);
   if (!job) return ctx.warn(`job ${id} missing`);
   const update = (patch) => store.writeJson(`jobs/${id}.json`, Object.assign(job, patch, { updated: new Date().toISOString() }));
-  if (process.env.SPRITES_TOKEN) return runJobSprite(job, update, ctx);
+  if (process.env.SPRITES_TOKEN) {
+    const r = await runJobSprite(job, update, ctx);
+    if (!r || !r.fallback) return;
+  }
   let sandbox;
   const { Daytona } = require('@daytonaio/sdk');
   const daytona = new Daytona({ apiKey: process.env.DAYTONA_API_KEY });
