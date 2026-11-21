@@ -18,6 +18,7 @@ if [ -n "${YOUTUBE_API_KEY:-}" ]; then
   python3 scripts/pull_youtube_stats.py
 fi
 python3 scripts/studio_stats.py
+python3 scripts/build_guide.py
 
 python3 scripts/validate-dates.py >/dev/null
 python3 -m unittest discover -s tests -q

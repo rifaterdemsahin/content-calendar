@@ -153,5 +153,21 @@ class Pages(unittest.TestCase):
                 self.assertTrue((ROOT / rel).exists(), f"{pathlib.Path(page).name} loads missing {rel}")
 
 
+class Guide(unittest.TestCase):
+    def test_every_page_is_in_the_guide(self):
+        g = json.loads((ROOT / "data" / "guide.json").read_text(encoding="utf-8"))
+        listed = [p["url"] for s in g["sections"] for p in s["pages"]]
+        self.assertEqual(len(listed), len(set(listed)), "a page is listed twice in data/guide.json")
+        for page in glob.glob(str(ROOT / "*.html")):
+            name = pathlib.Path(page).name
+            self.assertIn(name, listed, f"{name} is missing from data/guide.json; add it in reading order")
+        for url in listed:
+            self.assertTrue((ROOT / url).exists(), f"data/guide.json links missing page {url}")
+
+    def test_every_page_loads_the_guide(self):
+        for page in glob.glob(str(ROOT / "*.html")):
+            self.assertIn("assets/cc-guide.js", pathlib.Path(page).read_text(encoding="utf-8"), page)
+
+
 if __name__ == "__main__":
     unittest.main()

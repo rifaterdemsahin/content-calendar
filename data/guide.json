@@ -1,0 +1,217 @@
+{
+  "intro": "Read the pages top to bottom the first time. After that, the weekly loop is Reports → Plan.",
+  "sections": [
+    {
+      "title": "1. Start here",
+      "pages": [
+        {
+          "url": "index.html",
+          "title": "🏠 Dashboard",
+          "why": "The whole system on one page: sprint, latest videos, OKRs."
+        },
+        {
+          "url": "expectations.html",
+          "title": "🧭 Expectations",
+          "why": "What the assistant can and cannot do for you."
+        }
+      ]
+    },
+    {
+      "title": "2. Why: strategy",
+      "pages": [
+        {
+          "url": "core-message.html",
+          "title": "🎯 Core message",
+          "why": "The one idea every video points back to."
+        },
+        {
+          "url": "audience.html",
+          "title": "👥 Audience map",
+          "why": "Who watches: consumers, professionals, businesses."
+        },
+        {
+          "url": "supply-demand.html",
+          "title": "⚖️ Supply & demand",
+          "why": "What people want versus what you can make."
+        },
+        {
+          "url": "reverse-response.html",
+          "title": "🔁 Reverse response",
+          "why": "Why each video should exist and what to check."
+        }
+      ]
+    },
+    {
+      "title": "3. Where to: goals",
+      "pages": [
+        {
+          "url": "goals.html",
+          "title": "🏁 Subscriber goals",
+          "why": "1,000 → 3,000 steps and the pace needed."
+        },
+        {
+          "url": "on-track.html",
+          "title": "📉 On track?",
+          "why": "Are the numbers keeping pace with the goals?"
+        }
+      ]
+    },
+    {
+      "title": "4. What & when: plan",
+      "pages": [
+        {
+          "url": "videos.html",
+          "title": "🎬 Planned videos",
+          "why": "Every planned video, its hook and target."
+        },
+        {
+          "url": "value.html",
+          "title": "💎 Value check",
+          "why": "Is each planned video genuinely useful?"
+        },
+        {
+          "url": "calendar.html",
+          "title": "📅 Calendar view",
+          "why": "The plan laid out by day."
+        },
+        {
+          "url": "blocked.html",
+          "title": "⛔ Blocked days",
+          "why": "Days you can't film or publish."
+        }
+      ]
+    },
+    {
+      "title": "5. How it's going: reports (weekly)",
+      "pages": [
+        {
+          "url": "week.html",
+          "title": "📅 Weekly Direction Report",
+          "why": "Planned vs published, and whether you're on course."
+        },
+        {
+          "url": "performance.html",
+          "title": "🚀 Channel Performance Report",
+          "why": "What's working, what isn't, what to do next."
+        },
+        {
+          "url": "analytics.html",
+          "title": "📊 Analytics",
+          "why": "Raw stats, Studio snapshot and data gaps."
+        },
+        {
+          "url": "channels.html",
+          "title": "📡 Channels",
+          "why": "YouTube, LinkedIn, X and Skool in one place."
+        }
+      ]
+    },
+    {
+      "title": "6. Setup & operations",
+      "pages": [
+        {
+          "url": "requirements.html",
+          "title": "📋 Requirements",
+          "why": "What Claude needs from you to do more."
+        },
+        {
+          "url": "setup-api-key.html",
+          "title": "🔑 Add the YouTube API key",
+          "why": "Unlocks full per-video stats."
+        },
+        {
+          "url": "key-vault.html",
+          "title": "🔐 Key Vault",
+          "why": "Where the secrets live and how they are used."
+        },
+        {
+          "url": "cron.html",
+          "title": "⏱️ Daily pull",
+          "why": "Status of the scheduled stats job."
+        }
+      ]
+    }
+  ],
+  "updates": {
+    "analytics.html": {
+      "at": "2026-11-18T11:17:14Z",
+      "change": "feat: YouTube Studio snapshot (30 videos), stats script, API pull script; analytics Studio section; starter video actual views"
+    },
+    "audience.html": {
+      "at": "2026-11-18T11:09:43Z",
+      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+    },
+    "blocked.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "calendar.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "channels.html": {
+      "at": "2026-11-18T11:23:55Z",
+      "change": "feat: channels page (YouTube, LinkedIn, X, Skool; Superpowers, Claude, Remotion); LinkedIn network stats"
+    },
+    "core-message.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "cron.html": {
+      "at": "2026-11-18T11:48:06Z",
+      "change": "fix: content storage ReferenceError (HTTP 500 on title click); daily pull job status page; data and api tests in ship"
+    },
+    "expectations.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "goals.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "index.html": {
+      "at": "2026-11-21T19:29:59Z",
+      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+    },
+    "key-vault.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "on-track.html": {
+      "at": "2026-11-18T11:20:45Z",
+      "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
+    },
+    "performance.html": {
+      "at": "2026-11-21T19:29:59Z",
+      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+    },
+    "requirements.html": {
+      "at": "2026-11-18T11:05:35Z",
+      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "reverse-response.html": {
+      "at": "2026-11-18T11:09:43Z",
+      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+    },
+    "setup-api-key.html": {
+      "at": "2026-11-18T11:20:45Z",
+      "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
+    },
+    "supply-demand.html": {
+      "at": "2026-11-18T11:09:43Z",
+      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+    },
+    "value.html": {
+      "at": "2026-11-18T12:35:37Z",
+      "change": "feat: value recognition for every video (value block in videos.json, Value Check page, tests)"
+    },
+    "videos.html": {
+      "at": "2026-11-18T12:35:37Z",
+      "change": "feat: value recognition for every video (value block in videos.json, Value Check page, tests)"
+    },
+    "week.html": {
+      "at": "2026-11-21T19:29:59Z",
+      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+    }
+  }
+}

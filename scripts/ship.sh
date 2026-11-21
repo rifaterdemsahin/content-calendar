@@ -11,6 +11,7 @@ python3 -m unittest discover -s tests -q || { echo "data tests failed: not shipp
 (cd api && npm test --silent >/dev/null 2>&1) || { echo "api tests failed: not shipping"; exit 1; }
 MSG="${1:-chore: ship}"
 STAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+python3 scripts/build_guide.py
 printf '{\n  "deployedAt": "%s"\n}\n' "$STAMP" > data/deploy.json
 git add -A
 git commit -q -m "$MSG
