@@ -450,7 +450,7 @@
         },
         {
           "e": "🎓",
-          "t": "No degree"
+          "t": "Two tries at uni"
         },
         {
           "e": "📚",
@@ -458,11 +458,15 @@
         },
         {
           "e": "🇬🇧",
-          "t": "Britain"
+          "t": "Cambridge"
         },
         {
-          "e": "✈️",
-          "t": "Delivery Pilot"
+          "e": "🌍",
+          "t": "40+ contracts"
+        },
+        {
+          "e": "🤖",
+          "t": "AI"
         }
       ]
     },

@@ -2,7 +2,7 @@
   "updated": "2026-11-21",
   "draft": "Draft written by Claude from Rifat's notes and public videos. Edit the words here; the page updates itself.",
   "name": "Rifat Erdem Sahin",
-  "tagline": "Turkish roots, a US exchange year, no degree, a new start in Britain, and one habit: learning in public. Now helping others do the same while AI raises the bar.",
+  "tagline": "Turkish roots, a US exchange year, two tries at university, 40+ contracts across 8 countries, and one habit: learning in public. From tutoring to AI, now helping others make the same jump.",
   "linkedin": "https://www.linkedin.com/in/rifaterdemsahin/",
   "youtube": "https://www.youtube.com/@RifatErdemSahin",
   "belief": "AI is raising the skills bar faster than any school can keep up. The people who will do well are the ones who can teach themselves, and I've been doing that my whole life.",
@@ -10,8 +10,8 @@
     {
       "icon": "🇹🇷",
       "place": "Turkey",
-      "title": "A Turkish background",
-      "text": "I grew up in Turkey. That's where my roots, my language and my way of seeing the world come from."
+      "title": "A Turkish background, with deeper roots",
+      "text": "I grew up in Turkey, with roots that go further back: my DNA traces to Mongolia. In history class I learned about the Ottoman Empire, how far it reached and how many cultures it joined together. Even as a kid I watched and read more in English than in Turkish. The internet was my second classroom."
     },
     {
       "icon": "🇺🇸",
@@ -36,6 +36,12 @@
       "place": "Britain",
       "title": "Ten years in Britain, home in Cambridge",
       "text": "Then I moved to Britain and started again as an immigrant, with a new country, new rules, and nobody who knew my name. I've lived in the UK for 10 years now, at home in Cambridge. It's the same lesson again: what you can learn and show matters more than where you started."
+    },
+    {
+      "icon": "🌍",
+      "place": "Around the world",
+      "title": "Delivering across borders",
+      "text": "Work took me around the world, mostly on business: the USA, Switzerland, Germany, France, Turkey, Cyprus, England and Scotland. I've delivered more than 40 contracts. Every country taught me the same thing: delivery is about people as much as tech."
     },
     {
       "icon": "🏗️",
@@ -99,5 +105,62 @@
       "pillar": "Long-form story",
       "why": "A personal story with stakes, which is the exception that works. End on the one skill a viewer can copy."
     }
-  ]
+  ],
+  "stats": [
+    {
+      "icon": "📦",
+      "value": "40+",
+      "label": "contracts delivered"
+    },
+    {
+      "icon": "🌍",
+      "value": "8",
+      "label": "countries worked in"
+    },
+    {
+      "icon": "🇬🇧",
+      "value": "10 yrs",
+      "label": "in the UK, Cambridge"
+    },
+    {
+      "icon": "🎓",
+      "value": "2",
+      "label": "tries at university"
+    }
+  ],
+  "career": {
+    "title": "🧗 From tutoring to AI",
+    "note": "Every step was learned on the job, with no degree. That's the self-learning story in one line.",
+    "steps": [
+      {
+        "icon": "🧑‍🏫",
+        "t": "Tutoring"
+      },
+      {
+        "icon": "🏠",
+        "t": "Real estate"
+      },
+      {
+        "icon": "🤝",
+        "t": "Brokering"
+      },
+      {
+        "icon": "💻",
+        "t": "Coding"
+      },
+      {
+        "icon": "⚙️",
+        "t": "DevOps"
+      },
+      {
+        "icon": "🛡️",
+        "t": "SRE"
+      },
+      {
+        "icon": "🤖",
+        "t": "AI",
+        "d": "now"
+      }
+    ]
+  }
 }

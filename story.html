@@ -35,6 +35,7 @@
         <a id="li" target="_blank" rel="noopener" class="text-sm px-3 py-1.5 rounded-lg bg-sky-600/20 hover:bg-sky-600/30 text-sky-300 border border-sky-500/30 flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
         <a id="yt" target="_blank" rel="noopener" class="text-sm px-3 py-1.5 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/30 flex items-center gap-2"><i class="fab fa-youtube"></i> YouTube</a>
       </div>
+      <div id="stats" class="mt-8 grid gap-3 grid-cols-2 sm:grid-cols-4"></div>
       <blockquote id="belief" class="mt-8 border-l-4 border-indigo-500 pl-5 text-xl text-white font-medium leading-relaxed"></blockquote>
     </section>
 
@@ -42,6 +43,13 @@
       <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The journey</h2>
       <p class="text-2xl font-bold text-white mt-2">From Turkey to the cockpit</p>
       <ol id="chapters" class="tl mt-8 space-y-8"></ol>
+    </section>
+
+    <section id="career-sec">
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Career path</h2>
+      <p id="career-title" class="text-2xl font-bold text-white mt-2"></p>
+      <div id="career" class="mt-6 flex flex-wrap items-stretch gap-2"></div>
+      <p id="career-note" class="text-sm text-slate-400 mt-4"></p>
     </section>
 
     <section>
@@ -79,6 +87,24 @@
       document.getElementById('belief').textContent = `“${s.belief}”`;
       document.getElementById('li').href = s.linkedin; document.getElementById('yt').href = s.youtube;
 
+      if (s.stats) document.getElementById('stats').append(...s.stats.map((x) => {
+        const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900');
+        c.append(el('div', 'text-2xl', x.icon), el('div', 'text-2xl font-extrabold text-white mt-1', x.value), el('div', 'text-xs text-slate-400', x.label));
+        return c;
+      }));
+      if (s.career) {
+        document.getElementById('career-title').textContent = s.career.title;
+        document.getElementById('career-note').textContent = s.career.note;
+        const row = document.getElementById('career');
+        s.career.steps.forEach((x, i) => {
+          if (i) row.append(el('div', 'self-center text-indigo-400 font-bold', '→'));
+          const last = i === s.career.steps.length - 1;
+          const c = el('div', `px-4 py-3 rounded-xl border text-center ${last ? 'border-pink-500/60 bg-pink-950/30' : 'border-slate-700 bg-slate-900'}`);
+          c.append(el('div', 'text-2xl', x.icon), el('div', 'text-sm font-bold text-white mt-1', x.t));
+          if (x.d) c.append(el('div', 'text-[10px] uppercase font-bold text-pink-300', x.d));
+          row.append(c);
+        });
+      } else document.getElementById('career-sec').remove();
       document.getElementById('chapters').append(...s.chapters.map((c, i) => {
         const li = el('li', 'relative flex gap-5');
         li.append(el('div', 'relative z-10 w-12 h-12 shrink-0 rounded-full bg-slate-900 border-2 border-indigo-500/60 flex items-center justify-center text-2xl', c.icon));
