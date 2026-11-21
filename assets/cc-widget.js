@@ -16,16 +16,16 @@
   // ---- UI ---------------------------------------------------------------
   const css = `
   #ccw *{box-sizing:border-box;font-family:system-ui,sans-serif}
-  #ccw-btn{position:fixed;right:18px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#6366f1;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:transform .15s}
+  #ccw-btn{position:fixed;right:18px;bottom:44px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#6366f1;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:transform .15s}
   #ccw-btn:hover{transform:scale(1.05)}
-  #ccw-picker-btn{position:fixed;right:78px;bottom:18px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#334155;color:#e2e8f0;font-size:20px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:all .15s}
+  #ccw-picker-btn{position:fixed;right:78px;bottom:44px;z-index:99998;width:52px;height:52px;border-radius:50%;border:0;background:#334155;color:#e2e8f0;font-size:20px;cursor:pointer;box-shadow:0 4px 16px #0008;transition:all .15s}
   #ccw-picker-btn:hover{background:#475569;transform:scale(1.05)}
   #ccw-picker-btn.picking{background:#dc2626;color:#fff;animation:ccw-pulse 1.2s infinite}
   @keyframes ccw-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
   .ccw-picker-active *{cursor:crosshair!important}
   .ccw-picker-hover{outline:3px dashed #6366f1!important;outline-offset:2px;background:rgba(99,102,241,0.12)!important}
   #ccw-picker-tooltip{position:fixed;z-index:100000;pointer-events:none;background:#0f172a;color:#e2e8f0;border:1px solid #6366f1;border-radius:6px;padding:4px 8px;font-size:11px;font-family:monospace;box-shadow:0 4px 12px #000a}
-  #ccw-panel{position:fixed;right:18px;bottom:80px;z-index:99999;width:min(400px,calc(100vw - 36px));height:min(560px,calc(100vh - 110px));display:none;flex-direction:column;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:14px;box-shadow:0 10px 40px #000a;overflow:hidden}
+  #ccw-panel{position:fixed;right:18px;bottom:106px;z-index:99999;width:min(420px,calc(100vw - 36px));height:min(600px,calc(100vh - 170px));display:none;flex-direction:column;background:#0f172a;color:#e2e8f0;border:1px solid #334155;border-radius:14px;box-shadow:0 10px 40px #000a;overflow:hidden}
   #ccw-panel.open{display:flex}
   #ccw .tabs{display:flex;border-bottom:1px solid #334155}
   #ccw .tabs button{flex:1;padding:10px;background:none;border:0;color:#94a3b8;cursor:pointer;font-size:14px}
@@ -34,10 +34,10 @@
   #ccw-panel.max{right:12px;bottom:12px;width:calc(100vw - 24px);height:calc(100vh - 24px)}
   #ccw .body{flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
   @media (max-width:640px){
-    #ccw-panel{left:8px;right:8px;bottom:72px;width:auto;height:calc(100vh - 140px)}
+    #ccw-panel{left:8px;right:8px;bottom:96px;width:auto;height:calc(100vh - 170px)}
     #ccw-panel.max{left:0;right:0;top:0;bottom:0;width:100vw;height:100vh;border-radius:0}
-    #ccw-btn{right:12px;bottom:12px}
-    #ccw-picker-btn{right:72px;bottom:12px}
+    #ccw-btn{right:12px;bottom:40px}
+    #ccw-picker-btn{right:72px;bottom:40px}
   }
   #ccw textarea,#ccw input[type=text]{width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px}
   #ccw .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -48,7 +48,32 @@
   #ccw .meta{color:#94a3b8;font-size:11px;margin-bottom:4px}
   #ccw .msg{flex-shrink:0}
   #ccw .msg.user{align-self:flex-end;background:#4338ca;max-width:88%}
-  #ccw .hint{color:#94a3b8;font-size:12px}
+  #ccw .hint{color:#94a3b8;font-size:12px;line-height:1.45}
+  /* Chat layout: header hint, scrolling log, composer pinned to the bottom. */
+  #ccw .body.chat{padding:0;gap:0;overflow:hidden}
+  #ccw .chat-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid #1e293b}
+  #ccw .chat-log{flex:1;min-height:0;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;overscroll-behavior:contain}
+  #ccw .composer{border-top:1px solid #334155;padding:10px 12px;background:#0b1222;display:flex;flex-direction:column;gap:8px}
+  #ccw .composer textarea{resize:none;min-height:44px;max-height:140px;line-height:1.4}
+  #ccw .composer .row{justify-content:space-between}
+  #ccw .msg{flex-shrink:0;white-space:normal;font-size:13.5px;line-height:1.5}
+  #ccw .msg.bot{align-self:flex-start;max-width:94%}
+  #ccw .msg.user{align-self:flex-end;background:#4338ca;border-color:#4f46e5;max-width:85%;white-space:pre-wrap}
+  #ccw .msg .when{display:block;color:#94a3b8;font-size:10.5px;margin-top:6px}
+  #ccw .msg.user .when{color:#c7d2fe;text-align:right}
+  #ccw .msg p{margin:0 0 6px}#ccw .msg p:last-of-type{margin-bottom:0}
+  #ccw .msg ul{margin:4px 0 6px;padding-left:18px}#ccw .msg li{margin:2px 0}
+  #ccw .msg code{background:#0f172a;border:1px solid #334155;border-radius:4px;padding:0 4px;font:12px ui-monospace,monospace}
+  #ccw .msg .clip{max-height:220px;overflow:hidden;position:relative}
+  #ccw .msg .clip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:48px;background:linear-gradient(transparent,#1e293b)}
+  #ccw .msg .more{background:none;border:0;color:#a5b4fc;cursor:pointer;padding:4px 0 0;font-size:12px}
+  #ccw .status{display:flex;align-items:center;gap:8px;font-weight:600}
+  #ccw .spin{width:12px;height:12px;border:2px solid #6366f1;border-top-color:transparent;border-radius:50%;animation:ccw-spin .8s linear infinite;flex:none}
+  @keyframes ccw-spin{to{transform:rotate(360deg)}}
+  #ccw .icon-btn{background:none;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:3px 8px;font-size:12px;cursor:pointer}
+  #ccw .icon-btn:hover{border-color:#6366f1;color:#fff}
+  #ccw button:focus-visible,#ccw textarea:focus-visible,#ccw input:focus-visible,#ccw select:focus-visible{outline:2px solid #818cf8;outline-offset:1px}
+  #ccw select{width:100%;max-width:100%;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font-size:14px}
   #ccw a{color:#a5b4fc}
   .ccw-hl{outline:2px dashed #6366f1!important;outline-offset:2px}
   `;
@@ -148,9 +173,9 @@
     concept.value = o.textContent;
     rationaleInput.value = rat;
   };
-  const concept = el('input', { type: 'text', placeholder: 'Concept (auto-filled from where you clicked)' });
-  const rationaleInput = el('input', { type: 'text', placeholder: '💡 Rationale (strategic purpose / why this content exists)' });
-  const noteText = el('textarea', { rows: 4, placeholder: 'Write a note (stored in Azure Storage)...' });
+  const concept = el('input', { type: 'text', placeholder: 'Concept (fills in from what you clicked)' });
+  const rationaleInput = el('input', { type: 'text', placeholder: '💡 Why does this content exist?' });
+  const noteText = el('textarea', { rows: 4, placeholder: '📝 Write a note…' });
   const status = el('div', { className: 'hint' });
   const list = el('div', { style: 'display:flex;flex-direction:column;gap:8px' });
   const flash = (t) => { status.textContent = t; setTimeout(() => { if (status.textContent === t) status.textContent = ''; }, 3500); };
@@ -381,8 +406,13 @@
   }, true);
 
   // ---- Chat -------------------------------------------------------------
-  const log = el('div', { style: 'display:flex;flex-direction:column;gap:8px;flex:1' });
-  const input = el('textarea', { rows: 3, placeholder: 'e.g. "Move the Wednesday video to Friday and add a Shorts slot"  (Enter sends, Shift+Enter for a new line)' });
+  const log = el('div', { className: 'chat-log' });
+  log.setAttribute('role', 'log'); log.setAttribute('aria-live', 'polite');
+  const input = el('textarea', { rows: 2, placeholder: '💬 Describe a change… (Enter to send, Shift+Enter for a new line)' });
+  input.setAttribute('aria-label', 'Message to Claude');
+  // Grow the box with its text, up to the CSS max-height.
+  const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 140) + 'px'; };
+  input.addEventListener('input', grow);
   // Enter sends; Shift+Enter inserts a newline; IME composition (e.g. Japanese/Chinese input) is left alone.
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send.click(); }
@@ -408,9 +438,14 @@
   };
   input.addEventListener('input', () => saveUi({ draft: input.value }));
   if (ui.draft) input.value = ui.draft;
+  const clear = el('button', { className: 'icon-btn', textContent: '🧹 Clear', title: 'Clear finished messages' });
+  chatBody.className = 'body chat';
   chatBody.append(
-    el('div', { className: 'hint', textContent: '🤖 Claude edits this site in a Fly.io Sprite, merges into main and publishes. Type or 🎤 talk while you read; 📍 it knows which page you are on.' }),
-    log, input, el('div', { className: 'row' }, send, mic, el('label', { className: 'hint' }, useNotes, ' include my notes as context')));
+    el('div', { className: 'chat-top' },
+      el('span', { className: 'hint', textContent: `🤖 Claude edits the site · 📍 ${PAGE}` }), clear),
+    log,
+    el('div', { className: 'composer' }, input,
+      el('div', { className: 'row' }, el('div', { className: 'row' }, send, mic), el('label', { className: 'hint' }, useNotes, ' 📝 use my notes'))));
 
   // The chat log survives refreshes: it is kept in localStorage (per browser), and any job that was
   // still running when the page closed is polled again on load. Storage failures are ignored.
@@ -434,15 +469,52 @@
     return `${hit[1]} ${hit[2]}  ·  ⏱️ ${ago(m.started || Date.now())}`;
   };
 
+  // Safe mini-markdown: **bold**, `code`, "- " bullets and paragraphs, built as DOM nodes (never innerHTML).
+  function inline(text) {
+    const frag = document.createDocumentFragment();
+    text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g).forEach((part) => {
+      if (/^\*\*[^*]+\*\*$/.test(part)) frag.append(el('strong', { textContent: part.slice(2, -2) }));
+      else if (/^`[^`]+`$/.test(part)) frag.append(el('code', { textContent: part.slice(1, -1) }));
+      else if (part) frag.append(part);
+    });
+    return frag;
+  }
+  function renderText(text) {
+    const box = el('div');
+    let ul = null;
+    String(text || '').split('\n').forEach((line) => {
+      const li = line.match(/^\s*[-*•]\s+(.*)/);
+      if (li) { if (!ul) { ul = el('ul'); box.append(ul); } ul.append(el('li', {}, inline(li[1]))); return; }
+      ul = null;
+      if (line.trim()) box.append(el('p', {}, inline(line)));
+    });
+    return box;
+  }
+  const clock = (t) => (t ? new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '');
+
   function paintChat() {
+    const nearBottom = log.scrollHeight - log.scrollTop - log.clientHeight < 80;
     log.replaceChildren(...chatLog.map((m) => {
-      const n = el('div', { className: `card msg ${m.role === 'user' ? 'user' : ''}`, textContent: m.text });
-      if (m.pr) n.append('\n\n', el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: m.merged ? 'View the merged pull request →' : 'View the pull request →' }));
+      if (m.role === 'user') return el('div', { className: 'card msg user', textContent: m.text }, el('span', { className: 'when', textContent: clock(m.at) }));
+      const n = el('div', { className: 'card msg bot' });
+      if (m.pending) {
+        n.append(el('div', { className: 'status' }, el('span', { className: 'spin' }), el('span', { textContent: m.text })));
+      } else {
+        const body = renderText(m.text);
+        n.append(body);
+        if ((m.text || '').length > 600 && !m.expanded) {
+          body.className = 'clip';
+          n.append(el('button', { className: 'more', textContent: '⬇️ Show more', onclick: () => { m.expanded = true; saveChat(); paintChat(); } }));
+        }
+      }
+      if (m.pr) n.append(el('div', { style: 'margin-top:6px' }, el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: m.merged ? '🔗 View the merged pull request →' : '🔗 View the pull request →' })));
+      n.append(el('span', { className: 'when', textContent: [clock(m.started || m.at), m.page ? `📍 ${m.page}` : ''].filter(Boolean).join(' · ') }));
       return n;
     }));
-    // Scroll only the chat pane, not the whole page, so the newest message stays readable.
-    chatBody.scrollTop = chatBody.scrollHeight;
+    // Scroll only the log (never the page), and only if the reader was already near the bottom.
+    if (nearBottom || chatLog[chatLog.length - 1]?.pending) log.scrollTop = log.scrollHeight;
   }
+  clear.onclick = () => { chatLog = chatLog.filter((m) => m.pending || (chatLog[chatLog.indexOf(m) + 1] || {}).pending); saveChat(); paintChat(); };
 
   // Centre-of-page refresh button, shown once a change is merged and live.
   function showRefresh() {
@@ -495,7 +567,8 @@
     input.value = '';
     const bot = { role: 'bot', text: '⏳ Queued: waiting for the agent', pending: true, started: Date.now(), page: PAGE };
     saveUi({ draft: '' });
-    chatLog.push({ role: 'user', text: message }, bot);
+    chatLog.push({ role: 'user', text: message, at: Date.now(), page: PAGE }, bot);
+    grow();
     saveChat(); paintChat(); send.disabled = true;
     try {
       const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message, page: PAGE, includeNotes: useNotes.checked }) })).json();
