@@ -1,0 +1,57 @@
+{
+  "updated": "2026-11-21",
+  "intro": "Three lenses on how I work: what I'm like (OCEAN), how I prefer to act (conation), and how I come across (DISC). These are self-reported results from assessments, used here as a guide, not a verdict.",
+  "ocean": {
+    "title": "📊 OCEAN (Big Five)",
+    "traits": [
+      { "key": "O", "name": "Openness to experience", "score": 75, "meaning": "Curious and imaginative: new tech, big ideas, sci-fi, physics." },
+      { "key": "C", "name": "Conscientiousness", "score": 55, "meaning": "Balanced: can be organised, but doesn't live by rules. Systems help." },
+      { "key": "E", "name": "Extraversion", "score": 85, "meaning": "Energised by people: camera, live sessions, crowds, stand-up." },
+      { "key": "A", "name": "Agreeableness", "score": 0, "meaning": "Very direct and tough-minded: challenges ideas and says what the data says." },
+      { "key": "N", "name": "Neuroticism", "score": 5, "meaning": "Very calm under pressure: steady when things break, resilient after setbacks." }
+    ]
+  },
+  "conation": {
+    "title": "⚡ Conation (Kolbe modes)",
+    "note": "How you naturally take action, scored 1–10. 1–3: you resist this mode. 4–6: you flex with it. 7–10: you lead with it.",
+    "modes": [
+      { "key": "ff", "name": "Fact Finder", "score": 3, "verb": "Simplify", "meaning": "Wants the bottom line, not the whole report. Cuts to what matters." },
+      { "key": "ft", "name": "Follow Thru", "score": 2, "verb": "Adapt", "meaning": "Resists rigid systems and schedules. Switches tasks and improvises." },
+      { "key": "qs", "name": "Quick Start", "score": 9, "verb": "Innovate", "meaning": "Starts fast, experiments, takes risks, loves the new. Early to every disruption." },
+      { "key": "im", "name": "Implementor", "score": 5, "verb": "Restore", "meaning": "Can get hands-on and fix physical or concrete things when needed, but doesn't lead with it." }
+    ]
+  },
+  "disc": {
+    "title": "🎯 DISC",
+    "profile": "ID",
+    "styles": [
+      { "key": "D", "name": "Dominance", "desc": "Direct, decisive, results-driven", "you": true },
+      { "key": "I", "name": "Influence", "desc": "Enthusiastic, persuasive, people-oriented", "you": true, "primary": true },
+      { "key": "S", "name": "Steadiness", "desc": "Patient, steady, supportive" },
+      { "key": "C", "name": "Conscientiousness", "desc": "Precise, analytical, careful" }
+    ],
+    "meaning": "I-D: an energetic persuader who also drives results. You inspire people and move them to act fast."
+  },
+  "together": {
+    "title": "🧑‍✈️ Put together: a natural Delivery Pilot, if the follow-through is automated",
+    "text": "Quick Start 9 with Openness 75 and Extraversion 85 makes a fast-starting, people-energised innovator. Follow Thru 2 and Fact Finder 3 mean the routine work and the deep research are where things slip. That's exactly what the Delivery Pilot model hands to agents: you set the route and the energy, and the machines handle the checklists."
+  },
+  "implications": [
+    { "icon": "🚦", "title": "Why the 3-videos-a-week limit exists", "detail": "Quick Start 9 starts everything at once (week 1 had 6 in flight). The limit protects the plan from your best trait." },
+    { "icon": "🤖", "title": "Automate the follow-through", "detail": "Follow Thru 2: let the weekly routine, the reports and the agents do the checking, scheduling and logging. Don't rely on willpower for it." },
+    { "icon": "🔍", "title": "Outsource the deep research", "detail": "Fact Finder 3: let Claude gather the data and sources for Pillar 2 videos, and you deliver the bottom line on camera." },
+    { "icon": "🎥", "title": "Lead with energy on camera", "detail": "Extraversion 85 and I-D: live sessions, the animated co-host, comedy and improv suit you more than scripted lectures." },
+    { "icon": "🥊", "title": "Use the directness, then add warmth", "detail": "Agreeableness 0 powers 'The data says otherwise' takes. Pair it with the Max Amini warmth so it reads as honest, not harsh." },
+    { "icon": "🧘", "title": "Stay the calm pilot", "detail": "Neuroticism 5: you stay steady when things break. That's the pilot in the storm, and it's worth showing on camera during live debugging." }
+  ],
+  "workingWith": {
+    "title": "🤝 Working with Erdem (for people and agents)",
+    "tips": [
+      "Give the bottom line first, then the detail if asked",
+      "Offer 2–3 options, not a 20-page plan",
+      "Let him start fast, and build the follow-up into tools and routines",
+      "Be direct: blunt feedback is welcome",
+      "Bring energy and new ideas, and keep meetings short"
+    ]
+  }
+}

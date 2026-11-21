@@ -728,6 +728,28 @@
           "d": "One practical answer"
         }
       ]
+    },
+    "personality.html": {
+      "title": "🧬 Personality & conation",
+      "builtIn": "charts",
+      "steps": [
+        {
+          "e": "📊",
+          "t": "OCEAN"
+        },
+        {
+          "e": "⚡",
+          "t": "Kolbe"
+        },
+        {
+          "e": "🎯",
+          "t": "DISC"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "Delivery Pilot fit"
+        }
+      ]
     }
   }
 }

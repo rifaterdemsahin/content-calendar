@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personality &amp; Conation | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%A7%AC</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .bar { height: 14px; border-radius: 0 4px 4px 0; background: #818cf8; }
+    .row:hover .bar { background: #a5b4fc; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="ikigai.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Ikigai</a>
+      <span class="font-bold tracking-tight">🧬 Personality &amp; Conation</span>
+      <a href="interests.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">What I care about <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">How I work</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🧬 Personality &amp; conation</h1>
+      <p id="intro" class="text-lg text-slate-300 mt-4 max-w-3xl leading-relaxed"></p>
+      <div id="badges" class="flex flex-wrap gap-2 mt-5"></div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+        <h2 id="ocean-title" class="text-xl font-bold text-white"></h2>
+        <p class="text-xs text-slate-400 mt-1">Score out of 100. Hover a bar for what it means.</p>
+        <div id="ocean" class="mt-4 space-y-1"></div>
+      </div>
+      <div class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+        <h2 id="kolbe-title" class="text-xl font-bold text-white"></h2>
+        <p id="kolbe-note" class="text-xs text-slate-400 mt-1"></p>
+        <svg id="kolbe" class="w-full mt-4" viewBox="0 0 440 250" role="img" aria-label="Conation bar chart: Fact Finder 3, Follow Thru 2, Quick Start 9, Implementor 5, on a 1 to 10 scale with resist, flex and lead zones"></svg>
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-center">
+      <div>
+        <h2 id="disc-title" class="text-xl font-bold text-white"></h2>
+        <p id="disc-meaning" class="text-slate-300 mt-2"></p>
+        <div id="kolbe-list" class="mt-5 grid gap-2"></div>
+      </div>
+      <svg id="disc" class="w-full max-w-sm mx-auto" viewBox="0 0 320 320" role="img" aria-label="DISC quadrant with Influence and Dominance highlighted"></svg>
+    </section>
+
+    <section id="together" class="p-6 rounded-2xl border border-indigo-500/40 bg-gradient-to-br from-indigo-950/50 to-slate-900"></section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">📺 What this means for the channel and the work</h2>
+      <div id="implications" class="mt-5 grid gap-3 sm:grid-cols-2"></div>
+    </section>
+
+    <section id="working" class="p-6 rounded-2xl border border-slate-800 bg-slate-900"></section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Scores live in <code class="text-slate-400">data/personality.json</code>. Update them after a re-test.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const NS = 'http://www.w3.org/2000/svg';
+    const sv = (tag, attrs, text) => { const n = document.createElementNS(NS, tag); Object.entries(attrs || {}).forEach(([k, v]) => n.setAttribute(k, v)); if (text != null) n.textContent = text; return n; };
+    fetch('data/personality.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      const k = d.conation.modes; const kolbeCode = k.map((m) => m.score).join('-');
+      const badges = [`🎯 DISC: ${d.disc.profile}`, `⚡ Kolbe: ${kolbeCode} (QS ${k.find((m) => m.key === 'qs').score})`, '📊 ' + d.ocean.traits.map((t) => `${t.key}${t.score}`).join(' · ')];
+      document.getElementById('badges').append(...badges.map((b) => el('span', 'text-sm px-3 py-1 rounded-full border border-slate-700 bg-slate-900 text-slate-200', b)));
+
+      // OCEAN: single-series horizontal bars, one hue, value labels in text ink
+      document.getElementById('ocean-title').textContent = d.ocean.title;
+      document.getElementById('ocean').append(...d.ocean.traits.map((t) => {
+        const row = el('div', 'row px-2 py-2 rounded-lg hover:bg-slate-800/60'); row.title = t.meaning;
+        const top = el('div', 'flex justify-between gap-3 text-sm'); top.append(el('span', 'text-slate-100', `${t.key} · ${t.name}`), el('span', 'font-semibold text-white tabular-nums', String(t.score)));
+        const track = el('div', 'mt-1.5 bg-slate-800/60 rounded-r'); const b = el('div', 'bar'); b.style.width = Math.max(1.5, t.score) + '%'; track.append(b);
+        row.append(top, track, el('div', 'text-xs text-slate-400 mt-1', t.meaning));
+        return row;
+      }));
+
+      // Kolbe: vertical bars on 1–10 with three zones (resist / flex / lead)
+      document.getElementById('kolbe-title').textContent = d.conation.title;
+      document.getElementById('kolbe-note').textContent = d.conation.note;
+      const svg = document.getElementById('kolbe'); const X0 = 34, X1 = 388, Y0 = 20, Y1 = 200; const y = (v) => Y1 - (v / 10) * (Y1 - Y0);
+      [[0, 3, 'Resist', 'rgba(148,163,184,.06)'], [3, 6, 'Flex', 'rgba(148,163,184,.11)'], [6, 10, 'Lead', 'rgba(99,102,241,.13)']].forEach(([a, b, label, fill]) => {
+        svg.append(sv('rect', { x: X0, y: y(b), width: X1 - X0, height: y(a) - y(b), fill }));
+        svg.append(sv('text', { x: X1 + 8, y: (y(a) + y(b)) / 2 + 4, 'text-anchor': 'start', fill: '#94a3b8', 'font-size': 11, 'font-weight': 600, 'font-family': 'Inter' }, label));
+      });
+      [0, 3, 6, 10].forEach((v) => { svg.append(sv('line', { x1: X0, x2: X1, y1: y(v), y2: y(v), stroke: '#1e293b' })); svg.append(sv('text', { x: X0 - 8, y: y(v) + 4, 'text-anchor': 'end', fill: '#64748b', 'font-size': 10, 'font-family': 'Inter' }, String(v))); });
+      const bw = 48, gap = (X1 - X0) / k.length;
+      k.forEach((m, i) => {
+        const cx = X0 + gap * i + gap / 2; const top = y(m.score);
+        const g = sv('g'); g.append(sv('title', {}, `${m.name}: ${m.score} (${m.verb}). ${m.meaning}`));
+        g.append(sv('path', { d: `M${cx - bw / 2} ${Y1} V${top + 4} q0 -4 4 -4 H${cx + bw / 2 - 4} q4 0 4 4 V${Y1} Z`, fill: m.score >= 7 ? '#a5b4fc' : '#6366f1' }));
+        g.append(sv('text', { x: cx, y: top - 6, 'text-anchor': 'middle', fill: '#fff', 'font-size': 14, 'font-weight': 700, 'font-family': 'Inter' }, String(m.score)));
+        g.append(sv('text', { x: cx, y: Y1 + 18, 'text-anchor': 'middle', fill: '#e2e8f0', 'font-size': 11, 'font-weight': 600, 'font-family': 'Inter' }, m.name));
+        g.append(sv('text', { x: cx, y: Y1 + 33, 'text-anchor': 'middle', fill: '#94a3b8', 'font-size': 10, 'font-family': 'Inter' }, m.verb));
+        svg.append(g);
+      });
+      document.getElementById('kolbe-list').append(...k.map((m) => { const c = el('div', 'p-3 rounded-lg border border-slate-800 bg-slate-900 text-sm'); c.append(el('span', 'font-semibold text-white', `${m.name} ${m.score} · ${m.verb}: `), el('span', 'text-slate-400', m.meaning)); return c; }));
+
+      // DISC quadrant: D top-left, I top-right, S bottom-right, C bottom-left
+      document.getElementById('disc-title').textContent = `${d.disc.title}: ${d.disc.profile}`;
+      document.getElementById('disc-meaning').textContent = d.disc.meaning;
+      const ds = document.getElementById('disc'); const pos = { D: [10, 10], I: [162, 10], S: [162, 162], C: [10, 162] };
+      d.disc.styles.forEach((s) => {
+        const [x, yy] = pos[s.key];
+        ds.append(sv('rect', { x, y: yy, width: 148, height: 148, rx: 16, fill: s.you ? (s.primary ? 'rgba(236,72,153,.28)' : 'rgba(99,102,241,.28)') : '#0f172a', stroke: s.you ? (s.primary ? '#f472b6' : '#818cf8') : '#334155', 'stroke-width': 2 }));
+        ds.append(sv('text', { x: x + 74, y: yy + 70, 'text-anchor': 'middle', fill: s.you ? '#fff' : '#64748b', 'font-size': 40, 'font-weight': 800, 'font-family': 'Inter' }, s.key));
+        ds.append(sv('text', { x: x + 74, y: yy + 96, 'text-anchor': 'middle', fill: s.you ? '#e2e8f0' : '#64748b', 'font-size': 12, 'font-weight': 600, 'font-family': 'Inter' }, s.name));
+        if (s.you) ds.append(sv('text', { x: x + 74, y: yy + 120, 'text-anchor': 'middle', fill: s.primary ? '#f9a8d4' : '#a5b4fc', 'font-size': 11, 'font-weight': 700, 'font-family': 'Inter' }, s.primary ? '★ primary' : '✓ secondary'));
+      });
+      ds.append(sv('circle', { cx: 175, cy: 120, r: 9, fill: '#fff', stroke: '#f472b6', 'stroke-width': 3 }));
+
+      const t = document.getElementById('together'); t.append(el('h2', 'text-xl font-bold text-white', d.together.title), el('p', 'text-slate-200 mt-2 leading-relaxed', d.together.text));
+      document.getElementById('implications').append(...d.implications.map((x) => { const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900'); c.append(el('div', 'font-bold text-white', `${x.icon} ${x.title}`), el('p', 'text-sm text-slate-400 mt-1', x.detail)); return c; }));
+      const w = document.getElementById('working'); w.append(el('h2', 'text-xl font-bold text-white', d.workingWith.title));
+      const ul = el('ul', 'mt-3 grid gap-2 sm:grid-cols-2'); d.workingWith.tips.forEach((x) => ul.append(el('li', 'p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-sm text-slate-200', `✅ ${x}`))); w.append(ul);
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/personality.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>

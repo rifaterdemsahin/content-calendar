@@ -20,6 +20,11 @@
           "why": "What you love, are good at, get paid for and the world needs, and where they meet."
         },
         {
+          "url": "personality.html",
+          "title": "🧬 Personality & conation",
+          "why": "OCEAN, Kolbe (Quick Start 9) and DISC (I-D), and what they mean for how you work."
+        },
+        {
           "url": "interests.html",
           "title": "🧠 What I care about",
           "why": "AI and human intelligence, consciousness, Lacan, UML, enterprise patterns, space, RTS games."
@@ -544,6 +549,26 @@
       "research.html",
       "story.html",
       "Tried university twice, now writing research on AGI"
+    ],
+    [
+      "ikigai.html",
+      "personality.html",
+      "What you love, and how you naturally act on it"
+    ],
+    [
+      "personality.html",
+      "videos.html",
+      "Quick Start 9 is why the 3-videos-a-week limit exists"
+    ],
+    [
+      "personality.html",
+      "formats.html",
+      "Extraversion 85: formats that use your energy"
+    ],
+    [
+      "personality.html",
+      "story.html",
+      "The traits behind the career jumps"
     ]
   ]
 }
