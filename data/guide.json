@@ -228,5 +228,197 @@
       "at": "2026-11-21T19:29:59Z",
       "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
     }
-  }
+  },
+  "links": [
+    [
+      "index.html",
+      "calendar.html",
+      "The sprint on the dashboard, laid out by day"
+    ],
+    [
+      "index.html",
+      "week.html",
+      "This week's plan vs what shipped"
+    ],
+    [
+      "index.html",
+      "story.html",
+      "Who's behind the dashboard"
+    ],
+    [
+      "index.html",
+      "expectations.html",
+      "Ambitious targets vs realistic ranges"
+    ],
+    [
+      "story.html",
+      "inspiration.html",
+      "Your story, shaped by two creators' playbooks"
+    ],
+    [
+      "story.html",
+      "core-message.html",
+      "The story becomes the message"
+    ],
+    [
+      "story.html",
+      "what-works.html",
+      "Story-led videos work when they have stakes"
+    ],
+    [
+      "inspiration.html",
+      "what-works.html",
+      "Borrowed principles vs your own evidence"
+    ],
+    [
+      "inspiration.html",
+      "core-message.html",
+      "One message, repeated (the Gary lesson)"
+    ],
+    [
+      "core-message.html",
+      "audience.html",
+      "Who hears the message"
+    ],
+    [
+      "core-message.html",
+      "reverse-response.html",
+      "Turning the message into responses"
+    ],
+    [
+      "audience.html",
+      "supply-demand.html",
+      "What each audience wants"
+    ],
+    [
+      "audience.html",
+      "channels.html",
+      "Where each audience is"
+    ],
+    [
+      "supply-demand.html",
+      "videos.html",
+      "Demand becomes planned videos"
+    ],
+    [
+      "supply-demand.html",
+      "what-works.html",
+      "Which supply actually performs"
+    ],
+    [
+      "reverse-response.html",
+      "value.html",
+      "Why each response is worth making"
+    ],
+    [
+      "reverse-response.html",
+      "videos.html",
+      "The responses in the plan"
+    ],
+    [
+      "goals.html",
+      "on-track.html",
+      "Goals vs actual pace"
+    ],
+    [
+      "goals.html",
+      "expectations.html",
+      "Goals vs realistic expectations"
+    ],
+    [
+      "on-track.html",
+      "week.html",
+      "Pace this week"
+    ],
+    [
+      "on-track.html",
+      "analytics.html",
+      "The numbers behind the charts"
+    ],
+    [
+      "videos.html",
+      "value.html",
+      "Is each planned video worth it?"
+    ],
+    [
+      "videos.html",
+      "calendar.html",
+      "When each video goes out"
+    ],
+    [
+      "videos.html",
+      "week.html",
+      "This week's videos vs what shipped"
+    ],
+    [
+      "calendar.html",
+      "blocked.html",
+      "Days the calendar avoids"
+    ],
+    [
+      "blocked.html",
+      "week.html",
+      "Blocked days shape this week"
+    ],
+    [
+      "week.html",
+      "performance.html",
+      "Direction vs how videos perform"
+    ],
+    [
+      "performance.html",
+      "what-works.html",
+      "The two pillars behind the numbers"
+    ],
+    [
+      "performance.html",
+      "analytics.html",
+      "Raw stats and data gaps"
+    ],
+    [
+      "analytics.html",
+      "channels.html",
+      "Stats per channel"
+    ],
+    [
+      "analytics.html",
+      "cron.html",
+      "Where the stats come from"
+    ],
+    [
+      "analytics.html",
+      "setup-api-key.html",
+      "Unlock full per-video stats"
+    ],
+    [
+      "requirements.html",
+      "setup-api-key.html",
+      "The API key is the top input"
+    ],
+    [
+      "requirements.html",
+      "key-vault.html",
+      "Where the inputs are stored"
+    ],
+    [
+      "requirements.html",
+      "expectations.html",
+      "What Claude can do with them"
+    ],
+    [
+      "setup-api-key.html",
+      "key-vault.html",
+      "Store the key safely"
+    ],
+    [
+      "setup-api-key.html",
+      "cron.html",
+      "The key powers the daily pull"
+    ],
+    [
+      "key-vault.html",
+      "cron.html",
+      "Secrets the job uses"
+    ]
+  ]
 }

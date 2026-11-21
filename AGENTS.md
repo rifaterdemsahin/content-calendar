@@ -25,4 +25,5 @@ Guidance for the content-calendar editor agent.
 - Every page heading (h1/h2) starts with a fitting emoji.
 - Every page has a diagram. Add an entry for the page in `data/diagrams.json` (title + emoji steps); `assets/cc-diagram.js` draws it under the main heading. Use `"builtIn"` only when the page already draws its own diagram.
 - Every page has its own emoji favicon: a `<link rel="icon">` SVG data URI right after `<title>`, using an emoji no other page uses.
-- New pages must also load `assets/cc-guide.js` and `assets/cc-diagram.js`, and be listed in `data/guide.json`. Tests enforce this.
+- Pages are linked both ways: `assets/cc-pagenav.js` shows Previous/Next (Guide reading order) and Related pages from `data/guide.json` `links` (undirected pairs with a reason). Every page needs at least 2 links.
+- New pages must also load `assets/cc-guide.js`, `assets/cc-diagram.js` and `assets/cc-pagenav.js`, and be listed in `data/guide.json`. Tests enforce this.

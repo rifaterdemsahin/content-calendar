@@ -185,5 +185,22 @@ class Favicons(unittest.TestCase):
             self.assertIn('rel="icon"', pathlib.Path(page).read_text(encoding="utf-8"), f"{pathlib.Path(page).name} has no favicon")
 
 
+class Links(unittest.TestCase):
+    def test_pages_are_linked_both_ways(self):
+        g = json.loads((ROOT / "data" / "guide.json").read_text(encoding="utf-8"))
+        listed = {p["url"] for s in g["sections"] for p in s["pages"]}
+        degree = {u: 0 for u in listed}
+        pairs = set()
+        for a, b, why in g["links"]:
+            self.assertIn(a, listed, f"link to unknown page {a}"); self.assertIn(b, listed, f"link to unknown page {b}")
+            self.assertNotEqual(a, b); self.assertTrue(why, f"{a}-{b} needs a reason")
+            self.assertNotIn(frozenset((a, b)), pairs, f"duplicate link {a}-{b}")
+            pairs.add(frozenset((a, b))); degree[a] += 1; degree[b] += 1
+        for u, n in degree.items():
+            self.assertGreaterEqual(n, 2, f"{u} needs at least 2 related links in data/guide.json")
+        for page in glob.glob(str(ROOT / "*.html")):
+            self.assertIn("assets/cc-pagenav.js", pathlib.Path(page).read_text(encoding="utf-8"), page)
+
+
 if __name__ == "__main__":
     unittest.main()
