@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTubers I Applaud | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%8F</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    #quad text { font-family: Inter, system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="creators.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Creators</a>
+      <span class="font-bold tracking-tight">👏 YouTubers I Applaud</span>
+      <a href="formats.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Formats <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">High value · low production</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">👏 YouTubers I applaud</h1>
+      <p id="intro" class="text-lg text-slate-300 mt-4 max-w-3xl leading-relaxed"></p>
+    </section>
+
+    <section class="rounded-2xl border border-slate-800 bg-slate-900 p-5">
+      <h2 class="text-xl font-bold text-white">📐 Value vs production</h2>
+      <p class="text-xs text-slate-400 mt-1">Up = more value for the viewer. Right = more production polish. Positions are a judgement, not a measurement.</p>
+      <svg id="quad" class="w-full mt-4" viewBox="0 0 640 420" role="img" aria-label="Quadrant chart: value against production quality, with both creators in the high-value, low-production corner"></svg>
+      <p id="you-note" class="text-sm text-pink-200 mt-3"></p>
+    </section>
+
+    <section id="cards" class="grid gap-5 md:grid-cols-2"></section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">💡 Why this matters for you</h2>
+      <div id="why" class="mt-5 grid gap-3 sm:grid-cols-2"></div>
+    </section>
+
+    <section class="p-6 rounded-2xl border border-emerald-500/40 bg-emerald-950/15">
+      <h2 class="text-xl font-bold text-white">📏 Production rules to adopt</h2>
+      <ul id="rules" class="mt-3 grid gap-2"></ul>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    This page lives in <code class="text-slate-400">data/applaud.json</code>.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const NS = 'http://www.w3.org/2000/svg';
+    const sv = (tag, a, text) => { const n = document.createElementNS(NS, tag); Object.entries(a || {}).forEach(([k, v]) => n.setAttribute(k, v)); if (text != null) n.textContent = text; return n; };
+    fetch('data/applaud.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      const svg = document.getElementById('quad'); const L = 50, R = 620, T = 20, B = 370;
+      const X = (v) => L + v * (R - L); const Y = (v) => B - v * (B - T);
+      const mx = (L + R) / 2, my = (T + B) / 2;
+      [[L, T, '#064e3b', 0.35, '🏆 High value, low production', 'start'], [mx, T, '#1e293b', 0.3, '💎 High value, high production', 'end'],
+       [L, my, '#1e293b', 0.2, '😐 Low value, low production', 'start'], [mx, my, '#450a0a', 0.3, '🎆 Low value, high production', 'end']]
+        .forEach(([x, y, fill, op, label, anchor]) => {
+          svg.append(sv('rect', { x, y, width: mx - L, height: my - T, fill, 'fill-opacity': op }));
+          svg.append(sv('text', { x: anchor === 'start' ? x + 10 : x + (mx - L) - 10, y: y + (my - T) - 12, 'text-anchor': anchor, fill: '#94a3b8', 'font-size': 12, 'font-weight': 600 }, label));
+        });
+      svg.append(sv('rect', { x: L, y: T, width: R - L, height: B - T, fill: 'none', stroke: '#334155', rx: 10 }));
+      svg.append(sv('text', { x: L, y: B + 24, fill: '#94a3b8', 'font-size': 12 }, '← simple setup'));
+      svg.append(sv('text', { x: R, y: B + 24, 'text-anchor': 'end', fill: '#94a3b8', 'font-size': 12 }, 'studio polish →'));
+      svg.append(sv('text', { x: 16, y: my, fill: '#94a3b8', 'font-size': 12, transform: `rotate(-90 16 ${my})`, 'text-anchor': 'middle' }, 'value for the viewer →'));
+      d.creators.forEach((c) => {
+        const x = X(c.production), y = Y(c.value); const a = sv('a', { href: '#' + c.key });
+        a.append(sv('title', {}, `${c.name}: high value, low production`), sv('circle', { cx: x, cy: y, r: 9, fill: '#34d399', stroke: '#0f172a', 'stroke-width': 2 }),
+          sv('text', { x: x + 14, y: y + 5, fill: '#f1f5f9', 'font-size': 14, 'font-weight': 600 }, `${c.icon} ${c.name}`));
+        svg.append(a);
+      });
+      const yx = X(d.you.production), yy = Y(d.you.value);
+      svg.append(sv('circle', { cx: yx, cy: yy, r: 22, fill: 'rgba(236,72,153,.15)', stroke: '#f472b6', 'stroke-dasharray': '4 4' }));
+      svg.append(sv('circle', { cx: yx, cy: yy, r: 9, fill: '#f472b6', stroke: '#0f172a', 'stroke-width': 2 }));
+      svg.append(sv('text', { x: yx + 30, y: yy + 5, fill: '#f9a8d4', 'font-size': 14, 'font-weight': 800 }, d.you.label));
+      document.getElementById('you-note').textContent = `🧑‍✈️ ${d.you.note}`;
+
+      document.getElementById('cards').append(...d.creators.map((c) => {
+        const card = el('article', 'rounded-2xl border border-emerald-500/30 bg-slate-900 p-5 flex flex-col'); card.id = c.key;
+        const h = el('div', 'flex items-center justify-between gap-3');
+        h.append(el('h2', 'text-lg font-bold text-white', `👏 ${c.icon} ${c.name}`));
+        const a = el('a', 'text-xs px-2.5 py-1 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/30 shrink-0', '▶ Channel'); a.href = c.url; a.target = '_blank'; a.rel = 'noopener'; h.append(a);
+        card.append(h, el('p', 'text-sm text-slate-400 mt-1', c.who));
+        card.append(el('div', 'text-xs uppercase font-bold text-indigo-300 mt-4', '🎨 Style'));
+        const ul = el('ul', 'mt-1 text-sm text-slate-200 list-disc pl-5 space-y-1'); c.style.forEach((x) => ul.append(el('li', null, x))); card.append(ul);
+        const l = el('p', 'mt-4 text-sm text-emerald-200'); l.append(el('span', 'font-semibold', '🧩 The lesson: '), document.createTextNode(c.lesson)); card.append(l);
+        return card;
+      }));
+      document.getElementById('why').append(...d.whyItMatters.map((x) => { const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900'); c.append(el('div', 'font-bold text-white', `${x.icon} ${x.title}`), el('p', 'text-sm text-slate-400 mt-1', x.detail)); return c; }));
+      document.getElementById('rules').append(...d.rules.map((x) => el('li', 'p-3 rounded-lg bg-slate-950/60 border border-slate-800 text-sm text-slate-200', x)));
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/applaud.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+  <script src="assets/cc-footer.js"></script>
+</body>
+</html>

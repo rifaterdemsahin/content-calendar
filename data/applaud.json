@@ -1,0 +1,70 @@
+{
+  "updated": "2026-11-21",
+  "intro": "YouTubers I applaud for proving that value beats production. Simple setups, little visual polish, and huge audiences, because what they say is worth the time.",
+  "creators": [
+    {
+      "key": "sabine",
+      "icon": "🔭",
+      "name": "Sabine Hossenfelder",
+      "url": "https://www.youtube.com/@SabineHossenfelder",
+      "who": "A theoretical physicist who covers science and technology news.",
+      "style": [
+        "Mostly her, talking to camera, with few visuals",
+        "Dense with real expertise",
+        "Skeptical and direct: says when the hype is wrong"
+      ],
+      "lesson": "Expertise plus honesty is the product. 'The data says otherwise' is exactly your Pillar 2 voice, and it doesn't need a studio.",
+      "value": 0.92,
+      "production": 0.3
+    },
+    {
+      "key": "todd",
+      "icon": "🧠",
+      "name": "Dr. Todd Grande",
+      "url": "https://www.youtube.com/@drgrande",
+      "who": "A licensed counselor (PhD) who explains psychology and mental-health topics.",
+      "style": [
+        "A plain setup: one camera, one desk",
+        "Calm, structured explanations",
+        "Very consistent, one topic per video"
+      ],
+      "lesson": "Consistency and clarity beat polish. One clear topic per video, explained well, over and over.",
+      "value": 0.86,
+      "production": 0.15
+    }
+  ],
+  "you": {
+    "value": 0.66,
+    "production": 0.42,
+    "label": "🧑‍✈️ Aim here",
+    "note": "High value, low-to-medium production: your knowledge and energy carry the video. Spend the saved time on the next video."
+  },
+  "whyItMatters": [
+    {
+      "icon": "⚡",
+      "title": "Ship more, polish less",
+      "detail": "Quick Start 9 and Follow Thru 2: heavy editing is where your videos stall. A simple setup means more videos actually get published."
+    },
+    {
+      "icon": "📊",
+      "title": "Your own data agrees",
+      "detail": "Your best recent uploads, the cheap-model Kilo Shorts (185–195 views), won on a useful, copyable idea, not on production budget."
+    },
+    {
+      "icon": "🎯",
+      "title": "Value is the hook",
+      "detail": "Titles and the first 30 seconds promise a payoff, and the content delivers it. That matters more than B-roll or motion graphics."
+    },
+    {
+      "icon": "🧾",
+      "title": "Credibility over cinematics",
+      "detail": "They're trusted for what they know (a physicist, a counsellor). For you it's 40+ delivered contracts, 612 repos and real delivery work."
+    }
+  ],
+  "rules": [
+    "🎥 The default setup: one camera or screen recording, good audio, and a clear title",
+    "⏱️ Cap editing time per video. If it's taking longer, publish and improve the next one",
+    "🎯 One topic per video, with the payoff in the first 30 seconds",
+    "🔊 Spend on audio first. Viewers forgive simple visuals, but not bad sound"
+  ]
+}

@@ -70,6 +70,11 @@
           "why": "Nate Herk, Nate B Jones, Tina Huang, NetworkChuck, Alex Finn: their styles, mapped."
         },
         {
+          "url": "applaud.html",
+          "title": "👏 YouTubers I applaud",
+          "why": "Sabine Hossenfelder, Dr. Todd Grande: high value, low production."
+        },
+        {
           "url": "formats.html",
           "title": "🎨 Formats I like",
           "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
@@ -654,6 +659,26 @@
       "business.html",
       "research.html",
       "The paper's answer, sold as a service"
+    ],
+    [
+      "creators.html",
+      "applaud.html",
+      "Big creators vs the high-value, low-production model"
+    ],
+    [
+      "applaud.html",
+      "formats.html",
+      "Formats, kept simple enough to ship"
+    ],
+    [
+      "applaud.html",
+      "what-works.html",
+      "Your simple Shorts already beat polished ones"
+    ],
+    [
+      "applaud.html",
+      "personality.html",
+      "Quick Start 9: ship more, polish less"
     ]
   ]
 }

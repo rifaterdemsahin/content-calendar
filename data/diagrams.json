@@ -872,6 +872,24 @@
           "t": "Alex Finn"
         }
       ]
+    },
+    "applaud.html": {
+      "title": "👏 Value vs production",
+      "builtIn": "quadrant",
+      "steps": [
+        {
+          "e": "🔭",
+          "t": "Sabine Hossenfelder"
+        },
+        {
+          "e": "🧠",
+          "t": "Dr. Todd Grande"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "You"
+        }
+      ]
     }
   }
 }
