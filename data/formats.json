@@ -1,0 +1,204 @@
+{
+  "updated": "2026-11-21",
+  "intro": "Five formats you like, turned into formats for your channel: two animation techniques, comics, comedy and an episodic sci-fi series. Borrow the technique, never the characters. Everything here uses your own original characters, names and look.",
+  "formats": [
+    {
+      "key": "line",
+      "icon": "✏️",
+      "name": "The single-line world",
+      "inspiredBy": "La Linea (the classic one-line animation)",
+      "what": "The whole world is one continuous drawn line. A character walks along it, the line ends or breaks, and a hand (the animator) steps in to draw what's needed. The character argues back.",
+      "whyYou": [
+        "It's a perfect Delivery Pilot metaphor: the agent walks the line, and the pilot's hand draws the route.",
+        "One idea per clip, which is the 'one message' lesson from Inspiration.",
+        "Cheap and repeatable: one colour, plain background, no filming. It suits Google Flow or Remotion (SVG path animation).",
+        "Explainer Shorts can work (Tokenization Explained: 142 views), and this gives them a recognisable look."
+      ],
+      "how": [
+        "Remotion: animate one SVG path with stroke-dashoffset, so the line draws itself",
+        "One original character made from the same line (e.g. a small agent with an antenna)",
+        "Your hand (or a drawn hand) appears to fix the problem",
+        "Mumbled character voice or sound effects, with your voiceover delivering the lesson",
+        "30–45s vertical, one concept per clip"
+      ],
+      "examples": [
+        {
+          "title": "The 1 Mistake in n8n Loops",
+          "pillar": "Pillar 1 · already planned (Week 1, Sat)",
+          "beat": "The character runs round a loop forever. The hand draws one node, and the loop opens into a straight line."
+        },
+        {
+          "title": "Why Your Cheap Model Gets Lost",
+          "pillar": "Pillar 1",
+          "beat": "The line runs into fog (no context). The hand draws a door labelled MCP, and the character walks through it."
+        },
+        {
+          "title": "Tokens, Explained in One Line",
+          "pillar": "Shorts explainer",
+          "beat": "The sentence is a line that breaks into chunks, and the character carries one chunk at a time."
+        }
+      ],
+      "pilot": "Make Week 1's 'The 1 Mistake in n8n Loops' Short in this style. It's already in the plan, so it doesn't add to the 3-per-week limit."
+    },
+    {
+      "key": "mixed",
+      "icon": "🎞️",
+      "name": "You + an animated co-host",
+      "inspiredBy": "Who Framed Roger Rabbit (live action and cartoons sharing the frame)",
+      "what": "A real person and an animated character in the same shot, reacting to each other. The cartoon is cheeky and fast. The human is the grounded one.",
+      "whyYou": [
+        "It literally shows your thesis, human plus AI agent in one frame: 'AI got CI, humans got delivery.'",
+        "It brings energy to talking-head career videos (Pillar 2), the NetworkChuck lesson, without changing who you are.",
+        "A recurring character becomes your signature ritual, like the ✈️ pre-flight check.",
+        "The co-host can make the mistakes (deploying on Friday, burning tokens), so you can correct them without lecturing."
+      ],
+      "how": [
+        "Design one original co-host, e.g. 'Autopilot', a small animated plane/agent, and keep it consistent",
+        "Film yourself in the Standup Room with an eyeline mark where the character will be",
+        "Add the character in post: Google Flow or Remotion overlay (start with simple 2D stickers)",
+        "Give the character 3–5 short moments per video, not a full second presenter",
+        "Keep it within the weekly time budget, so add it to videos you're already making"
+      ],
+      "examples": [
+        {
+          "title": "Junior Dev Jobs Are Down 50%: Here's the Upswing (re-cut)",
+          "pillar": "Pillar 2",
+          "beat": "Autopilot races through the 5-item CI checklist. You walk through the 5 things that stay human."
+        },
+        {
+          "title": "My AI Agent Tried to Deploy on a Friday",
+          "pillar": "Short · story with stakes",
+          "beat": "Autopilot hits deploy, you catch it, and the cost meter spikes. Lesson: the pilot owns the release."
+        },
+        {
+          "title": "Frontier-Level AI Coding for Under $10 a Month",
+          "pillar": "Pillar 1 · long",
+          "beat": "Autopilot keeps grabbing the expensive model, and you swap in the cheap one plus LSP glasses."
+        }
+      ],
+      "pilot": "Add 3 Autopilot cameos to the next long video you're already making. Don't make a new video for it."
+    },
+    {
+      "key": "comic",
+      "icon": "🗯️",
+      "name": "Comic-strip explainers",
+      "inspiredBy": "Comic strips and graphic novels",
+      "what": "A 3–4 panel strip with the setup, the problem, the twist, and a punchline in the last panel. It can be read in 10 seconds and shared everywhere.",
+      "whyYou": [
+        "One idea per strip: a joke that also teaches.",
+        "It works across channels: a LinkedIn carousel, a Skool post, or a Short that pans panel by panel. One make, three places.",
+        "A recurring original character (e.g. Autopilot) builds recognition across strips.",
+        "You can make it without filming, using AI image generation with a consistent character sheet."
+      ],
+      "how": [
+        "Write the 4 beats first: setup, problem, twist, punchline",
+        "Create an original character sheet once and reuse it in every prompt",
+        "Generate the panels (image generation), then add speech bubbles in Canva/Figma",
+        "Export a carousel (LinkedIn) and a 9:16 pan-and-zoom Short",
+        "Put the real fix or tool in the caption or the last panel"
+      ],
+      "examples": [
+        {
+          "title": "The Friday Deploy",
+          "pillar": "LinkedIn carousel + Short",
+          "beat": "Panel 1: 'Ship it?' Panel 2: Autopilot already has. Panel 3: pager goes off. Panel 4: the pilot hits rollback. Who owns the release?"
+        },
+        {
+          "title": "Rider, Driver, Pilot (the strip)",
+          "pillar": "Pillar 2 support",
+          "beat": "Three panels, three seats, and the punchline on who actually lands the plane. It does the job the 12-view Short couldn't."
+        },
+        {
+          "title": "The $200 Bill",
+          "pillar": "Pillar 1",
+          "beat": "An expensive model eats the budget, a cheap model plus LSP glasses does the job, and the Treasurer smiles."
+        }
+      ],
+      "pilot": "Turn one planned Short's idea into a 4-panel carousel for LinkedIn (your 30k network). It's the same idea, so there's no extra slot in the video limit."
+    },
+    {
+      "key": "comedy",
+      "icon": "😂",
+      "name": "Dev comedy sketches",
+      "inspiredBy": "Sketch comedy and tech skits",
+      "what": "Short sketches where you play more than one role (developer, AI agent, manager) and exaggerate a real dev pain until it's funny, then show the actual fix.",
+      "whyYou": [
+        "Humour is the NetworkChuck lesson: hard material feels light.",
+        "Comedy gets shared, which gives Shorts reach they don't get from slogans.",
+        "Playing 'the agent' lets you show AI failure modes without preaching.",
+        "Your immigrant and career-switcher story has a lot of real, warm comedy in it."
+      ],
+      "how": [
+        "Pick a real pain (agent says 'done', it isn't)",
+        "Play both roles: a jacket or hat switch, two camera angles",
+        "Keep it 30–45s, with the punchline before 0:30",
+        "End with the real fix on screen (the tool or setting), which keeps it in Pillar 1",
+        "Reuse the Standup Room, so there's no new set"
+      ],
+      "examples": [
+        {
+          "title": "Me vs My AI Agent at Code Review",
+          "pillar": "Pillar 1 Short",
+          "beat": "The agent insists the tests pass, you run them and they're all red. Fix: make it run the suite before saying done."
+        },
+        {
+          "title": "The $200 Subscription Intervention",
+          "pillar": "Pillar 1 Short",
+          "beat": "Friends stage an intervention for your AI bill. Reveal: a cheap model in Kilo does the same job."
+        },
+        {
+          "title": "Explaining 'Delivery Pilot' to My Family",
+          "pillar": "Story Short",
+          "beat": "Nobody understands your job title. By the end, the pilot metaphor finally lands. Warm, personal, with stakes."
+        }
+      ],
+      "rule": "Every sketch ends with something useful. Comedy without a takeaway behaves like a mindset Short (avg 33 views).",
+      "pilot": "Film one sketch as the Pillar 1 Short already planned for the week, with the fix at the end."
+    },
+    {
+      "key": "series",
+      "icon": "🚀",
+      "name": "The Pilot's Log: an episodic sci-fi series",
+      "inspiredBy": "Episodic sci-fi series in the Star Trek tradition",
+      "what": "A recurring ship and crew. Each episode is a self-contained mission that solves one problem, with a log entry to open and a hook to the next mission at the end. Viewers come back for the crew, not just the topic.",
+      "whyYou": [
+        "A series makes people binge and return. Playlists and 'next episode' hooks turn viewers into subscribers.",
+        "The cast already exists: the crew are your COBALTS roles (Builder, Operator, Leader, Treasurer, Strategist) as agents, and you're the Delivery Pilot.",
+        "Each mission is a real technical problem, so every episode is still Pillar 1 or 2 underneath.",
+        "Seasons map onto your Skool course modules: Season 1 = Delivery Pilot Module 1."
+      ],
+      "how": [
+        "Original world: name your own ship (e.g. the 'DPV Cobalt') and crew. No Star Trek names, ships, insignia or catchphrases",
+        "Opener: 'Pilot's log, sprint 7…' (5s, every episode, your signature)",
+        "Mission of the week = one real problem, solved on screen",
+        "Scenes from Google Flow plus your voiceover, with the screen recording as the 'bridge console'",
+        "End on the lesson and a one-line teaser for the next mission"
+      ],
+      "examples": [
+        {
+          "title": "S1E1 · The Token Storm",
+          "pillar": "Pillar 1",
+          "beat": "The Treasurer warns the token budget is burning. The mission: switch to a cheap model plus LSP before the ship stalls."
+        },
+        {
+          "title": "S1E2 · The Silent Loop",
+          "pillar": "Pillar 1 · n8n",
+          "beat": "The Operator finds a workflow looping in the dark. One node ends it. Teaser: an unknown signal from a new client."
+        },
+        {
+          "title": "S1E3 · First Contact",
+          "pillar": "Pillar 2",
+          "beat": "A new stakeholder hails the ship. The Leader writes the spec (the flight plan) before any agent moves."
+        }
+      ],
+      "pilot": "Make S1E1 from the planned '$10/Month Production AI Stack' video. It's the same content, framed as an episode, with the log opener and a teaser."
+    }
+  ],
+  "rules": [
+    "🎨 Original characters, names, ships and designs only. No La Linea, Roger Rabbit or Star Trek characters, logos, insignia or catchphrases.",
+    "⏱️ Use a format on a video that's already planned. It must not add to the 3-per-week limit.",
+    "🧪 Pilot one format at a time, then compare its views with its pillar's average on the What works page.",
+    "🔁 Keep a format only if it beats the average twice in a row.",
+    "🎯 Every format still has to teach something. A format that's only entertainment performs like a mindset Short."
+  ]
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formats I Like | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8E%A8</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    /* A self-drawing line, as a nod to the single-line format (original drawing) */
+    .draw path { stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 4s ease forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { .draw path { animation: none; stroke-dashoffset: 0; } }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="inspiration.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Inspiration</a>
+      <span class="font-bold tracking-tight">🎨 Formats I Like</span>
+      <a href="what-works.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">What works <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Visual formats</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🎨 Formats I like</h1>
+      <nav id="jump" class="flex flex-wrap gap-2 mt-4 text-sm"></nav>
+      <p id="intro" class="text-slate-300 mt-4 max-w-3xl text-lg leading-relaxed"></p>
+      <svg class="draw w-full h-24 mt-6" viewBox="0 0 1000 100" fill="none" aria-hidden="true">
+        <path d="M0 70 H260 q20 0 30 -20 t30 -20 t30 20 H520 c20 0 25 -40 45 -40 s25 40 45 40 H760 l20 -30 l20 30 H1000" stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </section>
+
+    <section id="formats" class="space-y-10"></section>
+
+    <section>
+      <h2 class="text-xl font-bold text-white">📏 Rules for using them</h2>
+      <ul id="rules" class="mt-4 grid gap-2"></ul>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Content lives in <code class="text-slate-400">data/formats.json</code>. Add a format by adding an entry.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const list = (items, cls) => { const ul = el('ul', cls); items.forEach((x) => ul.append(el('li', null, x))); return ul; };
+    fetch('data/formats.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      document.getElementById('jump').append(...d.formats.map((f) => { const a = el('a', 'px-3 py-1 rounded-full border border-slate-700 bg-slate-900 hover:border-indigo-400 text-slate-200', `${f.icon} ${f.name.split(':')[0]}`); a.href = '#' + f.key; return a; }));
+      document.getElementById('formats').append(...d.formats.map((f) => {
+        const c = el('article', 'rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden'); c.id = f.key;
+        const head = el('div', 'p-6 border-b border-slate-800 bg-gradient-to-br from-indigo-950/40 to-transparent');
+        const h = el('h2', 'text-2xl font-bold text-white', `${f.icon} ${f.name}`);
+        head.append(el('div', 'text-xs uppercase font-bold tracking-wider text-indigo-300', `💭 Inspired by ${f.inspiredBy}`), h, el('p', 'text-slate-300 mt-3 max-w-3xl', f.what));
+        c.append(head);
+        const grid = el('div', 'grid md:grid-cols-2');
+        const why = el('div', 'p-6'); why.append(el('h3', 'text-xs uppercase font-bold text-emerald-300', '✅ Why it fits you'), list(f.whyYou, 'mt-2 list-disc pl-5 text-sm text-slate-300 space-y-1.5'));
+        const how = el('div', 'p-6 md:border-l border-t md:border-t-0 border-slate-800'); how.append(el('h3', 'text-xs uppercase font-bold text-sky-300', '🛠️ How to make it'));
+        const ol = el('ol', 'mt-2 list-decimal pl-5 text-sm text-slate-300 space-y-1.5'); f.how.forEach((x) => ol.append(el('li', null, x))); how.append(ol);
+        grid.append(why, how); c.append(grid);
+        const ex = el('div', 'p-6 border-t border-slate-800'); ex.append(el('h3', 'text-xs uppercase font-bold text-amber-300', '🎬 Example videos in this format'));
+        const eg = el('div', 'mt-3 grid gap-3 md:grid-cols-3');
+        f.examples.forEach((x) => { const e = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-950/60'); e.append(el('div', 'text-[11px] uppercase tracking-wider text-slate-400', x.pillar), el('div', 'font-bold text-white mt-1', x.title), el('p', 'text-sm text-slate-300 mt-2', x.beat)); eg.append(e); });
+        ex.append(eg);
+        const pilot = el('div', 'mt-4 p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/15 text-sm'); pilot.append(el('span', 'font-bold text-emerald-300', '🧪 Pilot it: '), document.createTextNode(f.pilot));
+        if (f.rule) { const r = el('div', 'mt-3 p-3 rounded-lg border border-amber-500/30 bg-amber-950/15 text-sm text-amber-100'); r.append(el('span', 'font-bold', '⚠️ Rule: '), document.createTextNode(f.rule)); ex.append(r); }
+        ex.append(pilot); c.append(ex);
+        return c;
+      }));
+      document.getElementById('rules').append(...d.rules.map((r) => el('li', 'p-3 rounded-lg border border-slate-800 bg-slate-900 text-sm text-slate-200', r)));
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/formats.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>

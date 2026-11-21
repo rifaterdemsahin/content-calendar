@@ -35,6 +35,11 @@
           "why": "What to borrow from Gary Stevenson and NetworkChuck, and what not to copy."
         },
         {
+          "url": "formats.html",
+          "title": "🎨 Formats I like",
+          "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
+        },
+        {
           "url": "audience.html",
           "title": "👥 Audience map",
           "why": "Who watches: consumers, professionals, businesses."
@@ -419,6 +424,21 @@
       "key-vault.html",
       "cron.html",
       "Secrets the job uses"
+    ],
+    [
+      "inspiration.html",
+      "formats.html",
+      "Creators to learn from, and formats to borrow"
+    ],
+    [
+      "formats.html",
+      "what-works.html",
+      "Pilot a format, then compare it with the pillar averages"
+    ],
+    [
+      "formats.html",
+      "channels.html",
+      "Tools to make them: Flow, Remotion"
     ]
   ]
 }
