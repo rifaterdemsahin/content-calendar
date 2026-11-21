@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikigai | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8C%B8</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .venn text { font-family: Inter, system-ui, sans-serif; }
+    .venn .zone { cursor: pointer; transition: opacity .15s; }
+    .venn .zone:hover { opacity: .85; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="story.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> My story</a>
+      <span class="font-bold tracking-tight">🌸 Ikigai</span>
+      <a href="core-message.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Core message <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+    <section>
+      <h2 class="text-xs font-bold text-pink-400 uppercase tracking-widest">Reason for being</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🌸 My ikigai</h1>
+      <p id="statement" class="text-lg sm:text-xl text-slate-200 mt-4 max-w-3xl leading-relaxed"></p>
+    </section>
+
+    <!-- Ikigai diagram: four overlapping circles (love top, good-at left, world-needs right, paid bottom) -->
+    <section class="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-8 items-center">
+      <svg class="venn w-full max-w-xl mx-auto" viewBox="0 0 600 600" role="img" aria-labelledby="venn-title">
+        <title id="venn-title">Ikigai diagram: what I love, what I'm good at, what the world needs, what I get paid for, with Delivery Pilot at the centre</title>
+        <g stroke-width="2">
+          <circle cx="300" cy="195" r="150" fill="rgba(236,72,153,.16)" stroke="rgba(236,72,153,.65)"/>
+          <circle cx="195" cy="300" r="150" fill="rgba(99,102,241,.16)" stroke="rgba(129,140,248,.7)"/>
+          <circle cx="405" cy="300" r="150" fill="rgba(16,185,129,.14)" stroke="rgba(52,211,153,.65)"/>
+          <circle cx="300" cy="405" r="150" fill="rgba(245,158,11,.14)" stroke="rgba(251,191,36,.65)"/>
+        </g>
+        <g text-anchor="middle" fill="#f1f5f9">
+          <text x="300" y="95" font-size="26">❤️</text><text x="300" y="122" font-size="15" font-weight="700">What I love</text>
+          <text x="98" y="292" font-size="26">💪</text><text x="98" y="318" font-size="15" font-weight="700">Good at</text>
+          <text x="502" y="292" font-size="26">🌍</text><text x="502" y="318" font-size="15" font-weight="700">World needs</text>
+          <text x="300" y="500" font-size="26">💷</text><text x="300" y="526" font-size="15" font-weight="700">Paid for</text>
+          <g font-size="13" font-weight="600" fill="#cbd5e1">
+            <a href="#passion" class="zone"><text x="212" y="218">🔥 Passion</text></a>
+            <a href="#mission" class="zone"><text x="388" y="218">🧭 Mission</text></a>
+            <a href="#profession" class="zone"><text x="212" y="392">🛠️ Profession</text></a>
+            <a href="#vocation" class="zone"><text x="388" y="392">✈️ Vocation</text></a>
+          </g>
+          <circle cx="300" cy="300" r="46" fill="#0f172a" stroke="#f472b6" stroke-width="2"/>
+          <text x="300" y="294" font-size="22">🧑‍✈️</text>
+          <text x="300" y="316" font-size="11.5" font-weight="800" fill="#fff">Delivery Pilot</text>
+        </g>
+      </svg>
+      <div id="circles" class="grid gap-3 sm:grid-cols-2"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-bold text-white">🔗 Where the circles overlap</h2>
+      <p class="text-slate-400 mt-1">Each overlap, and what it means for your videos.</p>
+      <div id="overlaps" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <section id="games-sec"></section>
+
+    <section>
+      <h2 class="text-xl font-bold text-white">📺 What this means for the channel</h2>
+      <ul id="channel" class="mt-4 grid gap-2"></ul>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Your ikigai lives in <code class="text-slate-400">data/ikigai.json</code>. Edit the words there.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const tone = { love: 'border-pink-500/40', good: 'border-indigo-500/40', paid: 'border-amber-500/40', need: 'border-emerald-500/40' };
+    fetch('data/ikigai.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('statement').textContent = `🧑‍✈️ ${d.center.statement}`;
+      document.getElementById('circles').append(...d.circles.map((c) => {
+        const b = el('div', `p-4 rounded-xl border bg-slate-900 ${tone[c.key]}`);
+        b.append(el('div', 'font-bold text-white', `${c.icon} ${c.label}`));
+        const ul = el('ul', 'mt-2 text-sm text-slate-300 list-disc pl-5 space-y-1'); c.items.forEach((x) => ul.append(el('li', null, x))); b.append(ul);
+        return b;
+      }));
+      document.getElementById('overlaps').append(...d.overlaps.map((o) => {
+        const b = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900'); b.id = o.key;
+        b.append(el('div', 'text-xs uppercase tracking-wider text-slate-400', o.between), el('div', 'text-lg font-bold text-white mt-1', `${o.icon} ${o.label}`),
+          el('p', 'text-slate-300 mt-2', o.text));
+        const c = el('p', 'mt-3 text-sm text-emerald-200'); c.append(el('span', 'font-semibold', '📺 On the channel: '), document.createTextNode(o.content)); b.append(c);
+        return b;
+      }));
+      const g = document.getElementById('games-sec');
+      g.append(el('h2', 'text-xl font-bold text-white', d.games.title), el('p', 'text-slate-400 mt-1', d.games.text));
+      const gg = el('div', 'mt-4 grid gap-3 sm:grid-cols-2'); d.games.ideas.forEach((x) => gg.append(el('div', 'p-4 rounded-xl border border-pink-500/30 bg-pink-950/10 text-sm text-slate-200', x))); g.append(gg);
+      document.getElementById('channel').append(...d.channel.map((x) => el('li', 'p-3 rounded-lg border border-slate-800 bg-slate-900 text-sm text-slate-200', x)));
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/ikigai.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>

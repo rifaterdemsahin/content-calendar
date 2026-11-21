@@ -1,0 +1,34 @@
+{
+  "updated": "2026-11-21",
+  "center": {
+    "title": "Delivery Pilot",
+    "statement": "Help people find the skills and the courage to become Delivery Pilots, people who deliver with AI, by creating and learning with high tech in public."
+  },
+  "circles": [
+    { "key": "love", "icon": "❤️", "label": "What I love", "items": ["Creating and learning with high tech", "Games", "New things: the latest tools and ideas"] },
+    { "key": "good", "icon": "💪", "label": "What I'm good at", "items": ["Projects: getting them over the line", "Delivery: getting customers live, safely and on time"] },
+    { "key": "paid", "icon": "💷", "label": "What I get paid for", "items": ["Migration contracts"] },
+    { "key": "need", "icon": "🌍", "label": "What the world needs", "items": ["Skilling up as AI raises the bar", "The courage to become a pilot, a Delivery Pilot who delivers with AI"] }
+  ],
+  "overlaps": [
+    { "key": "passion", "icon": "🔥", "label": "Passion", "between": "Love + good at", "text": "Building new high-tech projects and seeing them through.", "content": "Hands-on builds with the newest tools: Pillar 1. Your energy shows when you're building, so film that." },
+    { "key": "mission", "icon": "🧭", "label": "Mission", "between": "Love + world needs", "text": "Learning new tech in public so others can skill up too.", "content": "Self-learning videos, the free Delivery Pilot course for students, and the 'I never finished university' story." },
+    { "key": "profession", "icon": "🛠️", "label": "Profession", "between": "Good at + paid for", "text": "Delivering migration projects for clients.", "content": "Migration case studies as proof: 'how I'd migrate X with AI agents', the real delivery that gives Pillar 2 its credibility." },
+    { "key": "vocation", "icon": "✈️", "label": "Vocation", "between": "World needs + paid for", "text": "Teaching teams to deliver with AI: the Delivery Pilot role.", "content": "Skool community and course, plus businesses buying builds and services (the B2C2B audience)." }
+  ],
+  "games": {
+    "title": "🎮 Games: the love that isn't on the channel yet",
+    "text": "You love games, and it's the one circle item with no home in your content. It fits naturally:",
+    "ideas": [
+      "Skool gamification: points, levels and 'pilot ranks' (Rider → Driver → Pilot) for members who ship",
+      "The Pilot's Log sci-fi series (Formats page): missions and episodes are game structure",
+      "'Speedrun' Shorts: build X with a cheap model in under 60 seconds, against the clock",
+      "Build a tiny browser game with AI agents live, which is new tech, games and delivery in one video"
+    ]
+  },
+  "channel": [
+    "🎯 Every video should sit in at least two circles. The best (the centre) sits in all four.",
+    "🧪 Mindset Shorts fail because they're only 'world needs'. There's no love, skill or proof showing.",
+    "🏆 Your best videos already sit near the centre: practical builds (love + good) for career outcomes (need + paid)."
+  ]
+}

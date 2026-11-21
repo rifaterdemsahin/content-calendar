@@ -612,6 +612,32 @@
         }
       ],
       "loop": "Keep it if it wins twice"
+    },
+    "ikigai.html": {
+      "title": "🌸 Ikigai",
+      "builtIn": "venn",
+      "steps": [
+        {
+          "e": "❤️",
+          "t": "Love"
+        },
+        {
+          "e": "💪",
+          "t": "Good at"
+        },
+        {
+          "e": "💷",
+          "t": "Paid for"
+        },
+        {
+          "e": "🌍",
+          "t": "World needs"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "Delivery Pilot"
+        }
+      ]
     }
   }
 }

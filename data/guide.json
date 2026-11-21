@@ -15,6 +15,11 @@
           "why": "Who's behind the channel and why self-learning matters now."
         },
         {
+          "url": "ikigai.html",
+          "title": "🌸 Ikigai",
+          "why": "What you love, are good at, get paid for and the world needs, and where they meet."
+        },
+        {
           "url": "expectations.html",
           "title": "🧭 Expectations",
           "why": "What the assistant can and cannot do for you."
@@ -439,6 +444,26 @@
       "formats.html",
       "channels.html",
       "Tools to make them: Flow, Remotion"
+    ],
+    [
+      "story.html",
+      "ikigai.html",
+      "The story behind each circle"
+    ],
+    [
+      "ikigai.html",
+      "core-message.html",
+      "The centre of the ikigai becomes the core message"
+    ],
+    [
+      "ikigai.html",
+      "formats.html",
+      "Games and new tech: formats you'll enjoy making"
+    ],
+    [
+      "ikigai.html",
+      "what-works.html",
+      "Videos near the centre are the ones that work"
     ]
   ]
 }
