@@ -1,14 +1,24 @@
 {
-  "intro": "Read the pages top to bottom the first time. After that, the weekly loop is Reports → Plan.",
+  "intro": "New here? Read top to bottom once: who Erdem is, the strategy, then the plan and the reports. After that, the weekly loop is 📑 Reports → 🗓️ Plan.",
   "sections": [
     {
-      "title": "1. Start here",
+      "title": "1. 🚀 Start here",
       "pages": [
         {
           "url": "index.html",
           "title": "🏠 Dashboard",
           "why": "The whole system on one page: sprint, latest videos, OKRs."
         },
+        {
+          "url": "expectations.html",
+          "title": "🧭 Expectations",
+          "why": "What the assistant can and cannot do for you."
+        }
+      ]
+    },
+    {
+      "title": "2. 🧑‍✈️ Who: Erdem",
+      "pages": [
         {
           "url": "story.html",
           "title": "📖 My story",
@@ -38,16 +48,11 @@
           "url": "mentors.html",
           "title": "🧑‍🏫 My mentors",
           "why": "Who you learn from (Linus, Ali Abdaal, İlker Canıkligil, PBD, Tony Robbins, Hawkins) and what each gives the channel."
-        },
-        {
-          "url": "expectations.html",
-          "title": "🧭 Expectations",
-          "why": "What the assistant can and cannot do for you."
         }
       ]
     },
     {
-      "title": "2. Why: strategy",
+      "title": "3. 🧭 Why: strategy",
       "pages": [
         {
           "url": "research.html",
@@ -58,26 +63,6 @@
           "url": "core-message.html",
           "title": "🎯 Core message",
           "why": "The one idea every video points back to."
-        },
-        {
-          "url": "inspiration.html",
-          "title": "💡 Inspiration",
-          "why": "What to borrow from Gary Stevenson and NetworkChuck, and what not to copy."
-        },
-        {
-          "url": "creators.html",
-          "title": "🌟 Creators I admire",
-          "why": "Nate Herk, Nate B Jones, Tina Huang, NetworkChuck, Alex Finn: their styles, mapped."
-        },
-        {
-          "url": "applaud.html",
-          "title": "👏 YouTubers I applaud",
-          "why": "Sabine Hossenfelder, Dr. Todd Grande: high value, low production."
-        },
-        {
-          "url": "formats.html",
-          "title": "🎨 Formats I like",
-          "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
         },
         {
           "url": "audience.html",
@@ -97,7 +82,32 @@
       ]
     },
     {
-      "title": "3. Where to: goals",
+      "title": "4. 🌟 Learn from others",
+      "pages": [
+        {
+          "url": "inspiration.html",
+          "title": "💡 Inspiration",
+          "why": "What to borrow from Gary Stevenson and NetworkChuck, and what not to copy."
+        },
+        {
+          "url": "creators.html",
+          "title": "🌟 Creators I admire",
+          "why": "Nate Herk, Nate B Jones, Tina Huang, NetworkChuck, Alex Finn: their styles, mapped."
+        },
+        {
+          "url": "applaud.html",
+          "title": "👏 YouTubers I applaud",
+          "why": "Sabine Hossenfelder, Dr. Todd Grande: high value, low production."
+        },
+        {
+          "url": "formats.html",
+          "title": "🎨 Formats I like",
+          "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
+        }
+      ]
+    },
+    {
+      "title": "5. 🎯 Where to: goals & business",
       "pages": [
         {
           "url": "goals.html",
@@ -117,7 +127,7 @@
       ]
     },
     {
-      "title": "4. What & when: plan",
+      "title": "6. 🗓️ What & when: plan",
       "pages": [
         {
           "url": "videos.html",
@@ -142,7 +152,7 @@
       ]
     },
     {
-      "title": "5. How it's going: reports (weekly)",
+      "title": "7. 📑 How it's going: reports (weekly)",
       "pages": [
         {
           "url": "week.html",
@@ -177,7 +187,7 @@
       ]
     },
     {
-      "title": "6. Setup & operations",
+      "title": "8. ⚙️ Setup & operations",
       "pages": [
         {
           "url": "requirements.html",
@@ -207,6 +217,10 @@
       "at": "2026-11-18T11:17:14Z",
       "change": "feat: YouTube Studio snapshot (30 videos), stats script, API pull script; analytics Studio section; starter video actual views"
     },
+    "applaud.html": {
+      "at": "2026-11-21T22:42:26Z",
+      "change": "feat: YouTubers I Applaud page (Sabine Hossenfelder, Dr. Todd Grande)"
+    },
     "audience.html": {
       "at": "2026-11-18T11:09:43Z",
       "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
@@ -214,6 +228,10 @@
     "blocked.html": {
       "at": "2026-11-18T11:05:35Z",
       "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "business.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "calendar.html": {
       "at": "2026-11-18T11:05:35Z",
@@ -227,6 +245,10 @@
       "at": "2026-11-18T11:05:35Z",
       "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
     },
+    "creators.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
     "cron.html": {
       "at": "2026-11-18T11:48:06Z",
       "change": "fix: content storage ReferenceError (HTTP 500 on title click); daily pull job status page; data and api tests in ship"
@@ -235,29 +257,65 @@
       "at": "2026-11-18T11:05:35Z",
       "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
     },
+    "formats.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
     "goals.html": {
       "at": "2026-11-18T11:05:35Z",
       "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
     },
+    "ikigai.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
     "index.html": {
-      "at": "2026-11-21T19:29:59Z",
-      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+      "at": "2026-11-21T22:42:26Z",
+      "change": "feat: YouTubers I Applaud page (Sabine Hossenfelder, Dr. Todd Grande)"
+    },
+    "inspiration.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
+    "interests.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "key-vault.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-21T21:49:03Z",
+      "change": "docs: chat agent runs in the Fly.io Sprite; SPRITES-TOKEN in Key Vault"
+    },
+    "mentors.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "on-track.html": {
       "at": "2026-11-18T11:20:45Z",
       "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
     },
+    "passion.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
     "performance.html": {
-      "at": "2026-11-21T19:54:13Z",
-      "change": "feat: video review of _tYzckEn6O8 (junior dev Delivery Pilot) in the reports"
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
+    "personality.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
+    "quarterly.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "requirements.html": {
       "at": "2026-11-18T11:05:35Z",
       "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+    },
+    "research.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "reverse-response.html": {
       "at": "2026-11-18T11:09:43Z",
@@ -266,6 +324,10 @@
     "setup-api-key.html": {
       "at": "2026-11-18T11:20:45Z",
       "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
+    },
+    "story.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     },
     "supply-demand.html": {
       "at": "2026-11-18T11:09:43Z",
@@ -280,8 +342,12 @@
       "change": "feat: value recognition for every video (value block in videos.json, Value Check page, tests)"
     },
     "week.html": {
-      "at": "2026-11-21T19:29:59Z",
-      "change": "feat: Reports menu with Weekly Direction and Channel Performance reports"
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+    },
+    "what-works.html": {
+      "at": "2026-11-21T22:11:11Z",
+      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
     }
   },
   "links": [
@@ -680,5 +746,55 @@
       "personality.html",
       "Quick Start 9: ship more, polish less"
     ]
+  ],
+  "whatsNew": [
+    {
+      "date": "2026-11-21",
+      "icon": "📘",
+      "text": "AGENTS.md rewritten, and the Guide regrouped into 8 steps with What's new",
+      "href": "index.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "📱",
+      "text": "Mentors: Eric Wroolie (Overpass apps, honest about AI coding)",
+      "href": "mentors.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "👏",
+      "text": "YouTubers I applaud: high value, low production",
+      "href": "applaud.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "🚀",
+      "text": "Footer shows the last deploy, how long ago, and the commit",
+      "href": "index.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "🌅",
+      "text": "Chat runs in a Fly.io Sprite with retries, 🎤 voice, and state kept across refreshes",
+      "href": "index.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "💼",
+      "text": "Business plan: students free, professionals $49/mo, businesses get a managed bot service",
+      "href": "business.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "🌟",
+      "text": "Creators I admire, with a style map",
+      "href": "creators.html"
+    },
+    {
+      "date": "2026-11-21",
+      "icon": "📖",
+      "text": "Story: exams, Civil Eng. not CS, US exchange, 10 years in Cambridge, three rounds of business",
+      "href": "story.html"
+    }
   ]
 }

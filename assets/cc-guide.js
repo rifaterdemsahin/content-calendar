@@ -56,6 +56,18 @@
     panel.append(head);
     if (g.intro) panel.append(el('div', 'intro', g.intro));
 
+    if ((g.whatsNew || []).length) {
+      const sec = el('div', 'sec'); sec.append(el('h3', null, '🆕 What\'s new'));
+      g.whatsNew.slice(0, 8).forEach((w) => {
+        const a = el('a', 'pg' + (w.href === here ? ' cur' : '')); a.href = w.href;
+        const body = el('div'); body.style.minWidth = '0';
+        body.append(el('div', 't', `${w.icon} ${w.text}`));
+        a.append(body, el('span', 'when', w.date ? new Date(w.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : ''));
+        sec.append(a);
+      });
+      panel.append(sec);
+    }
+
     const recent = Object.entries(g.updates || {}).filter(([u]) => titles[u])
       .sort((a, b) => new Date(b[1].at) - new Date(a[1].at)).slice(0, 5);
     if (recent.length) {

@@ -10,6 +10,8 @@ function buildPrompt(job, notesMd) {
 data/ holds generated JSON/Markdown, scripts/ regenerates it).
 
 Rules:
+- Read AGENTS.md first and follow it: the page checklist (emojis, favicon, diagram, guide, links both ways,
+  shared scripts, search, menu, What's new), the content rules (never invent facts about Erdem) and the WIP limit.
 - Make the change the user asks for by editing content files (index.html, calendar/, okrs/, strategy/, data/, etc.).
 - You may run scripts in scripts/ if the request needs fresh data.
 - NEVER modify api/, .github/, or anything containing credentials.

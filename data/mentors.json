@@ -31,11 +31,6 @@
       "key": "mind",
       "icon": "🧠",
       "title": "Mindset & consciousness"
-    },
-    {
-      "key": "personal",
-      "icon": "🤝",
-      "title": "Personal"
     }
   ],
   "mentors": [
@@ -152,13 +147,17 @@
     },
     {
       "key": "eric",
-      "group": "personal",
-      "icon": "🤝",
+      "group": "business",
+      "icon": "📱",
       "name": "Eric Wroolie",
-      "who": "",
-      "learn": [],
-      "channel": "",
-      "todo": "No public profile found, so this card is waiting for your words. Add who Eric is and what he taught you in data/mentors.json."
+      "url": "https://www.youtube.com/@OverpassApps",
+      "who": "Owner of Overpass, which has built dozens of iPhone and Android apps and games, installed by over 3 million people. He has 25+ years of coding and runs the Overpass Apps channel.",
+      "learn": [
+        "Build and monetise your own apps, then help others build theirs",
+        "Be honest about AI coding: everyone makes 'AI slop' at first, and it's a skill like any other",
+        "Unscripted, simple videos (filmed on a rooftop) that still deliver real value"
+      ],
+      "channel": "Your 612 repos and 'honest about AI' value in one person. His unscripted style is the high-value, low-production model on the Applaud page. Example: 'I Make AI Slop. That's How I Spot It Instantly.'"
     },
     {
       "key": "baris",
@@ -245,5 +244,5 @@
       "channel": "Your directness (Agreeableness 0) with values underneath: honest takes on AI and work, never cynical."
     }
   ],
-  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's directing, Greg's editing, Barış and Kallaway's storytelling, After Skool's drawn style, Hormozi's offers, Priestley's influence, PBD's strategy, Manson's values, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
+  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's directing, Greg's editing, Barış and Kallaway's storytelling, After Skool's drawn style, Hormozi's offers, Priestley's influence, PBD's strategy, Eric Wroolie's honest app-building, Manson's values, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
 }
