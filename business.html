@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Plan | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%92%BC</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="goals.html" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Goals</a>
+      <span class="font-bold tracking-tight">💼 Business Plan</span>
+      <a href="audience.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Audience <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Delivery Pilot business</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">💼 Business plan</h1>
+      <p id="intro" class="text-lg text-slate-300 mt-4 max-w-3xl leading-relaxed"></p>
+    </section>
+
+    <section id="tiers" class="grid gap-5 md:grid-cols-3"></section>
+
+    <section id="flywheel" class="p-6 rounded-2xl border border-emerald-500/40 bg-gradient-to-br from-emerald-950/30 to-slate-900"></section>
+
+    <section class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+      <h2 id="sc-title" class="text-xl font-bold text-white"></h2>
+      <p id="sc-note" class="text-xs text-slate-400 mt-1"></p>
+      <div class="mt-4 overflow-x-auto">
+        <table class="w-full text-sm min-w-[480px]">
+          <thead class="text-left text-xs uppercase tracking-wider text-slate-400"><tr><th class="py-2">Tier</th><th class="py-2">Volume</th><th class="py-2">Price</th><th class="py-2 text-right">Monthly</th></tr></thead>
+          <tbody id="sc-rows" class="divide-y divide-slate-800"></tbody>
+          <tfoot><tr><td colspan="3" class="pt-3 font-bold text-white">💰 Total monthly recurring</td><td id="sc-total" class="pt-3 text-right text-xl font-extrabold text-emerald-300"></td></tr></tfoot>
+        </table>
+      </div>
+      <ul id="assumptions" class="mt-5 grid gap-1 text-sm text-slate-300"></ul>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold text-white">👉 Next steps</h2>
+      <div id="next" class="mt-5 grid gap-3 md:grid-cols-3"></div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    The plan lives in <code class="text-slate-400">data/business.json</code>. The longer write-up is <code class="text-slate-400">business/monetization-and-business-plan.md</code>.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+    const tone = { students: 'border-sky-500/40', pros: 'border-indigo-500/50', biz: 'border-emerald-500/50' };
+    fetch('data/business.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
+      document.getElementById('intro').textContent = d.intro;
+      document.getElementById('tiers').append(...d.tiers.map((t) => {
+        const c = el('article', `rounded-2xl border bg-slate-900 p-6 flex flex-col ${tone[t.key] || 'border-slate-800'}`);
+        c.append(el('div', 'text-3xl', t.icon), el('h2', 'text-xl font-bold text-white mt-2', t.name), el('div', 'text-sm text-slate-400', t.who));
+        const p = el('div', 'mt-4'); p.append(el('span', 'text-3xl font-extrabold text-white', t.price), el('span', 'text-sm text-slate-400 ml-2', t.priceNote)); c.append(p);
+        c.append(el('div', 'text-xs uppercase font-bold text-indigo-300 mt-5', '✅ What they get'));
+        const ul = el('ul', 'mt-2 text-sm text-slate-200 list-disc pl-5 space-y-1'); t.get.forEach((x) => ul.append(el('li', null, x))); c.append(ul);
+        c.append(el('p', 'text-sm text-slate-400 mt-4', `💡 ${t.why}`), el('p', 'text-sm text-emerald-200 mt-auto pt-4', `💰 ${t.revenue}`));
+        return c;
+      }));
+      const fw = document.getElementById('flywheel');
+      fw.append(el('h2', 'text-xl font-bold text-white', d.flywheel.title));
+      const row = el('div', 'mt-4 flex flex-wrap items-center gap-2');
+      d.flywheel.steps.forEach((s, i) => { if (i) row.append(el('span', 'text-emerald-400 font-bold', '→')); row.append(el('span', 'px-3 py-2 rounded-xl border border-slate-700 bg-slate-900 text-sm text-slate-100', s)); });
+      row.append(el('span', 'text-emerald-400 font-bold', '↺'));
+      fw.append(row, el('p', 'text-sm text-slate-300 mt-4', d.flywheel.note));
+      document.getElementById('sc-title').textContent = d.scenario.title;
+      document.getElementById('sc-note').textContent = d.scenario.note;
+      let total = 0;
+      document.getElementById('sc-rows').append(...d.scenario.rows.map((r) => {
+        const m = r.units * r.price; total += m;
+        const tr = el('tr');
+        tr.append(el('td', 'py-2 text-slate-100', r.tier), el('td', 'py-2 text-slate-300', `${r.units.toLocaleString('en-US')} ${r.unitLabel}`),
+          el('td', 'py-2 text-slate-300', r.price ? `${money(r.price)}${r.priceLabel ? ' (' + r.priceLabel + ')' : ''}` : 'Free'), el('td', 'py-2 text-right font-semibold text-white tabular-nums', money(m)));
+        return tr;
+      }));
+      document.getElementById('sc-total').textContent = `${money(total)} / mo`;
+      document.getElementById('assumptions').append(...d.assumptions.map((x) => el('li', null, x)));
+      document.getElementById('next').append(...d.next.map((x) => { const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900'); c.append(el('div', 'font-bold text-white', `${x.icon} ${x.title}`), el('p', 'text-sm text-slate-400 mt-1', x.detail)); return c; }));
+      document.getElementById('status').textContent = `Updated ${d.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load data/business.json: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+  <script src="assets/cc-guide.js"></script>
+  <script src="assets/cc-diagram.js"></script>
+  <script src="assets/cc-pagenav.js"></script>
+</body>
+</html>

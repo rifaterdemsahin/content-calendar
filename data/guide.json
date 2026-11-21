@@ -65,6 +65,11 @@
           "why": "What to borrow from Gary Stevenson and NetworkChuck, and what not to copy."
         },
         {
+          "url": "creators.html",
+          "title": "🌟 Creators I admire",
+          "why": "Nate Herk, Nate B Jones, Tina Huang, NetworkChuck, Alex Finn: their styles, mapped."
+        },
+        {
           "url": "formats.html",
           "title": "🎨 Formats I like",
           "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
@@ -98,6 +103,11 @@
           "url": "on-track.html",
           "title": "📉 On track?",
           "why": "Are the numbers keeping pace with the goals?"
+        },
+        {
+          "url": "business.html",
+          "title": "💼 Business plan",
+          "why": "Students free, professionals $49/month, businesses get a managed bot service."
         }
       ]
     },
@@ -609,6 +619,41 @@
       "passion.html",
       "story.html",
       "Self-taught through video since the start"
+    ],
+    [
+      "inspiration.html",
+      "creators.html",
+      "Two deep dives, and more creators to learn from"
+    ],
+    [
+      "creators.html",
+      "mentors.html",
+      "Creators you admire, and the mentors you learn from"
+    ],
+    [
+      "creators.html",
+      "what-works.html",
+      "Their lanes compared with your two pillars"
+    ],
+    [
+      "business.html",
+      "goals.html",
+      "Revenue goals next to subscriber goals"
+    ],
+    [
+      "business.html",
+      "audience.html",
+      "Students, professionals and businesses: the B2C2B audience"
+    ],
+    [
+      "business.html",
+      "ikigai.html",
+      "What you get paid for, turned into a business"
+    ],
+    [
+      "business.html",
+      "research.html",
+      "The paper's answer, sold as a service"
     ]
   ]
 }

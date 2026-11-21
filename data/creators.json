@@ -1,0 +1,33 @@
+{
+  "updated": "2026-11-21",
+  "intro": "Creators whose success online I'm genuinely happy about. Each one shows a different way to win in AI and tech content, and each has a style worth studying.",
+  "creators": [
+    { "key": "nateherk", "icon": "⚙️", "name": "Nate Herk", "url": "https://www.youtube.com/@nateherk", "focus": "AI automation with n8n",
+      "style": ["Step-by-step builds of AI agents and automations", "Calm, clear screen-share teaching", "A big Skool community behind the channel"],
+      "borrow": "The closest model to your plan: free build tutorials on YouTube that lead into a Skool community. Copy the structure, then add your Delivery Pilot angle.",
+      "x": 0.22, "y": 0.42 },
+    { "key": "natebjones", "icon": "📰", "name": "Nate B Jones", "url": "https://www.youtube.com/@natebjones", "focus": "AI News & Strategy Daily",
+      "style": ["Daily AI news and strategy commentary", "Big-picture takes on what AI means for work and business", "Talking-head, thoughtful, consistent every day"],
+      "borrow": "The Pillar 2 model: grounded takes on AI and work, delivered consistently. Proof that big-picture commentary works when it's sharp and regular.",
+      "x": 0.84, "y": 0.3 },
+    { "key": "tina", "icon": "🧠", "name": "Tina Huang", "url": "https://www.youtube.com/@TinaHuang1", "focus": "Learning AI, data and tech careers",
+      "style": ["Structured, well-researched explainers", "Learning-focused: how to learn AI and build skills", "Calm, friendly and very organised"],
+      "borrow": "Matches your 'learning by myself through video' passion. Package what you learn into clear, structured lessons.",
+      "x": 0.55, "y": 0.25 },
+    { "key": "chuck", "icon": "☕", "name": "NetworkChuck", "url": "https://www.youtube.com/@NetworkChuck", "focus": "IT, networking, security, homelab",
+      "style": ["High energy and humour", "Hands-on labs from minute one", "A signature ritual and urgent 'learn this now' titles"],
+      "borrow": "Energy and urgency for Pillar 1 tool videos. See the Inspiration page for the full breakdown.",
+      "x": 0.18, "y": 0.9 },
+    { "key": "alexfinn", "icon": "⚡", "name": "Alex Finn", "url": "https://www.youtube.com/@alexfinn", "focus": "Building with AI coding tools",
+      "style": ["Fast, energetic builds with AI coding tools", "Shows real apps being made quickly", "A builder-entrepreneur angle"],
+      "borrow": "The 612-repos side of you: show the build loop fast, from idea to agent to shipped app.",
+      "x": 0.3, "y": 0.75 }
+  ],
+  "you": { "x": 0.5, "y": 0.7, "label": "🧑‍✈️ You", "note": "Both pillars (practical and big-picture) and high energy (Extraversion 85). The gap in the map is practical builds with a big-picture 'why' and energy. That's your spot." },
+  "lessons": [
+    "🎯 Every one of them has one clear lane. Pick yours and repeat it.",
+    "📅 Consistency beats intensity: daily (Nate B Jones) or weekly (most others), on a schedule viewers can rely on.",
+    "🏫 Several turn viewers into a community or product, which is your Skool and Delivery Pilot path.",
+    "🎙️ Their style matches who they are. Yours is energetic, direct and curious, so lean into it."
+  ]
+}

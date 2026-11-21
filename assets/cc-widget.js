@@ -62,7 +62,7 @@
   #ccw .msg .when{display:block;color:#94a3b8;font-size:10.5px;margin-top:6px}
   #ccw .msg.user .when{color:#c7d2fe;text-align:right}
   #ccw .msg p{margin:0 0 6px}#ccw .msg p:last-of-type{margin-bottom:0}
-  #ccw .msg ul{margin:4px 0 6px;padding-left:18px}#ccw .msg li{margin:2px 0}
+  #ccw .msg ul{margin:4px 0 6px;padding-left:18px;list-style:disc}#ccw .msg li{margin:2px 0}
   #ccw .msg code{background:#0f172a;border:1px solid #334155;border-radius:4px;padding:0 4px;font:12px ui-monospace,monospace}
   #ccw .msg .clip{max-height:220px;overflow:hidden;position:relative}
   #ccw .msg .clip::after{content:'';position:absolute;left:0;right:0;bottom:0;height:48px;background:linear-gradient(transparent,#1e293b)}

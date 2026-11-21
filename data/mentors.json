@@ -2,53 +2,135 @@
   "updated": "2026-11-21",
   "intro": "The people I learn from, most of them from a distance through their videos and books. Each one gives me something specific, and each one shows up on the channel in a specific way.",
   "groups": [
-    { "key": "craft", "icon": "🎬", "title": "The craft of making videos" },
-    { "key": "business", "icon": "💼", "title": "Building something bigger" },
-    { "key": "mind", "icon": "🧠", "title": "Mindset & consciousness" },
-    { "key": "personal", "icon": "🤝", "title": "Personal" }
+    {
+      "key": "craft",
+      "icon": "🎬",
+      "title": "The craft of making videos"
+    },
+    {
+      "key": "business",
+      "icon": "💼",
+      "title": "Building something bigger"
+    },
+    {
+      "key": "mind",
+      "icon": "🧠",
+      "title": "Mindset & consciousness"
+    },
+    {
+      "key": "personal",
+      "icon": "🤝",
+      "title": "Personal"
+    }
   ],
   "mentors": [
     {
-      "key": "linus", "group": "craft", "icon": "🖥️", "name": "Linus Tech Tips", "url": "https://www.youtube.com/@LinusTechTips",
+      "key": "linus",
+      "group": "craft",
+      "icon": "🖥️",
+      "name": "Linus Tech Tips",
+      "url": "https://www.youtube.com/@LinusTechTips",
       "who": "Linus Sebastian's tech channel, which grew into a whole media company with a team behind it.",
-      "learn": ["Make tech entertaining without dumbing it down", "Consistency, and a channel run like a company", "Personality in front of the hardware"],
+      "learn": [
+        "Make tech entertaining without dumbing it down",
+        "Consistency, and a channel run like a company",
+        "Personality in front of the hardware"
+      ],
       "channel": "Bring personality to tool videos, and treat the channel as a system with a weekly rhythm, not one-off posts."
     },
     {
-      "key": "ali", "group": "craft", "icon": "📚", "name": "Ali Abdaal", "url": "https://www.youtube.com/@aliabdaal",
+      "key": "ali",
+      "group": "craft",
+      "icon": "📚",
+      "name": "Ali Abdaal",
+      "url": "https://www.youtube.com/@aliabdaal",
       "who": "A doctor turned YouTuber and author, known for evidence-based productivity. He studied medicine at Cambridge.",
-      "learn": ["Evidence-based, calm explanations", "Systems over willpower", "Teaching what you're learning, in public"],
+      "learn": [
+        "Evidence-based, calm explanations",
+        "Systems over willpower",
+        "Teaching what you're learning, in public"
+      ],
       "channel": "Self-learning videos built on a system viewers can copy. There's also a shared Cambridge connection."
     },
     {
-      "key": "ilker", "group": "craft", "icon": "🎥", "name": "İlker Canıkligil", "url": "https://www.youtube.com/@ilkercanikligil",
+      "key": "ilker",
+      "group": "craft",
+      "icon": "🎥",
+      "name": "İlker Canıkligil",
+      "url": "https://www.youtube.com/@ilkercanikligil",
       "who": "A Turkish film director and writer who taught directing at Istanbul Film Academy, then moved into making YouTube content.",
-      "learn": ["Storytelling and directing craft", "Framing a scene so it means something", "A Turkish voice making the move to YouTube"],
+      "learn": [
+        "Storytelling and directing craft",
+        "Framing a scene so it means something",
+        "A Turkish voice making the move to YouTube"
+      ],
       "channel": "Film craft for the formats (Pilot's Log, co-host sketches): shot choice, pacing and story structure."
     },
     {
-      "key": "pbd", "group": "business", "icon": "♟️", "name": "Patrick Bet-David", "url": "https://www.youtube.com/@VALUETAINMENT",
+      "key": "greg",
+      "group": "craft",
+      "icon": "✂️",
+      "name": "Greg Edits Video",
+      "url": "https://www.youtube.com/@gregeditsvideo",
+      "who": "A YouTube channel about the craft of video editing.",
+      "learn": [
+        "Editing as storytelling: what to cut, and when",
+        "Pacing that keeps people watching",
+        "Polish that makes a solo creator look like a studio"
+      ],
+      "channel": "Tighter edits on long videos (your junior-dev video's payoff sat at 8:35) and sharper Shorts: cut to the hook faster."
+    },
+    {
+      "key": "pbd",
+      "group": "business",
+      "icon": "♟️",
+      "name": "Patrick Bet-David",
+      "url": "https://www.youtube.com/@VALUETAINMENT",
       "who": "An Iranian-born immigrant to the US who became an entrepreneur and built Valuetainment and the PBD Podcast. Author of 'Your Next Five Moves'.",
-      "learn": ["Think several moves ahead, like chess", "An immigrant's drive turned into a business", "Content as a business engine"],
+      "learn": [
+        "Think several moves ahead, like chess",
+        "An immigrant's drive turned into a business",
+        "Content as a business engine"
+      ],
       "channel": "Strategy thinking (fits your love of RTS games), and the B2C2B path from viewers to Skool to business services."
     },
     {
-      "key": "tony", "group": "mind", "icon": "🔥", "name": "Tony Robbins", "url": "https://www.youtube.com/@TonyRobbinsLive",
+      "key": "tony",
+      "group": "mind",
+      "icon": "🔥",
+      "name": "Tony Robbins",
+      "url": "https://www.youtube.com/@TonyRobbinsLive",
       "who": "A life coach, author and speaker known for energy, belief and big live events.",
-      "learn": ["State and energy change outcomes", "Belief comes before action", "A clear, confident call to action"],
+      "learn": [
+        "State and energy change outcomes",
+        "Belief comes before action",
+        "A clear, confident call to action"
+      ],
       "channel": "End every video with optimism and a plan (like the 90-day flight plan), not hype."
     },
     {
-      "key": "hawkins", "group": "mind", "icon": "🗺️", "name": "David R. Hawkins",
+      "key": "hawkins",
+      "group": "mind",
+      "icon": "🗺️",
+      "name": "David R. Hawkins",
       "who": "A psychiatrist and author ('Power vs. Force'), best known for his Map of Consciousness.",
-      "learn": ["A map for levels of consciousness", "Moving from fear towards courage and peace", "Inner work as part of the work"],
+      "learn": [
+        "A map for levels of consciousness",
+        "Moving from fear towards courage and peace",
+        "Inner work as part of the work"
+      ],
       "channel": "The consciousness thread on 'What I care about'. Present it as a framework, not science, to stay honest about AI."
     },
     {
-      "key": "eric", "group": "personal", "icon": "🤝", "name": "Eric Wroolie",
-      "who": "", "learn": [], "channel": "",
+      "key": "eric",
+      "group": "personal",
+      "icon": "🤝",
+      "name": "Eric Wroolie",
+      "who": "",
+      "learn": [],
+      "channel": "",
       "todo": "No public profile found, so this card is waiting for your words. Add who Eric is and what he taught you in data/mentors.json."
     }
   ],
-  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's storytelling, PBD's strategy, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
+  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's storytelling, Greg's editing, PBD's strategy, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
 }

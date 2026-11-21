@@ -675,7 +675,7 @@
         {
           "e": "🎬",
           "t": "Craft",
-          "d": "Linus · Ali · İlker"
+          "d": "Linus · Ali · İlker · Greg"
         },
         {
           "e": "💼",
@@ -805,6 +805,58 @@
           "e": "📢",
           "t": "Share",
           "d": "Learn in public"
+        }
+      ]
+    },
+    "business.html": {
+      "title": "💼 Three tiers, one flywheel",
+      "loop": "Revenue funds free education",
+      "steps": [
+        {
+          "e": "🎓",
+          "t": "Students",
+          "d": "Free"
+        },
+        {
+          "e": "💼",
+          "t": "Professionals",
+          "d": "$49 / month"
+        },
+        {
+          "e": "🏅",
+          "t": "Certified pilots",
+          "d": "Build the bots"
+        },
+        {
+          "e": "🏢",
+          "t": "Businesses",
+          "d": "Managed bot service"
+        }
+      ]
+    },
+    "creators.html": {
+      "title": "🌟 Creators I admire",
+      "builtIn": "map",
+      "steps": [
+        {
+          "e": "⚙️",
+          "t": "Nate Herk"
+        },
+        {
+          "e": "📰",
+          "t": "Nate B Jones"
+        },
+        {
+          "e": "🧠",
+          "t": "Tina Huang"
+        },
+        {
+          "e": "☕",
+          "t": "NetworkChuck"
+        },
+        {
+          "e": "⚡",
+          "t": "Alex Finn"
         }
       ]
     }

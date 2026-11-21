@@ -1,0 +1,52 @@
+{
+  "updated": "2026-11-21",
+  "intro": "Three audiences, three offers, one mission: free for students, a monthly membership for professionals, and a managed service for businesses, built on the Delivery Pilot bot product.",
+  "tiers": [
+    {
+      "key": "students", "icon": "🎓", "name": "Students", "price": "Free", "priceNote": "always",
+      "who": "Students and career switchers starting out",
+      "get": ["The full Delivery Pilot course on YouTube and Skool", "The free Skool community and the Sunday live cohort", "The 90-day flight plan: specs → one agent → certification"],
+      "why": "Retool people early, with no barrier. Today's students are tomorrow's professionals and certified pilots.",
+      "revenue": "No direct revenue. Builds the audience, the reputation and the talent pool."
+    },
+    {
+      "key": "pros", "icon": "💼", "name": "Professionals", "price": "$49", "priceNote": "per month ($490/year)",
+      "who": "Working developers, DevOps/SRE engineers and tech leads moving up a seat",
+      "get": ["Weekly live clinics and workflow debugging", "Production templates: n8n workflows, agent configs, Docker packs", "Certification path and peer reviews", "Priority questions in Lives"],
+      "why": "Professionals pay to save time and level up faster. The price matches the existing plan's paid Skool tier.",
+      "revenue": "Recurring membership revenue (MRR)."
+    },
+    {
+      "key": "biz", "icon": "🏢", "name": "Businesses", "price": "Managed service", "priceNote": "setup + monthly retainer",
+      "who": "Companies that want AI agents delivering real work, without hiring a team to run them",
+      "get": ["Delivery Pilot bots built for their workflows", "Run, monitored and improved for them: a managed service on top of the bot product", "Delivered by certified pilots, with SRE-grade reliability"],
+      "why": "Businesses buy outcomes, not courses. Your 40+ delivered contracts and migration work make this credible.",
+      "revenue": "Setup fee plus monthly retainer. The highest value per customer."
+    }
+  ],
+  "flywheel": {
+    "title": "🔁 The flywheel",
+    "steps": ["🎓 Students learn for free", "🏅 The best get certified as Delivery Pilots", "🤖 Certified pilots build and run bots", "🏢 Businesses pay for the managed service", "💸 Revenue funds free education for more students"],
+    "note": "This matches what you already say on camera: certified pilots go on to build real bots for real companies."
+  },
+  "scenario": {
+    "title": "🧮 Illustrative monthly scenario",
+    "note": "Assumptions to test, not forecasts. Change the numbers in data/business.json.",
+    "rows": [
+      { "tier": "🎓 Students", "units": 500, "unitLabel": "members", "price": 0 },
+      { "tier": "💼 Professionals", "units": 100, "unitLabel": "members", "price": 49 },
+      { "tier": "🏢 Businesses", "units": 3, "unitLabel": "clients", "price": 1500, "priceLabel": "assumed avg retainer" }
+    ]
+  },
+  "assumptions": [
+    "💼 $49/month is taken from the existing business plan (paid Skool tier).",
+    "🏢 The $1,500/month average retainer is an assumption. Validate it with 2–3 discovery calls before publishing a price.",
+    "🎓 500 free members is the OKR target (+500 Skool members).",
+    "📉 AdSense, sponsorships and digital assets come on top. See the Money section on the dashboard."
+  ],
+  "next": [
+    { "icon": "🧪", "title": "Validate the business tier", "detail": "Offer one pilot managed-service client a founding price, and document it as a case study video." },
+    { "icon": "🏅", "title": "Define certification", "detail": "What makes a student a certified pilot who can work on client bots? That's the bridge between the free and paid tiers." },
+    { "icon": "💳", "title": "Open the professional tier", "detail": "Launch the $49 Skool tier once the YPP milestone and the weekly clinics are steady (Phase 2 of the plan)." }
+  ]
+}
