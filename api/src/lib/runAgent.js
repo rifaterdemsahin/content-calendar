@@ -50,7 +50,11 @@ async function githubMerge(number, job) {
     body: JSON.stringify({ merge_method: 'squash', commit_title: prTitle(job) }),
   });
   if (!res.ok) throw new Error(`merge failed: ${res.status} ${(await res.text()).slice(0, 200)}`);
-  return (await res.json()).sha;
+  const { sha } = await res.json();
+  // Trunk-based: main stays the only branch, so the squash-merged chat branch is deleted right away.
+  const branch = `chat/${job.id.slice(0, 8)}`;
+  await fetch(`https://api.github.com/repos/${REPO}/git/refs/heads/${branch}`, { method: 'DELETE', headers: headers() }).catch(() => {});
+  return sha;
 }
 
 const AUTH_ERR = /invalid api key|authenticat|oauth|unauthorized|expired|401/i;
