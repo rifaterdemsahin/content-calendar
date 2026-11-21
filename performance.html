@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .bar { height: 10px; border-radius: 0 4px 4px 0; background: #818cf8; transition: background .15s; }
+    .row:hover .bar { background: #a5b4fc; }
+    .row:hover { background: rgba(30,41,59,.6); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="index.html#performance" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Dashboard</a>
+      <span class="font-bold tracking-tight">📈 Performance</span>
+      <span class="w-16"></span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">How the videos are doing</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Performance &amp; what to do next</h1>
+      <p id="headline" class="text-slate-300 mt-4 max-w-3xl text-lg leading-relaxed"></p>
+      <div id="tiles" class="mt-8 grid gap-4 grid-cols-2 md:grid-cols-4"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Do this</h2>
+      <p class="text-2xl font-bold text-white mt-2">Recommended actions</p>
+      <ol id="actions" class="mt-6 grid gap-3"></ol>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Latest uploads</h2>
+      <p class="text-2xl font-bold text-white mt-2">Views per day since publishing</p>
+      <p class="text-sm text-slate-400 mt-1">Newest uploads from the YouTube feed. Views per day evens out the age difference between videos. Uploads under 3 days old are listed last. Hover a row for details.</p>
+      <div id="latest" class="mt-6 rounded-xl border border-slate-800 bg-slate-900/50 p-2"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-amber-400 uppercase tracking-widest">What we found</h2>
+      <div id="findings" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <section class="grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">All time</h2>
+        <p class="text-2xl font-bold text-white mt-2">Top 10 videos</p>
+        <div id="top" class="mt-6 rounded-xl border border-slate-800 bg-slate-900/50 p-2"></div>
+      </div>
+      <div>
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">By topic</h2>
+        <p class="text-2xl font-bold text-white mt-2">Views per topic</p>
+        <div id="topics" class="mt-6 rounded-xl border border-slate-800 bg-slate-900/50 p-2"></div>
+        <p class="text-xs text-slate-500 mt-2">Only videos the script could match to a topic are counted.</p>
+      </div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    Refresh: <code class="text-slate-400">python3 scripts/fetch_latest_videos.py --format json --output data/latest-videos.json --limit 15 &amp;&amp; python3 scripts/analyze_past_performance.py</code><br>
+    Recommendations live in <code class="text-slate-400">data/performance-insights.json</code>.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const fmt = (n) => Number(n).toLocaleString('en-GB', { maximumFractionDigits: 1 });
+    const json = (r) => r.json();
+
+    function tile(label, value, sub) {
+      const c = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900');
+      c.append(el('div', 'text-xs uppercase font-bold text-slate-400', label), el('div', 'text-3xl font-extrabold text-white mt-1', value), el('div', 'text-xs text-slate-400 mt-1', sub));
+      return c;
+    }
+
+    // Single-series horizontal bar list; label + value in text ink, bar carries magnitude only.
+    function bars(rows, { value, label, meta, href, tip }) {
+      const max = Math.max(...rows.map(value), 1);
+      const wrap = el('div', 'divide-y divide-slate-800/60');
+      rows.forEach((r) => {
+        const row = el(href ? 'a' : 'div', 'row block px-3 py-2.5 rounded-lg');
+        if (href) { row.href = href(r); row.target = '_blank'; row.rel = 'noopener'; }
+        row.title = tip(r);
+        const top = el('div', 'flex items-baseline justify-between gap-3');
+        top.append(el('span', 'text-sm text-slate-100 truncate', label(r)), el('span', 'text-sm font-semibold text-white tabular-nums shrink-0', fmt(value(r))));
+        const track = el('div', 'mt-1.5 bg-slate-800/50 rounded-r'); const b = el('div', 'bar'); b.style.width = Math.max(2, (value(r) / max) * 100) + '%'; track.append(b);
+        row.append(top, track);
+        if (meta) row.append(el('div', 'text-xs text-slate-500 mt-1', meta(r)));
+        wrap.append(row);
+      });
+      return wrap;
+    }
+
+    const tagStyle = { Winner: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/20', Weak: 'text-red-400 border-red-500/30 bg-red-950/20', Pattern: 'text-amber-400 border-amber-500/30 bg-amber-950/20', 'Data gap': 'text-slate-300 border-slate-600 bg-slate-900' };
+    const tagIcon = { Winner: '▲', Weak: '▼', Pattern: '◆', 'Data gap': '?' };
+
+    Promise.all([
+      fetch('data/past-performance.json', { cache: 'no-cache' }).then(json),
+      fetch('data/latest-videos.json', { cache: 'no-cache' }).then(json),
+      fetch('data/performance-insights.json', { cache: 'no-cache' }).then(json),
+    ]).then(([past, latest, ins]) => {
+      const now = Date.now();
+      const vids = latest.videos.map((v) => {
+        const days = Math.max(1, (now - new Date(v.published)) / 864e5);
+        return { ...v, days, vpd: v.views / days };
+      });
+      const recentViews = vids.reduce((s, v) => s + v.views, 0);
+      const shorts = vids.filter((v) => /short/i.test(v.type)); const longs = vids.filter((v) => !/short/i.test(v.type));
+      const avg = (a) => a.length ? a.reduce((s, v) => s + v.views, 0) / a.length : 0;
+
+      document.getElementById('headline').textContent = ins.headline;
+      document.getElementById('tiles').append(
+        tile('Subscribers', fmt(past.subscribers), `${fmt(1000 - past.subscribers)} to go for 1,000 (not re-measured)`),
+        tile('Catalogue views', fmt(past.total_views_recorded), `${past.total_videos_analyzed} videos tracked`),
+        tile('Last 15 uploads', fmt(recentViews), `avg ${fmt(Math.round(recentViews / vids.length))} per video`),
+        tile('Avg Long / Short', `${Math.round(avg(longs))} / ${Math.round(avg(shorts))}`, 'views, last 15 uploads'),
+      );
+
+      const ol = document.getElementById('actions');
+      ins.actions.forEach((a, i) => {
+        const li = el('li', 'flex gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900');
+        li.append(el('div', 'w-8 h-8 shrink-0 rounded-full bg-emerald-500/15 text-emerald-300 font-bold flex items-center justify-center text-sm', String(i + 1)));
+        const body = el('div'); const h = el('div', 'flex flex-wrap items-center gap-2');
+        h.append(el('span', 'font-semibold text-white', a.title), el('span', 'text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border border-slate-700 text-slate-300', a.when));
+        body.append(h, el('p', 'text-sm text-slate-400 mt-1', a.detail)); li.append(body); ol.append(li);
+      });
+
+      // Under 3 days old, views/day is noise: rank those last and flag them.
+      const fresh = (v) => v.days < 3;
+      const sorted = [...vids].sort((a, b) => (fresh(a) - fresh(b)) || (b.vpd - a.vpd));
+      document.getElementById('latest').append(bars(sorted, {
+        value: (v) => Math.round(v.vpd * 10) / 10,
+        label: (v) => v.title,
+        meta: (v) => `${/short/i.test(v.type) ? '🎬 Short' : '📹 Long'} · ${fmt(v.views)} views · ${new Date(v.published).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })} (${Math.round(v.days)}d ago)${fresh(v) ? ' · ⏳ too new to judge' : ''}`,
+        href: (v) => v.url,
+        tip: (v) => `${v.title}\n${fmt(v.views)} views in ${Math.round(v.days)} days = ${fmt(v.vpd)} views/day`,
+      }));
+
+      document.getElementById('findings').append(...ins.findings.map((f) => {
+        const c = el('div', `p-5 rounded-xl border ${tagStyle[f.tag] || tagStyle['Data gap']}`);
+        c.append(el('div', 'text-xs uppercase font-bold', `${tagIcon[f.tag] || ''} ${f.tag}`), el('div', 'text-base font-bold text-white mt-1', f.title), el('div', 'text-sm text-slate-300 mt-2', f.detail));
+        return c;
+      }));
+
+      document.getElementById('top').append(bars(past.top_performing_videos.slice(0, 10), {
+        value: (v) => v.views, label: (v) => v.title,
+        meta: (v) => `${/short/i.test(v.type) ? '🎬 Short' : '📹 Long'} · ${v.time_ago}`,
+        href: (v) => v.url, tip: (v) => `${v.title}\n${fmt(v.views)} views · ${v.time_ago}`,
+      }));
+
+      const topics = Object.entries(past.topic_views_distribution).map(([name, views]) => ({ name, views })).sort((a, b) => b.views - a.views);
+      document.getElementById('topics').append(bars(topics, { value: (t) => t.views, label: (t) => t.name, tip: (t) => `${t.name}: ${fmt(t.views)} views` }));
+
+      document.getElementById('status').textContent = `Insights updated ${ins.updated} · ${ins.source}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load performance data: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+</body>
+</html>

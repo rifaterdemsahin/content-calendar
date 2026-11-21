@@ -4,13 +4,57 @@
   "total": 15,
   "videos": [
     {
+      "id": "6alMTPb2Xtk",
+      "title": "Rider, Driver or Pilot? How Junior Devs Ship 10\u00d7 Faster",
+      "type": "Short",
+      "url": "https://www.youtube.com/shorts/6alMTPb2Xtk",
+      "published": "2026-11-21 11:51 UTC",
+      "date": "2026-11-21",
+      "views": 12,
+      "thumbnail": "https://i3.ytimg.com/vi/6alMTPb2Xtk/hqdefault.jpg",
+      "description_snippet": "Are you an AI Rider, Driver, or Pilot? Here is the difference:\n\n\ud83d\udeb2 **RIDER:** Copies chatbot answers and hopes they work. Range: Around the block.\n\ud83d\ude97 **DRIVER:** Hands on the wheel, ..."
+    },
+    {
+      "id": "_tYzckEn6O8",
+      "title": "The UK Junior Dev Crash Is a J-Curve (And Here's the Upswing)",
+      "type": "Long Video",
+      "url": "https://www.youtube.com/watch?v=_tYzckEn6O8",
+      "published": "2026-11-21 09:36 UTC",
+      "date": "2026-11-21",
+      "views": 18,
+      "thumbnail": "https://i4.ytimg.com/vi/_tYzckEn6O8/hqdefault.jpg",
+      "description_snippet": "\ud83d\udeb2 Riders get carried. \ud83d\ude97 Drivers get there. \u2708\ufe0f Pilots go the distance.\n\nIn 2027, there are three levels of working with AI in software engineering:\n\u2022 \ud83d\udeb2 Rider \u2014 copies answers from a..."
+    },
+    {
+      "id": "LGbDImaufGI",
+      "title": "Stuck in Red Tape? How I Use AI When a Process Gets Confusing",
+      "type": "Long Video",
+      "url": "https://www.youtube.com/watch?v=LGbDImaufGI",
+      "published": "2026-11-20 22:38 UTC",
+      "date": "2026-11-20",
+      "views": 10,
+      "thumbnail": "https://i1.ytimg.com/vi/LGbDImaufGI/hqdefault.jpg",
+      "description_snippet": "Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolve..."
+    },
+    {
+      "id": "u27o3jaoQnI",
+      "title": "This AI Overlay Coaches You Through Job Interviews in Real Time",
+      "type": "Long Video",
+      "url": "https://www.youtube.com/watch?v=u27o3jaoQnI",
+      "published": "2026-11-17 23:32 UTC",
+      "date": "2026-11-17",
+      "views": 76,
+      "thumbnail": "https://i2.ytimg.com/vi/u27o3jaoQnI/hqdefault.jpg",
+      "description_snippet": "I built a live overlay app that acts as your personal real-time interview coach: it asks relevant interview questions, listens to your answers with speech-to-text, and uses a large..."
+    },
+    {
       "id": "8ud3AaGKtP0",
       "title": "AI Doesn't Read Words. It Does This Instead \ud83e\udd2f #Shorts",
       "type": "Short",
       "url": "https://www.youtube.com/shorts/8ud3AaGKtP0",
       "published": "2026-11-15 23:39 UTC",
       "date": "2026-11-15",
-      "views": 20,
+      "views": 23,
       "thumbnail": "https://i1.ytimg.com/vi/8ud3AaGKtP0/hqdefault.jpg",
       "description_snippet": "How does an AI actually understand words? It doesn't read letters \u2014 it turns every concept into a direction arrow on a giant map. That's called a vector. \ud83e\udded\n\n\ud83d\udc34 Horse + \ud83e\udebd Wings = Peg..."
     },
@@ -21,7 +65,7 @@
       "url": "https://www.youtube.com/watch?v=fnKeTQYBHN8",
       "published": "2026-11-11 22:20 UTC",
       "date": "2026-11-11",
-      "views": 65,
+      "views": 82,
       "thumbnail": "https://i3.ytimg.com/vi/fnKeTQYBHN8/hqdefault.jpg",
       "description_snippet": "Claude just added new artifact types (Docs, Slides, Design, Data, and a Whiteboard / infinite canvas), but they did not show up on my account. In this video I go looking for the mi..."
     },
@@ -32,7 +76,7 @@
       "url": "https://www.youtube.com/shorts/rbWBJqBU1EY",
       "published": "2026-11-11 10:51 UTC",
       "date": "2026-11-11",
-      "views": 179,
+      "views": 185,
       "thumbnail": "https://i3.ytimg.com/vi/rbWBJqBU1EY/hqdefault.jpg",
       "description_snippet": "$200 a month for an AI sub? That's a car payment. \ud83d\ude97\n\nCheap models guess. Turn on the LSP (Language Server Protocol) in Kilo Code and the red squiggles go straight to the agent: wro..."
     },
@@ -43,7 +87,7 @@
       "url": "https://www.youtube.com/shorts/wJxEb3wR9Ps",
       "published": "2026-11-10 19:58 UTC",
       "date": "2026-11-10",
-      "views": 22,
+      "views": 23,
       "thumbnail": "https://i4.ytimg.com/vi/wJxEb3wR9Ps/hqdefault.jpg",
       "description_snippet": "A horse had no values. Neither does AI.\n\nSomeone says technology is never neutral. We rode horses and drove cars, and now we pilot bots, robots and AI. Arguing about whether the ma..."
     },
@@ -54,7 +98,7 @@
       "url": "https://www.youtube.com/shorts/s1nD2loqPso",
       "published": "2026-11-10 13:35 UTC",
       "date": "2026-11-10",
-      "views": 193,
+      "views": 195,
       "thumbnail": "https://i4.ytimg.com/vi/s1nD2loqPso/hqdefault.jpg",
       "description_snippet": "How can you make DeepSeek work as good as a frontier CLI?\n\n\ud83d\udc49 Join the community (click): https://www.skool.com/delivery-pilot-8938\n\nThe formula:\nKilo CLI + LSP + Indexing + JEV + D..."
     },
@@ -65,7 +109,7 @@
       "url": "https://www.youtube.com/watch?v=VOtlOfpXVU8",
       "published": "2026-11-09 18:31 UTC",
       "date": "2026-11-09",
-      "views": 129,
+      "views": 135,
       "thumbnail": "https://i3.ytimg.com/vi/VOtlOfpXVU8/hqdefault.jpg",
       "description_snippet": "AI is now building AI. So what is left for people to do? Rifat Erdem Sahin explains why we are moving from riders, to drivers, to pilots of AI bots, and what it takes to become a D..."
     },
@@ -87,7 +131,7 @@
       "url": "https://www.youtube.com/shorts/k9CHPa7eLoc",
       "published": "2026-09-12 11:54 UTC",
       "date": "2026-09-12",
-      "views": 51,
+      "views": 54,
       "thumbnail": "https://i4.ytimg.com/vi/k9CHPa7eLoc/hqdefault.jpg",
       "description_snippet": "Level up your career and stay ahead of the curve! \ud83d\ude80 Gain in-demand skills and earn your AI Certification with our step-by-step training.\n\n\ud83d\udc47 Join our Skool Community to get started:..."
     },
@@ -98,7 +142,7 @@
       "url": "https://www.youtube.com/watch?v=SFtoQKA9ZUA",
       "published": "2026-09-06 23:40 UTC",
       "date": "2026-09-06",
-      "views": 224,
+      "views": 225,
       "thumbnail": "https://i4.ytimg.com/vi/SFtoQKA9ZUA/hqdefault.jpg",
       "description_snippet": "\ud83d\udc49 Join the Delivery Pilot Community on Skool For the Full Course:\nhttps://www.skool.com/delivery-pilot-8938\n\nUnpredictable AI outputs, messy formatting, and hallucinated dates aren..."
     },
@@ -109,7 +153,7 @@
       "url": "https://www.youtube.com/shorts/omC9xa6G7u4",
       "published": "2026-08-30 08:57 UTC",
       "date": "2026-08-30",
-      "views": 40,
+      "views": 41,
       "thumbnail": "https://i4.ytimg.com/vi/omC9xa6G7u4/hqdefault.jpg",
       "description_snippet": "\ud83d\ude80 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938\n\nWhen the IT market hit a downturn, the old playbooks went useless. The rules had changed.\n\nA..."
     },
@@ -120,53 +164,9 @@
       "url": "https://www.youtube.com/shorts/OGB69NVn8ZU",
       "published": "2026-08-28 20:42 UTC",
       "date": "2026-08-28",
-      "views": 146,
+      "views": 148,
       "thumbnail": "https://i4.ytimg.com/vi/OGB69NVn8ZU/hqdefault.jpg",
       "description_snippet": "\ud83d\ude80 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938\n\nSomeone called this an AI con. I walked in anyway.\n\nAbundance is a platform \u2014 and yes, the h..."
-    },
-    {
-      "id": "KVKJRdkH-B8",
-      "title": "How LLMs Actually Read: Tokenization Explained",
-      "type": "Short",
-      "url": "https://www.youtube.com/shorts/KVKJRdkH-B8",
-      "published": "2026-08-26 19:06 UTC",
-      "date": "2026-08-26",
-      "views": 139,
-      "thumbnail": "https://i4.ytimg.com/vi/KVKJRdkH-B8/hqdefault.jpg",
-      "description_snippet": "Day 1 of understanding LLMs: How AI models read text! LLMs don't read words like humans do\u2014they convert text into numerical tokens.\n * Scene 1-2: Text to Token IDs\n * Scene 3-5: Vo..."
-    },
-    {
-      "id": "yFxHseG1_F0",
-      "title": "How I Run AI Agents for $0 (Custom IDE Token Optimization)",
-      "type": "Long Video",
-      "url": "https://www.youtube.com/watch?v=yFxHseG1_F0",
-      "published": "2026-08-25 21:38 UTC",
-      "date": "2026-08-25",
-      "views": 169,
-      "thumbnail": "https://i2.ytimg.com/vi/yFxHseG1_F0/hqdefault.jpg",
-      "description_snippet": "Scale your AI developer tooling without breaking the bank! In this video, we break down token optimization, context window management, and dynamic model routing inside a custom IDE..."
-    },
-    {
-      "id": "27jXA2V2Zio",
-      "title": "AI Isn't a Bubble: The Real Revolution Is Happening in Silence",
-      "type": "Long Video",
-      "url": "https://www.youtube.com/watch?v=27jXA2V2Zio",
-      "published": "2026-08-19 20:39 UTC",
-      "date": "2026-08-19",
-      "views": 55,
-      "thumbnail": "https://i3.ytimg.com/vi/27jXA2V2Zio/hqdefault.jpg",
-      "description_snippet": "\ud83d\ude80 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938\n\nDoomsday headlines sell clicks: \"Look, AI is failing! It's all a bubble!\" They focus on the ..."
-    },
-    {
-      "id": "HUTlnlw3h8o",
-      "title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
-      "type": "Long Video",
-      "url": "https://www.youtube.com/watch?v=HUTlnlw3h8o",
-      "published": "2026-08-16 16:48 UTC",
-      "date": "2026-08-16",
-      "views": 85,
-      "thumbnail": "https://i1.ytimg.com/vi/HUTlnlw3h8o/hqdefault.jpg",
-      "description_snippet": "\ud83d\ude80 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938\n\nAre you drowning in a sea of 46,000 Obsidian notes? Overwhelmed by endless information and s..."
     }
   ]
 }
