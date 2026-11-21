@@ -1,0 +1,27 @@
+{
+  "updated": "2026-11-21",
+  "reviews": {
+    "1": {
+      "status": "partly",
+      "statusLabel": "Partly on track",
+      "summary": "The plan points the right way, but the week went somewhere else. You are publishing steadily, yet none of the 3 planned items has shipped. The 3 videos that did go out are market commentary and a mindset Short, which your data says are your weakest formats (10, 12 and 18 views so far). The planned items are practical n8n builds, your strongest type, and all 3 are still at 'writing'. The week ends on Tuesday 24 Nov.",
+      "checks": [
+        { "result": "good", "title": "Cadence is back", "detail": "10 uploads since 9 Nov after a 2-month gap. Consistency is the hardest habit to build, and you have it." },
+        { "result": "good", "title": "The plan picks the right kind of video", "detail": "This week's plan (n8n agent build, n8n loop fix, live debugging clinic) is practical and hands-on. Builds are your best-performing type: the LinkedIn job-hunt automation has 552 views and the n8n Content Magician 276." },
+        { "result": "bad", "title": "None of the planned items shipped", "detail": "The Wednesday long video slot passed without the n8n build. The Saturday Short and the Sunday clinic are both still 'writing'." },
+        { "result": "bad", "title": "What did ship is the weakest format", "detail": "'Stuck in Red Tape?' (10 views), 'UK Junior Dev Crash J-Curve' (18) and 'Rider, Driver or Pilot?' (12) are commentary and mindset. See the Performance page for the evidence." },
+        { "result": "warn", "title": "Over the work-in-progress limit", "detail": "3 planned + 3 unplanned = 6 videos in flight against your limit of 3 per week (AGENTS.md). The unplanned uploads used up the time meant for the plan." },
+        { "result": "warn", "title": "Two uploads on 21 Nov", "detail": "The J-Curve long video and the Rider/Driver Short went out on the same day, so they split the push YouTube gives each upload." },
+        { "result": "warn", "title": "Your best format is missing from the plan", "detail": "The cheap-model tool Shorts (DeepSeek in Kilo CLI at 195 views, LSP in Kilo Code at 185) don't appear anywhere in the sprint until Week 4's '$10/Month Production AI Stack'." },
+        { "result": "unknown", "title": "Subscriber pace not measured", "detail": "You need about 15 a week to reach 1,000 by 31 Mar 2027, but the count of 725 has not been re-measured since 17 Nov. Set YOUTUBE_API_KEY and run scripts/pull_youtube_stats.py." }
+      ],
+      "next": [
+        { "when": "Sun 22 Nov", "title": "Run the Live Workflow Debugging Clinic", "detail": "It's a fixed Sunday 13:30 commitment and it doesn't need editing. Save the recording to Skool." },
+        { "when": "Mon–Tue", "title": "Finish the n8n agent build and publish it", "detail": "It is the strongest item in the plan (value score 9/10). Publish it on its own day. Cut 'The 1 Mistake in n8n Loops' Short from the same recording instead of filming it separately." },
+        { "when": "Week 2", "title": "Swap in the format that's winning", "detail": "Move 'My $10/Month Production AI Stack' (Week 4) into Week 2 Friday in place of '3 Terminal Tools Every Pilot Needs'. A swap keeps you at 3 per week." },
+        { "when": "Rule", "title": "Unplanned videos replace planned ones, they don't add to them", "detail": "If an idea feels urgent, swap it for a planned item in videos.json so the week stays at 3. One upload per day, maximum." },
+        { "when": "Rule", "title": "Log what ships", "detail": "Set each item to 'done' in data/videos.json and fill in conversion.actual, so this page can score the week from the data." }
+      ]
+    }
+  }
+}

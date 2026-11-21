@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This Week | @RifatErdemSahin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <a href="index.html#calendar" class="text-sm text-slate-300 hover:text-indigo-400 transition"><i class="fas fa-arrow-left mr-1"></i> Calendar</a>
+      <span class="font-bold tracking-tight">📅 This Week</span>
+      <a href="performance.html" class="text-sm text-slate-300 hover:text-indigo-400 transition">Performance <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-14">
+    <section>
+      <h2 id="kicker" class="text-xs font-bold text-indigo-400 uppercase tracking-widest"></h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">Am I going in the right direction?</h1>
+      <div id="verdict" class="mt-6"></div>
+      <div id="tiles" class="mt-6 grid gap-4 grid-cols-2 md:grid-cols-4"></div>
+    </section>
+
+    <section class="grid gap-8 md:grid-cols-2">
+      <div>
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">The plan</h2>
+        <p class="text-2xl font-bold text-white mt-2">Planned this week</p>
+        <p class="text-sm text-slate-400 mt-1">From <code class="text-slate-300">data/videos.json</code></p>
+        <div id="planned" class="mt-5 grid gap-3"></div>
+      </div>
+      <div>
+        <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">What happened</h2>
+        <p class="text-2xl font-bold text-white mt-2">Published this week</p>
+        <p class="text-sm text-slate-400 mt-1">From the YouTube feed (<code class="text-slate-300">data/latest-videos.json</code>)</p>
+        <div id="shipped" class="mt-5 grid gap-3"></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-amber-400 uppercase tracking-widest">Direction check</h2>
+      <p class="text-2xl font-bold text-white mt-2">What's right, what's drifting</p>
+      <div id="checks" class="mt-6 grid gap-3 sm:grid-cols-2"></div>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Course correction</h2>
+      <p class="text-2xl font-bold text-white mt-2">Do next</p>
+      <ol id="next" class="mt-6 grid gap-3"></ol>
+    </section>
+
+    <section>
+      <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Coming up</h2>
+      <p id="nextWeekTitle" class="text-2xl font-bold text-white mt-2">Next week</p>
+      <div id="upcoming" class="mt-5 grid gap-3 sm:grid-cols-3"></div>
+    </section>
+
+    <p id="status" class="text-xs text-slate-500"></p>
+  </main>
+
+  <footer class="py-8 text-center text-xs text-slate-500 border-t border-slate-800">
+    The plan is in <code class="text-slate-400">data/videos.json</code> · the verdict is in <code class="text-slate-400">data/week-review.json</code> · add <code class="text-slate-400">?week=2</code> to the URL to view another week.
+  </footer>
+
+  <script>
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    const json = (r) => r.json();
+    const YEAR = 2026;
+    // "Nov 18 – Nov 24" -> [start, endExclusive]
+    function range(s) {
+      const m = (s || '').match(/([A-Z][a-z]{2}) (\d+)\s*[–-]\s*([A-Z][a-z]{2}) (\d+)/);
+      if (!m) return null;
+      const a = new Date(`${m[1]} ${m[2]} ${YEAR}`), b = new Date(`${m[3]} ${m[4]} ${YEAR}`);
+      if (b < a) b.setFullYear(YEAR + 1);
+      b.setDate(b.getDate() + 1);
+      return [a, b];
+    }
+    const statusStyle = {
+      done: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', writing: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+      planned: 'bg-slate-700/40 text-slate-300 border-slate-600', filming: 'bg-sky-500/15 text-sky-300 border-sky-500/30', editing: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+    };
+    const checkStyle = {
+      good: ['✅', 'border-emerald-500/30 bg-emerald-950/20'], bad: ['❌', 'border-red-500/30 bg-red-950/20'],
+      warn: ['⚠️', 'border-amber-500/30 bg-amber-950/20'], unknown: ['❓', 'border-slate-700 bg-slate-900'],
+    };
+    const verdictStyle = { on: 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300', partly: 'border-amber-500/40 bg-amber-950/30 text-amber-300', off: 'border-red-500/40 bg-red-950/30 text-red-300' };
+    const verdictIcon = { on: '🟢', partly: '🟡', off: '🔴' };
+
+    function tile(label, value, sub) {
+      const c = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900');
+      c.append(el('div', 'text-xs uppercase font-bold text-slate-400', label), el('div', 'text-3xl font-extrabold text-white mt-1', value), el('div', 'text-xs text-slate-400 mt-1', sub));
+      return c;
+    }
+    function planCard(v) {
+      const c = el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900');
+      const top = el('div', 'flex items-center justify-between gap-2');
+      top.append(el('span', 'text-xs uppercase font-bold text-indigo-300', v.slot), el('span', `text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border ${statusStyle[v.status] || statusStyle.planned}`, v.status));
+      c.append(top, el('div', 'font-semibold text-white mt-1', v.title));
+      if (v.hook) c.append(el('div', 'text-sm text-slate-400 mt-1 italic', `“${v.hook}”`));
+      if (v.conversion) c.append(el('div', 'text-xs text-slate-500 mt-2', `Target: ${v.conversion.target} ${v.conversion.unit}${v.conversion.actual != null ? ` · actual ${v.conversion.actual}` : ''}`));
+      return c;
+    }
+
+    Promise.all([
+      fetch('data/videos.json', { cache: 'no-cache' }).then(json),
+      fetch('data/latest-videos.json', { cache: 'no-cache' }).then(json),
+      fetch('data/week-review.json', { cache: 'no-cache' }).then(json),
+    ]).then(([plan, latest, review]) => {
+      const now = new Date();
+      const weeks = {};
+      plan.videos.forEach((v) => { if (v.week > 0) (weeks[v.week] ||= []).push(v); });
+      const nums = Object.keys(weeks).map(Number).sort((a, b) => a - b);
+      const asked = Number(new URLSearchParams(location.search).get('week'));
+      let wk = nums.includes(asked) ? asked : nums.find((n) => { const r = range(weeks[n][0].weekRange); return r && now >= r[0] && now < r[1]; });
+      if (!wk) wk = nums.find((n) => { const r = range(weeks[n][0].weekRange); return r && now < r[0]; }) || nums[nums.length - 1];
+      const items = weeks[wk]; const r = range(items[0].weekRange);
+      const plannedTitles = items.map((v) => v.title.toLowerCase());
+
+      document.getElementById('kicker').textContent = `Week ${wk} · ${items[0].weekRange}`;
+
+      const shipped = latest.videos.filter((v) => { const d = new Date(v.published); return r && d >= r[0] && d < r[1]; })
+        .sort((a, b) => new Date(a.published) - new Date(b.published));
+      const isPlanned = (v) => plannedTitles.some((t) => v.title.toLowerCase().includes(t) || t.includes(v.title.toLowerCase()));
+      const doneCount = items.filter((v) => v.status === 'done').length + shipped.filter(isPlanned).length;
+      const unplanned = shipped.filter((v) => !isPlanned(v)).length;
+      const views = shipped.reduce((s, v) => s + v.views, 0);
+      const daysLeft = Math.max(0, Math.ceil((r[1] - now) / 864e5));
+
+      const rv = review.reviews[String(wk)];
+      const vd = document.getElementById('verdict');
+      if (rv) {
+        const box = el('div', `p-6 rounded-2xl border ${verdictStyle[rv.status] || verdictStyle.partly}`);
+        box.append(el('div', 'text-xl font-bold', `${verdictIcon[rv.status] || '🟡'} ${rv.statusLabel}`), el('p', 'text-slate-200 mt-2 leading-relaxed', rv.summary));
+        vd.append(box);
+      } else {
+        vd.append(el('div', 'p-6 rounded-2xl border border-slate-700 bg-slate-900 text-slate-300', `No review written for Week ${wk} yet. Add one to data/week-review.json (or ask the chat agent).`));
+      }
+
+      document.getElementById('tiles').append(
+        tile('Planned shipped', `${doneCount} / ${items.length}`, `${daysLeft} day${daysLeft === 1 ? '' : 's'} left in the week`),
+        tile('Unplanned uploads', String(unplanned), 'not in videos.json'),
+        tile('In progress', `${items.filter((v) => v.status !== 'done').length + unplanned}`, `WIP limit is ${plan.wipLimitPerWeek} per week`),
+        tile('Views this week', views.toLocaleString('en-GB'), `from ${shipped.length} upload${shipped.length === 1 ? '' : 's'}`),
+      );
+
+      document.getElementById('planned').append(...items.map(planCard));
+
+      const sh = document.getElementById('shipped');
+      if (!shipped.length) sh.append(el('div', 'p-4 rounded-xl border border-slate-800 bg-slate-900 text-slate-400 text-sm', 'Nothing published yet this week.'));
+      shipped.forEach((v) => {
+        const c = el('a', 'block p-4 rounded-xl border border-slate-800 bg-slate-900 hover:border-indigo-500/50 transition'); c.href = v.url; c.target = '_blank'; c.rel = 'noopener';
+        const top = el('div', 'flex items-center justify-between gap-2');
+        const p = isPlanned(v);
+        top.append(el('span', 'text-xs uppercase font-bold text-slate-400', `${new Date(v.published).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} · ${/short/i.test(v.type) ? '🎬 Short' : '📹 Long'}`),
+          el('span', `text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border ${p ? statusStyle.done : 'bg-red-500/10 text-red-300 border-red-500/30'}`, p ? 'planned' : 'unplanned'));
+        c.append(top, el('div', 'font-semibold text-white mt-1', v.title), el('div', 'text-sm text-slate-400 mt-1', `${v.views.toLocaleString('en-GB')} views`));
+        sh.append(c);
+      });
+
+      if (rv) {
+        document.getElementById('checks').append(...rv.checks.map((c) => {
+          const [icon, cls] = checkStyle[c.result] || checkStyle.unknown;
+          const d = el('div', `p-4 rounded-xl border ${cls}`);
+          d.append(el('div', 'font-semibold text-white', `${icon} ${c.title}`), el('div', 'text-sm text-slate-300 mt-1', c.detail));
+          return d;
+        }));
+        const ol = document.getElementById('next');
+        rv.next.forEach((a, i) => {
+          const li = el('li', 'flex gap-4 p-4 rounded-xl border border-slate-800 bg-slate-900');
+          li.append(el('div', 'w-8 h-8 shrink-0 rounded-full bg-emerald-500/15 text-emerald-300 font-bold flex items-center justify-center text-sm', String(i + 1)));
+          const b = el('div'); const h = el('div', 'flex flex-wrap items-center gap-2');
+          h.append(el('span', 'font-semibold text-white', a.title), el('span', 'text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full border border-slate-700 text-slate-300', a.when));
+          b.append(h, el('p', 'text-sm text-slate-400 mt-1', a.detail)); li.append(b); ol.append(li);
+        });
+      }
+
+      const nx = weeks[wk + 1];
+      if (nx) {
+        document.getElementById('nextWeekTitle').textContent = `Week ${wk + 1} · ${nx[0].weekRange}`;
+        document.getElementById('upcoming').append(...nx.map(planCard));
+      } else document.getElementById('upcoming').closest('section').remove();
+
+      document.getElementById('status').textContent = `Review updated ${review.updated} · plan updated ${plan.updated}`;
+    }).catch((e) => { document.getElementById('status').textContent = 'Could not load week data: ' + e.message; });
+  </script>
+  <script src="assets/cc-widget.js" data-api="/api"></script>
+  <script src="assets/cc-notifications.js"></script>
+</body>
+</html>
