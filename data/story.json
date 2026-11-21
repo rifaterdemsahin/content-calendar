@@ -35,7 +35,7 @@
       "icon": "🇬🇧",
       "place": "Britain",
       "title": "Ten years in Britain, home in Cambridge",
-      "text": "Then I moved to Britain and started again as an immigrant, with a new country, new rules, and nobody who knew my name. I've lived in the UK for 10 years now, at home in Cambridge. It's the same lesson again: what you can learn and show matters more than where you started."
+      "text": "Then I moved to Britain and started again as an immigrant. I chose the UK for two reasons: a lower level of corruption (it ranks far better on the Corruption Perceptions Index), and a language I'd already been living in, since I'd consumed most of my content in English for years. My sister made the same kind of move, to France. I've lived in the UK for 10 years now, at home in Cambridge, raising my two daughters here. I'm still learning every day, right now the UK tax system. It's the same lesson again: what you can learn and show matters more than where you started."
     },
     {
       "icon": "🌍",
@@ -136,6 +136,11 @@
       "icon": "🎓",
       "value": "2",
       "label": "tries at university"
+    },
+    {
+      "icon": "👧",
+      "value": "2",
+      "label": "daughters, growing up in the UK"
     }
   ],
   "career": {
