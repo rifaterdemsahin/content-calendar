@@ -44,6 +44,12 @@
       "text": "Work took me around the world, mostly on business: the USA, Switzerland, Germany, France, Turkey, Cyprus, England and Scotland. I've delivered more than 40 contracts. Every country taught me the same thing: delivery is about people as much as tech."
     },
     {
+      "icon": "💼",
+      "place": "Business",
+      "title": "Three rounds of business",
+      "text": "I started in business early. My first business ran from 18 to 28, then I stopped. From 38 to 48 I built and ran a second one, which I'm now taking through liquidation. Closing a company is a lesson most founders never talk about. Now I'm on round three: Delivery Pilot. Everything from the first two rounds, what worked, what didn't and what it costs, goes into this one."
+    },
+    {
       "icon": "🏗️",
       "place": "Cambridge, today",
       "title": "Working in tech, teaching what I learn",
@@ -141,11 +147,16 @@
       "icon": "👧",
       "value": "2",
       "label": "daughters, growing up in the UK"
+    },
+    {
+      "icon": "💼",
+      "value": "3rd",
+      "label": "business: Delivery Pilot"
     }
   ],
   "career": {
     "title": "🧗 From tutoring to AI",
-    "note": "Every step was learned on the job, with no degree. That's the self-learning story in one line.",
+    "note": "Every step was learned on the job, with no degree, alongside three rounds of running my own businesses. That's the self-learning story in one line.",
     "steps": [
       {
         "icon": "🧑‍🏫",
