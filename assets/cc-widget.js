@@ -71,7 +71,7 @@
   // Maximize toggles the panel to near full-screen for notes and chat; title flips with state.
   const maxBtn = el('button', { className: 'max-btn', title: 'Maximize', textContent: '⤢', 'aria-label': 'Maximize' });
   maxBtn.onclick = () => {
-    const on = panel.classList.toggle('max');
+    const on = panel.classList.toggle('max'); saveUi({ max: on });
     maxBtn.textContent = on ? '⤡' : '⤢';
     maxBtn.title = on ? 'Restore' : 'Maximize';
     maxBtn.setAttribute('aria-label', maxBtn.title);
@@ -79,12 +79,17 @@
   panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat, maxBtn), notesBody, chatBody);
   root.append(pickerBtn, btn, panel); document.body.appendChild(root);
 
+  // UI state (open, tab, maximised, unsent draft) survives page refreshes, per browser.
+  const UI_KEY = 'cc-widget-ui-v1';
+  let ui = {}; try { ui = JSON.parse(localStorage.getItem(UI_KEY) || '{}'); } catch { ui = {}; }
+  const saveUi = (patch) => { Object.assign(ui, patch); try { localStorage.setItem(UI_KEY, JSON.stringify(ui)); } catch { /* private mode */ } };
   const show = (which) => {
     tabNotes.classList.toggle('on', which === 'notes'); tabChat.classList.toggle('on', which === 'chat');
     notesBody.style.display = which === 'notes' ? 'flex' : 'none'; chatBody.style.display = which === 'chat' ? 'flex' : 'none';
+    saveUi({ tab: which });
   };
   tabNotes.onclick = () => show('notes'); tabChat.onclick = () => show('chat');
-  btn.onclick = () => panel.classList.toggle('open');
+  btn.onclick = () => saveUi({ open: panel.classList.toggle('open') });
 
   // Sign-in gate: shows a Microsoft sign-in card instead of the tabs when there is no session.
   const loginCard = el('div', { className: 'body', style: 'display:none;align-items:center;justify-content:center;text-align:center' },
@@ -383,10 +388,29 @@
     if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); send.click(); }
   });
   const useNotes = el('input', { type: 'checkbox' });
-  const send = el('button', { className: 'btn', textContent: 'Send' });
+  const send = el('button', { className: 'btn', textContent: '🚀 Send' });
+  // 🎤 Voice: talk while you read the page; speech is typed into the box (browser speech recognition).
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const mic = el('button', { className: 'btn alt', textContent: '🎤 Talk', title: 'Dictate a change while you read the page' });
+  let rec = null;
+  if (!SR) mic.style.display = 'none';
+  mic.onclick = () => {
+    if (rec) { rec.stop(); return; }
+    rec = new SR(); rec.lang = navigator.language || 'en-GB'; rec.continuous = true; rec.interimResults = true;
+    const before = input.value ? input.value.replace(/\s*$/, ' ') : '';
+    rec.onresult = (e) => {
+      let text = ''; for (let i = 0; i < e.results.length; i++) text += e.results[i][0].transcript;
+      input.value = before + text.trim(); saveUi({ draft: input.value });
+    };
+    rec.onend = () => { rec = null; mic.textContent = '🎤 Talk'; mic.classList.add('alt'); input.focus(); };
+    rec.onerror = (e) => { mic.title = `Voice error: ${e.error}`; };
+    rec.start(); mic.textContent = '🔴 Listening… tap to stop'; mic.classList.remove('alt');
+  };
+  input.addEventListener('input', () => saveUi({ draft: input.value }));
+  if (ui.draft) input.value = ui.draft;
   chatBody.append(
-    el('div', { className: 'hint', textContent: 'Claude edits the calendar in a Daytona sandbox and opens a pull request — merge it to publish.' }),
-    log, input, el('div', { className: 'row' }, send, el('label', { className: 'hint' }, useNotes, ' include my notes as context')));
+    el('div', { className: 'hint', textContent: '🤖 Claude edits this site in a Fly.io Sprite, merges into main and publishes. Type or 🎤 talk while you read; 📍 it knows which page you are on.' }),
+    log, input, el('div', { className: 'row' }, send, mic, el('label', { className: 'hint' }, useNotes, ' include my notes as context')));
 
   // The chat log survives refreshes: it is kept in localStorage (per browser), and any job that was
   // still running when the page closed is polled again on load. Storage failures are ignored.
@@ -394,6 +418,21 @@
   let chatLog = [];
   try { chatLog = JSON.parse(localStorage.getItem(CHAT_KEY) || '[]'); } catch { chatLog = []; }
   const saveChat = () => { try { localStorage.setItem(CHAT_KEY, JSON.stringify(chatLog.slice(-60))); } catch { /* private mode / quota */ } };
+
+  // Emoji status for each step the job reports, plus elapsed time.
+  const STEP = [
+    [/^queued/, '⏳', 'Queued: waiting for the agent'], [/waking sprite/, '🌅', 'Waking the Fly.io Sprite'],
+    [/starting sandbox/, '📦', 'Starting a sandbox'], [/syncing repo|cloning repo/, '📥', 'Syncing the site code'],
+    [/installing agent/, '🧰', 'Installing Claude'], [/agent working/, '🤖', 'Claude is editing the pages'],
+    [/pushing branch/, '📤', 'Saving the change'], [/merging/, '🔀', 'Merging into main'],
+    [/publish/, '🌐', 'Publishing to the live site'], [/finished/, '✅', 'Finished'],
+  ];
+  const ago = (t) => { const s = Math.max(0, Math.round((Date.now() - t) / 1000)); return s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${s % 60}s`; };
+  const stepText = (job, m) => {
+    const key = job.status === 'queued' ? 'queued' : (job.step || job.status);
+    const hit = STEP.find(([re]) => re.test(key)) || [null, '⚙️', key];
+    return `${hit[1]} ${hit[2]}  ·  ⏱️ ${ago(m.started || Date.now())}`;
+  };
 
   function paintChat() {
     log.replaceChildren(...chatLog.map((m) => {
@@ -424,9 +463,9 @@
       for (let i = 0; i < 240; i++) {
         await new Promise((r) => setTimeout(r, 4000));
         const job = await (await api(`/jobs/${m.jobId}`)).json();
-        if (job.status === 'error') { m.text = `Error: ${job.error}`; m.pending = false; break; }
+        if (job.status === 'error') { m.text = `❌ Error: ${job.error}`; m.pending = false; break; }
         if (job.status !== 'done') {
-          m.text = `${job.status}${job.step ? ` — ${job.step}` : ''}`;
+          m.text = stepText(job, m);
           saveChat(); paintChat(); continue;
         }
         // The agent is finished. Show its summary, then follow publishing if the change was merged.
@@ -434,40 +473,46 @@
         if (job.pr) m.pr = job.pr;
         m.merged = !!job.merged;
         m.published = job.published || null;
-        if (!job.merged) { m.text = m.summary + '\n\n(no file changes made)'; m.pending = false; break; }
+        if (!job.merged) { m.text = m.summary + '\n\n💤 No file changes made.'; m.pending = false; break; }
         if (job.published === 'success') {
-          m.text = m.summary + '\n\n✓ Merged into main and live on the site.';
+          m.text = m.summary + '\n\n✅ Merged into main and 🌐 live on the site.';
           m.pending = false; saveChat(); paintChat(); showRefresh(); break;
         }
         if (job.published === 'failed') {
-          m.text = m.summary + `\n\n✗ Merged, but publishing failed: ${job.publishError || 'unknown error'}`;
+          m.text = m.summary + `\n\n⚠️ Merged, but publishing failed: ${job.publishError || 'unknown error'}`;
           m.pending = false; break;
         }
-        m.text = m.summary + '\n\n⏳ Merged. Publishing to the live site…';
+        m.text = m.summary + `\n\n🔀 Merged. 🌐 Publishing to the live site…  ·  ⏱️ ${ago(m.started || Date.now())}`;
         saveChat(); paintChat();
       }
-      if (m.pending) { m.text = 'Still running. It will show here when you reopen the chat.'; m.pending = false; }
-    } catch (e) { m.text = `Error: ${e.message}`; m.pending = false; }
+      if (m.pending) { m.text = '⏳ Still running. It will show here when you reopen the chat.'; m.pending = false; }
+    } catch (e) { m.text = `❌ Error: ${e.message}`; m.pending = false; }
     saveChat(); paintChat(); send.disabled = chatLog.some((x) => x.pending);
   }
 
   send.onclick = async () => {
     const message = input.value.trim(); if (!message) return;
     input.value = '';
-    const bot = { role: 'bot', text: 'Queued…', pending: true };
+    const bot = { role: 'bot', text: '⏳ Queued: waiting for the agent', pending: true, started: Date.now(), page: PAGE };
+    saveUi({ draft: '' });
     chatLog.push({ role: 'user', text: message }, bot);
     saveChat(); paintChat(); send.disabled = true;
     try {
       const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message, page: PAGE, includeNotes: useNotes.checked }) })).json();
       bot.jobId = id; saveChat();
       await trackJob(bot);
-    } catch (e) { bot.text = `Error: ${e.message}`; bot.pending = false; saveChat(); paintChat(); send.disabled = false; }
+    } catch (e) { bot.text = `❌ Error: ${e.message}`; bot.pending = false; saveChat(); paintChat(); send.disabled = false; }
   };
 
   // Resume any job that was still running before the refresh.
-  for (const m of chatLog) if (m.pending && !m.jobId) { m.text = 'Interrupted by a page refresh before it was sent — please resend.'; m.pending = false; }
+  for (const m of chatLog) if (m.pending && !m.jobId) { m.text = '⚠️ Interrupted by a page refresh before it was sent. Please resend.'; m.pending = false; }
   saveChat(); paintChat();
   for (const m of chatLog) if (m.pending && m.jobId) { trackJob(m); send.disabled = true; }
+
+  // Restore the panel as it was before the refresh: open, tab and size. A running job reopens the chat.
+  if (chatLog.some((x) => x.pending)) saveUi({ open: true, tab: 'chat' });
+  if (ui.max) maxBtn.click();
+  if (ui.open) { panel.classList.add('open'); gate().then((ok) => { if (!ok) return; show(ui.tab || 'notes'); if ((ui.tab || 'notes') === 'notes') loadNotes(); }); }
 
   if (!API) console.warn('cc-widget: missing data-api attribute');
   btn.addEventListener('click', async () => { if (panel.classList.contains('open') && await gate()) loadNotes(); });

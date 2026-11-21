@@ -42,3 +42,12 @@ test('buildPrompt includes request, page and notes', () => {
   const p = buildPrompt({ page: '/p', message: 'move video to Friday' }, '- note');
   assert.match(p, /move video to Friday/); assert.match(p, /\/p/); assert.match(p, /- note/);
 });
+
+test('sprite parseFrames splits stdout, stderr and the exit code', () => {
+  const { parseFrames } = require('../src/lib/sprite');
+  // Real bytes from POST /v1/sprites/cc-agent/exec running: echo out-line; echo err-line 1>&2; exit 7
+  const raw = Buffer.from('0265 7272 2d6c 696e 650a 016f 7574 2d6c 696e 650a 0307'.replace(/ /g, ''), 'hex');
+  assert.deepStrictEqual(parseFrames(raw), { stdout: 'out-line\n', stderr: 'err-line\n', code: 7 });
+  assert.equal(parseFrames(Buffer.from([0x01, 0x68, 0x69, 0x03, 0x00])).code, 0);
+  assert.equal(parseFrames(Buffer.from([0x01, 0x68, 0x69])).code, null);
+});
