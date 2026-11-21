@@ -5,7 +5,7 @@
   "tagline": "Turkish roots, a US exchange year, two tries at university, 40+ contracts across 8 countries, and one habit: learning in public. From tutoring to AI, now helping others make the same jump.",
   "linkedin": "https://www.linkedin.com/in/rifaterdemsahin/",
   "youtube": "https://www.youtube.com/@RifatErdemSahin",
-  "belief": "AI is raising the skills bar faster than any school can keep up. The people who will do well are the ones who can teach themselves, and I've been doing that my whole life.",
+  "belief": "I'm passionate about being early to disruption, retooling people for it, and helping them become Delivery Pilots. AI is raising the skills bar faster than any school can keep up, and the people who do well will be the ones who can teach themselves. I've been doing that my whole life.",
   "chapters": [
     {
       "icon": "🇹🇷",
@@ -57,6 +57,16 @@
     }
   ],
   "values": [
+    {
+      "icon": "⚡",
+      "title": "Early to the disruption",
+      "text": "See the shift before it lands, and move first: from tutoring to real estate to DevOps to AI."
+    },
+    {
+      "icon": "🔧",
+      "title": "Retool people",
+      "text": "Nobody gets left behind. Give people the skills, the tools and the courage to move up a seat."
+    },
     {
       "icon": "🧠",
       "title": "Self-learning first",

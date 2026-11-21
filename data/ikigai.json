@@ -2,7 +2,7 @@
   "updated": "2026-11-21",
   "center": {
     "title": "Delivery Pilot",
-    "statement": "Help people find the skills, the courage and the optimism to become Delivery Pilots, people who deliver with AI, by creating and learning with high tech in public."
+    "statement": "Be early to the disruption, retool people for it, and help them become Delivery Pilots, people who deliver with AI, by creating and learning with high tech in public."
   },
   "circles": [
     {
@@ -10,6 +10,7 @@
       "icon": "❤️",
       "label": "What I love",
       "items": [
+        "Early disruption: being early to the next big shift",
         "AI and human intelligence: how both think and learn",
         "Creating and learning with high tech",
         "Watching high-tech videos where I learn something new (a proud geek)",
@@ -42,6 +43,7 @@
       "icon": "🌍",
       "label": "What the world needs",
       "items": [
+        "Retooling: people re-skilled for the AI shift, not left behind",
         "Skilling up as AI raises the bar",
         "The courage to become a pilot, a Delivery Pilot who delivers with AI",
         "Hope: a future that's bright and believable, not hype"
@@ -78,7 +80,7 @@
       "icon": "✈️",
       "label": "Vocation",
       "between": "World needs + paid for",
-      "text": "Teaching teams to deliver with AI: the Delivery Pilot role.",
+      "text": "Retooling people and teams to deliver with AI: the Delivery Pilot role.",
       "content": "Skool community and course, plus businesses buying builds and services (the B2C2B audience)."
     }
   ],
