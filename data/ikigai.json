@@ -2,7 +2,7 @@
   "updated": "2026-11-21",
   "center": {
     "title": "Delivery Pilot",
-    "statement": "Help people find the skills and the courage to become Delivery Pilots, people who deliver with AI, by creating and learning with high tech in public."
+    "statement": "Help people find the skills, the courage and the optimism to become Delivery Pilots, people who deliver with AI, by creating and learning with high tech in public."
   },
   "circles": [
     {
@@ -12,8 +12,11 @@
       "items": [
         "AI and human intelligence: how both think and learn",
         "Creating and learning with high tech",
+        "Watching high-tech videos where I learn something new (a proud geek)",
+        "Physics, space and the big frontier questions",
         "Games, especially real-time strategy like Command & Conquer",
-        "New things: the latest tools and ideas"
+        "Stand-up comedy and improvisation",
+        "Inspiring stories, and believing the future is bright"
       ]
     },
     {
@@ -39,7 +42,8 @@
       "label": "What the world needs",
       "items": [
         "Skilling up as AI raises the bar",
-        "The courage to become a pilot, a Delivery Pilot who delivers with AI"
+        "The courage to become a pilot, a Delivery Pilot who delivers with AI",
+        "Hope: a future that's bright and believable, not hype"
       ]
     }
   ],
@@ -92,5 +96,49 @@
     "🎯 Every video should sit in at least two circles. The best (the centre) sits in all four.",
     "🧪 Mindset Shorts fail because they're only 'world needs'. There's no love, skill or proof showing.",
     "🏆 Your best videos already sit near the centre: practical builds (love + good) for career outcomes (need + paid)."
-  ]
+  ],
+  "dream": {
+    "title": "🌠 The long-range mission",
+    "text": "Solve interstellar travel and work on physics. It's the furthest horizon, and it's why the pilot metaphor is more than a metaphor for you.",
+    "channel": [
+      "The Pilot's Log sci-fi series (Formats) gives the dream a home on the channel today",
+      "'What would it take to reach another star?' as a data-backed big-picture video (Pillar 2)",
+      "Physics explainers using AI tools: learning in public on the hardest subject there is"
+    ]
+  },
+  "inspirations": [
+    {
+      "icon": "🚀",
+      "name": "Elon Musk",
+      "take": "First-principles thinking, very ambitious missions, and space as a real goal.",
+      "channel": "Bold missions in titles and series. Stay data-backed and contrarian where the evidence says so (your 'Elon Says Work Is Ending. The Data Says Otherwise.' got 348 views)."
+    },
+    {
+      "icon": "🎤",
+      "name": "Susan Boyle",
+      "take": "The underdog moment: underestimated on sight, then the voice changes the room.",
+      "channel": "Your story has the same shape: no degree, a new country, then delivery that speaks for itself. Use the 'reveal' structure in story videos."
+    },
+    {
+      "icon": "😂",
+      "name": "Max Amini",
+      "take": "Improvised, warm, multicultural stand-up: crowd work that makes everyone feel included.",
+      "channel": "Comedy sketches and improv in Skool Lives. Your Turkish, US and British life is full of warm, real material."
+    },
+    {
+      "icon": "🔥",
+      "name": "Tony Robbins",
+      "take": "Energy, state and belief: people change when they believe they can.",
+      "channel": "End videos with a clear, confident call to action and optimism, backed by a plan (like the 90-day flight plan), not just hype."
+    }
+  ],
+  "drains": {
+    "title": "🪫 What drains me",
+    "items": [
+      "Non-agentic work: debugging syntax issues by hand",
+      "Repetitive fixes that a machine should do"
+    ],
+    "insight": "This is the Delivery Pilot thesis in your own life: hand syntax and lint to agents, and keep the judgment, the spec and the delivery.",
+    "video": "I Don't Debug Syntax Anymore. My Agents Do (Here's the Setup)"
+  }
 }

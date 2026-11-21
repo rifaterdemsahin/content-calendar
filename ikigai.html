@@ -68,6 +68,16 @@
       <div id="overlaps" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
     </section>
 
+    <section>
+      <h2 class="text-xl font-bold text-white">🌟 Who inspires me</h2>
+      <p class="text-slate-400 mt-1">What I take from each, and how it shows up on the channel.</p>
+      <div id="inspirations" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
+    <section id="dream-sec"></section>
+
+    <section id="drains-sec"></section>
+
     <section id="games-sec"></section>
 
     <section>
@@ -100,6 +110,28 @@
         const c = el('p', 'mt-3 text-sm text-emerald-200'); c.append(el('span', 'font-semibold', '📺 On the channel: '), document.createTextNode(o.content)); b.append(c);
         return b;
       }));
+      if (d.inspirations) document.getElementById('inspirations').append(...d.inspirations.map((x) => {
+        const b = el('div', 'p-5 rounded-xl border border-slate-800 bg-slate-900');
+        b.append(el('div', 'text-lg font-bold text-white', `${x.icon} ${x.name}`), el('p', 'text-sm text-slate-300 mt-2', x.take));
+        const c = el('p', 'mt-3 text-sm text-emerald-200'); c.append(el('span', 'font-semibold', '📺 On the channel: '), document.createTextNode(x.channel)); b.append(c);
+        return b;
+      }));
+      if (d.dream) {
+        const s = document.getElementById('dream-sec');
+        const box = el('div', 'p-6 rounded-2xl border border-indigo-500/40 bg-gradient-to-br from-indigo-950/50 to-slate-900');
+        box.append(el('h2', 'text-xl font-bold text-white', d.dream.title), el('p', 'text-slate-200 mt-2', d.dream.text));
+        const ul = el('ul', 'mt-3 text-sm text-slate-300 list-disc pl-5 space-y-1'); d.dream.channel.forEach((x) => ul.append(el('li', null, x))); box.append(ul);
+        s.append(box);
+      }
+      if (d.drains) {
+        const s = document.getElementById('drains-sec');
+        const box = el('div', 'p-6 rounded-2xl border border-red-500/30 bg-red-950/10');
+        box.append(el('h2', 'text-xl font-bold text-white', d.drains.title));
+        const ul = el('ul', 'mt-2 text-sm text-slate-300 list-disc pl-5 space-y-1'); d.drains.items.forEach((x) => ul.append(el('li', null, x))); box.append(ul);
+        box.append(el('p', 'mt-3 text-sm text-slate-200', `💡 ${d.drains.insight}`));
+        const v = el('div', 'mt-3 p-3 rounded-lg border border-emerald-500/30 bg-emerald-950/15'); v.append(el('div', 'text-[11px] uppercase tracking-wider text-emerald-300 font-bold', '🎬 Video idea · Pillar 1'), el('div', 'text-sm font-semibold text-white mt-1', d.drains.video)); box.append(v);
+        s.append(box);
+      }
       const g = document.getElementById('games-sec');
       g.append(el('h2', 'text-xl font-bold text-white', d.games.title), el('p', 'text-slate-400 mt-1', d.games.text));
       const gg = el('div', 'mt-4 grid gap-3 sm:grid-cols-2'); d.games.ideas.forEach((x) => gg.append(el('div', 'p-4 rounded-xl border border-pink-500/30 bg-pink-950/10 text-sm text-slate-200', x))); g.append(gg);

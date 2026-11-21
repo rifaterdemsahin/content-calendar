@@ -1,55 +1,86 @@
 {
   "updated": "2026-11-21",
-  "center": { "icon": "🧠", "title": "AI × human intelligence", "text": "The thread through everything I care about: how machines and people think, learn, model the world, and work together." },
+  "center": {
+    "icon": "🧠",
+    "title": "AI × human intelligence",
+    "text": "The thread through everything I care about: how machines and people think, learn, model the world, and work together."
+  },
   "branches": [
     {
-      "key": "mind", "icon": "🌀", "title": "The mind", "color": "pink",
+      "key": "mind",
+      "icon": "🌀",
+      "title": "The mind",
+      "color": "pink",
       "topics": [
         {
-          "key": "consciousness", "icon": "🗺️", "name": "Maps of consciousness",
+          "key": "consciousness",
+          "icon": "🗺️",
+          "name": "Maps of consciousness",
           "what": "Models that lay out levels or states of consciousness as a map, such as David Hawkins' scale from fear up to peace. They're frameworks for thinking, not settled science.",
           "link": "Where does AI sit on a map built for human minds? It's a good lens for what models can and can't experience, as long as it's presented as a model, not proof.",
-          "video": "Where Would AI Sit on a Map of Consciousness? (Thought Experiment)", "pillar": "Pillar 2 · big-picture take"
+          "video": "Where Would AI Sit on a Map of Consciousness? (Thought Experiment)",
+          "pillar": "Pillar 2 · big-picture take"
         },
         {
-          "key": "lacan", "icon": "🪞", "name": "Lacan",
+          "key": "lacan",
+          "icon": "🪞",
+          "name": "Lacan",
           "what": "Jacques Lacan's psychoanalysis: the unconscious is structured like a language, and experience runs through three registers, the Real, the Symbolic and the Imaginary.",
           "link": "A large language model is pure Symbolic order: language with no body and no Real. Lacan gives an unusual, sharp way to explain why LLMs are fluent but not grounded.",
-          "video": "Lacan Predicted LLMs? Language Without a Body, Explained", "pillar": "Pillar 2 · contrarian take"
+          "video": "Lacan Predicted LLMs? Language Without a Body, Explained",
+          "pillar": "Pillar 2 · contrarian take"
         }
       ]
     },
     {
-      "key": "structure", "icon": "🏗️", "title": "Structure", "color": "indigo",
+      "key": "structure",
+      "icon": "🏗️",
+      "title": "Structure",
+      "color": "indigo",
       "topics": [
         {
-          "key": "uml", "icon": "📐", "name": "UML",
+          "key": "uml",
+          "icon": "📐",
+          "name": "UML",
           "what": "The Unified Modeling Language: class, sequence and activity diagrams for designing systems before building them.",
           "link": "Diagrams are specs. A Delivery Pilot writes the flight plan, and a sequence diagram is a flight plan an AI agent can follow.",
-          "video": "UML Is Back: Diagrams as Specs for AI Coding Agents", "pillar": "Pillar 1 · practical"
+          "video": "UML Is Back: Diagrams as Specs for AI Coding Agents",
+          "pillar": "Pillar 1 · practical"
         },
         {
-          "key": "patterns", "icon": "🧱", "name": "Enterprise patterns",
+          "key": "patterns",
+          "icon": "🧱",
+          "name": "Enterprise patterns",
           "what": "Enterprise application and integration patterns (Fowler; Hohpe & Woolf): repositories, message channels, routers, sagas. The proven shapes of business software.",
           "link": "Multi-agent systems are integration patterns with an LLM inside. And your migration contracts are where these patterns earn money.",
-          "video": "Your Multi-Agent System Is Just Enterprise Integration Patterns", "pillar": "Pillar 1 · practical"
+          "video": "Your Multi-Agent System Is Just Enterprise Integration Patterns",
+          "pillar": "Pillar 1 · practical"
         }
       ]
     },
     {
-      "key": "frontier", "icon": "🌌", "title": "The frontier", "color": "emerald",
+      "key": "frontier",
+      "icon": "🌌",
+      "title": "The frontier",
+      "color": "emerald",
       "topics": [
         {
-          "key": "space", "icon": "🚀", "name": "Space travel",
-          "what": "Human spaceflight and exploration: missions, mission control, checklists, and the people who fly into the unknown.",
+          "key": "space",
+          "icon": "🚀",
+          "name": "Space & physics",
+          "what": "Human spaceflight and the physics behind it: missions, mission control, and the long-range dream of reaching another star.",
           "link": "The pilot metaphor is literal here: mission control, flight plans and instruments. Space missions are the original high-stakes delivery.",
-          "video": "What Mission Control Can Teach You About Shipping With AI", "pillar": "Pillar 2 · story + data"
+          "video": "What Would It Take to Reach Another Star? (Physics + AI)",
+          "pillar": "Pillar 2 · story + data"
         },
         {
-          "key": "rts", "icon": "🎮", "name": "Real-time strategy games",
+          "key": "rts",
+          "icon": "🎮",
+          "name": "Real-time strategy games",
           "what": "Games like Command & Conquer: build a base, gather resources, command units, scout through the fog of war.",
           "link": "Running AI agents is an RTS. You command units (agents), manage resources (tokens and cost), and scout the unknown. It's the Delivery Pilot job as a game.",
-          "video": "Running AI Agents Is a Real-Time Strategy Game", "pillar": "Pillar 1 · practical + fun"
+          "video": "Running AI Agents Is a Real-Time Strategy Game",
+          "pillar": "Pillar 1 · practical + fun"
         }
       ]
     }
