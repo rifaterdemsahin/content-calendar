@@ -1,0 +1,52 @@
+{
+  "updated": "2026-11-21",
+  "intro": "What lights me up, the things I'd do even if nobody paid me. Each one already shows in how I work. The goal is to make them show on the channel too.",
+  "stats": [
+    { "icon": "💻", "value": "612", "label": "GitHub repos (475 public)" },
+    { "icon": "📅", "value": "2013", "label": "building on GitHub since" },
+    { "icon": "🎥", "value": "Daily", "label": "learning from video" }
+  ],
+  "passions": [
+    {
+      "key": "video", "icon": "🎥", "title": "Learning by myself through video",
+      "what": "My university was YouTube and the internet. I learn new tech by watching, pausing, trying it, and watching again, mostly in English and mostly self-directed.",
+      "proof": "Two tries at university, then a career from tutoring to SRE to AI, all learned on my own.",
+      "channel": [
+        "🎬 'How I Learn Any New Tech From YouTube in a Weekend' (my real system on screen)",
+        "📚 Every video is something I just learned myself: learning in public, never lecturing from above",
+        "🏫 Skool: shared playlists and 'watch with me' sessions"
+      ]
+    },
+    {
+      "key": "questions", "icon": "❓", "title": "Asking questions, passionately",
+      "what": "I ask questions until the thing makes sense: of people, of documentation, of AI. Curiosity is the engine, and good questions are the real skill in the AI era.",
+      "proof": "Openness 75 and Quick Start 9: I'd rather ask and try than wait for the manual.",
+      "channel": [
+        "❓ A 'Questions I Asked This Week' series: the question, what I found, what I built",
+        "🤖 Show the actual prompts and questions you ask an AI, because asking well is the new coding",
+        "🎙️ Skool Lives built on members' questions, not slides"
+      ]
+    },
+    {
+      "key": "build", "icon": "💻", "title": "Building software: solutions, implemented",
+      "what": "I come up with a solution and build it. 612 repositories since 2013, from small experiments to full systems like this dashboard.",
+      "proof": "612 GitHub repos. This site is one of them: built, deployed and improved in public.",
+      "channel": [
+        "📦 'Repo of the Week' Shorts: the problem, the solution, the repo link",
+        "🔗 Every tutorial ships with its repo (the lead magnet for Skool)",
+        "🏗️ Show the build loop live: idea → agent → repo → deployed"
+      ]
+    }
+  ],
+  "loop": {
+    "title": "🔁 How the passions feed each other",
+    "text": "Watch to learn, ask until it makes sense, then build the answer. Every repo starts as a question, and every question starts with something you watched."
+  },
+  "alsoPassionate": [
+    { "icon": "⚡", "text": "Being early to disruption", "href": "ikigai.html" },
+    { "icon": "🔧", "text": "Retooling people and helping them become Delivery Pilots", "href": "ikigai.html" },
+    { "icon": "🧠", "text": "AI and human intelligence", "href": "interests.html" },
+    { "icon": "🚀", "text": "Space, physics and the interstellar dream", "href": "interests.html" },
+    { "icon": "🎮", "text": "Real-time strategy games", "href": "interests.html" }
+  ]
+}

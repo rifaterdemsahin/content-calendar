@@ -20,6 +20,11 @@
           "why": "What you love, are good at, get paid for and the world needs, and where they meet."
         },
         {
+          "url": "passion.html",
+          "title": "🔥 My passions",
+          "why": "Learning from video, asking questions, and building software (612 repos)."
+        },
+        {
           "url": "personality.html",
           "title": "🧬 Personality & conation",
           "why": "OCEAN, Kolbe (Quick Start 9) and DISC (I-D), and what they mean for how you work."
@@ -584,6 +589,26 @@
       "quarterly.html",
       "goals.html",
       "Progress against the subscriber goal"
+    ],
+    [
+      "ikigai.html",
+      "passion.html",
+      "The love circle, in depth"
+    ],
+    [
+      "passion.html",
+      "personality.html",
+      "Quick Start 9 and Openness 75 behind the 612 repos"
+    ],
+    [
+      "passion.html",
+      "interests.html",
+      "Topics the passions point at"
+    ],
+    [
+      "passion.html",
+      "story.html",
+      "Self-taught through video since the start"
     ]
   ]
 }

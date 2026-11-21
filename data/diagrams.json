@@ -776,6 +776,37 @@
           "d": "Next quarter's plan"
         }
       ]
+    },
+    "passion.html": {
+      "title": "🔁 The passion loop",
+      "loop": "Every day",
+      "steps": [
+        {
+          "e": "🎥",
+          "t": "Watch",
+          "d": "Learn from video"
+        },
+        {
+          "e": "❓",
+          "t": "Ask",
+          "d": "Until it makes sense"
+        },
+        {
+          "e": "💡",
+          "t": "Solve",
+          "d": "Come up with a solution"
+        },
+        {
+          "e": "💻",
+          "t": "Build",
+          "d": "612 repos and counting"
+        },
+        {
+          "e": "📢",
+          "t": "Share",
+          "d": "Learn in public"
+        }
+      ]
     }
   }
 }
