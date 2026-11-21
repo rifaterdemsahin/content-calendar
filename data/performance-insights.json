@@ -115,7 +115,7 @@
         "title": "Why junior developer jobs are shifting toward AI Delivery Pilot roles in 2027",
         "rating": "Very likely",
         "status": "Made: _tYzckEn6O8 (published 21 Nov)",
-        "verdict": "Done. Let the title test finish. If it is under about 11 views/day at 7 days, try a title closer to YouTube's framing ('…Delivery Pilot roles in 2027') instead of the UK J-curve angle."
+        "verdict": "Made after the analysis. Strong content, weak packaging: see the video review below. Retitle it toward YouTube's framing, add chapters and a pinned 90-day plan, then judge it on 28 Nov against about 11 views/day."
       },
       {
         "title": "Stop wasting context windows: a lean multi-agent coding workflow",
@@ -128,5 +128,66 @@
       "Which do you enjoy making most: hands-on live-screen coding walkthroughs, or big-picture industry commentary?",
       "What real friction point or workflow breakthrough from your own work are you excited to unpack?"
     ]
-  }
+  },
+  "videoReviews": [
+    {
+      "id": "_tYzckEn6O8",
+      "url": "https://www.youtube.com/watch?v=_tYzckEn6O8",
+      "title": "The UK Junior Dev Crash Is a J-Curve (And Here's the Upswing)",
+      "made": "After the YouTube Studio AI analysis (idea #2: junior dev jobs shifting to Delivery Pilot roles in 2027)",
+      "reviewedOn": "2026-11-21",
+      "stats": {
+        "duration": "10:17",
+        "views": 19,
+        "likes": 2,
+        "comments": 1,
+        "ageDays": 1
+      },
+      "verdict": "good",
+      "verdictLabel": "Strong video, weak packaging",
+      "summary": "Following YouTube's advice was the right call. This is your best-researched career take: a data-led, contrarian hook, which is the same shape as 'Elon Says Work Is Ending. The Data Says Otherwise.' (348). The problem is packaging. The title sells a UK economics story (J-curve), the description sells Rider/Driver/Pilot and COBALTS, and the most useful part for the viewer, the 90-day plan, doesn't start until 8:35. Early engagement is healthy: 2 likes on 19 views (about 10%). Fix the packaging before judging the views.",
+      "strengths": [
+        "Strong opening hook: 'UK entry-level roles are down by about half. So why am I more optimistic than ever?' That's a contrarian claim backed by data in the first 5 seconds.",
+        "Credible sources (SignalFire, a Harvard study of 62M workers, Brynjolfsson's productivity J-curve, the Linux Foundation, IBM, Cognizant, Cloudflare) and honest caveats: 'a model, not a promise', interest rates, and the IBM disclosure.",
+        "A clear idea at the core: 'CI became AI's job. Delivery became yours.'",
+        "It ends with something to do: a 90-day plan in three legs, plus a free course and Skool call to action."
+      ],
+      "issues": [
+        "The title, description and video promise different things. The title is about the UK and the J-curve, the description is about Rider/Driver/Pilot and COBALTS, and the video covers both plus a 90-day plan. YouTube and searchers can't tell what the video is for.",
+        "'UK' narrows it, but the evidence is global (SignalFire, US Harvard data, Europe). 'J-curve' is economists' language that few people search for.",
+        "The thumbnail says 'THE J-CURVE −50%'. The −50% works as a hook, but 'J-curve' tells a scrolling developer nothing about what's in it for them. Try '−50%' with 'DELIVERY PILOT', or 'JUNIOR DEVS: 90-DAY PLAN'.",
+        "There are too many frameworks for 10 minutes: J-curve, CI checklist, Rider/Driver/Pilot, the pilot's 4 duties, everyone moving up a seat, COBALTS, a day in the life, and the 90-day plan. The concrete takeaway arrives at 8:35.",
+        "No chapters. With 14 distinct sections, chapters would help retention and give each section its own search entry.",
+        "Background music runs under the voice the whole way through. Check that the music sits low enough to keep the voice clear.",
+        "The 'Rider, Driver or Pilot?' Short went out the same day, so the two competed instead of the Short sending people to the long video."
+      ],
+      "fixes": [
+        {
+          "title": "Retitle to match the promise and YouTube's framing",
+          "detail": "Try: 'Junior Dev Jobs Are Down 50%. Here's How to Become a Delivery Pilot in 90 Days (2027)', or go back to the original 'Junior Developer Jobs Aren't Dead. They're Becoming Delivery Pilots (2027)'. Keep the data hook, add the outcome, and drop 'UK' and 'J-curve'."
+        },
+        {
+          "title": "Rewrite the first two lines of the description",
+          "detail": "Search results show only these lines, so they should repeat the title's promise: the data, why it's an upswing, and the 90-day plan. Move Rider/Driver/Pilot and COBALTS lower down."
+        },
+        {
+          "title": "Add chapters (copy-paste ready)",
+          "detail": "0:00 Junior tech roles are down by half\n0:39 It's global, not just the UK\n1:17 The productivity J-curve\n1:57 Signs of the upswing\n2:22 What AI took: the CI checklist\n3:15 What stays human\n4:13 Rider, Driver, Pilot\n5:00 How a pilot flies\n6:00 Everyone moves up a seat\n6:45 The 2031 senior shortage\n7:20 COBALTS: what a Delivery Pilot does\n8:05 A day in the life\n8:35 Your 90-day flight plan\n9:40 Free for students"
+        },
+        {
+          "title": "Pin a comment with the 90-day plan",
+          "detail": "Weeks 1–4: write specs. Weeks 5–8: build one agent and publish its logs. Weeks 9–12: get certified (CCAF). Add the Skool link. It puts the payoff at the top for people who skip ahead."
+        },
+        {
+          "title": "Cut 3 Shorts that send viewers here, on separate days",
+          "detail": "(1) 'CI became AI's job. Delivery became yours.' (2:22–3:50) (2) 'If you stop hiring juniors, you stop making seniors.' (6:45–7:15) (3) The 90-day flight plan (8:35–9:40). Each one links to this video."
+        },
+        {
+          "title": "Next time: one framework per video",
+          "detail": "Rider/Driver/Pilot plus COBALTS plus the 90-day plan is enough for three videos. Keeping one per video also gives you more videos for your strongest pillar."
+        }
+      ],
+      "judgeOn": "2026-11-28: after 7 days, compare views/day with 'Become a Delivery Pilot' (about 11 views/day). If it's lower after the retitle, the topic is fine and the packaging needs another pass."
+    }
+  ]
 }

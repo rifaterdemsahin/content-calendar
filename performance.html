@@ -52,6 +52,11 @@
       <div id="findings" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
     </section>
 
+    <section id="review-section" class="hidden">
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Video review</h2>
+      <div id="reviews" class="mt-4 grid gap-6"></div>
+    </section>
+
     <section id="ytai-section" class="hidden">
       <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest"><i class="fab fa-youtube mr-1"></i> YouTube Studio AI</h2>
       <p class="text-2xl font-bold text-white mt-2">What YouTube's own analysis says</p>
@@ -163,6 +168,40 @@
         c.append(el('div', 'text-xs uppercase font-bold', `${tagIcon[f.tag] || ''} ${f.tag}`), el('div', 'text-base font-bold text-white mt-1', f.title), el('div', 'text-sm text-slate-300 mt-2', f.detail));
         return c;
       }));
+
+      const revs = ins.videoReviews || [];
+      if (revs.length) {
+        document.getElementById('review-section').classList.remove('hidden');
+        const vStyle = { good: 'border-emerald-500/40 text-emerald-300', mixed: 'border-amber-500/40 text-amber-300', bad: 'border-red-500/40 text-red-300' };
+        document.getElementById('reviews').append(...revs.map((r) => {
+          const c = el('article', 'rounded-2xl border border-slate-800 bg-slate-900 overflow-hidden');
+          const top = el('div', 'p-5 sm:flex gap-5');
+          const thumb = el('a', 'block shrink-0 sm:w-56'); thumb.href = r.url; thumb.target = '_blank'; thumb.rel = 'noopener';
+          const img = el('img', 'w-full rounded-lg border border-slate-800'); img.src = `https://i.ytimg.com/vi/${r.id}/hqdefault.jpg`; img.alt = r.title; img.loading = 'lazy'; thumb.append(img);
+          const body = el('div', 'mt-4 sm:mt-0 min-w-0');
+          const a = el('a', 'text-lg font-bold text-white hover:text-indigo-300', r.title); a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+          const s = r.stats;
+          body.append(a, el('div', 'text-xs text-slate-400 mt-1', `${s.duration} · ${s.views} views · ${s.likes} likes · ${s.comments} comment${s.comments === 1 ? '' : 's'} · ${s.ageDays}d old · reviewed ${r.reviewedOn}`),
+            el('div', 'text-xs text-slate-500 mt-1', r.made),
+            el('div', `inline-block mt-3 text-xs uppercase font-bold px-2.5 py-1 rounded-full border ${vStyle[r.verdict] || vStyle.mixed}`, r.verdictLabel),
+            el('p', 'text-slate-200 mt-3 leading-relaxed', r.summary));
+          top.append(thumb, body); c.append(top);
+          const cols = el('div', 'grid sm:grid-cols-2 border-t border-slate-800');
+          const list = (head, items, cls) => { const d = el('div', 'p-5'); d.append(el('div', `text-xs uppercase font-bold ${cls}`, head)); const ul = el('ul', 'mt-2 text-sm text-slate-300 list-disc pl-5 space-y-1.5'); items.forEach((x) => ul.append(el('li', null, x))); d.append(ul); return d; };
+          const iss = list('▼ Holding it back', r.issues, 'text-red-300'); iss.classList.add('sm:border-l', 'border-slate-800');
+          cols.append(list('▲ What works', r.strengths, 'text-emerald-300'), iss); c.append(cols);
+          const fx = el('div', 'p-5 border-t border-slate-800'); fx.append(el('div', 'text-xs uppercase font-bold text-indigo-300', 'Fix it (copy-paste ready)'));
+          const ol = el('ol', 'mt-3 grid gap-3');
+          r.fixes.forEach((f, i) => {
+            const li = el('li', 'flex gap-3'); li.append(el('span', 'w-6 h-6 shrink-0 rounded-full bg-indigo-500/15 text-indigo-300 text-xs font-bold flex items-center justify-center', String(i + 1)));
+            const b = el('div', 'min-w-0'); b.append(el('div', 'font-semibold text-white text-sm', f.title));
+            b.append(f.detail.includes('\n') ? el('pre', 'mt-1 text-xs text-slate-300 bg-slate-950 border border-slate-800 rounded-lg p-3 whitespace-pre-wrap font-mono', f.detail) : el('p', 'text-sm text-slate-400 mt-0.5', f.detail));
+            li.append(b); ol.append(li);
+          });
+          fx.append(ol, el('p', 'text-xs text-slate-500 mt-4', `Judge on ${r.judgeOn}`)); c.append(fx);
+          return c;
+        }));
+      }
 
       const yt = ins.youtubeAi;
       if (yt) {

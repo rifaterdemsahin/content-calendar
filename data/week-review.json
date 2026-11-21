@@ -17,6 +17,11 @@
           "detail": "This week's plan (n8n agent build, n8n loop fix, live debugging clinic) is practical and hands-on. Builds are your best-performing type: the LinkedIn job-hunt automation has 552 views and the n8n Content Magician 276."
         },
         {
+          "result": "good",
+          "title": "You acted on YouTube's AI analysis",
+          "detail": "The junior-dev Delivery Pilot video (_tYzckEn6O8) is idea #2 from YouTube's own analysis, and the content is strong. Its title and description need fixing; see the video review on the Performance report."
+        },
+        {
           "result": "bad",
           "title": "None of the planned items shipped",
           "detail": "The Wednesday long video slot passed without the n8n build. The Saturday Short and the Sunday clinic are both still 'writing'."
@@ -52,6 +57,11 @@
           "when": "Sun 22 Nov",
           "title": "Run the Live Workflow Debugging Clinic",
           "detail": "It's a fixed Sunday 13:30 commitment and it doesn't need editing. Save the recording to Skool."
+        },
+        {
+          "when": "Today",
+          "title": "Fix the junior-dev video's packaging",
+          "detail": "Retitle it (drop 'UK' and 'J-curve', add the Delivery Pilot outcome), rewrite the first 2 description lines, paste in the chapters, and pin the 90-day plan. All copy-paste text is on the Performance report."
         },
         {
           "when": "Mon–Tue",
