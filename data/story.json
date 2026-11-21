@@ -172,5 +172,22 @@
         "d": "now"
       }
     ]
+  },
+  "bucketList": {
+    "title": "🪣 Bucket list",
+    "items": [
+      {
+        "icon": "🎙️",
+        "text": "Be a guest on The Diary of a CEO",
+        "url": "https://www.youtube.com/@TheDiaryOfACEO",
+        "path": "Build a story and a thesis worth an hour: no degree, 8 countries, 40+ contracts, research on AGI and meaning, and the Delivery Pilot movement."
+      },
+      {
+        "icon": "🤝",
+        "text": "Meet Bill Maher",
+        "url": "https://www.youtube.com/@billmaher",
+        "path": "Sharp, honest, contrarian conversation: the same spirit as 'the data says otherwise'."
+      }
+    ]
   }
 }

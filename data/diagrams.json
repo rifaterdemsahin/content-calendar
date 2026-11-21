@@ -678,24 +678,29 @@
           "d": "Linus · Ali · İlker · Greg"
         },
         {
+          "e": "📖",
+          "t": "Story",
+          "d": "Barış Özcan · Kallaway"
+        },
+        {
+          "e": "🎨",
+          "t": "Creative",
+          "d": "After Skool"
+        },
+        {
           "e": "💼",
           "t": "Business",
-          "d": "Patrick Bet-David"
+          "d": "Hormozi · Priestley · PBD"
         },
         {
-          "e": "🧠",
-          "t": "Mindset",
-          "d": "Tony Robbins · Hawkins"
-        },
-        {
-          "e": "🤝",
-          "t": "Personal",
-          "d": "Eric Wroolie"
+          "e": "⚖️",
+          "t": "Virtue & mind",
+          "d": "Manson · Robbins · Hawkins"
         },
         {
           "e": "🧑‍✈️",
           "t": "You",
-          "d": "One mission: Delivery Pilots"
+          "d": "Delivery Pilots"
         }
       ]
     },

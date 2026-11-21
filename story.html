@@ -57,6 +57,11 @@
       <div id="values" class="mt-6 grid gap-4 sm:grid-cols-2"></div>
     </section>
 
+    <section id="bucket-sec">
+      <h2 id="bucket-title" class="text-2xl font-bold text-white"></h2>
+      <div id="bucket" class="mt-5 grid gap-4 sm:grid-cols-2"></div>
+    </section>
+
     <section>
       <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Story → channel</h2>
       <p id="on-title" class="text-2xl font-bold text-white mt-2"></p>
@@ -119,6 +124,17 @@
         return c;
       }));
 
+      if (s.bucketList) {
+        document.getElementById('bucket-title').textContent = s.bucketList.title;
+        document.getElementById('bucket').append(...s.bucketList.items.map((x) => {
+          const c = el('div', 'p-5 rounded-2xl border border-amber-500/40 bg-amber-950/10');
+          const h = el('div', 'flex items-center justify-between gap-3');
+          h.append(el('div', 'text-lg font-bold text-white', `${x.icon} ${x.text}`));
+          if (x.url) { const a = el('a', 'text-xs px-2.5 py-1 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/30 shrink-0', '▶ Channel'); a.href = x.url; a.target = '_blank'; a.rel = 'noopener'; h.append(a); }
+          c.append(h, el('p', 'text-sm text-slate-300 mt-2', `🛤️ ${x.path}`));
+          return c;
+        }));
+      } else document.getElementById('bucket-sec').remove();
       document.getElementById('on-title').textContent = s.onChannel.title;
       document.getElementById('on-detail').textContent = s.onChannel.detail;
       document.getElementById('on-videos').append(...s.onChannel.videos.map((id) => {

@@ -8,9 +8,24 @@
       "title": "The craft of making videos"
     },
     {
+      "key": "story",
+      "icon": "📖",
+      "title": "Storytelling"
+    },
+    {
+      "key": "creative",
+      "icon": "🎨",
+      "title": "Creative style"
+    },
+    {
       "key": "business",
       "icon": "💼",
-      "title": "Building something bigger"
+      "title": "Business minds"
+    },
+    {
+      "key": "virtue",
+      "icon": "⚖️",
+      "title": "Virtue & values"
     },
     {
       "key": "mind",
@@ -130,7 +145,91 @@
       "learn": [],
       "channel": "",
       "todo": "No public profile found, so this card is waiting for your words. Add who Eric is and what he taught you in data/mentors.json."
+    },
+    {
+      "key": "baris",
+      "group": "story",
+      "icon": "🔭",
+      "name": "Barış Özcan",
+      "url": "https://www.youtube.com/@barisozcan",
+      "who": "A Turkish storyteller on YouTube who explains science, technology and history through calm, curious stories.",
+      "learn": [
+        "Curiosity as the hook: start with a question",
+        "Calm narration that makes complex topics feel simple",
+        "Story first, facts woven in"
+      ],
+      "channel": "Open Pillar 2 videos with a question and a story, and reach Turkish-speaking viewers with the same craft."
+    },
+    {
+      "key": "kallaway",
+      "group": "story",
+      "icon": "🪝",
+      "name": "Kallaway",
+      "url": "https://www.youtube.com/@kallaway",
+      "who": "A creator who teaches short-form storytelling and content strategy: hooks, structure and retention.",
+      "learn": [
+        "Hooks that earn the next 3 seconds",
+        "Story structure for short-form",
+        "Packaging: title, thumbnail and first line as one promise"
+      ],
+      "channel": "Sharper Shorts hooks, and fixing packaging gaps like the junior-dev video's title/description mismatch."
+    },
+    {
+      "key": "afterskool",
+      "group": "creative",
+      "icon": "✍️",
+      "name": "After Skool",
+      "url": "https://www.youtube.com/@AfterSkool",
+      "who": "An animated channel that turns big ideas from thinkers into hand-drawn, whiteboard-style stories with voiceover.",
+      "learn": [
+        "Simple drawings make ideas memorable",
+        "One idea per video, illustrated as it's spoken",
+        "Voice plus visuals instead of a talking head"
+      ],
+      "channel": "Pairs with the single-line format (Formats page): illustrate one idea per video in your own original drawn style."
+    },
+    {
+      "key": "hormozi",
+      "group": "business",
+      "icon": "💰",
+      "name": "Alex Hormozi",
+      "url": "https://www.youtube.com/@AlexHormozi",
+      "who": "An entrepreneur and investor known for '$100M Offers' and '$100M Leads', and for giving away business advice in volume.",
+      "learn": [
+        "Make offers so good people feel stupid saying no",
+        "Give away the 'what' and the 'how', and sell the implementation",
+        "Volume and consistency win"
+      ],
+      "channel": "Design the 💼 Professional and 🏢 Business tiers as irresistible offers (see the Business plan)."
+    },
+    {
+      "key": "priestley",
+      "group": "business",
+      "icon": "🔑",
+      "name": "Daniel Priestley",
+      "url": "https://www.youtube.com/@DanielPriestley",
+      "who": "An entrepreneur and author ('Key Person of Influence', 'Oversubscribed') who teaches founders to become known in their niche.",
+      "learn": [
+        "Become a key person of influence in one niche",
+        "Publish, build products, raise your profile",
+        "Create demand before supply (oversubscribed)"
+      ],
+      "channel": "Own the 'Delivery Pilot' niche: publish (the research paper), productise (the bots), profile (the channel)."
+    },
+    {
+      "key": "manson",
+      "group": "virtue",
+      "icon": "⚖️",
+      "name": "Mark Manson",
+      "url": "https://www.youtube.com/@IAmMarkManson",
+      "who": "An author ('The Subtle Art of Not Giving a F*ck') who writes about values, responsibility and an honest life.",
+      "learn": [
+        "Choose what to care about",
+        "Take responsibility, even for what isn't your fault",
+        "Honest and blunt, but with heart"
+      ],
+      "channel": "Your directness (Agreeableness 0) with values underneath: honest takes on AI and work, never cynical."
     }
   ],
-  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's storytelling, Greg's editing, PBD's strategy, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
+  "takeaway": "🧑‍✈️ Put together: Linus's energy, Ali's systems, İlker's directing, Greg's editing, Barış and Kallaway's storytelling, After Skool's drawn style, Hormozi's offers, Priestley's influence, PBD's strategy, Manson's values, Tony's belief and Hawkins' inner map, all pointed at one mission: helping people become Delivery Pilots."
 }
