@@ -442,15 +442,19 @@
       "steps": [
         {
           "e": "🇹🇷",
-          "t": "Turkey"
+          "t": "Ankara → Istanbul"
+        },
+        {
+          "e": "📝",
+          "t": "Exams"
+        },
+        {
+          "e": "🏗️",
+          "t": "Civil Eng., not CS"
         },
         {
           "e": "🇺🇸",
           "t": "USA exchange"
-        },
-        {
-          "e": "🎓",
-          "t": "Two tries at uni"
         },
         {
           "e": "📚",
