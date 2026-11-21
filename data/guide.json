@@ -130,6 +130,11 @@
       "title": "6. 🗓️ What & when: plan",
       "pages": [
         {
+          "url": "next-video.html",
+          "title": "🥇 My next video",
+          "why": "What to make next, and why, from all the data."
+        },
+        {
           "url": "videos.html",
           "title": "🎬 Planned videos",
           "why": "Every planned video, its hook and target."
@@ -745,9 +750,30 @@
       "applaud.html",
       "personality.html",
       "Quick Start 9: ship more, polish less"
+    ],
+    [
+      "next-video.html",
+      "what-works.html",
+      "The pillar and the Shorts evidence behind the pick"
+    ],
+    [
+      "next-video.html",
+      "videos.html",
+      "Where it fits in the sprint plan"
+    ],
+    [
+      "next-video.html",
+      "performance.html",
+      "YouTube's AI ideas and the video reviews it draws on"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-21",
+      "icon": "🥇",
+      "text": "My next video: a cheap-model, full-stack build as the long-form parent for your best Shorts",
+      "href": "next-video.html"
+    },
     {
       "date": "2026-11-21",
       "icon": "📘",
@@ -789,12 +815,6 @@
       "icon": "🌟",
       "text": "Creators I admire, with a style map",
       "href": "creators.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "📖",
-      "text": "Story: exams, Civil Eng. not CS, US exchange, 10 years in Cambridge, three rounds of business",
-      "href": "story.html"
     }
   ]
 }

@@ -890,6 +890,33 @@
           "t": "You"
         }
       ]
+    },
+    "next-video.html": {
+      "title": "🥇 How the next video is picked",
+      "steps": [
+        {
+          "e": "📈",
+          "t": "What worked",
+          "d": "Best Shorts and videos"
+        },
+        {
+          "e": "🤖",
+          "t": "YouTube's AI ideas"
+        },
+        {
+          "e": "⚖️",
+          "t": "Weigh the options"
+        },
+        {
+          "e": "🥇",
+          "t": "Pick one"
+        },
+        {
+          "e": "✂️",
+          "t": "Cut Shorts from it"
+        }
+      ],
+      "loop": "Judge it at 7 days, then pick again"
     }
   }
 }
