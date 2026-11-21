@@ -96,6 +96,20 @@
       "channel": "Tighter edits on long videos (your junior-dev video's payoff sat at 8:35) and sharper Shorts: cut to the hook faster."
     },
     {
+      "key": "john",
+      "group": "business",
+      "icon": "👨‍💻",
+      "name": "John Sonmez",
+      "url": "https://www.youtube.com/@Simpleprogrammer",
+      "who": "A software developer behind Simple Programmer. He signed up for Pluralsight and created courses there, turning what he knew into teaching and income. Author of 'Soft Skills'.",
+      "learn": [
+        "Turn developer skills into courses people pay for",
+        "Build a personal brand as a developer",
+        "Soft skills and career moves beyond the code"
+      ],
+      "channel": "A model for the developer-tooling and junior-dev videos, and a path from free YouTube to paid courses and the Skool community."
+    },
+    {
       "key": "pbd",
       "group": "business",
       "icon": "♟️",
