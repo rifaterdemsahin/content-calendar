@@ -750,6 +750,32 @@
           "t": "Delivery Pilot fit"
         }
       ]
+    },
+    "quarterly.html": {
+      "title": "🧾 The quarterly review",
+      "loop": "Every quarter",
+      "steps": [
+        {
+          "e": "📥",
+          "t": "Collect",
+          "d": "Stats and goals"
+        },
+        {
+          "e": "📊",
+          "t": "Measure",
+          "d": "Views, subs, topics"
+        },
+        {
+          "e": "🎯",
+          "t": "Compare",
+          "d": "Pace vs goal"
+        },
+        {
+          "e": "🔧",
+          "t": "Adjust",
+          "d": "Next quarter's plan"
+        }
+      ]
     }
   }
 }
