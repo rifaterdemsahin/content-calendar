@@ -1,73 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Similar Niche Channels | @RifatErdemSahin</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%AD</text></svg>">
-<style>
-  :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--txt:#e8eaf0;--mut:#8b93a7;--acc:#ff3b3b;--ok:#3ecf8e;--warn:#f5b041}
-  *{box-sizing:border-box}
-  body{margin:0;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt)}
-  .wrap{max-width:900px;margin:auto;padding:0 16px}
-  header{padding:22px 0 6px}
-  h1{margin:0 0 4px;font-size:24px}
-  .sub{color:var(--mut);font-size:13px}
-  .add{display:flex;gap:8px;margin:14px 0 6px}
-  .add textarea{flex:1;min-height:46px;resize:vertical;background:#11141a;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px;font:inherit}
-  .add button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:0 16px;font-weight:600;font-size:14px;cursor:pointer}
-  .add button:disabled{opacity:.5}
-  #msg{font-size:12px;color:var(--mut);min-height:18px}
-  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
-  .chip{border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
-  .chip.on{border-color:var(--acc);background:#2a1416}
-  main{display:grid;gap:12px;padding-bottom:30px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px}
-  .top{display:flex;gap:12px;align-items:flex-start}
-  .num{width:34px;height:34px;border-radius:9px;background:#2a1416;color:var(--acc);display:grid;place-items:center;font-weight:700;flex:none}
-  .meta{flex:1;min-width:0}
-  .vt{font-weight:600;font-size:16px;line-height:1.3;word-break:break-word}
-  .ch{font-size:14px;margin-top:2px}
-  .ch a{color:#9cc3ff;text-decoration:none}
-  .small{color:var(--mut);font-size:12px;margin-top:3px;word-break:break-all}
-  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
-  .p-pending{background:#3a2e12;color:var(--warn)}
-  .p-ready{background:#12261d;color:var(--ok)}
-  .p-failed{background:#2a1416;color:var(--acc)}
-  a.watch{background:var(--acc);color:#fff;text-decoration:none;padding:7px 12px;border-radius:9px;font-size:13px;font-weight:600;flex:none}
-  label{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;display:grid;gap:3px}
-  input,textarea.n{width:100%;background:#11141a;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px;font:inherit}
-  textarea.n{min-height:50px;resize:vertical}
-  .row{display:flex;gap:6px}
-  .row button{flex:1;border:1px solid var(--line);background:#11141a;color:var(--mut);border-radius:8px;padding:7px;font-size:12px;cursor:pointer}
-  .row button.on{color:#fff;border-color:var(--ok);background:#12261d}
-  .row button.del{flex:none;padding:7px 10px}
-  .foot{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:12px}
-  .btn{border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:9px;padding:9px 14px;cursor:pointer;font-size:13px}
-  #out{width:100%;min-height:140px;display:none;background:#11141a;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px}
-  .hint{color:var(--mut);font-size:12px;padding-bottom:30px}
-  .empty{color:var(--mut);text-align:center;padding:30px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Similar Niche Channels | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%AD</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .dd-panel{display:none}.dd:hover>.dd-panel,.dd:focus-within>.dd-panel,.dd.open>.dd-panel{display:block}
+    .chip.on{border-color:#6366f1;background:rgba(99,102,241,.2);color:#fff}
+    .row button.on{color:#fff;border-color:#10b981;background:rgba(16,185,129,.15)}
+  </style>
 </head>
-<body>
-<div class="wrap">
-<header>
-  <h1>🔭 Similar Niche Channels</h1>
-  <div class="sub">Paste YouTube links (one or many). Title and channel are gathered automatically.</div>
-  <div class="add">
-    <textarea id="links" placeholder="https://youtu.be/…"></textarea>
-    <button id="addBtn">Add</button>
-  </div>
-  <div id="msg"></div>
-  <div class="bar" id="filters"></div>
-</header>
-<main id="list"><div class="empty">Loading…</div></main>
-<div class="foot">
-  <button class="btn" id="exp">Copy as Markdown</button>
-  <textarea id="out" readonly></textarea>
-</div>
-<p class="hint">New links show as "fetching…" until Claude fills them in — say "process the niche channels page" in chat. Data is saved to this page, so it's the same on your phone and laptop.</p>
-</div>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
+
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="hidden sm:flex w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-violet-500 items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
+          R
+        </span>
+        <div>
+          <span class="font-bold text-base sm:text-lg tracking-tight whitespace-nowrap">@RifatErdemSahin</span>
+          <span class="hidden sm:inline text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 ml-2">Content Engine</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-0.5 text-xs font-medium text-slate-300" aria-label="Sections">
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🗓️ Plan <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="index.html#calendar" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🗓️ Calendar</a>
+          <a href="index.html#production" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎥 Setups</a>
+          <a href="calendar.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📅 Calendar view</a>
+          <a href="blocked.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">⛔ Blocked days</a>
+          <a href="reverse-response.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔁 Reverse response</a>
+          <a href="core-message.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧭 Core message</a>
+          <a href="supply-demand.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">⚖️ Supply & demand</a>
+          <a href="next-video.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🥇 My next video</a>
+          <a href="videos.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎬 Planned videos</a>
+          <a href="value.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💎 Value check</a>
+          <a href="on-track.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧭 On track?</a>
+          <a href="channels.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📡 Channels</a>
+          <a href="setup-api-key.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔑 Add API key</a>
+          </div></div>
+        </div>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">📈 Results <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="index.html#latest" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎬 Latest videos</a>
+          <a href="index.html#performance" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📈 Past stats</a>
+          <a href="analytics.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📊 Analytics</a>
+          </div></div>
+        </div>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">📑 Reports <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="week.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📅 Weekly Direction Report</a>
+          <a href="performance.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🚀 Channel Performance Report</a>
+          <a href="quarterly.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧾 Quarterly Report</a>
+          <a href="what-works.html#works" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">✅ What works</a>
+          <a href="what-works.html#doesnt" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">⛔ What doesn't work</a>
+          <div class="px-3 pt-1.5 pb-1 text-[10px] text-slate-500 border-t border-slate-800 mt-1">Refreshed weekly (Mondays)</div>
+          </div></div>
+        </div>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🎯 Goals <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="index.html#okrs" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎯 OKRs</a>
+          <a href="index.html#projections" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📊 Numbers</a>
+          <a href="index.html#monetization" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💰 Money</a>
+          <a href="business.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💼 Business plan</a>
+          </div></div>
+        </div>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">🧭 Strategy <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="story.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📖 My story</a>
+          <a href="ikigai.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🌸 Ikigai</a>
+          <a href="passion.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔥 My passions</a>
+          <a href="personality.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧬 Personality &amp; conation</a>
+          <a href="interests.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧠 What I care about</a>
+          <a href="mentors.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧑‍🏫 My mentors</a>
+          <a href="research.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📜 Research: AGI &amp; meaning</a>
+          <a href="inspiration.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💡 Inspiration</a>
+          <a href="creators.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🌟 Creators I admire</a>
+          <a href="applaud.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">👏 YouTubers I applaud</a>
+          <a href="similar-channels.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔭 Similar niche channels</a>
+          <a href="formats.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🎨 Formats I like</a>
+          <a href="index.html#rationale" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">💡 Rationale</a>
+          <a href="index.html#sanity" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap text-amber-400">🛡️ Reality check</a>
+          </div></div>
+        </div>
+        <div class="dd relative">
+          <button type="button" class="dd-btn px-2.5 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false">📚 Docs <i class="fas fa-chevron-down text-[9px] opacity-60"></i></button>
+          <div class="dd-panel absolute left-0 top-full pt-1 z-50"><div class="min-w-[11rem] rounded-lg bg-slate-900 border border-slate-700 shadow-xl p-1.5">
+          <a href="key-vault.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🔐 Key Vault</a>
+          <a href="requirements.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">📋 Requirements</a>
+          <a href="expectations.html" class="block px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-indigo-300 whitespace-nowrap">🧭 Expectations</a>
+          </div></div>
+        </div>
+      </nav>
+      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
+        <button id="menu-search-btn" type="button" class="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs text-slate-300 bg-slate-900/90 hover:bg-slate-800 hover:text-white border border-slate-700/80 rounded-lg transition shadow-sm group" aria-label="Search content">
+          <i class="fas fa-search text-indigo-400 group-hover:text-indigo-300 transition-colors text-xs"></i>
+          <span class="hidden sm:inline font-medium">Search...</span>
+          <kbd class="hidden md:inline-flex items-center text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700 font-mono">⌘K</kbd>
+        </button>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="text-xs px-2 sm:px-3 py-1.5 rounded-md bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 flex items-center gap-1.5 transition">
+          <i class="fab fa-youtube"></i><span class="hidden sm:inline">YouTube</span>
+        </a>
+        <a href="https://github.com/rifaterdemsahin/content-calendar" target="_blank" class="text-xs px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hidden sm:flex items-center gap-1.5 transition">
+          <i class="fab fa-github"></i><span class="hidden sm:inline">Repo</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-6">
+    <section>
+      <h2 class="text-xs font-bold text-indigo-400 uppercase tracking-widest">🌟 Learn from others</h2>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mt-2">🔭 Similar Niche Channels</h1>
+      <p class="text-slate-400 mt-3">Paste YouTube links (one or many). Title and channel are gathered automatically.</p>
+      <div class="flex gap-2 mt-4">
+        <textarea id="links" placeholder="https://youtu.be/…" class="flex-1 min-h-[46px] resize-y bg-slate-900 border border-slate-700 rounded-lg p-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500"></textarea>
+        <button id="addBtn" class="px-5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition disabled:opacity-50">➕ Add</button>
+      </div>
+      <div id="msg" class="text-xs text-slate-400 min-h-[18px] mt-2"></div>
+      <div class="flex flex-wrap gap-2 mt-2" id="filters"></div>
+    </section>
+
+    <section id="list" class="grid gap-4"><div class="text-slate-400 text-center py-8">⏳ Loading…</div></section>
+
+    <section class="flex flex-wrap gap-2">
+      <button class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-sm transition" id="exp">📋 Copy as Markdown</button>
+      <textarea id="out" readonly class="w-full min-h-[140px] hidden bg-slate-900 text-slate-100 border border-slate-700 rounded-lg p-3 text-xs"></textarea>
+    </section>
+    <p class="text-xs text-slate-500">💡 New links show as "fetching…" until Claude fills them in — say "process the niche channels page" in chat. Data is saved to this page, so it's the same on your phone and laptop.</p>
+  </main>
 
 <script>
 const STATUSES = ["To watch","Reviewed","Borrowing"];
@@ -122,7 +194,7 @@ function patch(id, field, value){
 function renderFilters(){
   $("filters").innerHTML = ["All","Pending",...STATUSES].map(s => {
     const n = s==="All" ? rows.length : s==="Pending" ? rows.filter(r=>r.status!=="ready").length : rows.filter(r=>r.review===s).length;
-    return `<button class="chip ${s===filter?'on':''}" data-f="${s}">${s} · ${n}</button>`;
+    return `<button class="chip border border-slate-700 bg-slate-900 hover:bg-slate-800 text-slate-200 rounded-full px-3 py-1.5 text-xs transition ${s===filter?'on':''}" data-f="${s}">${s} · ${n}</button>`;
   }).join("");
   $("filters").querySelectorAll("button").forEach(b => b.onclick = () => { filter = b.dataset.f; render(); });
 }
@@ -131,23 +203,23 @@ function render(){
   renderFilters();
   const shown = rows.filter(r => filter==="All" || (filter==="Pending" ? r.status!=="ready" : r.review===filter));
   if (!loaded) return;
-  if (!shown.length) { $("list").innerHTML = `<div class="empty">${rows.length ? "Nothing in this filter." : "No links yet — paste one above."}</div>`; return; }
+  if (!shown.length) { $("list").innerHTML = `<div class="text-slate-400 text-center py-8">${rows.length ? "Nothing in this filter." : "No links yet — paste one above."}</div>`; return; }
   $("list").innerHTML = shown.map(r => {
     const n = rows.indexOf(r) + 1;
-    const pill = r.status==="ready" ? "" : `<span class="pill p-${esc(r.status)}">${r.status==="failed"?"couldn't fetch":"fetching…"}</span>`;
-    return `<section class="card" data-id="${esc(r.id)}">
-      <div class="top">
-        <div class="num">${n}</div>
-        <div class="meta">
-          <div class="vt">${esc(r.title || "Untitled (waiting for metadata)")}${pill}</div>
-          <div class="ch">${r.channel ? (r.channelUrl ? `<a href="${esc(r.channelUrl)}" target="_blank" rel="noopener">${esc(r.channel)}</a>` : esc(r.channel)) : "<span class='small'>Channel unknown</span>"}</div>
-          <div class="small">${esc(r.kind)} · ${esc(r.videoId)}${r.startAt?` · starts ${esc(r.startAt)}`:""}</div>
+    const pill = r.status==="ready" ? "" : `<span class="ml-2 align-middle text-[11px] px-2 py-0.5 rounded-full ${r.status==='failed'?'bg-red-500/20 text-red-300':'bg-amber-500/20 text-amber-300'}">${r.status==="failed"?"couldn't fetch":"fetching…"}</span>`;
+    return `<section class="card rounded-2xl border border-slate-800 bg-slate-900 p-4 grid gap-3" data-id="${esc(r.id)}">
+      <div class="top flex gap-3 items-start">
+        <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-300 grid place-items-center font-bold shrink-0">${n}</div>
+        <div class="flex-1 min-w-0">
+          <div class="font-semibold text-white leading-snug break-words">${esc(r.title || "Untitled (waiting for metadata)")}${pill}</div>
+          <div class="text-sm mt-0.5">${r.channel ? (r.channelUrl ? `<a class="text-indigo-300 hover:text-indigo-200" href="${esc(r.channelUrl)}" target="_blank" rel="noopener">${esc(r.channel)}</a>` : esc(r.channel)) : "<span class='text-xs text-slate-500'>Channel unknown</span>"}</div>
+          <div class="text-xs text-slate-500 mt-1 break-all">${esc(r.kind)} · ${esc(r.videoId)}${r.startAt?` · starts ${esc(r.startAt)}`:""}</div>
         </div>
-        <a class="watch" href="${esc(r.url)}" target="_blank" rel="noopener">Watch ▶</a>
+        <a class="shrink-0 text-xs font-semibold px-3 py-2 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 transition" href="${esc(r.url)}" target="_blank" rel="noopener">Watch ▶</a>
       </div>
-      <label>Niche / topic<input data-k="niche" value="${esc(r.niche)}" placeholder="e.g. AI agents, local LLMs"></label>
-      <label>What to borrow<textarea class="n" data-k="notes" placeholder="Hook, thumbnail, structure, series idea…">${esc(r.notes)}</textarea></label>
-      <div class="row">${STATUSES.map(s=>`<button data-s="${s}" class="${s===r.review?'on':''}">${s}</button>`).join("")}<button class="del" title="Remove">🗑</button></div>
+      <label class="grid gap-1 text-[11px] uppercase tracking-wider text-slate-500">Niche / topic<input class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-sm normal-case tracking-normal text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500" data-k="niche" value="${esc(r.niche)}" placeholder="e.g. AI agents, local LLMs"></label>
+      <label class="grid gap-1 text-[11px] uppercase tracking-wider text-slate-500">What to borrow<textarea class="w-full min-h-[50px] resize-y bg-slate-950 border border-slate-700 rounded-lg p-2 text-sm normal-case tracking-normal text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500" data-k="notes" placeholder="Hook, thumbnail, structure, series idea…">${esc(r.notes)}</textarea></label>
+      <div class="row flex flex-wrap gap-2">${STATUSES.map(s=>`<button data-s="${s}" class="flex-1 border border-slate-700 bg-slate-950 text-slate-400 hover:text-white rounded-lg py-2 px-2 text-xs transition ${s===r.review?'on':''}">${s}</button>`).join("")}<button class="del border border-slate-700 bg-slate-950 text-slate-400 hover:text-red-300 rounded-lg py-2 px-3 text-xs transition" title="Remove">🗑</button></div>
     </section>`;
   }).join("");
   $("list").querySelectorAll(".card").forEach(card => {
@@ -173,7 +245,7 @@ $("exp").onclick = async () => {
 
 (async () => {
   try { db = await window.claude?.use?.("db"); } catch(e) { db = null; }
-  if (!db) { loaded = true; $("list").innerHTML = `<div class="empty">Open this page on claude.ai while signed in to load and save links.</div>`; return; }
+  if (!db) { loaded = true; $("list").innerHTML = `<div class="text-slate-400 text-center py-8">Open this page on claude.ai while signed in to load and save links.</div>`; return; }
   const t = setTimeout(() => { if (!loaded) msg("Still connecting — data may be out of date."); }, 10000);
   db.collection("videos").orderBy("addedAt").onSnapshot(snap => {
     if (!snap.metadata.fromCache) { clearTimeout(t); msg($("msg").textContent.startsWith("Still") ? "" : $("msg").textContent); }
@@ -184,12 +256,25 @@ $("exp").onclick = async () => {
     render();
   }, e => { clearTimeout(t); loaded = true; msg("Couldn't load data (" + e.code + ")."); render(); });
 })();
+
+// Dropdown nav: hover on desktop, click/tap to toggle, Esc or outside click to close.
+(() => {
+  const dds = [...document.querySelectorAll('.dd')];
+  const closeAll = (except) => dds.forEach((d) => { if (d !== except) { d.classList.remove('open'); d.querySelector('.dd-btn').setAttribute('aria-expanded', 'false'); } });
+  dds.forEach((d) => d.querySelector('.dd-btn').addEventListener('click', (e) => {
+    e.stopPropagation(); closeAll(d); const open = d.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', open);
+  }));
+  document.addEventListener('click', () => closeAll());
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && closeAll());
+})();
 </script>
 <script src="assets/cc-widget.js" data-api="/api"></script>
 <script src="assets/cc-notifications.js"></script>
 <script src="assets/cc-guide.js"></script>
 <script src="assets/cc-diagram.js"></script>
 <script src="assets/cc-pagenav.js"></script>
+<script src="assets/cc-search.js"></script>
+<script src="assets/cc-mobile-nav.js"></script>
 <script src="assets/cc-footer.js"></script>
 </body>
 </html>
