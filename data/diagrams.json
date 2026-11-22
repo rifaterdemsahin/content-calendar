@@ -917,6 +917,27 @@
         }
       ],
       "loop": "Judge it at 7 days, then pick again"
+    },
+    "similar-channels.html": {
+      "title": "🔭 From link to idea",
+      "steps": [
+        {
+          "e": "🔗",
+          "t": "Paste links"
+        },
+        {
+          "e": "👀",
+          "t": "Watch"
+        },
+        {
+          "e": "✍️",
+          "t": "Note what to borrow"
+        },
+        {
+          "e": "🎬",
+          "t": "Ship your version"
+        }
+      ]
     }
   }
 }

@@ -39,6 +39,7 @@
     { title: '💼 Business Plan', category: 'Page', desc: 'Students free, professionals $49/month, businesses managed service on the Delivery Pilot bot product; flywheel and scenario', url: 'business.html', tags: ['business', 'plan', 'pricing', 'students', 'professionals', 'managed service', 'bots', 'revenue', 'mrr'] },
     { title: '🌟 Creators I Admire', category: 'Page', desc: 'Nate Herk, Nate B Jones, Tina Huang, NetworkChuck, Alex Finn: their styles on a style map', url: 'creators.html', tags: ['creators', 'nate herk', 'nate b jones', 'tina huang', 'networkchuck', 'alex finn', 'style', 'youtube'] },
     { title: '👏 YouTubers I Applaud', category: 'Page', desc: 'Sabine Hossenfelder and Dr. Todd Grande: high value, low production; value vs production quadrant and production rules', url: 'applaud.html', tags: ['applaud', 'sabine hossenfelder', 'todd grande', 'dr grande', 'low production', 'high value', 'talking head', 'production'] },
+    { title: '🔭 Similar Niche Channels', category: 'Page', desc: 'Paste YouTube links of similar channels, track what to watch and what to borrow', url: 'similar-channels.html', tags: ['similar', 'niche', 'channels', 'competitors', 'youtube', 'borrow', 'links'] },
     { title: '💎 Value Check', category: 'Page', desc: 'Is there genuine value in every video? Five-question score, audience, proof and rationale per video; editable', url: 'value.html', tags: ['value', 'rationale', 'audience', 'score', 'videos', 'quality', 'why'] },
 
     // Calendar Content & Video Blueprints (direct item targeting with rationale)
