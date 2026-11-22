@@ -17,6 +17,19 @@
   bar.setAttribute('role', 'contentinfo');
   bar.setAttribute('style', 'position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;font:500 11.5px system-ui,sans-serif;color:#94a3b8;background:rgba(2,6,23,.9);border-top:1px solid #1e293b;padding:5px 10px;backdrop-filter:blur(6px)');
   bar.textContent = '🚀 Last deployed: loading…';
+  // Social links, moved here from the page headers: YouTube channel and the GitHub repo.
+  const logo = (href, icon, label, color) => {
+    const a = document.createElement('a');
+    a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.title = label; a.setAttribute('aria-label', label);
+    a.setAttribute('style', `color:${color};font-size:15px;line-height:1;text-decoration:none;padding:0 4px`);
+    const i = document.createElement('i'); i.className = icon; a.append(i);
+    return a;
+  };
+  const social = document.createElement('span');
+  social.setAttribute('style', 'display:inline-flex;align-items:center;gap:8px;margin-left:6px;padding-left:10px;border-left:1px solid #1e293b');
+  social.append(logo('https://www.youtube.com/@RifatErdemSahin', 'fab fa-youtube', 'YouTube channel', '#f87171'),
+    logo(REPO, 'fab fa-github', 'GitHub repo', '#e2e8f0'));
+  bar.append(social);
   document.body.append(bar);
   document.body.style.paddingBottom = '34px'; // keep page content clear of the bar
 
@@ -24,7 +37,7 @@
   fetch('data/deploy.json', { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : null))
     .then((d) => {
-      if (!d?.deployedAt) { bar.textContent = '🚀 Last deployed: unknown'; return; }
+      if (!d?.deployedAt) { bar.textContent = '🚀 Last deployed: unknown'; bar.append(social); return; }
       const when = part(`🚀 Last deployed ${fmt(d.deployedAt)}`, d.deployedAt);
       const rel = part(`⏱️ ${ago(d.deployedAt)}`);
       bar.replaceChildren(when, part('·'), rel);
@@ -35,7 +48,8 @@
         a.setAttribute('style', 'color:#a5b4fc;text-decoration:none;font-family:ui-monospace,monospace');
         bar.append(part('·'), a);
       }
+      bar.append(social);
       setInterval(() => { rel.textContent = `⏱️ ${ago(d.deployedAt)}`; }, 30000);
     })
-    .catch(() => { bar.textContent = '🚀 Last deployed: unknown'; });
+    .catch(() => { bar.textContent = '🚀 Last deployed: unknown'; bar.append(social); });
 })();
