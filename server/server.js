@@ -11,7 +11,7 @@ const PUBLIC_URL = (env.PUBLIC_URL || '').replace(/\/$/, '');
 const AUTH = `https://login.microsoftonline.com/${env.TENANT_ID}/oauth2/v2.0`;
 const REDIRECT = `${PUBLIC_URL}/auth/callback`;
 const UPSTREAM = (env.API_UPSTREAM || '').replace(/\/$/, '');
-const API_ALLOWED = /^\/api\/(notes(\/[0-9a-f-]{36})?|export|chat|jobs\/[0-9a-f-]{36}|content\/[a-z0-9-]{1,80}|stats|job-status)$/;
+const API_ALLOWED = /^\/api\/(notes(\/[0-9a-f-]{36})?|favorites|export|chat|jobs\/[0-9a-f-]{36}|content\/[a-z0-9-]{1,80}|stats|job-status)$/;
 const BLOCKED = /^\/(api|server|\.git|\.github|node_modules|fly\.toml|Dockerfile)(\/|$)|\/\./;
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
   '.md': 'text/markdown; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.ico': 'image/x-icon', '.txt': 'text/plain' };

@@ -806,6 +806,12 @@
     {
       "date": "2026-11-22",
       "icon": "⭐",
+      "text": "Favorites: ☆ on every page and a ⭐ Favorites menu at the top, saved to Azure",
+      "href": "index.html"
+    },
+    {
+      "date": "2026-11-22",
+      "icon": "⭐",
       "text": "Early stars: small AI channels with videos at 5× views per sub, plus a scan to find more",
       "href": "early-stars.html"
     },
@@ -843,12 +849,6 @@
       "date": "2026-11-21",
       "icon": "🚀",
       "text": "Footer shows the last deploy, how long ago, and the commit",
-      "href": "index.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "🌅",
-      "text": "Chat runs in a Fly.io Sprite with retries, 🎤 voice, and state kept across refreshes",
       "href": "index.html"
     }
   ]
