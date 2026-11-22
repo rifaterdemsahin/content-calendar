@@ -150,6 +150,11 @@
       "title": "6. 🗓️ What & when: plan",
       "pages": [
         {
+          "url": "current-video.html",
+          "title": "🎥 Current video",
+          "why": "The video in progress right now, with its to-do list."
+        },
+        {
           "url": "next-video.html",
           "title": "🥇 My next video",
           "why": "What to make next, and why, from all the data."
@@ -840,9 +845,25 @@
       "reverse-marketing.html",
       "what-works.html",
       "The worked example is pillar 2: data-backed career takes"
+    ],
+    [
+      "current-video.html",
+      "next-video.html",
+      "What I'm making now, and what comes after"
+    ],
+    [
+      "current-video.html",
+      "ai-course-sellers.html",
+      "The current video is compared with course sellers' offers"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-22",
+      "icon": "🎥",
+      "text": "Current video page: the video in progress, with its offer and to-do list",
+      "href": "current-video.html"
+    },
     {
       "date": "2026-11-22",
       "icon": "🪃",
@@ -884,12 +905,6 @@
       "icon": "📘",
       "text": "AGENTS.md rewritten, and the Guide regrouped into 8 steps with What's new",
       "href": "index.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "📱",
-      "text": "Mentors: Eric Wroolie (Overpass apps, honest about AI coding)",
-      "href": "mentors.html"
     }
   ]
 }

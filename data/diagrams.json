@@ -1003,6 +1003,31 @@
           "d": "Half the time, half the cost"
         }
       ]
+    },
+    "current-video.html": {
+      "title": "🎥 Current video, start to finish",
+      "steps": [
+        {
+          "e": "🎬",
+          "t": "Film",
+          "d": "Out-of-the-box version"
+        },
+        {
+          "e": "💳",
+          "t": "Stripe link",
+          "d": "Priced near cost"
+        },
+        {
+          "e": "🧰",
+          "t": "Open source",
+          "d": "Repo and README"
+        },
+        {
+          "e": "🏫",
+          "t": "Skool",
+          "d": "Source code and support"
+        }
+      ]
     }
   }
 }
