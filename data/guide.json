@@ -105,6 +105,11 @@
           "why": "Paste links to similar YouTube channels and note what to borrow."
         },
         {
+          "url": "early-stars.html",
+          "title": "⭐ Early stars",
+          "why": "Small AI channels whose video got 5× more views than subs, and a scan to find more."
+        },
+        {
           "url": "formats.html",
           "title": "🎨 Formats I like",
           "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
@@ -780,9 +785,30 @@
       "similar-channels.html",
       "creators.html",
       "Add similar channels to the creators you admire"
+    ],
+    [
+      "early-stars.html",
+      "similar-channels.html",
+      "Early stars are the best videos to find on similar channels"
+    ],
+    [
+      "early-stars.html",
+      "what-works.html",
+      "Check a found idea against the two pillars that work"
+    ],
+    [
+      "early-stars.html",
+      "next-video.html",
+      "Turn an early-star topic into the next video"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-22",
+      "icon": "⭐",
+      "text": "Early stars: small AI channels with videos at 5× views per sub, plus a scan to find more",
+      "href": "early-stars.html"
+    },
     {
       "date": "2026-11-22",
       "icon": "🔭",
@@ -824,12 +850,6 @@
       "icon": "🌅",
       "text": "Chat runs in a Fly.io Sprite with retries, 🎤 voice, and state kept across refreshes",
       "href": "index.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "💼",
-      "text": "Business plan: students free, professionals $49/mo, businesses get a managed bot service",
-      "href": "business.html"
     }
   ]
 }

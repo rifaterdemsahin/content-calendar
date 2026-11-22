@@ -19,6 +19,8 @@ if [ -n "${YOUTUBE_API_KEY:-}" ]; then
   python3 scripts/pull_youtube_stats.py
 fi
 python3 scripts/studio_stats.py
+# Early stars: small AI channels with outlier videos (public pages, no key); never fail the weekly run.
+python3 scripts/scan_early_stars.py || true
 python3 scripts/build_guide.py
 
 python3 scripts/validate-dates.py >/dev/null

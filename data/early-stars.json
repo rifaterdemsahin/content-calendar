@@ -1,0 +1,46 @@
+{
+  "updated": "2026-11-22",
+  "lastScan": "2026-11-22",
+  "lastScanLooked": 60,
+  "criteria": {
+    "starRatio": 5,
+    "minRatio": 3,
+    "maxSubs": 50000,
+    "minViews": 2000
+  },
+  "queries": [
+    "claude code tutorial",
+    "AI agents tutorial",
+    "AI coding workflow",
+    "build with AI step by step",
+    "n8n AI automation",
+    "AI skills claude",
+    "cursor vs claude code",
+    "local LLM setup",
+    "AI career software engineer",
+    "I built this with claude code",
+    "how I use AI as a developer",
+    "claude code skills",
+    "MCP server tutorial",
+    "AI agent from scratch",
+    "vibe coding project walkthrough",
+    "AI workflow I use every day",
+    "cheap AI model coding"
+  ],
+  "videos": [
+    {
+      "id": "KnqTiAXUH7M",
+      "title": "How to reverse engineer any editing style (Turned it into a skill)",
+      "channel": "Taha El Harti | Making AI Useful",
+      "channelUrl": "https://www.youtube.com/@Tahaelharti_ai",
+      "subs": 4050,
+      "views": 22125,
+      "published": "2026-11-06",
+      "status": "To watch",
+      "idea": "✍️ add your angle: what is the same idea, made yours?",
+      "found": "2026-11-22",
+      "checked": "2026-11-22",
+      "via": "manual"
+    }
+  ]
+}
