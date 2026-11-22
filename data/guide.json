@@ -110,6 +110,11 @@
           "why": "Small AI channels whose video got 5× more views than subs, and a scan to find more."
         },
         {
+          "url": "ai-course-sellers.html",
+          "title": "🎒 AI course sellers",
+          "why": "How AI course sellers pitch, price and prove results, with a sample sales page."
+        },
+        {
           "url": "formats.html",
           "title": "🎨 Formats I like",
           "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
@@ -800,9 +805,25 @@
       "early-stars.html",
       "next-video.html",
       "Turn an early-star topic into the next video"
+    ],
+    [
+      "ai-course-sellers.html",
+      "similar-channels.html",
+      "Course sellers are another set of competitors to study"
+    ],
+    [
+      "ai-course-sellers.html",
+      "business.html",
+      "Compare their offers and prices with the Delivery Pilot business plan"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-22",
+      "icon": "🎒",
+      "text": "AI course sellers: a page to study how they pitch and price, with a sample course",
+      "href": "ai-course-sellers.html"
+    },
     {
       "date": "2026-11-22",
       "icon": "⭐",
