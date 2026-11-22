@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Similar Niche Channels</title>
+<style>
+  :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--txt:#e8eaf0;--mut:#8b93a7;--acc:#ff3b3b;--ok:#3ecf8e;--warn:#f5b041}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+  .wrap{max-width:900px;margin:auto;padding:0 16px}
+  header{padding:22px 0 6px}
+  h1{margin:0 0 4px;font-size:24px}
+  .sub{color:var(--mut);font-size:13px}
+  .add{display:flex;gap:8px;margin:14px 0 6px}
+  .add textarea{flex:1;min-height:46px;resize:vertical;background:#11141a;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:10px;font:inherit}
+  .add button{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:0 16px;font-weight:600;font-size:14px;cursor:pointer}
+  .add button:disabled{opacity:.5}
+  #msg{font-size:12px;color:var(--mut);min-height:18px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+  .chip.on{border-color:var(--acc);background:#2a1416}
+  main{display:grid;gap:12px;padding-bottom:30px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px}
+  .top{display:flex;gap:12px;align-items:flex-start}
+  .num{width:34px;height:34px;border-radius:9px;background:#2a1416;color:var(--acc);display:grid;place-items:center;font-weight:700;flex:none}
+  .meta{flex:1;min-width:0}
+  .vt{font-weight:600;font-size:16px;line-height:1.3;word-break:break-word}
+  .ch{font-size:14px;margin-top:2px}
+  .ch a{color:#9cc3ff;text-decoration:none}
+  .small{color:var(--mut);font-size:12px;margin-top:3px;word-break:break-all}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .p-pending{background:#3a2e12;color:var(--warn)}
+  .p-ready{background:#12261d;color:var(--ok)}
+  .p-failed{background:#2a1416;color:var(--acc)}
+  a.watch{background:var(--acc);color:#fff;text-decoration:none;padding:7px 12px;border-radius:9px;font-size:13px;font-weight:600;flex:none}
+  label{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;display:grid;gap:3px}
+  input,textarea.n{width:100%;background:#11141a;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px;font:inherit}
+  textarea.n{min-height:50px;resize:vertical}
+  .row{display:flex;gap:6px}
+  .row button{flex:1;border:1px solid var(--line);background:#11141a;color:var(--mut);border-radius:8px;padding:7px;font-size:12px;cursor:pointer}
+  .row button.on{color:#fff;border-color:var(--ok);background:#12261d}
+  .row button.del{flex:none;padding:7px 10px}
+  .foot{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:12px}
+  .btn{border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:9px;padding:9px 14px;cursor:pointer;font-size:13px}
+  #out{width:100%;min-height:140px;display:none;background:#11141a;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px}
+  .hint{color:var(--mut);font-size:12px;padding-bottom:30px}
+  .empty{color:var(--mut);text-align:center;padding:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Similar Niche Channels</h1>
+  <div class="sub">Paste YouTube links (one or many). Title and channel are gathered automatically.</div>
+  <div class="add">
+    <textarea id="links" placeholder="https://youtu.be/…"></textarea>
+    <button id="addBtn">Add</button>
+  </div>
+  <div id="msg"></div>
+  <div class="bar" id="filters"></div>
+</header>
+<main id="list"><div class="empty">Loading…</div></main>
+<div class="foot">
+  <button class="btn" id="exp">Copy as Markdown</button>
+  <textarea id="out" readonly></textarea>
+</div>
+<p class="hint">New links show as "fetching…" until Claude fills them in — say "process the niche channels page" in chat. Data is saved to this page, so it's the same on your phone and laptop.</p>
+</div>
+
+<script>
+const STATUSES = ["To watch","Reviewed","Borrowing"];
+let db = null, rows = [], filter = "All", loaded = false;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const msg = t => { $("msg").textContent = t || ""; };
+
+function parse(raw){
+  let u; try { u = new URL(raw.trim()); } catch(e) { return null; }
+  const h = u.hostname.replace(/^www\.|^m\./,"");
+  let id = null, kind = "video";
+  if (h === "youtu.be") id = u.pathname.slice(1, 12);
+  else if (h.endsWith("youtube.com")) {
+    if (u.searchParams.get("v")) id = u.searchParams.get("v");
+    else { const m = u.pathname.match(/\/(shorts|live|embed)\/([\w-]{11})/); if (m) { id = m[2]; kind = m[1]==="shorts" ? "short" : m[1]==="live" ? "live" : "video"; } }
+  }
+  if (!id || !/^[\w-]{11}$/.test(id)) return null;
+  const t = u.searchParams.get("t");
+  return { videoId:id, kind, startAt: t || "", url: `https://www.youtube.com/watch?v=${id}` };
+}
+
+async function addLinks(){
+  const lines = $("links").value.split(/[\s,]+/).filter(Boolean);
+  if (!lines.length) return;
+  if (!db) { msg("Saving isn't available in this view."); return; }
+  $("addBtn").disabled = true;
+  let added = 0, dup = 0, bad = 0;
+  for (const l of lines) {
+    const p = parse(l);
+    if (!p) { bad++; continue; }
+    if (rows.some(r => r.id === p.videoId)) { dup++; continue; }
+    try {
+      await db.collection("videos").doc(p.videoId).set({
+        ...p, status:"pending", title:"", channel:"", channelUrl:"", niche:"", subs:"", notes:"",
+        review:"To watch", addedAt: new Date().toISOString()
+      });
+      added++;
+    } catch(e) { msg("Couldn't save: " + (e.message || e.code)); }
+  }
+  $("addBtn").disabled = false;
+  $("links").value = "";
+  msg(`${added} added${dup?` · ${dup} already here`:""}${bad?` · ${bad} not a YouTube video link`:""}${added?" · metadata pending":""}`);
+}
+
+const timers = {};
+function patch(id, field, value){
+  clearTimeout(timers[id+field]);
+  timers[id+field] = setTimeout(() => { db && db.collection("videos").doc(id).update({[field]: value}).catch(()=>{}); }, 600);
+}
+
+function renderFilters(){
+  $("filters").innerHTML = ["All","Pending",...STATUSES].map(s => {
+    const n = s==="All" ? rows.length : s==="Pending" ? rows.filter(r=>r.status!=="ready").length : rows.filter(r=>r.review===s).length;
+    return `<button class="chip ${s===filter?'on':''}" data-f="${s}">${s} · ${n}</button>`;
+  }).join("");
+  $("filters").querySelectorAll("button").forEach(b => b.onclick = () => { filter = b.dataset.f; render(); });
+}
+
+function render(){
+  renderFilters();
+  const shown = rows.filter(r => filter==="All" || (filter==="Pending" ? r.status!=="ready" : r.review===filter));
+  if (!loaded) return;
+  if (!shown.length) { $("list").innerHTML = `<div class="empty">${rows.length ? "Nothing in this filter." : "No links yet — paste one above."}</div>`; return; }
+  $("list").innerHTML = shown.map(r => {
+    const n = rows.indexOf(r) + 1;
+    const pill = r.status==="ready" ? "" : `<span class="pill p-${esc(r.status)}">${r.status==="failed"?"couldn't fetch":"fetching…"}</span>`;
+    return `<section class="card" data-id="${esc(r.id)}">
+      <div class="top">
+        <div class="num">${n}</div>
+        <div class="meta">
+          <div class="vt">${esc(r.title || "Untitled (waiting for metadata)")}${pill}</div>
+          <div class="ch">${r.channel ? (r.channelUrl ? `<a href="${esc(r.channelUrl)}" target="_blank" rel="noopener">${esc(r.channel)}</a>` : esc(r.channel)) : "<span class='small'>Channel unknown</span>"}</div>
+          <div class="small">${esc(r.kind)} · ${esc(r.videoId)}${r.startAt?` · starts ${esc(r.startAt)}`:""}</div>
+        </div>
+        <a class="watch" href="${esc(r.url)}" target="_blank" rel="noopener">Watch ▶</a>
+      </div>
+      <label>Niche / topic<input data-k="niche" value="${esc(r.niche)}" placeholder="e.g. AI agents, local LLMs"></label>
+      <label>What to borrow<textarea class="n" data-k="notes" placeholder="Hook, thumbnail, structure, series idea…">${esc(r.notes)}</textarea></label>
+      <div class="row">${STATUSES.map(s=>`<button data-s="${s}" class="${s===r.review?'on':''}">${s}</button>`).join("")}<button class="del" title="Remove">🗑</button></div>
+    </section>`;
+  }).join("");
+  $("list").querySelectorAll(".card").forEach(card => {
+    const id = card.dataset.id;
+    card.querySelectorAll("[data-k]").forEach(el => el.addEventListener("input", () => patch(id, el.dataset.k, el.value)));
+    card.querySelectorAll("[data-s]").forEach(b => b.onclick = () => db && db.collection("videos").doc(id).update({review: b.dataset.s}));
+    const del = card.querySelector(".del");
+    del.onclick = () => {
+      if (del.dataset.armed) { db && db.collection("videos").doc(id).delete(); }
+      else { del.dataset.armed = "1"; del.textContent = "Tap again"; setTimeout(()=>{ del.dataset.armed=""; del.textContent="🗑"; }, 3000); }
+    };
+  });
+}
+
+$("addBtn").onclick = addLinks;
+$("exp").onclick = async () => {
+  const md = "# Similar Niche Channels\n\n| # | Channel | Video | Niche | Status | Borrow |\n|---|---|---|---|---|---|\n" +
+    rows.map((r,i)=>`| ${i+1} | ${r.channelUrl?`[${r.channel}](${r.channelUrl})`:(r.channel||"?")} | [${(r.title||r.videoId).replace(/\|/g,"/")}](${r.url}) | ${r.niche||""} | ${r.review} | ${(r.notes||"").replace(/\n/g," ").replace(/\|/g,"/")} |`).join("\n");
+  $("out").style.display = "block"; $("out").value = md;
+  try { await navigator.clipboard.writeText(md); $("exp").textContent = "Copied ✓"; }
+  catch(e){ $("out").select(); $("exp").textContent = "Select & copy below"; }
+};
+
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch(e) { db = null; }
+  if (!db) { loaded = true; $("list").innerHTML = `<div class="empty">Open this page on claude.ai while signed in to load and save links.</div>`; return; }
+  const t = setTimeout(() => { if (!loaded) msg("Still connecting — data may be out of date."); }, 10000);
+  db.collection("videos").orderBy("addedAt").onSnapshot(snap => {
+    if (!snap.metadata.fromCache) { clearTimeout(t); msg($("msg").textContent.startsWith("Still") ? "" : $("msg").textContent); }
+    loaded = true;
+    rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const active = document.activeElement;
+    if (active && active.closest && active.closest(".card") && (active.tagName==="INPUT"||active.tagName==="TEXTAREA")) { renderFilters(); return; }
+    render();
+  }, e => { clearTimeout(t); loaded = true; msg("Couldn't load data (" + e.code + ")."); render(); });
+})();
+</script>
+</body>
+</html>
