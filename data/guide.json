@@ -78,6 +78,11 @@
           "url": "reverse-response.html",
           "title": "🔁 Reverse response",
           "why": "Why each video should exist and what to check."
+        },
+        {
+          "url": "reverse-marketing.html",
+          "title": "🪃 Reverse Marketing",
+          "why": "The three steps in one place, with the most-responded video as the worked example."
         }
       ]
     },
@@ -815,9 +820,35 @@
       "ai-course-sellers.html",
       "business.html",
       "Compare their offers and prices with the Delivery Pilot business plan"
+    ],
+    [
+      "reverse-marketing.html",
+      "reverse-response.html",
+      "The playbook behind the targets this page logs"
+    ],
+    [
+      "reverse-marketing.html",
+      "core-message.html",
+      "Every response names which core idea it carries"
+    ],
+    [
+      "reverse-marketing.html",
+      "business.html",
+      "The response video is the entry point of the flywheel"
+    ],
+    [
+      "reverse-marketing.html",
+      "what-works.html",
+      "The worked example is pillar 2: data-backed career takes"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-22",
+      "icon": "🪃",
+      "text": "Reverse marketing: the 3 steps, the most-responded video (Elon, 4 comments), and a half-time, half-cost plan",
+      "href": "reverse-marketing.html"
+    },
     {
       "date": "2026-11-22",
       "icon": "🎒",
@@ -859,18 +890,6 @@
       "icon": "📱",
       "text": "Mentors: Eric Wroolie (Overpass apps, honest about AI coding)",
       "href": "mentors.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "👏",
-      "text": "YouTubers I applaud: high value, low production",
-      "href": "applaud.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "🚀",
-      "text": "Footer shows the last deploy, how long ago, and the commit",
-      "href": "index.html"
     }
   ]
 }

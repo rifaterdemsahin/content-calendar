@@ -1,5 +1,11 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-22",
   "note": "Fast-growing YouTube videos we respond to. Add one entry per target: the video, why it is growing, and which sprint card responds to it. Leave empty until a real video is picked.",
-  "targets": []
+  "targets": [
+    {
+      "title": "Elon Says Work Is Ending. The Data Says Otherwise.",
+      "url": "https://www.youtube.com/watch?v=fJjxujMASkQ",
+      "why": "Most comments in the last 90 days: 4 comments and 348 views (uploaded 14 Sep 2026)."
+    }
+  ]
 }

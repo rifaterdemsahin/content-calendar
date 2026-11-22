@@ -978,6 +978,31 @@
         }
       ],
       "loop": "Re-check prices each season"
+    },
+    "reverse-marketing.html": {
+      "title": "🪃 Reverse marketing in three steps",
+      "steps": [
+        {
+          "e": "🔎",
+          "t": "Find",
+          "d": "Most comments in 90 days"
+        },
+        {
+          "e": "🧩",
+          "t": "Reverse-engineer",
+          "d": "Copy the format"
+        },
+        {
+          "e": "🧭",
+          "t": "Attach",
+          "d": "Core idea + flywheel"
+        },
+        {
+          "e": "⚡",
+          "t": "Improve",
+          "d": "Half the time, half the cost"
+        }
+      ]
     }
   }
 }
