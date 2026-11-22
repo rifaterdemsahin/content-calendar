@@ -938,6 +938,28 @@
           "t": "Ship your version"
         }
       ]
+    },
+    "early-stars.html": {
+      "title": "⭐ From view count to video idea",
+      "steps": [
+        {
+          "e": "🔎",
+          "t": "Scan AI topics"
+        },
+        {
+          "e": "🧮",
+          "t": "Views ÷ subs"
+        },
+        {
+          "e": "⭐",
+          "t": "Keep 5× or more"
+        },
+        {
+          "e": "✍️",
+          "t": "Make it yours"
+        }
+      ],
+      "loop": "Re-scan weekly for new stars"
     }
   }
 }
