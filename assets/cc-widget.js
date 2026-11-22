@@ -509,6 +509,16 @@
           n.append(el('button', { className: 'more', textContent: '⬇️ Show more', onclick: () => { m.expanded = true; saveChat(); paintChat(); } }));
         }
       }
+      if (!m.pending && m.text) {
+        const cp = el('button', { className: 'more', textContent: '📋 Copy', title: 'Copy this reply' });
+        cp.onclick = async () => {
+          try { await navigator.clipboard.writeText(m.text); } catch (e) {
+            const t = el('textarea', { value: m.text }); document.body.append(t); t.select(); document.execCommand('copy'); t.remove();
+          }
+          cp.textContent = '✅ Copied'; setTimeout(() => { cp.textContent = '📋 Copy'; }, 1500);
+        };
+        n.append(cp);
+      }
       if (m.pr) n.append(el('div', { style: 'margin-top:6px' }, el('a', { href: m.pr, target: '_blank', rel: 'noopener', textContent: m.merged ? '🔗 View the merged pull request →' : '🔗 View the pull request →' })));
       n.append(el('span', { className: 'when', textContent: [clock(m.started || m.at), m.page ? `📍 ${m.page}` : ''].filter(Boolean).join(' · ') }));
       return n;
@@ -561,28 +571,42 @@
       }
       if (m.pending) { m.text = '⏳ Still running. It will show here when you reopen the chat.'; m.pending = false; }
     } catch (e) { m.text = `❌ Error: ${e.message}`; m.pending = false; }
-    saveChat(); paintChat(); send.disabled = chatLog.some((x) => x.pending);
+    saveChat(); paintChat();
   }
 
-  send.onclick = async () => {
+  // Queue: messages sent while a job runs wait their turn and start one after another.
+  const running = () => chatLog.some((x) => x.pending && x.jobId);
+  async function pump() {
+    if (running()) return;
+    const bot = chatLog.find((x) => x.pending && x.queued && !x.jobId);
+    if (!bot) return;
+    bot.queued = false; bot.started = Date.now(); bot.text = '⏳ Starting: waiting for the agent';
+    saveChat(); paintChat();
+    try {
+      const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message: bot.message, page: bot.page, includeNotes: !!bot.notes }) })).json();
+      bot.jobId = id; saveChat();
+      await trackJob(bot);
+    } catch (e) { bot.text = `❌ Error: ${e.message}`; bot.pending = false; saveChat(); paintChat(); }
+    pump();
+  }
+
+  send.onclick = () => {
     const message = input.value.trim(); if (!message) return;
     input.value = '';
-    const bot = { role: 'bot', text: '⏳ Queued: waiting for the agent', pending: true, started: Date.now(), page: PAGE };
+    const waiting = chatLog.some((x) => x.pending);
+    const bot = { role: 'bot', text: waiting ? '🕒 Queued: starts after the current change finishes' : '⏳ Queued: waiting for the agent', pending: true, queued: true, message, notes: useNotes.checked, started: Date.now(), page: PAGE };
     saveUi({ draft: '' });
     chatLog.push({ role: 'user', text: message, at: Date.now(), page: PAGE }, bot);
     grow();
-    saveChat(); paintChat(); send.disabled = true;
-    try {
-      const { id } = await (await api('/chat', { method: 'POST', body: JSON.stringify({ message, page: PAGE, includeNotes: useNotes.checked }) })).json();
-      bot.jobId = id; saveChat();
-      await trackJob(bot);
-    } catch (e) { bot.text = `❌ Error: ${e.message}`; bot.pending = false; saveChat(); paintChat(); send.disabled = false; }
+    saveChat(); paintChat();
+    pump();
   };
 
-  // Resume any job that was still running before the refresh.
-  for (const m of chatLog) if (m.pending && !m.jobId) { m.text = '⚠️ Interrupted by a page refresh before it was sent. Please resend.'; m.pending = false; }
+  // Resume any job that was still running before the refresh; queued messages carry on.
+  for (const m of chatLog) if (m.pending && !m.jobId && !m.queued) { m.text = '⚠️ Interrupted by a page refresh before it was sent. Please resend.'; m.pending = false; }
   saveChat(); paintChat();
-  for (const m of chatLog) if (m.pending && m.jobId) { trackJob(m); send.disabled = true; }
+  for (const m of chatLog) if (m.pending && m.jobId) trackJob(m).then(pump);
+  pump();
 
   // Restore the panel as it was before the refresh: open, tab and size. A running job reopens the chat.
   if (chatLog.some((x) => x.pending)) saveUi({ open: true, tab: 'chat' });
