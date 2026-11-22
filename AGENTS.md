@@ -80,6 +80,8 @@ Edit the **data file**, not the HTML, whenever a page has one:
 - Sprite calls **retry** 429/502/503/504 with backoff. If the sprite never comes up, the job falls back to **Daytona**.
 - After the agent edits files, the harness commits, opens a PR, **squash-merges into `main`, deletes the branch**, and waits for the deploy. The chat shows each step with an emoji and a timer.
 - The chat agent **edits files only**: no git, gh or fly. It never touches `api/`, `server/` or `.github/` (those are changed by a person, through a reviewed commit).
+- **Always link the updates in the chat reply.** The final summary must include a link to every page you changed (e.g. `https://rifat-content-calendar.fly.dev/similar-channels.html`), plus the PR/commit link if the harness provides one.
+- **Always merge and clean up.** Every PR must be merged into `main` with any conflicts resolved (rebase on `main` and keep both sides' intent), and the old branch deleted afterwards. No stale branches should remain.
 
 ## 8. 🌳 Git & deploy: trunk-based
 
