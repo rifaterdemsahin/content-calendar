@@ -76,6 +76,66 @@
       "✍️ Publish the open-source repo link and its README",
       "✍️ Add the Skool post with the source code and a support thread"
     ],
-    "gap": "Unlike course sellers, this sells a working result at cost, not a course. That is the Delivery Pilot angle: deliver, don't just teach."
+    "gap": "Unlike course sellers, this sells a working result at cost, not a course. That is the Delivery Pilot angle: deliver, don't just teach.",
+    "storyboard": {
+      "source": "Storyboard built from the transcript of KnqTiAXUH7M (Taha El Harti). We copy the structure and pacing only, never their words, footage or thumbnail.",
+      "length": "1:00 (six scenes, final draft)",
+      "scenes": [
+        {
+          "n": 1,
+          "name": "Hook & promise",
+          "time": "0:00–0:08",
+          "visuals": "A-roll: you to camera, high energy. B-roll: a fast-cut viral clip, cloned onto raw footage.",
+          "onScreen": "REVERSE-ENGINEER ANY EDIT · Target video → Perfect blueprint",
+          "audio": "Upbeat electronic beat. VO: \"What if you could reverse-engineer any video's editing style without spending hours setting up complicated AI tools?\""
+        },
+        {
+          "n": 2,
+          "name": "Old way vs new way",
+          "time": "0:08–0:18",
+          "visuals": "Split screen. Left (red): raw, unsimplified logs. Right (green): a clean AI-ready file.",
+          "onScreen": "The old way: raw & unsimplified · The new way: AI-ready format",
+          "audio": "Record-scratch SFX, then the beat smooths out. VO: \"The old way dumped raw data on you. My tool converts everything into a clean, AI-ready format.\""
+        },
+        {
+          "n": 3,
+          "name": "Verified output",
+          "time": "0:18–0:28",
+          "visuals": "Target video runs through the extractor, then a shot of you checking the output.",
+          "onScreen": "Extracting cuts… colors… pacing… · Badge: \"Checked & used by me\" (✍️ confirm)",
+          "audio": "Whoosh and chime. VO: \"You upload the video and it extracts the full visual DNA.\" Keep \"I check the output myself\" only if true."
+        },
+        {
+          "n": 4,
+          "name": "Works with Hyperframes",
+          "time": "0:28–0:40",
+          "visuals": "The AI-ready file drops into a Hyperframes timeline; clips snap into the viral style.",
+          "onScreen": "AI-ready output → Hyperframes · Build videos much faster",
+          "audio": "Bass drop. VO: pair the AI-ready file with Hyperframes and it builds the video faster than editing from scratch."
+        },
+        {
+          "n": 5,
+          "name": "Pricing",
+          "time": "0:40–0:52",
+          "visuals": "A-roll at the desk; a coin drops onto the price card.",
+          "onScreen": "$1 = 10 video credits · No subscriptions (✍️ confirm price)",
+          "audio": "Cash-register ding. VO: \"No bloated subscriptions. One dollar gets you 10 video credits.\""
+        },
+        {
+          "n": 6,
+          "name": "Call to action & Skool",
+          "time": "0:52–1:00",
+          "visuals": "You point down to the description links.",
+          "onScreen": "Button 1: Get your credits now (Stripe link) · Button 2: Join the Skool community",
+          "audio": "Beat builds to a clean finish. VO: click the link to grab credits; join the Skool community to learn how to build it."
+        }
+      ],
+      "confirmBeforeRecording": [
+        "Model conflict: the storyboard sells pay-per-credit with no open-source option. Your angle is a fixed Stripe link, an open-source project, and source code plus support in Skool. Choose one before recording.",
+        "Price conflict: an earlier draft said $1 = 20 videos and $10 = 200 videos. The latest draft says $1 = 10 credits. Set the real price, close to your cost.",
+        "Claims about you: \"I use this every day\" and \"I personally check the output\". Keep them only if they are true.",
+        "Hyperframes: the storyboard says it builds video faster. We have not verified this, so check it before publishing."
+      ]
+    }
   }
 }
