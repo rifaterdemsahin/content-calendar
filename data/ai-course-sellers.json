@@ -1,12 +1,30 @@
 {
   "intro": "AI course sellers teach people to use AI and sell it as a course. Study how they pitch, price and prove results so Erdem's Delivery Pilot offer stands apart. Sample added from a sales page; everything below is what the page itself says, not verified.",
   "lookFor": [
-    ["🎯 Promise", "What does the buyer get, and how fast?"],
-    ["💰 Price & offer", "Price, discount, bundle, guarantee"],
-    ["🧾 Proof", "Student counts, reviews, revenue claims (claims, not verified)"],
-    ["🧱 What's taught", "Tools and skills covered"],
-    ["🪝 Hook", "The line that makes you keep reading"],
-    ["🧑‍✈️ Gap for Delivery Pilot", "What they skip that Erdem can own"]
+    [
+      "🎯 Promise",
+      "What does the buyer get, and how fast?"
+    ],
+    [
+      "💰 Price & offer",
+      "Price, discount, bundle, guarantee"
+    ],
+    [
+      "🧾 Proof",
+      "Student counts, reviews, revenue claims (claims, not verified)"
+    ],
+    [
+      "🧱 What's taught",
+      "Tools and skills covered"
+    ],
+    [
+      "🪝 Hook",
+      "The line that makes you keep reading"
+    ],
+    [
+      "🧑‍✈️ Gap for Delivery Pilot",
+      "What they skip that Erdem can own"
+    ]
   ],
   "sellers": [
     {
@@ -17,9 +35,47 @@
       "promise": "Build your first AI agent in 30 minutes, and your AI team in 2 days. No coding required.",
       "price": "Black Friday: $98 instead of $396 (the page says 75% off; 98/396 is 75.3% off). One payment, lifetime access. Bundled with a Reels, TikTok & Shorts course. 30-day money-back guarantee.",
       "proof": "Page claims 264,593 students, $41.3M company revenue, 4.85/5 from 1,000+ reviews. These are the seller's own numbers, not checked.",
-      "teaches": ["ChatGPT", "Claude", "Gemini", "Muse", "Building AI agents and an automated workforce"],
+      "teaches": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "Muse",
+        "Building AI agents and an automated workforce"
+      ],
       "hook": "Stop using AI like a search tool. Start using it as your agent.",
       "gap": "✍️ add your note: where would a Delivery Pilot offer (delivering real work with AI) differ?"
     }
-  ]
+  ],
+  "myVideo": {
+    "title": "🎬 My current video: the out-of-the-box version",
+    "url": "https://www.youtube.com/watch?v=KnqTiAXUH7M&t=9s",
+    "angle": "Make it easier for the audience: a link that works out of the box, behind a Stripe link, plus an open-source project for anyone who wants to run it themselves.",
+    "removes": [
+      "No Claude account needed",
+      "No Azure account needed",
+      "No setup steps"
+    ],
+    "offers": [
+      [
+        "⚡ Done-for-you link",
+        "Works out of the box. Sold through a Stripe link."
+      ],
+      [
+        "🧰 Open-source project",
+        "Free for anyone who wants to self-host and use it."
+      ],
+      [
+        "🏫 Skool community",
+        "Gets the source code and support on how to do it."
+      ]
+    ],
+    "pricing": "Price it very close to what it costs Erdem to run (cost-plus, thin margin). ✍️ add your real monthly cost per user, then price = cost + a small buffer. Any number here is an assumption until you fill it in.",
+    "todo": [
+      "✍️ Add your real cost per user (hosting, model usage, Stripe fees)",
+      "✍️ Set the Stripe link price and put the link in the description and pinned comment",
+      "✍️ Publish the open-source repo link and its README",
+      "✍️ Add the Skool post with the source code and a support thread"
+    ],
+    "gap": "Unlike course sellers, this sells a working result at cost, not a course. That is the Delivery Pilot angle: deliver, don't just teach."
+  }
 }
