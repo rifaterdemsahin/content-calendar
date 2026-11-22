@@ -960,6 +960,24 @@
         }
       ],
       "loop": "Re-scan weekly for new stars"
+    },
+    "ai-course-sellers.html": {
+      "title": "🎒 From sales page to my offer",
+      "steps": [
+        {
+          "e": "🔗",
+          "t": "Add a seller page"
+        },
+        {
+          "e": "🔍",
+          "t": "Note promise, price, proof"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "Find the Delivery Pilot gap"
+        }
+      ],
+      "loop": "Re-check prices each season"
     }
   }
 }

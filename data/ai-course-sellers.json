@@ -1,0 +1,25 @@
+{
+  "intro": "AI course sellers teach people to use AI and sell it as a course. Study how they pitch, price and prove results so Erdem's Delivery Pilot offer stands apart. Sample added from a sales page; everything below is what the page itself says, not verified.",
+  "lookFor": [
+    ["🎯 Promise", "What does the buyer get, and how fast?"],
+    ["💰 Price & offer", "Price, discount, bundle, guarantee"],
+    ["🧾 Proof", "Student counts, reviews, revenue claims (claims, not verified)"],
+    ["🧱 What's taught", "Tools and skills covered"],
+    ["🪝 Hook", "The line that makes you keep reading"],
+    ["🧑‍✈️ Gap for Delivery Pilot", "What they skip that Erdem can own"]
+  ],
+  "sellers": [
+    {
+      "name": "The AI Agent Course",
+      "by": "Anthony Gallo (listed as author on the page)",
+      "url": "https://go.contentcreator.com/ai-employee-course",
+      "checked": "2026-11-22",
+      "promise": "Build your first AI agent in 30 minutes, and your AI team in 2 days. No coding required.",
+      "price": "Black Friday: $98 instead of $396 (the page says 75% off; 98/396 is 75.3% off). One payment, lifetime access. Bundled with a Reels, TikTok & Shorts course. 30-day money-back guarantee.",
+      "proof": "Page claims 264,593 students, $41.3M company revenue, 4.85/5 from 1,000+ reviews. These are the seller's own numbers, not checked.",
+      "teaches": ["ChatGPT", "Claude", "Gemini", "Muse", "Building AI agents and an automated workforce"],
+      "hook": "Stop using AI like a search tool. Start using it as your agent.",
+      "gap": "✍️ add your note: where would a Delivery Pilot offer (delivering real work with AI) differ?"
+    }
+  ]
+}
