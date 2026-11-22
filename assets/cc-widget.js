@@ -32,6 +32,9 @@
   #ccw .tabs button.on{color:#fff;border-bottom:2px solid #6366f1}
   #ccw .tabs button.max-btn{flex:0 0 42px;font-size:16px}
   #ccw-panel.max{right:12px;bottom:12px;width:calc(100vw - 24px);height:calc(100vh - 24px)}
+  #ccw-panel.min{height:auto!important;max-height:none!important}
+  #ccw-panel.min>:not(.tabs){display:none!important}
+  #ccw-panel.min .tabs{border-bottom:0}
   #ccw .body{flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
   @media (max-width:640px){
     #ccw-panel{left:8px;right:8px;bottom:96px;width:auto;height:calc(100vh - 170px)}
@@ -89,10 +92,18 @@
   const pickerBtn = el('button', { id: 'ccw-picker-btn', title: 'Document Object Picker: Click any element to attach a note', textContent: '🎯' });
   const btn = el('button', { id: 'ccw-btn', title: 'Notes & chat (Alt-click anything to add a note)', textContent: '📝' });
   const panel = el('div', { id: 'ccw-panel' });
-  const tabNotes = el('button', { textContent: '📝 Notes', className: 'on' });
-  const tabChat = el('button', { textContent: '🤖 Chat' });
-  const notesBody = el('div', { className: 'body' });
-  const chatBody = el('div', { className: 'body', style: 'display:none' });
+  const tabNotes = el('button', { textContent: '📝 Notes' });
+  const tabChat = el('button', { textContent: '🤖 Chat', className: 'on' });
+  const notesBody = el('div', { className: 'body', style: 'display:none' });
+  const chatBody = el('div', { className: 'body', style: 'display:flex' });
+  // Minimize collapses the panel to its tab bar; the 📝 button still opens or closes it fully.
+  const minBtn = el('button', { className: 'max-btn', title: 'Minimize', textContent: '–', 'aria-label': 'Minimize' });
+  minBtn.onclick = () => {
+    const on = panel.classList.toggle('min'); saveUi({ min: on });
+    minBtn.textContent = on ? '▢' : '–';
+    minBtn.title = on ? 'Expand' : 'Minimize';
+    minBtn.setAttribute('aria-label', minBtn.title);
+  };
   // Maximize toggles the panel to near full-screen for notes and chat; title flips with state.
   const maxBtn = el('button', { className: 'max-btn', title: 'Maximize', textContent: '⤢', 'aria-label': 'Maximize' });
   maxBtn.onclick = () => {
@@ -101,7 +112,7 @@
     maxBtn.title = on ? 'Restore' : 'Maximize';
     maxBtn.setAttribute('aria-label', maxBtn.title);
   };
-  panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat, maxBtn), notesBody, chatBody);
+  panel.append(el('div', { className: 'tabs' }, tabNotes, tabChat, minBtn, maxBtn), notesBody, chatBody);
   root.append(pickerBtn, btn, panel); document.body.appendChild(root);
 
   // UI state (open, tab, maximised, unsent draft) survives page refreshes, per browser.
@@ -109,6 +120,7 @@
   let ui = {}; try { ui = JSON.parse(localStorage.getItem(UI_KEY) || '{}'); } catch { ui = {}; }
   const saveUi = (patch) => { Object.assign(ui, patch); try { localStorage.setItem(UI_KEY, JSON.stringify(ui)); } catch { /* private mode */ } };
   const show = (which) => {
+    if (which === 'notes' && panel.classList.contains('min')) minBtn.click(); // attaching a note expands the panel
     tabNotes.classList.toggle('on', which === 'notes'); tabChat.classList.toggle('on', which === 'chat');
     notesBody.style.display = which === 'notes' ? 'flex' : 'none'; chatBody.style.display = which === 'chat' ? 'flex' : 'none';
     saveUi({ tab: which });
@@ -126,7 +138,7 @@
     try { me = await (await fetch('/auth/me', { credentials: 'same-origin' })).json(); } catch { /* server without auth (e.g. static host) */ }
     loginCard.style.display = me.signedIn ? 'none' : 'flex';
     panel.querySelector('.tabs').style.display = me.signedIn ? 'flex' : 'none';
-    if (me.signedIn) show(tabChat.classList.contains('on') ? 'chat' : 'notes'); else { notesBody.style.display = 'none'; chatBody.style.display = 'none'; }
+    if (me.signedIn) show(tabNotes.classList.contains('on') ? 'notes' : 'chat'); else { notesBody.style.display = 'none'; chatBody.style.display = 'none'; }
     return me.signedIn;
   }
 
@@ -611,7 +623,9 @@
   // Restore the panel as it was before the refresh: open, tab and size. A running job reopens the chat.
   if (chatLog.some((x) => x.pending)) saveUi({ open: true, tab: 'chat' });
   if (ui.max) maxBtn.click();
-  if (ui.open) { panel.classList.add('open'); gate().then((ok) => { if (!ok) return; show(ui.tab || 'notes'); if ((ui.tab || 'notes') === 'notes') loadNotes(); }); }
+  if (ui.min) minBtn.click();
+  // Chat is the default tab on open; Notes opens only when a note is being attached.
+  if (ui.open) { panel.classList.add('open'); gate().then((ok) => { if (ok) show('chat'); }); }
 
   if (!API) console.warn('cc-widget: missing data-api attribute');
   btn.addEventListener('click', async () => { if (panel.classList.contains('open') && await gate()) loadNotes(); });
