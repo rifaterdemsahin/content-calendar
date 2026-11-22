@@ -9,7 +9,11 @@
   async function api(path, opts = {}) {
     const res = await fetch(API + path, { ...opts, credentials: 'same-origin', headers: { 'content-type': 'application/json', ...(opts.headers || {}) } });
     if (res.status === 401) { gate(); throw new Error('Please sign in with Microsoft'); }
-    if (!res.ok && res.status !== 204) throw new Error((await res.json().catch(() => ({}))).error || `HTTP ${res.status}`);
+    if (!res.ok && res.status !== 204) {
+      const err = new Error((await res.json().catch(() => ({}))).error || `HTTP ${res.status}`);
+      err.status = res.status; // lets callers tell a gateway hiccup from a real failure
+      throw err;
+    }
     return res;
   }
 
@@ -554,11 +558,24 @@
 
   // Polls the job until it is done and, once merged, until it is live on the site.
   // Returns when the job reaches a final state (live, publish failed, or agent error).
+  // A poll can fail while the site restarts (a deploy) or the gateway is busy: 502/503/504 or a dropped
+  // connection. The job keeps running on the server, so those are retried instead of failing the chat.
+  const transient = (e) => e instanceof TypeError || [502, 503, 504].includes(e.status);
   async function trackJob(m) {
+    let drops = 0;
     try {
       for (let i = 0; i < 240; i++) {
         await new Promise((r) => setTimeout(r, 4000));
-        const job = await (await api(`/jobs/${m.jobId}`)).json();
+        let job;
+        try {
+          job = await (await api(`/jobs/${m.jobId}`)).json();
+          drops = 0;
+        } catch (e) {
+          if (!transient(e) || ++drops > 30) throw e; // about two minutes of failed polls before giving up
+          const base = (m.text || '').split('\n\n🔌')[0] || '⏳ Working…';
+          m.text = `${base}\n\n🔌 Connection dropped (site restarting?). Retrying…`;
+          saveChat(); paintChat(); continue;
+        }
         if (job.status === 'error') { m.text = `❌ Error: ${job.error}`; m.pending = false; break; }
         if (job.status !== 'done') {
           m.text = stepText(job, m);
