@@ -134,12 +134,20 @@
     fetch('data/liked-videos.json', { cache: 'no-cache' }).then((r) => r.json()).then((d) => {
       const box = $('liked');
       if (!d.videos.length) { box.append(el('p', 'text-sm text-amber-300', '✍️ Not pulled yet. Run scripts/pull_liked_videos.py with a YouTube OAuth token (youtube.readonly) to fill this in.')); return; }
-      box.append(...d.videos.map((v) => {
-        const a = el('a', 'block p-4 rounded-xl border border-slate-800 bg-slate-900 hover:border-indigo-500/50');
-        a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
-        a.append(el('div', 'font-bold text-white text-sm', `👍 ${v.title}`), el('p', 'text-xs text-slate-400 mt-1', `📺 ${v.channel} · 📅 ${v.published} · 👁️ ${v.views.toLocaleString()} views`));
-        return a;
-      }));
+      const groups = {};
+      d.videos.forEach((v) => { (groups[v.category || '📦 Other'] ||= []).push(v); });
+      Object.entries(groups).sort((x, y) => y[1].length - x[1].length).forEach(([cat, vs]) => {
+        const sec = el('div', 'sm:col-span-2 mt-2');
+        sec.append(el('h3', 'text-lg font-bold text-white', `${cat} (${vs.length})`));
+        const grid = el('div', 'mt-2 grid gap-3 sm:grid-cols-2');
+        grid.append(...vs.map((v) => {
+          const a = el('a', 'block p-4 rounded-xl border border-slate-800 bg-slate-900 hover:border-indigo-500/50');
+          a.href = v.url; a.target = '_blank'; a.rel = 'noopener';
+          a.append(el('div', 'font-bold text-white text-sm', `👍 ${v.title}`), el('p', 'text-xs text-slate-400 mt-1', `📺 ${v.channel} · 📅 ${v.published} · 👁️ ${v.views.toLocaleString()} views`));
+          return a;
+        }));
+        sec.append(grid); box.append(sec);
+      });
     }).catch((e) => { $('liked').textContent = 'Could not load data/liked-videos.json: ' + e.message; });
   </script>
   <script src="assets/cc-widget.js" data-api="/api"></script>
