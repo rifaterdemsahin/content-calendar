@@ -100,6 +100,11 @@
           "why": "Sabine Hossenfelder, Dr. Todd Grande: high value, low production."
         },
         {
+          "url": "similar-channels.html",
+          "title": "🔭 Similar niche channels",
+          "why": "Paste links to similar YouTube channels and note what to borrow."
+        },
+        {
           "url": "formats.html",
           "title": "🎨 Formats I like",
           "why": "Line animation, an animated co-host, comics, comedy and a sci-fi series, made yours."
@@ -765,9 +770,25 @@
       "next-video.html",
       "performance.html",
       "YouTube's AI ideas and the video reviews it draws on"
+    ],
+    [
+      "similar-channels.html",
+      "applaud.html",
+      "Channels to learn from, side by side"
+    ],
+    [
+      "similar-channels.html",
+      "creators.html",
+      "Add similar channels to the creators you admire"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-22",
+      "icon": "🔭",
+      "text": "Similar niche channels: paste YouTube links and note what to borrow",
+      "href": "similar-channels.html"
+    },
     {
       "date": "2026-11-21",
       "icon": "🥇",
@@ -809,12 +830,6 @@
       "icon": "💼",
       "text": "Business plan: students free, professionals $49/mo, businesses get a managed bot service",
       "href": "business.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "🌟",
-      "text": "Creators I admire, with a style map",
-      "href": "creators.html"
     }
   ]
 }
