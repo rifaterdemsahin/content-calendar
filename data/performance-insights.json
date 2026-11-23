@@ -1,50 +1,60 @@
 {
-  "updated": "2026-11-21",
-  "source": "scripts/fetch_latest_videos.py + scripts/analyze_past_performance.py, run 2026-11-21 (compared with the 2026-11-17 snapshot)",
-  "headline": "Two pillars work, and YouTube's own AI agrees: (1) practical, cost-saving dev tooling, where the cheap-model Shorts get about 190 views each, 4× your other recent Shorts; and (2) grounded long-form career/industry takes with a data angle (Elon 348, Delivery Pilot 135). What doesn't work is mindset Shorts and narrow commentary.",
+  "updated": "2026-11-23",
+  "source": "scripts/fetch_latest_videos.py (RSS views) + scripts/analyze_past_performance.py, run 2026-11-23 (compared with the 2026-11-21 snapshot). The Studio per-video and channel-page fetches were blocked this run (HTTP 403 from the proxy), so older catalogue totals are carried over, not freshly measured.",
+  "headline": "Two pillars still work, and this week's data backs it: the cheap-model tool Shorts (197 and 186 views, about 3.7× the 52-view average of your other 6 recent Shorts) and the junior-dev career long-form, which went from 18 to 64 views in 2 days. Mindset Shorts and narrow commentary are still at 11–24 views. No new upload since 21 Nov.",
   "findings": [
     {
       "tag": "Winner",
       "title": "Cheap-model tool Shorts are your best format right now",
-      "detail": "'Make DeepSeek work like a frontier model in Kilo CLI' (195) and 'Don't Pay $200: Give Your Cheap AI Model Glasses' (185) are the two most-watched uploads of the comeback. Your other 6 recent Shorts average about 50 views, and the mindset ones get 12–23."
+      "detail": "'Make DeepSeek work like a frontier model in Kilo CLI' (197) and 'Don't Pay $200: Give Your Cheap AI Model Glasses' (186) are still the two most-watched recent uploads. Your other 6 recent Shorts average 52 views (312 views in total), so the pair is about 3.7× higher. Mindset ones get 22–24."
+    },
+    {
+      "tag": "Pattern",
+      "title": "Timely Claude fix video has flattened",
+      "detail": "'Claude Whiteboards Missing?' is at 84 views, up only +2 since 21 Nov (82). It grew fastest in its first days and has now levelled off; time-sensitive search videos peak early, so publish within 48h."
     },
     {
       "tag": "Winner",
-      "title": "Timely Claude fix videos are growing fastest",
-      "detail": "'Claude Whiteboards Missing?' gained +17 views in 4 days, more than any other video. Its 'X is missing, here's the fix' title is something people actually type into search."
-    },
-    {
-      "tag": "Winner",
-      "title": "The Interview Overlay video is your fastest grower",
-      "detail": "It went from 15 views (Studio export, 18 Nov) to 76 (21 Nov): +61 in 3 days, about 20 a day, the best rate on the channel. Your all-time #1 (LinkedIn job hunt AI, 552) and the CV and cover-letter videos follow the same pattern: an AI tool built for a job-seeker outcome."
+      "title": "The Interview Overlay video is a solid grower, now slowing",
+      "detail": "76 views on 21 Nov, 84 on 23 Nov: +8 in 2 days (about 4 a day), down from about 20 a day last week. It is still a good result for a job-seeker build and matches your all-time #1 (LinkedIn job hunt AI, 553). Cut Shorts from it while it is warm."
     },
     {
       "tag": "Weak",
       "title": "Mindset Shorts and narrow commentary get passed over",
-      "detail": "'Rider, Driver or Pilot?' (12), 'AI Has No Values. You Do.' (23), 'Stuck in Red Tape?' (10). Big-picture takes do work as long-form with a data-backed, contrarian hook ('Elon Says Work Is Ending. The Data Says Otherwise.' 348; 'Become a Delivery Pilot' 135), but not as 45-second Shorts or on niche angles."
+      "detail": "'Rider, Driver or Pilot?' (22), 'AI Has No Values. You Do.' (23), 'Stuck in Red Tape?' (11) and 'AI Doesn't Read Words' (24). Big-picture takes work as long-form with a data-backed, contrarian hook ('Elon Says Work Is Ending. The Data Says Otherwise.' 348; 'Become a Delivery Pilot' 135), not as 45-second Shorts or on niche angles."
     },
     {
-      "tag": "Pattern",
-      "title": "The junior-dev Delivery Pilot video is too new to judge",
-      "detail": "It's YouTube AI's idea #2, already made: first published as 'Junior Developer Jobs Aren't Dead. They're Becoming Delivery Pilots (2027)' (15 views), retitled 'The UK Junior Dev Crash Is a J-Curve' (18 views after about a day). The retitle narrowed it to the UK; YouTube's framing (Delivery Pilot roles in 2027) is broader. Judge it at 7 days against 'Become a Delivery Pilot' (about 11 views/day)."
+      "tag": "Winner",
+      "title": "The junior-dev Delivery Pilot video is off to the best start of the week",
+      "detail": "It went from 18 views on 21 Nov to 64 on 23 Nov (+46 in 2 days, about 32 a day), versus 'Become a Delivery Pilot' at 135 after 14 days (about 10 a day). Judge it properly at 7 days (28 Nov). The title still narrows it to the UK; YouTube's framing (Delivery Pilot roles in 2027) is broader, so fixing the packaging could help it further."
     },
     {
       "tag": "Pattern",
       "title": "Two uploads on the same day split the audience",
-      "detail": "On Nov 10, 11 and 21 you published two videos each day. Each time, one of the pair underperformed. A small channel gets one push from YouTube per upload."
+      "detail": "On Nov 10, 11 and 21 you published two videos each day. On 21 Nov the Short (22) trailed the long video (64) by a wide margin, as on the earlier days. There has been no double-upload since. A small channel gets one push from YouTube per upload."
     },
     {
       "tag": "Pattern",
       "title": "Your back catalogue is flat",
-      "detail": "Almost every video older than 2 months gained 0 views in 4 days. Old videos are getting no search traffic, so new uploads and Shorts are doing all the work."
+      "detail": "Of the 5 videos older than 2 months in the latest 15, none gained a view since 21 Nov. Old videos get no search traffic, so new uploads and Shorts do all the work."
     },
     {
       "tag": "Data gap",
       "title": "We only see view counts",
-      "detail": "The subscriber count (725) is hardcoded in analyze_past_performance.py and has not been re-measured. The 18 Nov Studio export has views and comments, but no CTR, retention or subscribers-per-video. Thumbnail A/B tests are still running on the 3 newest long videos. The scraper only sees about the newest 30 long videos, so older ones (e.g. 'CV as Code', 304 views) drop out of the totals. YOUTUBE_API_KEY is not set, so scripts/pull_youtube_stats.py could not run."
+      "detail": "The subscriber count (725) is hardcoded in analyze_past_performance.py and has not been re-measured, so don't read it as fresh. This run, the Studio per-video fetch and channel-page scrape were blocked (HTTP 403), so catalogue totals are only updated from RSS for the newest 15. The 18 Nov Studio export has views and comments, but no CTR, retention or subscribers-per-video. YOUTUBE_API_KEY is not set, so pull_youtube_stats.py could not run."
     }
   ],
   "actions": [
+    {
+      "when": "Tue 24 Nov",
+      "title": "Publish the n8n agent build on Wednesday, on its own day",
+      "detail": "Nothing has shipped from the Week 1 plan. Publish the n8n build Wednesday 25 Nov, no other upload that day. This is a practical build, your strongest type."
+    },
+    {
+      "when": "Today",
+      "title": "Fix the J-Curve video's packaging while it is growing",
+      "detail": "It has 64 views and is growing, so improving the title and first 2 description lines now compounds. All copy-paste text is in its video review below."
+    },
     {
       "when": "This week",
       "title": "Turn the cheap-model Shorts into a series",
@@ -58,7 +68,7 @@
     {
       "when": "This week",
       "title": "Cut Shorts from the two videos that are moving",
-      "detail": "Pull 2 Shorts from the Interview Overlay video (the live coaching moment, and the setup in 45s) and 1 from Claude Whiteboards (the fix). Repurpose what is already working before making something new."
+      "detail": "Pull 2 Shorts from the Interview Overlay video (the live coaching moment, and the setup in 45s), 1 from Claude Whiteboards (the fix) and 1 from the J-Curve video (the data hook). Repurpose what is working before making something new."
     },
     {
       "when": "Ongoing",
@@ -138,10 +148,10 @@
       "reviewedOn": "2026-11-21",
       "stats": {
         "duration": "10:17",
-        "views": 19,
+        "views": 64,
         "likes": 2,
         "comments": 1,
-        "ageDays": 1
+        "ageDays": 2
       },
       "verdict": "good",
       "verdictLabel": "Strong video, weak packaging",

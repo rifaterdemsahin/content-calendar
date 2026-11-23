@@ -2,27 +2,27 @@
   "channel": "@RifatErdemSahin",
   "subscribers": 725,
   "total_videos_analyzed": 39,
-  "total_views_recorded": 6654,
+  "total_views_recorded": 6728,
   "long_form_count": 30,
-  "long_form_views": 5833,
+  "long_form_views": 5891,
   "shorts_count": 9,
-  "shorts_views": 821,
-  "average_views_per_video": 170.6,
-  "average_views_long_form": 194.4,
-  "average_views_shorts": 91.2,
+  "shorts_views": 837,
+  "average_views_per_video": 172.5,
+  "average_views_long_form": 196.4,
+  "average_views_shorts": 93.0,
   "topic_views_distribution": {
     "AI Agents & Automation": 1614,
-    "Delivery Pilot & Career Mindset": 1714,
-    "RAG & Knowledge Bases": 209,
-    "Developer Tooling & IDE": 409
+    "Delivery Pilot & Career Mindset": 1718,
+    "RAG & Knowledge Bases": 210,
+    "Developer Tooling & IDE": 412
   },
   "top_performing_videos": [
     {
       "id": "qNJpDJ8yHu8",
       "title": "How to Build an AI to Automate LinkedIn Job Hunt",
       "type": "Long Video",
-      "views": 552,
-      "time_ago": "1 yr ago",
+      "views": 553,
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=qNJpDJ8yHu8",
       "thumbnail": "https://i.ytimg.com/vi/qNJpDJ8yHu8/hqdefault.jpg"
     },
@@ -31,7 +31,7 @@
       "title": "AI No-Code: Build Your Own AI Solutions (Step-by-Step)",
       "type": "Long Video",
       "views": 454,
-      "time_ago": "8 mo ago",
+      "time_ago": "8mo ago",
       "url": "https://www.youtube.com/watch?v=yI5BIb74kVI",
       "thumbnail": "https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg"
     },
@@ -40,7 +40,7 @@
       "title": "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap",
       "type": "Long Video",
       "views": 421,
-      "time_ago": "9 mo ago",
+      "time_ago": "9mo ago",
       "url": "https://www.youtube.com/watch?v=c1UotPbvKoQ",
       "thumbnail": "https://i.ytimg.com/vi/c1UotPbvKoQ/hqdefault.jpg"
     },
@@ -49,7 +49,7 @@
       "title": "How to Actually Learn AI: The Visual Construction Method Nobody Teaches",
       "type": "Long Video",
       "views": 382,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=IYgcXAZkevY",
       "thumbnail": "https://i.ytimg.com/vi/IYgcXAZkevY/hqdefault.jpg"
     },
@@ -58,7 +58,7 @@
       "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
       "type": "Long Video",
       "views": 360,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=QwFB7tvzLoA",
       "thumbnail": "https://i.ytimg.com/vi/QwFB7tvzLoA/hqdefault.jpg"
     },
@@ -67,7 +67,7 @@
       "title": "Elon Says Work Is Ending. The Data Says Otherwise.",
       "type": "Long Video",
       "views": 348,
-      "time_ago": "2 mo ago",
+      "time_ago": "2mo ago",
       "url": "https://www.youtube.com/watch?v=fJjxujMASkQ",
       "thumbnail": "https://i.ytimg.com/vi/fJjxujMASkQ/hqdefault.jpg"
     },
@@ -76,7 +76,7 @@
       "title": "The AI Integration Skill Every Professional Needs (MCP Explained)",
       "type": "Long Video",
       "views": 313,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=wtXDL0Vmr7A",
       "thumbnail": "https://i.ytimg.com/vi/wtXDL0Vmr7A/hqdefault.jpg"
     },
@@ -85,7 +85,7 @@
       "title": "AI Agents vs. Human Freelancers: The Brutal Truth",
       "type": "Long Video",
       "views": 293,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=YZqcACObMws",
       "thumbnail": "https://i.ytimg.com/vi/YZqcACObMws/hqdefault.jpg"
     },
@@ -94,7 +94,7 @@
       "title": "Authentic AI Content Creation \u2014 Build the Content Magician Using RAG + n8n",
       "type": "Long Video",
       "views": 276,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=VdnZI0PfscM",
       "thumbnail": "https://i.ytimg.com/vi/VdnZI0PfscM/hqdefault.jpg"
     },
@@ -103,7 +103,7 @@
       "title": "The New Professional Standard: Navigating the AI Career Shift",
       "type": "Long Video",
       "views": 238,
-      "time_ago": "9 mo ago",
+      "time_ago": "9mo ago",
       "url": "https://www.youtube.com/watch?v=Frty5ICAdOo",
       "thumbnail": "https://i.ytimg.com/vi/Frty5ICAdOo/hqdefault.jpg"
     }
@@ -113,8 +113,8 @@
       "id": "qNJpDJ8yHu8",
       "title": "How to Build an AI to Automate LinkedIn Job Hunt",
       "type": "Long Video",
-      "views": 552,
-      "time_ago": "1 yr ago",
+      "views": 553,
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=qNJpDJ8yHu8",
       "thumbnail": "https://i.ytimg.com/vi/qNJpDJ8yHu8/hqdefault.jpg"
     },
@@ -123,7 +123,7 @@
       "title": "AI No-Code: Build Your Own AI Solutions (Step-by-Step)",
       "type": "Long Video",
       "views": 454,
-      "time_ago": "8 mo ago",
+      "time_ago": "8mo ago",
       "url": "https://www.youtube.com/watch?v=yI5BIb74kVI",
       "thumbnail": "https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg"
     },
@@ -132,7 +132,7 @@
       "title": "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap",
       "type": "Long Video",
       "views": 421,
-      "time_ago": "9 mo ago",
+      "time_ago": "9mo ago",
       "url": "https://www.youtube.com/watch?v=c1UotPbvKoQ",
       "thumbnail": "https://i.ytimg.com/vi/c1UotPbvKoQ/hqdefault.jpg"
     },
@@ -141,7 +141,7 @@
       "title": "How to Actually Learn AI: The Visual Construction Method Nobody Teaches",
       "type": "Long Video",
       "views": 382,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=IYgcXAZkevY",
       "thumbnail": "https://i.ytimg.com/vi/IYgcXAZkevY/hqdefault.jpg"
     },
@@ -150,7 +150,7 @@
       "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
       "type": "Long Video",
       "views": 360,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=QwFB7tvzLoA",
       "thumbnail": "https://i.ytimg.com/vi/QwFB7tvzLoA/hqdefault.jpg"
     },
@@ -159,7 +159,7 @@
       "title": "Elon Says Work Is Ending. The Data Says Otherwise.",
       "type": "Long Video",
       "views": 348,
-      "time_ago": "2 mo ago",
+      "time_ago": "2mo ago",
       "url": "https://www.youtube.com/watch?v=fJjxujMASkQ",
       "thumbnail": "https://i.ytimg.com/vi/fJjxujMASkQ/hqdefault.jpg"
     },
@@ -168,7 +168,7 @@
       "title": "The AI Integration Skill Every Professional Needs (MCP Explained)",
       "type": "Long Video",
       "views": 313,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=wtXDL0Vmr7A",
       "thumbnail": "https://i.ytimg.com/vi/wtXDL0Vmr7A/hqdefault.jpg"
     },
@@ -177,7 +177,7 @@
       "title": "AI Agents vs. Human Freelancers: The Brutal Truth",
       "type": "Long Video",
       "views": 293,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=YZqcACObMws",
       "thumbnail": "https://i.ytimg.com/vi/YZqcACObMws/hqdefault.jpg"
     },
@@ -186,7 +186,7 @@
       "title": "Authentic AI Content Creation \u2014 Build the Content Magician Using RAG + n8n",
       "type": "Long Video",
       "views": 276,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=VdnZI0PfscM",
       "thumbnail": "https://i.ytimg.com/vi/VdnZI0PfscM/hqdefault.jpg"
     },
@@ -195,7 +195,7 @@
       "title": "The New Professional Standard: Navigating the AI Career Shift",
       "type": "Long Video",
       "views": 238,
-      "time_ago": "9 mo ago",
+      "time_ago": "9mo ago",
       "url": "https://www.youtube.com/watch?v=Frty5ICAdOo",
       "thumbnail": "https://i.ytimg.com/vi/Frty5ICAdOo/hqdefault.jpg"
     },
@@ -204,7 +204,7 @@
       "title": "How to Turn Unpredictable AI Outputs into Production-Ready Code | Certified AI Associate Module 1.1",
       "type": "Long Video",
       "views": 225,
-      "time_ago": "2 mo ago",
+      "time_ago": "2mo ago",
       "url": "https://www.youtube.com/watch?v=SFtoQKA9ZUA",
       "thumbnail": "https://i.ytimg.com/vi/SFtoQKA9ZUA/hqdefault.jpg"
     },
@@ -213,7 +213,7 @@
       "title": "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes",
       "type": "Long Video",
       "views": 216,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=bsH-vBGNERE",
       "thumbnail": "https://i.ytimg.com/vi/bsH-vBGNERE/hqdefault.jpg"
     },
@@ -221,7 +221,7 @@
       "id": "s1nD2loqPso",
       "title": "Make DeepSeek work like a frontier model in Kilo CLI",
       "type": "Short",
-      "views": 195,
+      "views": 197,
       "time_ago": "Recent",
       "url": "https://www.youtube.com/shorts/s1nD2loqPso",
       "thumbnail": "https://i.ytimg.com/vi/s1nD2loqPso/hqdefault.jpg"
@@ -230,7 +230,7 @@
       "id": "rbWBJqBU1EY",
       "title": "Don't Pay $200: Give Your Cheap AI Model Glasses (LSP in Kilo Code)",
       "type": "Short",
-      "views": 185,
+      "views": 186,
       "time_ago": "Recent",
       "url": "https://www.youtube.com/shorts/rbWBJqBU1EY",
       "thumbnail": "https://i.ytimg.com/vi/rbWBJqBU1EY/hqdefault.jpg"
@@ -240,7 +240,7 @@
       "title": "Daily Skill Learning with AI: Transform Your Life One Day at a Time",
       "type": "Long Video",
       "views": 183,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=DDuGVH_uPTA",
       "thumbnail": "https://i.ytimg.com/vi/DDuGVH_uPTA/hqdefault.jpg"
     },
@@ -249,7 +249,7 @@
       "title": "How I Run AI Agents for $0 (Custom IDE Token Optimization)",
       "type": "Long Video",
       "views": 170,
-      "time_ago": "2 mo ago",
+      "time_ago": "2mo ago",
       "url": "https://www.youtube.com/watch?v=yFxHseG1_F0",
       "thumbnail": "https://i.ytimg.com/vi/yFxHseG1_F0/hqdefault.jpg"
     },
@@ -258,7 +258,7 @@
       "title": "Our Resumes are Obsolete. Build This AI CV Generator Instead",
       "type": "Long Video",
       "views": 152,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=pUf8wGV2NBU",
       "thumbnail": "https://i.ytimg.com/vi/pUf8wGV2NBU/hqdefault.jpg"
     },
@@ -267,7 +267,7 @@
       "title": "How to write your Cover Letters with AI",
       "type": "Long Video",
       "views": 149,
-      "time_ago": "1 yr ago",
+      "time_ago": "1y ago",
       "url": "https://www.youtube.com/watch?v=EtpfGUGAFJw",
       "thumbnail": "https://i.ytimg.com/vi/EtpfGUGAFJw/hqdefault.jpg"
     },
@@ -294,7 +294,7 @@
       "title": "Become a Delivery Pilot: Why AI Is Building AI (and What to Do About It)",
       "type": "Long Video",
       "views": 135,
-      "time_ago": "12 days ago",
+      "time_ago": "13d ago",
       "url": "https://www.youtube.com/watch?v=VOtlOfpXVU8",
       "thumbnail": "https://i.ytimg.com/vi/VOtlOfpXVU8/hqdefault.jpg"
     },
@@ -303,7 +303,7 @@
       "title": "The Rise of Personal AI: How It Will Change Everything",
       "type": "Long Video",
       "views": 122,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=fxj1orsKpYM",
       "thumbnail": "https://i.ytimg.com/vi/fxj1orsKpYM/hqdefault.jpg"
     },
@@ -312,7 +312,7 @@
       "title": "10 AI Tips to Learn Faster and Execute Like a Pro",
       "type": "Long Video",
       "views": 121,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=2EVPwgi8NZA",
       "thumbnail": "https://i.ytimg.com/vi/2EVPwgi8NZA/hqdefault.jpg"
     },
@@ -321,7 +321,7 @@
       "title": "\ud83d\ude80 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! \ud83d\udca1 | Ultimate Growth Guide",
       "type": "Long Video",
       "views": 100,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=MnYEZWflHDs",
       "thumbnail": "https://i.ytimg.com/vi/MnYEZWflHDs/hqdefault.jpg"
     },
@@ -330,7 +330,7 @@
       "title": "Claude AI Certification for Architects | Masterclass Intro",
       "type": "Long Video",
       "views": 91,
-      "time_ago": "4 mo ago",
+      "time_ago": "5mo ago",
       "url": "https://www.youtube.com/watch?v=F8IBooe3bXY",
       "thumbnail": "https://i.ytimg.com/vi/F8IBooe3bXY/hqdefault.jpg"
     },
@@ -339,52 +339,61 @@
       "title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
       "type": "Long Video",
       "views": 86,
-      "time_ago": "3 mo ago",
+      "time_ago": "3mo ago",
       "url": "https://www.youtube.com/watch?v=HUTlnlw3h8o",
       "thumbnail": "https://i.ytimg.com/vi/HUTlnlw3h8o/hqdefault.jpg"
+    },
+    {
+      "id": "u27o3jaoQnI",
+      "title": "This AI Overlay Coaches You Through Job Interviews in Real Time",
+      "type": "Long Video",
+      "views": 84,
+      "time_ago": "5d ago",
+      "url": "https://www.youtube.com/watch?v=u27o3jaoQnI",
+      "thumbnail": "https://i.ytimg.com/vi/u27o3jaoQnI/hqdefault.jpg"
+    },
+    {
+      "id": "fnKeTQYBHN8",
+      "title": "Claude Whiteboards Missing? Why You Can't See the New Artifact Types (and the Fix)",
+      "type": "Long Video",
+      "views": 84,
+      "time_ago": "11d ago",
+      "url": "https://www.youtube.com/watch?v=fnKeTQYBHN8",
+      "thumbnail": "https://i.ytimg.com/vi/fnKeTQYBHN8/hqdefault.jpg"
     },
     {
       "id": "E52uDnN5FB0",
       "title": "Master Complex Topics with These Simple AI Strategies!",
       "type": "Long Video",
       "views": 83,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=E52uDnN5FB0",
       "thumbnail": "https://i.ytimg.com/vi/E52uDnN5FB0/hqdefault.jpg"
-    },
-    {
-      "id": "fnKeTQYBHN8",
-      "title": "Claude Whiteboards Missing? Why You Can't See the New Artifact Types (and the Fix)",
-      "type": "Long Video",
-      "views": 82,
-      "time_ago": "9 days ago",
-      "url": "https://www.youtube.com/watch?v=fnKeTQYBHN8",
-      "thumbnail": "https://i.ytimg.com/vi/fnKeTQYBHN8/hqdefault.jpg"
-    },
-    {
-      "id": "u27o3jaoQnI",
-      "title": "This AI Overlay Coaches You Through Job Interviews in Real Time",
-      "type": "Long Video",
-      "views": 76,
-      "time_ago": "3 days ago",
-      "url": "https://www.youtube.com/watch?v=u27o3jaoQnI",
-      "thumbnail": "https://i.ytimg.com/vi/u27o3jaoQnI/hqdefault.jpg"
     },
     {
       "id": "WK66w51UMrs",
       "title": "Turn AI Into Your Personal Accountability Partner",
       "type": "Long Video",
       "views": 68,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=WK66w51UMrs",
       "thumbnail": "https://i.ytimg.com/vi/WK66w51UMrs/hqdefault.jpg"
+    },
+    {
+      "id": "_tYzckEn6O8",
+      "title": "The UK Junior Dev Crash Is a J-Curve (And Here's the Upswing)",
+      "type": "Long Video",
+      "views": 64,
+      "time_ago": "1d ago",
+      "url": "https://www.youtube.com/watch?v=_tYzckEn6O8",
+      "thumbnail": "https://i.ytimg.com/vi/_tYzckEn6O8/hqdefault.jpg"
     },
     {
       "id": "27jXA2V2Zio",
       "title": "AI Isn't a Bubble: The Real Revolution Is Happening in Silence",
       "type": "Long Video",
       "views": 55,
-      "time_ago": "3 mo ago",
+      "time_ago": "3mo ago",
       "url": "https://www.youtube.com/watch?v=27jXA2V2Zio",
       "thumbnail": "https://i.ytimg.com/vi/27jXA2V2Zio/hqdefault.jpg"
     },
@@ -393,7 +402,7 @@
       "title": "One AI Habit Broke My Groundhog Day Loop",
       "type": "Long Video",
       "views": 54,
-      "time_ago": "2 yr ago",
+      "time_ago": "2y ago",
       "url": "https://www.youtube.com/watch?v=3VgRz5GeYDA",
       "thumbnail": "https://i.ytimg.com/vi/3VgRz5GeYDA/hqdefault.jpg"
     },
@@ -419,7 +428,7 @@
       "id": "8ud3AaGKtP0",
       "title": "AI Doesn't Read Words. It Does This Instead \ud83e\udd2f #Shorts",
       "type": "Short",
-      "views": 23,
+      "views": 24,
       "time_ago": "Recent",
       "url": "https://www.youtube.com/shorts/8ud3AaGKtP0",
       "thumbnail": "https://i.ytimg.com/vi/8ud3AaGKtP0/hqdefault.jpg"
@@ -434,31 +443,22 @@
       "thumbnail": "https://i.ytimg.com/vi/wJxEb3wR9Ps/hqdefault.jpg"
     },
     {
-      "id": "_tYzckEn6O8",
-      "title": "Rider \u2192 Driver \u2192 Pilot: The New Tech Career Ladder for 2027",
-      "type": "Long Video",
-      "views": 18,
-      "time_ago": "9 hr ago",
-      "url": "https://www.youtube.com/watch?v=_tYzckEn6O8",
-      "thumbnail": "https://i.ytimg.com/vi/_tYzckEn6O8/hqdefault.jpg"
+      "id": "6alMTPb2Xtk",
+      "title": "Rider, Driver or Pilot? How Junior Devs Ship 10\u00d7 Faster",
+      "type": "Short",
+      "views": 22,
+      "time_ago": "Recent",
+      "url": "https://www.youtube.com/shorts/6alMTPb2Xtk",
+      "thumbnail": "https://i.ytimg.com/vi/6alMTPb2Xtk/hqdefault.jpg"
     },
     {
       "id": "LGbDImaufGI",
       "title": "Stuck in Red Tape? How I Use AI When a Process Gets Confusing",
       "type": "Long Video",
-      "views": 10,
-      "time_ago": "20 hr ago",
+      "views": 11,
+      "time_ago": "2d ago",
       "url": "https://www.youtube.com/watch?v=LGbDImaufGI",
       "thumbnail": "https://i.ytimg.com/vi/LGbDImaufGI/hqdefault.jpg"
-    },
-    {
-      "id": "6alMTPb2Xtk",
-      "title": "Rider, Driver or Pilot? How Junior Devs Ship 10\u00d7 Faster",
-      "type": "Short",
-      "views": 10,
-      "time_ago": "Recent",
-      "url": "https://www.youtube.com/shorts/6alMTPb2Xtk",
-      "thumbnail": "https://i.ytimg.com/vi/6alMTPb2Xtk/hqdefault.jpg"
     }
   ]
 }

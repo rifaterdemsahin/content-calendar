@@ -1,35 +1,35 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "reviews": {
     "1": {
       "status": "partly",
       "statusLabel": "Partly on track",
-      "summary": "The plan points the right way, but the week went somewhere else. You are publishing steadily, yet none of the 3 planned items has shipped. The 3 videos that did go out are unplanned: two commentary pieces and a mindset Short (10, 18 and 12 views so far). One of them, the junior-dev Delivery Pilot video, matches an idea YouTube's AI rates 'very likely', but it's too new to judge. The planned items are practical n8n builds, your strongest type, and all 3 are still at 'writing'. The week ends on Tuesday 24 Nov.",
+      "summary": "Week 1 ends tomorrow (Tue 24 Nov) and none of the 3 planned items has shipped: the n8n agent build (Wed) and the n8n loops Short (Sat) are still 'writing', and there is no record of whether Sunday's Skool clinic ran. No new video has been published since 21 Nov. The one bright spot is unplanned: the junior-dev J-Curve video went from 18 to 64 views in 2 days (about 32 a day), the fastest start of any recent upload. Publishing is steady, but the plan is not what is shipping.",
       "checks": [
         {
           "result": "good",
           "title": "Cadence is back",
-          "detail": "10 uploads since 9 Nov after a 2-month gap. Consistency is the hardest habit to build, and you have it."
+          "detail": "10 uploads between 9 and 21 Nov after a 2-month gap, but nothing since 21 Nov. Keep the Wednesday slot."
         },
         {
           "result": "good",
           "title": "The plan picks the right kind of video",
-          "detail": "This week's plan (n8n agent build, n8n loop fix, live debugging clinic) is practical and hands-on. Builds are your best-performing type: the LinkedIn job-hunt automation has 552 views and the n8n Content Magician 276."
+          "detail": "This week's plan (n8n agent build, n8n loop fix, live debugging clinic) is practical and hands-on. Builds are your best-performing type: the LinkedIn job-hunt automation has 553 views and the n8n Content Magician 276."
         },
         {
           "result": "good",
           "title": "You acted on YouTube's AI analysis",
-          "detail": "The junior-dev Delivery Pilot video (_tYzckEn6O8) is idea #2 from YouTube's own analysis, and the content is strong. Its title and description need fixing; see the video review on the Performance report."
+          "detail": "The junior-dev video (_tYzckEn6O8) is idea #2 from YouTube's own analysis and is now the fastest-growing upload of the week (64 views). Its title and description still need fixing; see the video review on the Performance report."
         },
         {
           "result": "bad",
           "title": "None of the planned items shipped",
-          "detail": "The Wednesday long video slot passed without the n8n build. The Saturday Short and the Sunday clinic are both still 'writing'."
+          "detail": "Wednesday's n8n build slot passed, and the Saturday Short is still 'writing'. Sunday's Skool clinic can't be checked from public data, so mark it done in videos.json if it ran. With one day left, the n8n build is the only item that can still ship."
         },
         {
           "result": "bad",
           "title": "What shipped is mostly the weak shape",
-          "detail": "'Stuck in Red Tape?' (10) and 'Rider, Driver or Pilot?' (12) are the formats that keep underperforming: narrow commentary and mindset Shorts. 'UK Junior Dev Crash J-Curve' (18 after about a day) is YouTube AI's idea #2 and fits your career-perspective pillar, so judge it at 7 days."
+          "detail": "'Stuck in Red Tape?' has 11 views and 'Rider, Driver or Pilot?' 22 after about 2 days: narrow commentary and a mindset Short, the shapes that keep underperforming. The exception is the J-Curve long video, now at 64 views (32 a day) and the best ramp of the week; judge it at 7 days (28 Nov) against 'Become a Delivery Pilot' (135 after 14 days)."
         },
         {
           "result": "warn",
@@ -49,14 +49,14 @@
         {
           "result": "unknown",
           "title": "Subscriber pace not measured",
-          "detail": "You need about 15 a week to reach 1,000 by 31 Mar 2027, but the count of 725 has not been re-measured since 17 Nov. Set YOUTUBE_API_KEY and run scripts/pull_youtube_stats.py."
+          "detail": "You need about 15 a week to reach 1,000 by 31 Mar 2027, but the count of 725 is hardcoded in analyze_past_performance.py and has not been re-measured. Treat it as unmeasured. Set YOUTUBE_API_KEY and run scripts/pull_youtube_stats.py."
         }
       ],
       "next": [
         {
-          "when": "Sun 22 Nov",
-          "title": "Run the Live Workflow Debugging Clinic",
-          "detail": "It's a fixed Sunday 13:30 commitment and it doesn't need editing. Save the recording to Skool."
+          "when": "Sun 22 Nov (check)",
+          "title": "Confirm the Live Workflow Debugging Clinic ran",
+          "detail": "It was a fixed Sunday 13:30 commitment. If it ran, set it to 'done' in videos.json and save the recording to Skool. If not, say so and move it to Week 2 as a swap."
         },
         {
           "when": "Today",
@@ -64,7 +64,7 @@
           "detail": "Retitle it (drop 'UK' and 'J-curve', add the Delivery Pilot outcome), rewrite the first 2 description lines, paste in the chapters, and pin the 90-day plan. All copy-paste text is on the Performance report."
         },
         {
-          "when": "Mon–Tue",
+          "when": "Today–Tue",
           "title": "Finish the n8n agent build and publish it",
           "detail": "It is the strongest item in the plan (value score 9/10). Publish it on its own day. Cut 'The 1 Mistake in n8n Loops' Short from the same recording instead of filming it separately."
         },

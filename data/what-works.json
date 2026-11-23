@@ -1,7 +1,7 @@
 {
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "source": "Public view counts (data/latest-videos.json, data/past-performance.json) and YouTube Studio's AI analysis of 21 Nov 2026. View counts on the page are read live from those files.",
-  "headline": "Two pillars work, and YouTube's own AI agrees: (1) practical, cost-saving dev tooling, and (2) grounded long-form career and industry takes with a data angle. What doesn't work is mindset Shorts and narrow commentary.",
+  "headline": "Two pillars work, and YouTube's own AI agrees: (1) practical, cost-saving dev tooling (average 159 views, with Shorts at 186–197), and (2) grounded long-form career and industry takes with a data angle (average 287). What doesn't work is mindset Shorts (average 35) and narrow commentary (average 42).",
   "works": [
     {
       "key": "tooling",
@@ -188,7 +188,8 @@
         "LGbDImaufGI",
         "27jXA2V2Zio",
         "3VgRz5GeYDA",
-        "WK66w51UMrs"
+        "WK66w51UMrs",
+        "8ud3AaGKtP0"
       ],
       "rewrites": [
         {
@@ -216,7 +217,7 @@
     },
     {
       "id": "KVKJRdkH-B8",
-      "note": "An explainer that worked (142) next to one on the same topic that didn't ('AI Doesn't Read Words', 23). Clear packaging beat a vague hook."
+      "note": "An explainer that worked (142) next to one on the same topic that didn't ('AI Doesn't Read Words', 24 views, now classed under narrow/general). Clear packaging beat a vague hook."
     }
   ]
 }

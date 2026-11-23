@@ -248,141 +248,169 @@
     }
   ],
   "updates": {
+    "ai-course-sellers.html": {
+      "at": "2026-11-22T09:03:20+00:00",
+      "change": "chat: current video that i am working on is > https://www.youtube.com/watch?"
+    },
     "analytics.html": {
-      "at": "2026-11-18T11:17:14Z",
-      "change": "feat: YouTube Studio snapshot (30 videos), stats script, API pull script; analytics Studio section; starter video actual views"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "applaud.html": {
-      "at": "2026-11-21T22:42:26Z",
-      "change": "feat: YouTubers I Applaud page (Sabine Hossenfelder, Dr. Todd Grande)"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "audience.html": {
-      "at": "2026-11-18T11:09:43Z",
-      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "blocked.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "business.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "calendar.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "channels.html": {
-      "at": "2026-11-18T11:23:55Z",
-      "change": "feat: channels page (YouTube, LinkedIn, X, Skool; Superpowers, Claude, Remotion); LinkedIn network stats"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "core-message.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "creators.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "cron.html": {
-      "at": "2026-11-18T11:48:06Z",
-      "change": "fix: content storage ReferenceError (HTTP 500 on title click); daily pull job status page; data and api tests in ship"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
+    },
+    "current-video.html": {
+      "at": "2026-11-23T07:26:43+00:00",
+      "change": "current video: CTA invites people to become Delivery Pilots; new call-to-action page linked to deliverypilot.net"
+    },
+    "delivery-pilot.html": {
+      "at": "2026-11-23T07:26:43+00:00",
+      "change": "current video: CTA invites people to become Delivery Pilots; new call-to-action page linked to deliverypilot.net"
+    },
+    "early-stars.html": {
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "expectations.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-21T20:42:15+00:00",
+      "change": "fix(ci): quote deploy stamp step as a block scalar (YAML parse error)"
     },
     "formats.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "goals.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "ikigai.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "index.html": {
-      "at": "2026-11-21T22:42:26Z",
-      "change": "feat: YouTubers I Applaud page (Sabine Hossenfelder, Dr. Todd Grande)"
+      "at": "2026-11-23T07:26:43+00:00",
+      "change": "current video: CTA invites people to become Delivery Pilots; new call-to-action page linked to deliverypilot.net"
     },
     "inspiration.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "interests.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "key-vault.html": {
-      "at": "2026-11-21T21:49:03Z",
+      "at": "2026-11-21T21:49:03+00:00",
       "change": "docs: chat agent runs in the Fly.io Sprite; SPRITES-TOKEN in Key Vault"
     },
     "mentors.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
+    },
+    "next-video.html": {
+      "at": "2026-11-22T07:58:57+00:00",
+      "change": "chat: pull all my liked videos and create categories ion them my account log"
     },
     "on-track.html": {
-      "at": "2026-11-18T11:20:45Z",
-      "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "passion.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "performance.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "personality.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "quarterly.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "requirements.html": {
-      "at": "2026-11-18T11:05:35Z",
-      "change": "feat: supply & demand, core message, deploy-time footer, WIP limit in AGENTS.md, Flow/Cambridge production note"
+      "at": "2026-11-21T20:42:15+00:00",
+      "change": "fix(ci): quote deploy stamp step as a block scalar (YAML parse error)"
     },
     "research.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
+    },
+    "reverse-marketing.html": {
+      "at": "2026-11-22T08:15:40+00:00",
+      "change": "reverse marketing: new playbook page with the 3 steps, the most-commented video, reverse-engineering notes, core message and flywheel mapping, and a half-time, half-cost plan"
     },
     "reverse-response.html": {
-      "at": "2026-11-18T11:09:43Z",
-      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "setup-api-key.html": {
-      "at": "2026-11-18T11:20:45Z",
-      "change": "feat: on-track charts, API key setup page, scheduled stats job (Fly) and stats endpoint"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
+    },
+    "similar-channels.html": {
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "story.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "supply-demand.html": {
-      "at": "2026-11-18T11:09:43Z",
-      "change": "feat: planned videos table and page driven by data/videos.json; hook and what's in it for the audience on cards"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "value.html": {
-      "at": "2026-11-18T12:35:37Z",
-      "change": "feat: value recognition for every video (value block in videos.json, Value Check page, tests)"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "videos.html": {
-      "at": "2026-11-18T12:35:37Z",
-      "change": "feat: value recognition for every video (value block in videos.json, Value Check page, tests)"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "week.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     },
     "what-works.html": {
-      "at": "2026-11-21T22:11:11Z",
-      "change": "fix: retry the Sprite on 503 with backoff and fall back to Daytona; deploy footer everywhere"
+      "at": "2026-11-22T07:45:14+00:00",
+      "change": "favorites: star button on every page and a Favorites menu in the top nav, saved to Azure"
     }
   },
   "links": [
