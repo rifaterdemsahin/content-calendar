@@ -103,7 +103,7 @@
       "title": "Current video: spoken script",
       "scenes": [
         { "time": "0:00–0:08", "name": "Hook & promise", "say": "What if you could reverse-engineer any video's editing style without spending hours setting up complicated AI tools?" },
-        { "time": "0:08–0:18", "name": "Old way vs new way", "say": "The old way dumped raw data on you. My tool converts everything into a clean, AI-ready format." },
+        { "time": "0:08–0:18", "name": "Old way vs new way", "say": "The old way dumped raw data on you. We are building SaaS tools for the community that turn everything into a clean, AI-ready format." },
         { "time": "0:18–0:28", "name": "Verified output", "say": "You upload the video and it extracts the full visual DNA." },
         { "time": "0:28–0:40", "name": "Works with Hyperframes", "say": "Pair the AI-ready file with Hyperframes and build the video faster than editing from scratch. [check: speed claim not yet verified]" },
         { "time": "0:40–0:52", "name": "Pricing", "say": "No bloated subscriptions. One dollar gets you 10 video credits. [check: confirm price]" },
@@ -128,7 +128,7 @@
           "time": "0:08–0:18",
           "visuals": "Split screen. Left (red): raw, unsimplified logs. Right (green): a clean AI-ready file.",
           "onScreen": "The old way: raw & unsimplified · The new way: AI-ready format",
-          "audio": "Record-scratch SFX, then the beat smooths out. VO: \"The old way dumped raw data on you. My tool converts everything into a clean, AI-ready format.\""
+          "audio": "Record-scratch SFX, then the beat smooths out. VO: \"The old way dumped raw data on you. We are building SaaS tools for the community that turn everything into a clean, AI-ready format.\""
         },
         {
           "n": 3,
