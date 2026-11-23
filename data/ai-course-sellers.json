@@ -79,7 +79,7 @@
     "gap": "Unlike course sellers, this sells a working result at cost, not a course. That is the Delivery Pilot angle: deliver, don't just teach.",
     "cta": {
       "headline": "🧑‍✈️ Become a Delivery Pilot",
-      "text": "This video is the start. Someone who delivers with AI, not just learns about it: join at deliverypilot.net.",
+      "text": "This is a sample business. It needs a Delivery Pilot to run it. We provide the templates and bots that run the business, the training you need, and the community. Join at deliverypilot.net.",
       "url": "https://deliverypilot.net",
       "page": "delivery-pilot.html"
     },
@@ -91,7 +91,7 @@
         { "time": "0:18–0:28", "name": "Verified output", "say": "You upload the video and it extracts the full visual DNA." },
         { "time": "0:28–0:40", "name": "Works with Hyperframes", "say": "Pair the AI-ready file with Hyperframes and build the video faster than editing from scratch. [check: speed claim not yet verified]" },
         { "time": "0:40–0:52", "name": "Pricing", "say": "No bloated subscriptions. One dollar gets you 10 video credits. [check: confirm price]" },
-        { "time": "0:52–1:00", "name": "Call to action", "say": "Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net. Click the link to grab credits, and join the Skool community to learn how to build it." }
+        { "time": "0:52–1:00", "name": "Call to action", "say": "This is a sample business, and it needs a Delivery Pilot to run it. We provide the templates, the bots, the training and the community. Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net. Click the link to grab credits, and join the Skool community to learn how to build it." }
       ]
     },
     "storyboard": {
@@ -144,7 +144,7 @@
           "time": "0:52–1:00",
           "visuals": "You point down to the description links.",
           "onScreen": "Button 1: Become a Delivery Pilot (deliverypilot.net) · Button 2: Get your credits now (Stripe link) · Button 3: Join the Skool community",
-          "audio": "Beat builds to a clean finish. VO: \"Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net.\" Then: click the link to grab credits; join the Skool community to learn how to build it."
+          "audio": "Beat builds to a clean finish. VO: \"This is a sample business, and it needs a Delivery Pilot to run it. We provide the templates, the bots, the training and the community. Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net.\" Then: click the link to grab credits; join the Skool community to learn how to build it."
         }
       ],
       "confirmBeforeRecording": [
