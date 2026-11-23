@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTA short: how we made it | @RifatErdemSahin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; overflow-wrap: anywhere; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <a href="/" class="text-sm text-slate-300 hover:text-indigo-400 whitespace-nowrap">← Dashboard</a>
+      <span class="font-bold tracking-tight truncate">🎬 CTA short: how we made it</span>
+      <span class="text-xs text-slate-500 whitespace-nowrap">23 Nov 2026</span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+    <section class="space-y-4">
+      <div class="text-xs font-bold text-indigo-400 uppercase tracking-widest">📌 Reference</div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-white">🎬 The CTA short, start to finish</h1>
+      <p class="text-slate-300 max-w-3xl">A 47-second vertical short cut from one green-screen take. It opens on the hook, bridges with the SaaS line, and ends on the Delivery Pilot call to action with the Skool community at the end.</p>
+      <div class="rounded-xl overflow-hidden border border-slate-800 bg-black aspect-[9/16] max-w-xs mx-auto">
+        <iframe src="https://drive.google.com/file/d/11BcvX_7SuOWgMBnVBTjgU6iZycXaGzUn/preview" class="w-full h-full" allow="autoplay" title="The CTA short (v7)"></iframe>
+      </div>
+      <p class="text-sm text-slate-400 text-center">If the player is blank, <a class="text-indigo-400 hover:text-indigo-300" href="https://drive.google.com/file/d/11BcvX_7SuOWgMBnVBTjgU6iZycXaGzUn/view?usp=drivesdk" target="_blank" rel="noopener">open it on Google Drive</a>.</p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-bold text-white">🧭 What the short is made of</h2>
+      <div class="grid gap-3 sm:grid-cols-3">
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm"><div class="font-bold text-white">🎣 Hook · 8.6 s</div><p class="text-slate-400 mt-1">"What if you could reverse engineer any video editing style… without spending hours of setting up video production tools."</p></div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm"><div class="font-bold text-white">🌉 Bridge · 7.7 s</div><p class="text-slate-400 mt-1">"Today, we are building a SaaS tool for the community…" (added to connect the hook to the call to action).</p></div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm"><div class="font-bold text-white">🚀 Call to action · 31 s</div><p class="text-slate-400 mt-1">The sample business needs a Delivery Pilot. Templates, bots, training and community. Join at deliverypilot.net and the Skool community.</p></div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-white">🪜 How we did it</h2>
+      <ol class="space-y-4 text-sm text-slate-300 list-decimal pl-5">
+        <li><div class="font-bold text-white">Get the take</div><p class="mt-1">The take is <code class="text-indigo-300">NINJAV_S001_S001_T020.MOV</code> on the NINJAV drive: 1920×1080, about 2 min 55 s. The speech is on audio channels 3 and 4, not the front pair, so a normal stereo player plays it almost silent. We check channels with <code class="text-indigo-300">scripts/video/inspect_audio.sh</code> and move the speech channels to left and right with <code class="text-indigo-300">scripts/video/stereo_playback.sh</code>.</p></li>
+        <li><div class="font-bold text-white">Transcribe</div><p class="mt-1">DeepInfra Whisper large-v3 gives segment timings (about $0.001 for the take). We pick the sentences for each window from those timings and add a 0.15 s pad before and 0.2–0.3 s after.</p></li>
+        <li><div class="font-bold text-white">Key the green screen</div><p class="mt-1">Chroma key at <code class="text-indigo-300">0x6ec832</code> (similarity 0.12, blend 0.04) with a green despill. The key only covers the screen area, so the paper, lamps and walls keep their colour. RVM was not run; it needs PyTorch and model weights, which didn't fit on the disk.</p></li>
+        <li><div class="font-bold text-white">Background and music</div><p class="mt-1">The background is a generated studio gradient from FLUX-2-pro (about $0.015). The music bed is a 35 s instrumental from DeepInfra ACE-Step (about $0.035), ducked under the voice.</p></li>
+        <li><div class="font-bold text-white">Captions and graphics</div><p class="mt-1">Captions are drawn with Pillow, one frame per highlight step: the current word is yellow. The graphics (sample business, four provisions, Delivery Pilot badge, learn/fix/adapt, Skool end card) come from the timed spec <code class="text-indigo-300">scripts/video/graphics_cta.json</code>. This ffmpeg build has no subtitle or text filters, so Pillow draws them.</p></li>
+        <li><div class="font-bold text-white">Render</div><p class="mt-1"><code class="text-indigo-300">scripts/video/greenscreen_short.sh</code> keys the clip, crops tight on the speaker (640 px square, filling the bottom 1080 px), places the background, overlays the graphics and captions, mixes the voice (+10 dB, compressed) with the ducked music, and encodes H.264 CRF 18 at 1080×1920 with AAC.</p></li>
+        <li><div class="font-bold text-white">Join the windows</div><p class="mt-1"><code class="text-indigo-300">scripts/video/join_clips.sh</code> joins the three windows with hard video cuts and an 80 ms audio crossfade. We tried a dissolve first, but it left a ghosted double image of the speaker.</p></li>
+        <li><div class="font-bold text-white">Edit in Hyperframes</div><p class="mt-1">The finished short is the base layer of a portrait Hyperframes project, <code class="text-indigo-300">cta-short</code>, shown in Studio on your Mac at <code class="text-indigo-300">localhost:3002</code>. Studio runs only on that machine, so it isn't on this page. The project's skill and CLI updates are a step for the owner.</p></li>
+        <li><div class="font-bold text-white">Store and share</div><p class="mt-1">The file went to the Synology share <code class="text-indigo-300">GoogleDrivePexaboShared</code>, which syncs to Google Drive, then was shared as "anyone with the link can view". Keys were read from Azure Key Vault (<code class="text-indigo-300">dp-kv-deliverypilot</code>) and never written to files or to this page.</p></li>
+      </ol>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-bold text-white">💸 What it cost</h2>
+      <div class="grid gap-3 sm:grid-cols-3 text-sm">
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800"><div class="text-slate-400">Background (FLUX-2-pro)</div><div class="font-bold text-white">about $0.015</div></div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800"><div class="text-slate-400">Music (ACE-Step, 35 s)</div><div class="font-bold text-white">about $0.035</div></div>
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800"><div class="text-slate-400">Transcript (Whisper)</div><div class="font-bold text-white">about $0.001</div></div>
+      </div>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-bold text-white">⚠️ Still to check</h2>
+      <ul class="text-sm text-slate-300 list-disc pl-5 space-y-2">
+        <li>Whisper heard "the Pro-I templates" where the speaker said "We provide the templates". The captions use the corrected words. Confirm against the audio.</li>
+        <li>Whisper heard "school community". The captions say "Skool community". Confirm.</li>
+        <li>The voice is still quiet on average (about -28 dBFS). Raise it or lower the music if it's hard to hear.</li>
+        <li>The speaker's mouth and hands at the crop edges are upscaled from 1080p, so they are a little soft. A 4K take would fix this.</li>
+        <li>No RVM matte. The edges come from chroma key only.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-bold text-white">🔗 Files and pages</h2>
+      <ul class="text-sm text-slate-300 space-y-2">
+        <li>🧰 Pipeline: <code class="text-indigo-300">docs/video-production-pipeline.md</code></li>
+        <li>🧩 Skill: <code class="text-indigo-300">.claude/skills/greenscreen-short/SKILL.md</code></li>
+        <li>🎥 <a class="text-indigo-400 hover:text-indigo-300" href="/current-video.html">Current video page</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
