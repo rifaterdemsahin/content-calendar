@@ -15,10 +15,10 @@ Generates one PNG per call with `scripts/generate_image.py`, using DeepInfra's O
 ## Run it
 
 ```
-python3 scripts/generate_image.py "<prompt>" [--size 1024x1024] [--model black-forest-labs/FLUX-1-schnell] [--out images/generated/<name>.png]
+python3 scripts/generate_image.py "<prompt>" [--size 1024x1024] [--model black-forest-labs/FLUX-2-pro] [--out images/generated/<name>.png]
 ```
 
-- Default model: `black-forest-labs/FLUX-1-schnell` (fast, cheap). For higher quality, pass another FLUX model ID from DeepInfra, such as `black-forest-labs/FLUX-1.1-pro` or `black-forest-labs/FLUX-2-pro`. Check the model's own page on deepinfra.com for its ID and price.
+- Default model: `black-forest-labs/FLUX-2-pro` (about $0.015 per image, the best text and detail of the cheap options tested). Keep each image under $0.10. For a faster, cheaper draft, pass `--model black-forest-labs/FLUX-1-schnell`. Check the model's page on deepinfra.com for current prices before a batch.
 - Default output: `images/generated/<date>-<prompt-slug>.png`. Pass `--out` to name it.
 - The script prints the saved path. Show it to the user.
 
@@ -28,3 +28,5 @@ python3 scripts/generate_image.py "<prompt>" [--size 1024x1024] [--model black-f
 - Never present a generated image as a photo of Erdem or of a real customer.
 - Image costs are per image and set by DeepInfra. Do not generate in a loop; one image per request unless the user asks for more.
 - To use an image on a page, reference the saved file path in the HTML and commit it with the page.
+
+- Text in images is often misspelled, especially URLs. Put exact words (names, URLs, prices) in real HTML text beside the image, not only inside it.

@@ -25,7 +25,7 @@ def main():
     p = argparse.ArgumentParser(description="Generate an image with DeepInfra")
     p.add_argument("prompt")
     p.add_argument("--size", default="1024x1024")
-    p.add_argument("--model", default="black-forest-labs/FLUX-1-schnell")
+    p.add_argument("--model", default="black-forest-labs/FLUX-2-pro")
     p.add_argument("--out", help="output file path (.png)")
     a = p.parse_args()
 
