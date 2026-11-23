@@ -34,6 +34,8 @@
 
     <section id="cta"></section>
 
+    <section id="prompter" class="space-y-3"></section>
+
     <section id="storyboard" class="space-y-3"></section>
 
     <section class="space-y-3">
@@ -89,6 +91,25 @@
           <a href="${esc(cta.page)}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-bold transition"><i class="fas fa-arrow-right"></i> See how to join</a>
           <a href="${esc(cta.url)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-700 hover:border-indigo-500/60 text-slate-200 text-sm font-semibold transition break-all">🔗 ${esc(cta.url)}</a>
         </div></div>`;
+    const pr = v && v.prompter, prBox = document.getElementById('prompter');
+    if (pr && prBox) {
+      const md = [`# 🎥 ${pr.title}`, '', ...pr.scenes.flatMap(s => [`## ${s.name} (${s.time})`, '', s.say, ''])].join('\n').trimEnd() + '\n';
+      prBox.innerHTML = `<div class="flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl font-bold text-white">📜 Prompter script</h2>
+          <button id="copy-prompter" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-bold transition"><i class="fas fa-copy"></i> <span>Copy Markdown</span></button>
+        </div>
+        <p class="text-xs text-slate-400">Copy this into your Elgato Prompter. Bracketed [check] notes are reminders to confirm before recording; remove them from the script.</p>
+        <pre id="prompter-md" class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 whitespace-pre-wrap break-words max-h-96 overflow-auto">${esc(md)}</pre>`;
+      document.getElementById('copy-prompter').addEventListener('click', async (e) => {
+        const label = e.currentTarget.querySelector('span');
+        try { await navigator.clipboard.writeText(md); label.textContent = 'Copied ✓'; }
+        catch (err) {
+          const r = document.createRange(); r.selectNodeContents(document.getElementById('prompter-md'));
+          const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); label.textContent = 'Press ⌘C to copy';
+        }
+        setTimeout(() => { label.textContent = 'Copy Markdown'; }, 2500);
+      });
+    }
     renderStoryboard(v);
   }).catch(() => { document.getElementById('video').innerHTML = '<p class="text-sm text-red-300">⚠️ Could not load the video details.</p>'; });
   </script>

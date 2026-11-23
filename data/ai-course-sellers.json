@@ -83,6 +83,17 @@
       "url": "https://deliverypilot.net",
       "page": "delivery-pilot.html"
     },
+    "prompter": {
+      "title": "Current video: spoken script",
+      "scenes": [
+        { "time": "0:00–0:08", "name": "Hook & promise", "say": "What if you could reverse-engineer any video's editing style without spending hours setting up complicated AI tools?" },
+        { "time": "0:08–0:18", "name": "Old way vs new way", "say": "The old way dumped raw data on you. My tool converts everything into a clean, AI-ready format." },
+        { "time": "0:18–0:28", "name": "Verified output", "say": "You upload the video and it extracts the full visual DNA." },
+        { "time": "0:28–0:40", "name": "Works with Hyperframes", "say": "Pair the AI-ready file with Hyperframes and build the video faster than editing from scratch. [check: speed claim not yet verified]" },
+        { "time": "0:40–0:52", "name": "Pricing", "say": "No bloated subscriptions. One dollar gets you 10 video credits. [check: confirm price]" },
+        { "time": "0:52–1:00", "name": "Call to action", "say": "Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net. Click the link to grab credits, and join the Skool community to learn how to build it." }
+      ]
+    },
     "storyboard": {
       "source": "Storyboard built from the transcript of KnqTiAXUH7M (Taha El Harti). We copy the structure and pacing only, never their words, footage or thumbnail.",
       "length": "1:00 (six scenes, final draft)",
