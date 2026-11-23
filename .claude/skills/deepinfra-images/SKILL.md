@@ -9,7 +9,7 @@ Generates one PNG per call with `scripts/generate_image.py`, using DeepInfra's O
 
 ## Before you run it
 
-1. The key must be in the environment as `DEEPINFRA_API_KEY`. Never write the key into a file, a command you echo, a commit or a chat reply. If it is missing, tell the user to run `export DEEPINFRA_API_KEY=...` in their shell (or `! export ...` in this session) and stop.
+1. The key comes from `DEEPINFRA_API_KEY` if it is set; otherwise the script reads secret `deepinfra-api-key` from Azure Key Vault `dp-kv-deliverypilot` (needs `az login`). Never write the key into a file, a command you echo, a commit or a chat reply. If it is missing, tell the user to run `export DEEPINFRA_API_KEY=...` in their shell (or `! export ...` in this session) and stop.
 2. Write the prompt in plain English and describe the subject, style and composition. Avoid real people's names, logos and brand marks.
 
 ## Run it
