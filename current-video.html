@@ -32,6 +32,8 @@
 
     <section id="video"><p class="text-sm text-slate-400">Loading…</p></section>
 
+    <section id="cta"></section>
+
     <section id="storyboard" class="space-y-3"></section>
 
     <section class="space-y-3">
@@ -78,6 +80,15 @@
         <h3 class="text-sm font-bold text-white mt-4">✅ To do</h3>
         <ul class="mt-2 text-sm text-slate-300 list-disc pl-5 space-y-1">${v.todo.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       </div>`;
+    const cta = v && v.cta, ctaBox = document.getElementById('cta');
+    if (cta && ctaBox) ctaBox.innerHTML = `<div class="p-5 sm:p-6 rounded-xl border border-indigo-500/40 bg-indigo-950/30">
+        <div class="text-xs font-bold text-indigo-300 uppercase tracking-widest">🚀 Call to action</div>
+        <h2 class="text-xl font-bold text-white mt-1">${esc(cta.headline)}</h2>
+        <p class="text-sm text-slate-300 mt-2">${esc(cta.text)}</p>
+        <div class="flex flex-wrap gap-3 mt-4">
+          <a href="${esc(cta.page)}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-bold transition"><i class="fas fa-arrow-right"></i> See how to join</a>
+          <a href="${esc(cta.url)}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-700 hover:border-indigo-500/60 text-slate-200 text-sm font-semibold transition break-all">🔗 ${esc(cta.url)}</a>
+        </div></div>`;
     renderStoryboard(v);
   }).catch(() => { document.getElementById('video').innerHTML = '<p class="text-sm text-red-300">⚠️ Could not load the video details.</p>'; });
   </script>

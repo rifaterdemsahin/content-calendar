@@ -143,6 +143,11 @@
           "url": "business.html",
           "title": "💼 Business plan",
           "why": "Students free, professionals $49/month, businesses get a managed bot service."
+        },
+        {
+          "url": "delivery-pilot.html",
+          "title": "🧑‍✈️ Become a Delivery Pilot",
+          "why": "The call to action: how to join Delivery Pilot, the offer the current video invites people into."
         }
       ]
     },
@@ -855,9 +860,25 @@
       "current-video.html",
       "ai-course-sellers.html",
       "The current video is compared with course sellers' offers"
+    ],
+    [
+      "delivery-pilot.html",
+      "current-video.html",
+      "The current video's call to action invites people to become Delivery Pilots"
+    ],
+    [
+      "delivery-pilot.html",
+      "business.html",
+      "Where the Delivery Pilot offer fits the business plan"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-23",
+      "icon": "🧑‍✈️",
+      "text": "Become a Delivery Pilot: a call-to-action page, linked from the current video and to deliverypilot.net",
+      "href": "delivery-pilot.html"
+    },
     {
       "date": "2026-11-22",
       "icon": "🎥",
@@ -899,12 +920,6 @@
       "icon": "🥇",
       "text": "My next video: a cheap-model, full-stack build as the long-form parent for your best Shorts",
       "href": "next-video.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "📘",
-      "text": "AGENTS.md rewritten, and the Guide regrouped into 8 steps with What's new",
-      "href": "index.html"
     }
   ]
 }

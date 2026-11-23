@@ -1028,6 +1028,31 @@
           "d": "Source code and support"
         }
       ]
+    },
+    "delivery-pilot.html": {
+      "title": "🧑‍✈️ Becoming a Delivery Pilot",
+      "steps": [
+        {
+          "e": "👀",
+          "t": "Watch",
+          "d": "The current video"
+        },
+        {
+          "e": "🎯",
+          "t": "See the CTA",
+          "d": "Deliver with AI"
+        },
+        {
+          "e": "🌐",
+          "t": "Visit",
+          "d": "deliverypilot.net"
+        },
+        {
+          "e": "🧑‍✈️",
+          "t": "Join",
+          "d": "Become a Delivery Pilot"
+        }
+      ]
     }
   }
 }

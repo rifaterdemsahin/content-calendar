@@ -77,6 +77,12 @@
       "✍️ Add the Skool post with the source code and a support thread"
     ],
     "gap": "Unlike course sellers, this sells a working result at cost, not a course. That is the Delivery Pilot angle: deliver, don't just teach.",
+    "cta": {
+      "headline": "🧑‍✈️ Become a Delivery Pilot",
+      "text": "This video is the start. Someone who delivers with AI, not just learns about it: join at deliverypilot.net.",
+      "url": "https://deliverypilot.net",
+      "page": "delivery-pilot.html"
+    },
     "storyboard": {
       "source": "Storyboard built from the transcript of KnqTiAXUH7M (Taha El Harti). We copy the structure and pacing only, never their words, footage or thumbnail.",
       "length": "1:00 (six scenes, final draft)",
@@ -126,8 +132,8 @@
           "name": "Call to action & Skool",
           "time": "0:52–1:00",
           "visuals": "You point down to the description links.",
-          "onScreen": "Button 1: Get your credits now (Stripe link) · Button 2: Join the Skool community",
-          "audio": "Beat builds to a clean finish. VO: click the link to grab credits; join the Skool community to learn how to build it."
+          "onScreen": "Button 1: Become a Delivery Pilot (deliverypilot.net) · Button 2: Get your credits now (Stripe link) · Button 3: Join the Skool community",
+          "audio": "Beat builds to a clean finish. VO: \"Become a Delivery Pilot, someone who delivers with AI. Start at deliverypilot.net.\" Then: click the link to grab credits; join the Skool community to learn how to build it."
         }
       ],
       "confirmBeforeRecording": [
