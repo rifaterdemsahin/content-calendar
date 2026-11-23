@@ -83,6 +83,22 @@
       "url": "https://deliverypilot.net",
       "page": "delivery-pilot.html"
     },
+    "ctaStoryboard": {
+      "title": "CTA storyboard: the sample business needs a Delivery Pilot",
+      "source": "Alternate call-to-action cut, built from the message in the CTA card. Structure only; no footage or words from other creators.",
+      "length": "0:24 (four scenes, draft)",
+      "scenes": [
+        { "n": 1, "name": "Sample business", "time": "0:00–0:06", "visuals": "A-roll: you to camera. B-roll: a sample business dashboard, labelled as a sample.", "onScreen": "🏪 Sample business · needs a Delivery Pilot to run it", "audio": "VO: \"This is a sample business. It needs a Delivery Pilot to run it.\"" },
+        { "n": 2, "name": "What we provide", "time": "0:06–0:14", "visuals": "Four cards slide in one by one.", "onScreen": "📋 Templates · 🤖 Bots · 🎓 Training · 💬 Community", "audio": "VO: \"We provide the templates and bots that run the business, the training you need, and the community.\"" },
+        { "n": 3, "name": "Become a Delivery Pilot", "time": "0:14–0:19", "visuals": "A-roll: you point at the card.", "onScreen": "🧑‍✈️ Become a Delivery Pilot · someone who delivers with AI", "audio": "VO: \"Become a Delivery Pilot, someone who delivers with AI.\"" },
+        { "n": 4, "name": "Join", "time": "0:19–0:24", "visuals": "You point down to the description links.", "onScreen": "🔗 deliverypilot.net · Get your credits (Stripe) · Join Skool", "audio": "VO: \"Start at deliverypilot.net. Click the link to grab credits, and join the Skool community.\"" }
+      ],
+      "confirmBeforeRecording": [
+        "Confirm that the templates, bots, training and community are live before you say so on camera.",
+        "Label the business as a sample on screen, not a real customer.",
+        "Confirm the Stripe link and Skool link are in the description before pointing at them."
+      ]
+    },
     "prompter": {
       "title": "Current video: spoken script",
       "scenes": [
