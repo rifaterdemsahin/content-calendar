@@ -1053,6 +1053,31 @@
           "d": "Become a Delivery Pilot"
         }
       ]
+    },
+    "image-skill.html": {
+      "title": "🖼️ Making an image with Claude",
+      "steps": [
+        {
+          "e": "🔑",
+          "t": "Key",
+          "d": "Set DEEPINFRA_API_KEY"
+        },
+        {
+          "e": "📂",
+          "t": "Skill",
+          "d": "deepinfra-images in the repo"
+        },
+        {
+          "e": "🗣️",
+          "t": "Ask",
+          "d": "Describe the picture"
+        },
+        {
+          "e": "🖼️",
+          "t": "Save",
+          "d": "images/generated/"
+        }
+      ]
     }
   }
 }

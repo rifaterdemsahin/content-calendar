@@ -235,6 +235,11 @@
           "why": "Unlocks full per-video stats."
         },
         {
+          "url": "image-skill.html",
+          "title": "🖼️ Image skill",
+          "why": "How to add a skill so Claude can make images with DeepInfra."
+        },
+        {
           "url": "key-vault.html",
           "title": "🔐 Key Vault",
           "why": "Where the secrets live and how they are used."
@@ -898,9 +903,25 @@
       "delivery-pilot.html",
       "business.html",
       "Where the Delivery Pilot offer fits the business plan"
+    ],
+    [
+      "image-skill.html",
+      "setup-api-key.html",
+      "The image skill needs an API key, set up the same way"
+    ],
+    [
+      "image-skill.html",
+      "current-video.html",
+      "Images for the video's storyboard and thumbnail"
     ]
   ],
   "whatsNew": [
+    {
+      "date": "2026-11-23",
+      "icon": "🖼️",
+      "text": "Image skill: how to add a Claude skill that makes images with DeepInfra",
+      "href": "image-skill.html"
+    },
     {
       "date": "2026-11-23",
       "icon": "🧑‍✈️",
@@ -942,12 +963,6 @@
       "icon": "🔭",
       "text": "Similar niche channels: paste YouTube links and note what to borrow",
       "href": "similar-channels.html"
-    },
-    {
-      "date": "2026-11-21",
-      "icon": "🥇",
-      "text": "My next video: a cheap-model, full-stack build as the long-form parent for your best Shorts",
-      "href": "next-video.html"
     }
   ]
 }
